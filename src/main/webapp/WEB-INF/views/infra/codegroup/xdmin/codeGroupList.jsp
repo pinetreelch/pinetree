@@ -8,7 +8,7 @@
 codegroup
 
 <br>
-
+<!--  -->
 <c:forEach items="${list}" var="list" varStatus="status">
 	<c:out value="${list.cgSeq }"/> / <c:out value="${list.cgName }"/>
 	<br>		
