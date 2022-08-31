@@ -15,5 +15,5 @@
 		WHERE 1=1
 			AND delNY = 0
 	</select>
-
+<!--  -->
 </mapper>	

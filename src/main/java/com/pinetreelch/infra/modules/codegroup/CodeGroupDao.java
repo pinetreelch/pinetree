@@ -14,7 +14,7 @@ public class CodeGroupDao {
 	@Inject
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
-	
+	//
 	private static String namespace = "com.pinetreelch.infra.modules.codegroup.CodeGroupMapper";
 	
 	public List<CodeGroup> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
