@@ -9,11 +9,17 @@
     <resultMap id="resultMapObj" type="com.pinetreelch.infra.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
+		SELECT distinct
 			a.*
+			, b.codeGroup_cgSeq
+
+            ,(select count(cSeq)  from codeCd where codeGroup_cgSeq = cgSeq ) as "total"
 		FROM codeGroup a
+		inner JOIN codeCd b on b.codeGroup_cgSeq = a.cgSeq
 		WHERE 1=1
-			AND delNY = 0
+			AND a.delNY = 0
+            
+            
 	</select>
-<!--  -->
-</mapper>	
+
+</mapper>

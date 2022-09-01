@@ -9,7 +9,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>codeGroupList</title>
+	<title>codeList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	  	
 </head>
@@ -33,7 +33,7 @@
  	<div class="container bodyd" >
  		<div class="row" style="padding-top: 50px;">
  			<div class="col-12">
-				<h3>코드그룹 관리</h3>
+				<h3>코드 관리</h3>
 			
 				<div class="border " style=" padding: 10px; ">
 					<form action="">
@@ -107,21 +107,42 @@
 							<th>#</th>
 							<th>코드그룹 코드</th>
 							<th>코드그룹 이름(한글)</th>
-							<th>코드그룹 이름(영문)</th>
-							<th>코드갯수</th>
-							<th>등록일</th>	
+							<th>코드</th>
+							<th>대체 코드</th>
+							<th>코드 이름(한글)</th>	
+							<th>코드 이름 (영문)</th>
+							<th>사용</th>
+							<th>순서</th>
+							<th>등록일</th>
 							<th>수정일</th>	
 						<tr>
 						
+						<c:set var="ny" value="${fn:length(list)}"/>
 						<c:set var="orderListLength" value="${fn:length(list)}"/>
 						<c:forEach items="${list}" var="list" varStatus="status">
 							<tr>
 								<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
 								<td>${orderListLength - status.index }</td>
-								<td><c:out value="${list.cgSeq }"/></td>
+								<td><c:out value="${list.codeGroup_cgSeq }"/></td>
+								<td><c:out value="${list.cdName }"/></td>
+								<td><c:out value="${list.cSeq }"/></td>
+								<td></td>
 								<td><c:out value="${list.cgName }"/></td>
-								<td><c:out value="${list.cgKor }"/></td>
-								<td><c:out value="${list.total }"/></td>
+								<td></td>
+								<td>
+									<c:set var="ny" value="${list.useNY }"/>
+										<c:choose>
+										
+											<c:when test ="${ny eq 1 }">
+												Y
+											</c:when>
+												
+											<c:otherwise>
+												N
+											</c:otherwise>
+										</c:choose>
+								</td>
+								<td></td>
 								<td></td>
 								<td></td>
 							</tr>

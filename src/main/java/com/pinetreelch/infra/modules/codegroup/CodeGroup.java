@@ -1,16 +1,39 @@
 package com.pinetreelch.infra.modules.codegroup;
 
 public class CodeGroup {
-	//DTO
-	// infr_code_group
 	
+	// 코드그룹 변수
 	private String cgSeq;
 	private String cgName;
 	private String cgKor;
 	private Integer useNY;
 	private Integer delNY;
 	
-	//----------------------------------
+	// 코드변수
+	
+	private String cSeq;
+	private String codeGroup_cgSeq;
+	private String total;
+	
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	public String getCodeGroup_cgSeq() {
+		return codeGroup_cgSeq;
+	}
+	public void setCodeGroup_cgSeq(String codeGroup_cgSeq) {
+		this.codeGroup_cgSeq = codeGroup_cgSeq;
+	}
+	public String getcSeq() {
+		return cSeq;
+	}
+	public void setcSeq(String cSeq) {
+		this.cSeq = cSeq;
+	}
 	public String getCgSeq() {
 		return cgSeq;
 	}
