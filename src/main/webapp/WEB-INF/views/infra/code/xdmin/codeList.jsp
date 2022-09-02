@@ -121,7 +121,7 @@
 						<c:set var="orderListLength" value="${fn:length(list)}"/>
 						
 						<c:choose>
-							<c:when test = "${fn:length(list) eq 19 }">
+							<c:when test = "${fn:length(list) eq 18 }">
 								<tr>
 									<td colspan="19">There is no data!!!</td>
 								<tr>

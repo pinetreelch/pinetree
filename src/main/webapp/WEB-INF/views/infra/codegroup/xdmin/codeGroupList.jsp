@@ -36,12 +36,11 @@
 				<h3>코드그룹 관리</h3>
 			
 				<div class="border " style=" padding: 10px; ">
-					<form action="">
+					
 						<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
-						  <option selected >N</option>
-						  <option value="1">One</option>
-						  <option value="2">Two</option>
-						  <option value="3">Three</option>
+						  <option selected >삭제여부</option>
+						  <option value="1">Y</option>
+						  <option value="2">N</option>
 						</select>
 									
 						<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
@@ -66,16 +65,17 @@
 						</select>
 						<br />
 						
-						<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block; margin-top: 20px;">
+					<form method="post" action="/codeGroup/codeGroupList">
+						<select id="shOption" class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block; margin-top: 20px;">
 						  <option selected >검색구분</option>
-						  <option value="1">One</option>
-						  <option value="2">Two</option>
-						  <option value="3">Three</option>
+						  <option value="1">코드그룹 코드</option>
+						  <option value="2">코드그룹 이름 (한글)</option>
+						  <option value="3">코드그룹 이름 (영문)</option>
 						</select>
 						
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width: 200px; margin:0; display:inline-block; margin-top: 20px;" placeholder="검색어">
+						<input type="text" class="form-control" name="shValue"  style="width: 200px; margin:0; display:inline-block; margin-top: 20px;" placeholder="검색어">
 						
-						<button style="background: yellow; border:1px solid yellow; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+						<button  type="" style="background: yellow; border:1px solid yellow; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 						
@@ -117,7 +117,7 @@
 						
 						
 						<c:choose>
-							<c:when test = "${fn:length(list) eq 7 }">
+							<c:when test = "${fn:length(list) eq 0 }">
 								<tr>
 									<td colspan="8">There is no data!!!</td>
 								<tr>

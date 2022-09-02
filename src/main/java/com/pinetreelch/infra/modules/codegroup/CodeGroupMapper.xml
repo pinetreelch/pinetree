@@ -8,6 +8,14 @@
 
     <resultMap id="resultMapObj" type="com.pinetreelch.infra.modules.codegroup.CodeGroup"></resultMap>
 	
+	<sql id ="selectCommon">
+		FROM
+	</sql>
+	
+	
+	
+	
+	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT distinct
 			a.*
@@ -18,8 +26,11 @@
 		inner JOIN codeCd b on b.codeGroup_cgSeq = a.cgSeq
 		WHERE 1=1
 			AND a.delNY = 0
-            
-            
+			
+			<if test = "shValue != null"> </if>
+            <choose>
+            	<when test="shValue != null"> AND a.cgName LIKE CONCAT ('%',#{shValue},'%')</when> 
+            </choose>
 	</select>
 
 </mapper>
