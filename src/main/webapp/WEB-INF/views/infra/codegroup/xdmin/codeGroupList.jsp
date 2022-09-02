@@ -21,7 +21,7 @@
 					<div  class="col-12" style="padding-top:6px;">
 						<a class="heading"  href="./codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
 						<a class="heading"  href="./codeGroupAdd" style="padding-right: 20px;" >코드그룹 추가</a >
-						<a class="heading"  href="./code" style="padding-right: 20px;" >코드관리</a >
+						<a class="heading"  href="../code/codeList" style="padding-right: 20px;" >코드관리</a >
 						<a class="heading"  href="./codeAdd" style="padding-right: 20px;" >코드 추가</a >
 					</div>		 	
 			 	</div>
@@ -114,18 +114,30 @@
 						<tr>
 						
 						<c:set var="orderListLength" value="${fn:length(list)}"/>
-						<c:forEach items="${list}" var="list" varStatus="status">
-							<tr>
-								<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-								<td>${orderListLength - status.index }</td>
-								<td><c:out value="${list.cgSeq }"/></td>
-								<td><c:out value="${list.cgName }"/></td>
-								<td><c:out value="${list.cgKor }"/></td>
-								<td><c:out value="${list.total }"/></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+						
+						
+						<c:choose>
+							<c:when test = "${fn:length(list) eq 7 }">
+								<tr>
+									<td colspan="8">There is no data!!!</td>
+								<tr>
+							</c:when>
+							
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr>
+										<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+										<td>${orderListLength - status.index }</td>
+										<td><c:out value="${list.cgSeq }"/></td>
+										<td><c:out value="${list.cgName }"/></td>
+										<td><c:out value="${list.cgKor }"/></td>
+										<td><c:out value="${list.total }"/></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:forEach>								
+							</c:otherwise>
+						</c:choose>
 					</table>
 					
 					<div>

@@ -19,7 +19,7 @@
 		 	<div class="container bodyd">
 				<div id="aaaaa" class="row align-items-center">
 					<div  class="col-12" style="padding-top:6px;">
-						<a class="heading"  href="./codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
+						<a class="heading"  href="../codeGroup/codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
 						<a class="heading"  href="./codeGroupAdd" style="padding-right: 20px;" >코드그룹 추가</a >
 						<a class="heading"  href="./code" style="padding-right: 20px;" >코드관리</a >
 						<a class="heading"  href="./codeAdd" style="padding-right: 20px;" >코드 추가</a >
@@ -119,34 +119,45 @@
 						
 						<c:set var="ny" value="${fn:length(list)}"/>
 						<c:set var="orderListLength" value="${fn:length(list)}"/>
-						<c:forEach items="${list}" var="list" varStatus="status">
-							<tr>
-								<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-								<td>${orderListLength - status.index }</td>
-								<td><c:out value="${list.codeGroup_cgSeq }"/></td>
-								<td><c:out value="${list.cdName }"/></td>
-								<td><c:out value="${list.cSeq }"/></td>
-								<td></td>
-								<td><c:out value="${list.cgName }"/></td>
-								<td></td>
-								<td>
-									<c:set var="ny" value="${list.useNY }"/>
-										<c:choose>
-										
-											<c:when test ="${ny eq 1 }">
-												Y
-											</c:when>
+						
+						<c:choose>
+							<c:when test = "${fn:length(list) eq 19 }">
+								<tr>
+									<td colspan="19">There is no data!!!</td>
+								<tr>
+							</c:when>
+							
+							<c:otherwise>
+									<c:forEach items="${list}" var="list" varStatus="status">
+									<tr>
+										<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+										<td>${orderListLength - status.index }</td>
+										<td><c:out value="${list.codeGroup_cgSeq }"/></td>
+										<td><c:out value="${list.cdName }"/></td>
+										<td><c:out value="${list.cSeq }"/></td>
+										<td></td>
+										<td><c:out value="${list.cgName }"/></td>
+										<td></td>
+										<td>
+											<c:set var="ny1" value="${list.useNY }"/>
+												<c:choose>
 												
-											<c:otherwise>
-												N
-											</c:otherwise>
-										</c:choose>
-								</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+													<c:when test ="${ny1 eq 1 }">
+														Y
+													</c:when>
+														
+													<c:otherwise>
+														N
+													</c:otherwise>
+												</c:choose>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									</c:forEach>
+							</c:otherwise>									
+						</c:choose>
 					</table>
 					
 					<div>
