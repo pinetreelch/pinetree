@@ -13,24 +13,29 @@
 	</sql>
 	
 	
-	
-	
-	
 	<select id="selectList" resultMap="resultMapObj">
+	
 		SELECT distinct
 			a.*
 			, b.codeGroup_cgSeq
-
             ,(select count(cSeq)  from codeCd where codeGroup_cgSeq = cgSeq ) as "total"
 		FROM codeGroup a
 		inner JOIN codeCd b on b.codeGroup_cgSeq = a.cgSeq
 		WHERE 1=1
-			AND a.delNY = 0
 			
-			<if test = "shValue != null"> </if>
-            <choose>
-            	<when test="shValue != null"> AND a.cgName LIKE CONCAT ('%',#{shValue},'%')</when> 
-            </choose>
+			<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
+			
+			<if test= "shValue != null"> AND a.cgName  LIKE CONCAT('%',#{shValue},'%')</if>
+			
+			<choose>
+				<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND a.cgName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND a.cgKor LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+			
+			
+			
 	</select>
 
 </mapper>
