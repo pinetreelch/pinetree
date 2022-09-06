@@ -59,7 +59,7 @@
 				<div id="aaaaa" class="row align-items-center">
 					<div  class="col-12" style="padding-top:6px;">
 						<a class="heading"  href="./codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
-						<a class="heading"  href="./codeGroupAdd" style="padding-right: 20px;" >코드그룹 추가</a >
+						<a class="heading"  href="./codeGroupForm" style="padding-right: 20px;" >코드그룹 추가</a >
 						<a class="heading"  href="../code/codeList" style="padding-right: 20px;" >코드관리</a >
 						<a class="heading"  href="./codeAdd" style="padding-right: 20px;" >코드 추가</a >
 					</div>		 	
@@ -198,7 +198,7 @@
 								<i class="fa-solid fa-file-excel"></i>
 							</button>	
 							
-							<button type="button" style="background: blue; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupAdd'"> 
+							<button type="button" style="background: blue; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupForm'"> 
 								<i class="fa-solid fa-plus"></i>
 							</button>				
 						</div>

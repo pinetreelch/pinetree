@@ -21,4 +21,11 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	// return dao.selectList(vo);
 	//}
 	}
+	
+	@Override
+	public int insert(CodeGroup dto) throws Exception{
+		int result = dao.insert(dto);
+		System.out.println("service result: " + result);
+		return result;
+	}
 }

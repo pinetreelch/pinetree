@@ -20,5 +20,13 @@ public class CodeGroupDao {
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){					// List<>라는건 향상된 배열인데 CodeGroup이라는 객체를 넣을거라는것; CodeGroup이라는 dto를 넣는데 변수명은 selectList로 하겠다 라는 것. 
 		// public List<CodeGroup> selectList(CodeGroupVo vo) {return sqlsession.selectList("com.pinetreelch.infra.modules.codegroup.CodeGroupMapper.selectList", vo)}
-		return sqlSession.selectList(namespace + ".selectList", vo); } // selectList라는 쿼리를 찾아가라는 명령, 이 함수가 중요, vo는 검색조건 쿼리도 같이 밀어넣으라는 것; 이 함수의 return값이 list; 
+		return sqlSession.selectList(namespace + ".selectList", vo); 
+		
+	} // selectList라는 쿼리를 찾아가라는 명령, 이 함수가 중요, vo는 검색조건 쿼리도 같이 밀어넣으라는 것; 이 함수의 return값이 list;
+	
+	public int insert(CodeGroup dto) {
+		int result = sqlSession.insert(namespace+".insert", dto );
+		System.out.println("dao result: "+ result);
+		return result;
+	}
 }

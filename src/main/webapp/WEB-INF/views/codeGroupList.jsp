@@ -17,8 +17,8 @@
 				<div id="aaaaa" class="row align-items-center">
 					<div  class="col-12" style="padding-top:6px;">
 						<a class="heading"  href="./codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
-						<a class="heading"  href="./codeGroupAdd" style="padding-right: 20px;" >코드그룹 추가</a >
-						<a class="heading"  href="./code" style="padding-right: 20px;" >코드관리</a >
+						<a class="heading"  href="./codeGroupForm" style="padding-right: 20px;" >코드그룹 추가</a >
+						<a class="heading"  href="../code/codeList" style="padding-right: 20px;" >코드관리</a >
 						<a class="heading"  href="./codeAdd" style="padding-right: 20px;" >코드 추가</a >
 					</div>		 	
 			 	</div>
