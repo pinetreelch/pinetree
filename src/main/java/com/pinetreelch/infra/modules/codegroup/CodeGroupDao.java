@@ -29,4 +29,10 @@ public class CodeGroupDao {
 		System.out.println("dao result: "+ result);
 		return result;
 	}
+	
+	public List<CodeGroup> selectList(){				 
+		// public List<CodeGroup> selectList(CodeGroupVo vo) {return sqlsession.selectList("com.pinetreelch.infra.modules.codegroup.CodeGroupMapper.selectList", vo)}
+		return sqlSession.selectList(namespace + ".selectList", ""); 
+		
+	}
 }

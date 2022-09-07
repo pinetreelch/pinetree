@@ -41,7 +41,7 @@
             #{cdName}
            ,#{useNY}
            ,#{delNY}
-           ,#{codeGroup_cgSeq}
+           ,(select cgSeq from codeGroup where cgName = #{codeGroup_cgSeq})
         )
         	<selectKey resultType ="String" keyProperty = "cSeq" order ="AFTER">
         		SELECT last_insert_id()

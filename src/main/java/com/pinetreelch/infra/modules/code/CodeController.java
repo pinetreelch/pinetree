@@ -8,12 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pinetreelch.infra.modules.codegroup.CodeGroup;
+import com.pinetreelch.infra.modules.codegroup.CodeGroupServiceImpl;
 
 @Controller
 @RequestMapping(value = "/code/")
 public class CodeController {
 	@Autowired
 	CodeServiceImpl service;
+	
+	@Autowired
+	CodeGroupServiceImpl service2;
 	
 
 	@RequestMapping(value = "codeList")
@@ -29,7 +33,7 @@ public class CodeController {
 	@RequestMapping(value = "codeForm")
 	public String codeForm(Model model) throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
 		
-		List<Code> list = service.selectcode();
+		List<CodeGroup> list = service2.selectList();
 		model.addAttribute("list",list);
 		
 		return "infra/code/xdmin/codeForm";

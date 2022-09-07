@@ -19,10 +19,10 @@
 		 	<div class="container bodyd">
 				<div class="row align-items-center">
 					<div class="col" style="padding-top:6px;">
-						<a class="heading" href="./codegroup.html" style="padding-right: 20px;" >코드그룹 관리</a >
-						<a class="heading" href="./codegroupRegisterform.html" style="padding-right: 20px;"  >코드그룹 추가</a >
-						<a class="heading" href="./codegroup2.html" style="padding-right: 20px;" >코드관리</a >
-						<a class="heading" href="./code/codeForm" style="padding-right: 20px;" >코드 추가</a >
+						<a class="heading" href="../codeGroup/codeGroupList" style="padding-right: 20px;" >코드그룹 관리</a >
+						<a class="heading" href="../codeGroup/codeGroupForm" style="padding-right: 20px;"  >코드그룹 추가</a >
+						<a class="heading" href="./codeList" style="padding-right: 20px;" >코드관리</a >
+						<a class="heading" href="./codeForm" style="padding-right: 20px;" >코드 추가</a >
 	
 					</div>		 	
 			 	</div>
@@ -54,34 +54,48 @@
 						<form method="post" action="/code/codeInst">
 								  <div  style="display: inline-block; width: 500px; padding-top: 20px;">
 								    <label for="exampleInputEmail1" class="form-label">코드이름</label>
-								    <input name ="cdName"type="text" class="form-control" id="exampleInputEmail1" >
+								    <input name ="cdName"type="text" class="form-control" id="cgName" >
 								  </div>
 								  
 								  <div style="display: inline-block;  width: 500px; margin-left:20px;">
 								    <label for="exampleInputEmail1" class="form-label">사용여부</label>
-								    <input name ="useNY" type="text" class="form-control" id="exampleInputEmail1" >
+								    <input name ="useNY" type="text" class="form-control" id="useNY" >
 								  </div>
 							</div>
 							
 							<div style="padding-top: 20px;">
 								  <div  style="display: inline-block; width: 500px;">
 								    <label for="exampleInputEmail1" class="form-label">삭제여부</label>
-								    <input name ="delNY" type="text" class="form-control" id="exampleInputEmail1">
+								    <input name ="delNY" type="text" class="form-control" id="delNY">
 								  </div>
 								  
 								  <div style="display: inline-block;  width: 500px; margin-left:20px;">
 								    <label for="exampleInputEmail1" class="form-label">코드그룹이름</label>
-								    <select name = "codeGroup_cgSeq" class="form-select" id="exampleInputEmail1" aria-label="Default select example">
+								    <select name = "codeGroup_cgSeq" class="form-select" id="codeGroup_cgSeq" aria-label="Default select example">
 									  <option value="" > 검색구분</option>
-									  <option value="" > 1</option>
-									  <option value="" > 2</option>
 								  		<c:forEach items="${list}" var="list" varStatus="status">
-									  		<option value =""><c:out value="${list.cgName}"/></option>
+									  		<option value ="${list.cgName}" <c:if test ="${selecteditem eq list.cgName}"> selected="selected" </c:if> >
+									  			 ${list.cgName} 
+									  		</option>	
 								  		</c:forEach>			
 									</select>	
 								  </div>
 							</div>
-							<input type=submit>
+							
+								<select name="sel" id="sel">
+							  	<option value="kt">1.kt</option>
+							  	<option value="lg">2.lg</option>
+							  	<option value="skt">3.skt</option>
+							  </select>
+							 <br>
+							 
+							 <input type="radio" name ="gender" value = "남성" id="rad1" />남성
+							 <input type="radio" name ="gender" value = "여성" id="rad2" />여성
+							 <input type="radio" name ="gender" value = "기타" id="rad3" />기타
+							 <br>
+							
+							<button type="button" id ="btnSave" onclick="test();">제출하기</button>
+							<input type="submit">
 						</form>
 						
 						<div style="padding-top: 20px;">
@@ -194,6 +208,18 @@
  		</div>	
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ <script type="text/javascript">
+ 	function test(){
+ 		
+ 		alert("test");
+ 		
+ 		alert (document.getElementById('cgName').value);
+ 		alert (document.getElementById('sel').options[document.getElementById('sel').selectedIndex].value);
+ 		alert (document.querySelector("input[name ='gender']:checked").value);
+ 		alert("끝");
+ 		
+ 	}
+ </script>
 
 </body>
 </html>
