@@ -23,7 +23,13 @@
 	color: rgba(0, 0, 0, 0.49);
 }
 
-
+.lltem{
+	color: black;
+}
+.lltem:hover{
+	background-color: yellow;
+	color: green;
+}
 
 body{
 	font-family: 'Inria Sans';

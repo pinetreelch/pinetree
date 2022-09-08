@@ -42,8 +42,14 @@ public class CodeGroupController {
 		int result = service.insert(dto);
 		System.out.println("controller result: " + result);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		return "redirect:/codeGroup/codeGroupList";	
+	}
+	
+	@RequestMapping(value = "codeGroupEdit")
+	public String codeGroupEdit(CodeGroup dto) throws Exception{
 		
+		
+		return "redirect:/codeGroup/codeGroupView";
 	}
 	
 	

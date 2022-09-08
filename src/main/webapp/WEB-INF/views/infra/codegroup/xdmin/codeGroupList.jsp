@@ -47,6 +47,14 @@
 	    $('#datepicker2').datepicker('setDate', 'today');
 	  } );
 	  
+	  
+	  function edit(){
+	 		
+	 		alert("edit");
+	 	
+	 		alert("끝");
+	 		
+	 	}
 	 
   	</script>
   	
@@ -142,7 +150,7 @@
 							<th>등록일</th>	
 							<th>수정일</th>	
 						<tr>
-						
+						<form  method="post" action="/codeGroup/codeGroupEdit">
 						<c:set var="orderListLength" value="${fn:length(list)}"/>
 						
 						
@@ -155,11 +163,11 @@
 							
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<tr>
+									<tr class="lltem" style="cursor: pointer;" onclick ="edit();">
 										<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
 										<td>${orderListLength - status.index }</td>
 										<td><c:out value="${list.cgSeq }"/></td>
-										<td><c:out value="${list.cgName }"/></td>
+										<td ><c:out value="${list.cgName }"/>d</td>
 										<td><c:out value="${list.cgKor }"/></td>
 										<td><c:out value="${list.total }"/></td>
 										<td></td>
@@ -168,6 +176,7 @@
 								</c:forEach>								
 							</c:otherwise>
 						</c:choose>
+						</form>
 					</table>
 					
 					<div>
