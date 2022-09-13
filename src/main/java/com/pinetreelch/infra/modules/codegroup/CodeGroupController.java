@@ -28,7 +28,7 @@ public class CodeGroupController {
 		List<CodeGroup> list = service.selectList(vo);  //서비스를 호출하는건데 autowired되어있음; 
 		model.addAttribute("list", list);				//jsp에서 list란 이름으로 객체를 쓸 수 있게 됨; 
 		
-		return "infra/codegroup/xdmin/codeGroupList";
+		return "infra/codegroup/xdmin/codeGroupList2";
 	}
 	
 	@RequestMapping(value = "codeGroupForm")

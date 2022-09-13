@@ -14,6 +14,16 @@
 	letter-spacing: -0.1em;
 }
 
+.bodyd3{
+	
+	max-width: 100%;
+	width: 70%;
+	padding-top: 30px;
+	margin-left:  20%;
+	margin-right: 50%;
+	letter-spacing: -0.1em;
+}
+
 .heading{
 	font-family: 'Inria Sans';
 	font-style: normal;
@@ -23,11 +33,70 @@
 	color: rgba(0, 0, 0, 0.49);
 }
 
+.admintitle{
+		font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	color: #40474D;
+}
+
+.adminname{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	color: #40474D;
+}
+.adminname2{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	color: #40474D;
+}
+
+.dashb{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	letter-spacing: 0.1em;
+	color: #40474D;
+	cursor:pointer;
+}
+
+#accordtitle{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	letter-spacing: 0.1em;
+	color: #40474D;
+	cursor:pointer;
+}
+
+.codeGroupadmintitle{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	letter-spacing: 0.1em;
+	color: #40474D;
+}
+#accorditem{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	letter-spacing: 0.1em;
+	color: #40474D;
+}
 .lltem{
 	color: black;
 }
 .lltem:hover{
-	background-color: yellow;
+	background-color: #e4f2f5;
 	color: green;
 }
 
@@ -51,7 +120,10 @@ body{
 #aaaaa a:hover{
 	color: black;
 	}
-	
+
+a{
+	color: black;
+}	
 a:link {
 	text-decoration: none
 	}
@@ -62,4 +134,19 @@ a:visited{
 a:hover{
 	color:black;
 	text-decoration: none;
+}
+
+.accordion-button::after {
+    flex-shrink: 0;
+     width: 0; 
+    height: var(--bs-accordion-btn-icon-width);
+    margin-left: auto;
+    content: "";
+    background-image: var(--bs-accordion-btn-icon);
+    background-repeat: no-repeat;
+    background-size: var(--bs-accordion-btn-icon-width);
+    transition: var(--bs-accordion-btn-icon-transition);
+}
+.accordion{
+	--bs-accordion-border-color: none;
 }
