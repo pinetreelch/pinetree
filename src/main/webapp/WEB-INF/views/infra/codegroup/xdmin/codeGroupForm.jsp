@@ -42,106 +42,45 @@
 					<form method ="post" action = "/codeGroup/codeGroupInst">
 						<div class="row" style="padding-top: 30px;" >
 							  <div class="col"  style="display: inline-block; width: 500px;">
-							    <label for="1" class="form-label">코드그룹 코드</label>
-							    <input name = "cgName" value="<c:out  value="${cgName}"/>" type="text" class="form-control" id="1" >
+							    <label for="1" class="form-label">코드그룹 코드 (한글)</label>
+							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cgName}"/>" type="text" class="form-control">
 							  </div>
 							  
 							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="2" class="form-label">코드그룹 코드(Another)</label>
+							    <label for="2" class="form-label">코드그룹 코드(영문)</label>
 							    <input name = "cgKor" type="text" class="form-control" id="2">
 							  </div>
 						</div>
-						<input type = "submit">
-					</form>
-						<div  class="row" style="padding-top: 20px;">
-							  <div class="col" style="display: inline-block; width: 500px;">
-							    <label for="3" class="form-label">코드그룹 이름(한글)</label>
-							    <input type="text" class="form-control" id="3" >
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="4" class="form-label">코드그룹 이름 (영문)</label>
-							    <input type="text" class="form-control" id="4" >
-							  </div>
-						</div>
+						
+				
+						
 						
 						<div  class="row" style="padding-top: 20px;">
 							  <div class="col" style="display: inline-block; width: 500px;">
 							    <label for="5" class="form-label">사용여부</label>
-							    <select class="form-select" id="5" >
-								  <option selected>Y</option>
-								  <option value="1">N</option>
+							    <select class="form-select" name="useornot" >
+								  <option value="" >--선택---</option>
+								  <option value="1">Y</option>
+								  <option value="0">N</option>
 								</select>
 							  </div >
 							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="6" class="form-label">순서</label>
-							    <input type="text" class="form-control" id="6" placeholder="숫자">
-							  </div>
-						</div>
-						
-						<div  class="row" style="padding-top: 20px;">
-							  <div class="col" style="float: left; width: 500px;">
-							    <label for="7" class="form-label">설명</label>
-							    <textarea class="form-control" placeholder="Leave a comment here" id="7"></textarea>
-							  </div>
-							  
 							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="8" class="form-label">삭제여부</label>
-							    <select class="form-select" id="8" >
-								  <option selected>Y</option>
-								  <option value="1">N</option>
+							    <select class="form-select" name="delornot" >
+							    	<option value="">--선택---</option>
+									<option value="1">Y</option>
+									<option value="0">N</option>
 								</select>
 							  </div>
 						</div>
-						<div style="display:inline-block"></div>
-						<div  class="row" style="padding-top: 20px;">
-							  <div  class="col" style="display: inline-block; width: 500px; ">
-							    <label for="9" class="form-label">예비1 (varchar type)</label>
-							    <input type="text" class="form-control" id="9"  placeholder="영문(대소문자,숫자)">
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="10" class="form-label">예비2 (varchar type)</label>
-							    <input type="text" class="form-control" id="10" placeholder="영문(대소문자,숫자)">
-							  </div>
-						</div>
 						
-						<div  class="row" style="padding-top: 20px;">
-							  <div class="col" style="display: inline-block; width: 500px; ">
-							    <label for="11" class="form-label">예비3 (varchar type)</label>
-							    <input type="text" class="form-control" id="11" placeholder="영문(대소문자,숫자)">
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							 
-							  </div>
-						</div>
+					<input type = "submit">	
+					</form>
 						
-						<div  class="row" style="padding-top: 20px;">
-							  <div class="col" style="display: inline-block; width: 500px; ">
-							    <label for="12" class="form-label">예비1 (int type)</label>
-							    <input type="text" class="form-control" id="12"  placeholder="숫자">
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="13" class="form-label">예비2 (int type)</label>
-							    <input type="text" class="form-control" id="13"  placeholder="숫자">
-							  </div>
-						</div>
 						
-						<div  class="row" style="padding-top: 20px;">
-							  <div class="col" style="display: inline-block; width: 500px; ">
-							    <label for="14" class="form-label">예비3 (int type)</label>
-							    <input type="text" class="form-control" id="14" placeholder="숫자">
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							 
-							  </div>
-						</div>
 						
-						<div  class="row" style="padding-top: 20px;">
+						<!-- <div  class="row" style="padding-top: 20px;">
 							  <div class="col"  style="display: inline-block;  ">
 							    <label for="a" class="form-label">최초 등록자</label>
 							    <input type="text" class="form-control" id="a" >
@@ -161,7 +100,7 @@
 							    <label for="d" class="form-label">최초등록디바이스</label>
 							    <input type="text" class="form-control" id="d"  >
 							  </div>
-						</div>
+						</div> -->
 				
 					
 				<div style="padding-top: 30px;">

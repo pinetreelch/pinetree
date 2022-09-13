@@ -1,0 +1,1302 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap');
+
+.heading{
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	color: rgba(0, 0, 0, 0.49);
+	
+}
+
+
+a:link {
+	text-decoration: none
+	}
+a:visited{	
+	 text-decoration: none;
+	 color: black;
+}
+a:hover{
+	 text-decoration: none;
+}
+
+
+
+
+.bookhead{
+	
+		font-family: 'Inria Sans';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 38px;
+		color: #1E9EFF;
+}
+
+.inputclass{
+       background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
+    background-position: 10px center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+
+    padding: 5px 5px;
+    text-indent: 35px;
+    
+    width: 120px;
+}
+.inputclass:focus {
+    background-image: none;
+    background-position: -20px center;
+    text-indent: 40;
+    width: 50%;
+}
+.category{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 300px;
+font-size: 14px;
+line-height: 30px;
+
+color: #000000;
+}
+.recommend{
+		font-family: 'Inria Sans';
+		font-style: normal;
+		font-weight: strong;
+		line-height: 20px;
+ border: 0;
+  outline: none;
+  font-size: 14px;
+  margin: 0px;
+  background: #1E9EFF;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.best{
+	
+	font-family: 'Inria Sans';
+		font-style: normal;
+		font-weight: 2000;
+		line-height: 20px;
+		
+	outline: none;
+  font-size: 14px;
+  margin: 0px;
+  background: white;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  border: 0;
+}
+.bodyd{
+	max-width: 100%;
+	width: 1150px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bodydpurchase{
+	max-width: 100%;
+	width: 954px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bodydpurchase{
+	max-width: 100%;
+	width: 954px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bodylogin{
+	max-width: 100%;
+	width: 360px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.menuicon{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+line-height: 24px;
+
+color: #000000;
+}
+
+
+section{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 29px;
+
+color: #000000;
+}
+
+.contentfill{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 43px;
+
+color: #FFFFFF;
+}
+.caroubox{
+	padding: 3px;
+	position: relative; 
+	right:450px; 
+	top: 30px; 
+	border: solid; 
+	border-color: white; 
+	border-radius: 5px; 
+	border-width: 1px;
+	
+	font-style: normal;
+	font-weight: 700;
+	font-size: 10px;
+	line-height: 43px;
+
+	color: #FFFFFF;
+}
+
+.caroup{
+	
+	 	
+	
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 43px;
+
+	color: #FFFFFF;
+}
+.caroup{
+	 	
+	
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 43px;
+
+	color: #FFFFFF;
+}
+
+.booklistspan{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+
+color: #000000;
+}
+.booksublistspan{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 520;
+font-size: 14px;
+line-height: 24px;
+
+color: #787878;
+}
+
+.booksublistspan1{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 540;
+font-size: 13px;
+line-height: 24px;
+
+color: #787878;
+}
+.booksublistspan2{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 570;
+font-size: 13px;
+line-height: 24px;
+
+color: #787878;
+}
+.booklistspan1{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 1200;
+font-size: 16px;
+line-height: 24px;
+
+color: #000000;
+}
+
+.footer1{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 13px;
+line-height: 24px;
+
+color: #787878;
+}
+.footer2{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 545;
+font-size: 13px;
+line-height: 24px;
+
+color: #787878;
+padding-bottom: 6px;
+}
+.footer3{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 545;
+font-size: 11px;
+line-height: 24px;
+
+color: #787878;
+padding-bottom: 6px;
+}
+.divide{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 100;
+font-size: 2px;
+line-height: 24px;
+
+color: #787878;
+padding-bottom: 6px;	
+}
+
+.preview{
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 25px;
+	
+	color: #1F8CE6;
+		
+}
+
+.genre{
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 25px;
+	
+	color: #333333;
+}
+
+.booktitleView{
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size:30px;
+	line-height: 25px;
+	display:inline-block;
+	margin-top:8px;
+	color: #333333;
+}
+.bookSubtitleView{
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size:13px;
+	line-height: 25px;
+	display:inline-block;
+	margin-top:8px;
+	color: #666666;
+}
+.bookauthor1{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 840;
+font-size: 13px;
+line-height: 22px;
+
+color: #666666;
+}
+.bookauthor2{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 440;
+font-size: 13px;
+line-height: 22px;
+
+color: #666666;
+}
+
+.sojang{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 840;
+font-size: 13px;
+line-height: 22px;
+
+color: #40474D;	
+}
+
+.panmae{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 340;
+font-size: 13px;
+line-height: 22px;
+color: #808991;	
+}
+
+.orgprice{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+line-height: 22px;
+color: #808991;	
+}
+
+.saleprice{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+line-height: 22px;
+color: #1F8CE6;	
+}
+
+.sojangbutton{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 15px;
+line-height: 22px;
+color: white;	
+}
+
+.publishinginfo{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+color: #525A61;	
+padding-right: 7px;
+
+}
+.publishinginfo2{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #666666;	
+}
+.publishinginfo3{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+
+color: #666666;	
+}
+
+ul, li{
+	
+	list-style-type:none;
+}
+
+.nowbest{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+line-height: 25px;
+color: #333333;		
+margin: 0px 0px;
+}
+
+.rank{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 12px;
+line-height: 12px;
+color: #E64938;		
+}
+
+.title{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 25px;
+color: #666666;	
+}
+.more{
+	
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+color: #666666;	
+}
+
+.title_text{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 20px;
+color: #59667A;	
+}
+.title_content{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+color: #333333;	
+}
+
+.authorprofile{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+color: #808991;	
+}
+.authorprofile2{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 12px;
+color: #333333;	
+}
+.authorprofile3{
+	
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+color: #808991;	
+}
+
+.authorprofileName{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 20px;
+color: #333333;	
+}
+.authorprofileName2{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 599;
+font-size: 14px;
+color: #999999;	
+}
+.bkvbest{
+padding-left: 16px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 599;
+font-size: 16px;
+color: #333333;	
+}
+.signupbutton{
+padding-left: 16px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 16px;
+color: white;	
+}
+
+.alreadymember{
+padding-left: 16px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+color: #7490A9;	
+}
+
+.signupform{
+margin-left: 1px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 13px;
+color: #738096;	
+}
+
+.signupform2{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 2px;
+color: #94A2B8;	
+}
+
+.signupformgender{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+color: #94A2B8;	
+}
+.signupformagree{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+color: #738096;	
+}
+
+.signupformagree1{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+color: #738096;	
+}
+
+.signupformagree2{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #9EA7AD;	
+}
+
+.signupcomplete{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 16px;
+color: white;	
+}
+
+.menutitle{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+color: #212529;	
+}
+
+.menutitle1{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 15px;
+color: 1F8CE6;	
+}
+
+.menutitle2{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 15px;
+color: #40474D;	
+}
+
+.menutitle3{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 15px;
+color: #808991;	
+}
+
+.idshow{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 20px;
+color: #000000;	
+}
+
+.emailshow{
+
+margin-top: 5px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 12px;
+color: #808991;	
+}
+
+.logoutbutton{
+
+margin-top: 5px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #636C73;	
+}
+
+.litem{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 14px;
+color: black;	
+}
+
+.cashleft{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+color: #63A3E6;	
+}
+
+.cashhistory{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #626D75;	
+}
+
+.recentbook{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 18px;
+color: #000000;	
+}
+
+.buttonall{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+background-color: #303538;
+color: white;	
+border: solid;
+border-color: black;
+border-width: 1px;
+padding-top:7px;
+padding-bottom: 7px;
+border-radius: 3px;
+text-align: center;
+}
+
+.mypagebooktitle{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #333333;	
+margin-left: 5px;
+}
+
+.mypagebookauthor{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+color: #666666;	
+margin-left: 5px;
+}
+
+.purchasedetail{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 18px;
+color: #000000;	
+}
+
+.nmbbooks{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 16px;
+color: #818A92;	
+}
+
+.purchaseauthorname{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #000000;	
+}
+
+.purchasebookname{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #666666;	
+}
+
+.purchaseprice{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 14px;
+color: #1F8CE6;		
+}
+
+.totpurchase{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #545F6F;	
+}
+
+.totpurchase5{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 12px;
+color: #818A92;	
+}
+
+.totpurchase1{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 16px;
+color: #000000;	
+float: right;
+}
+
+.totpurchase2{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #ABB3BA;	
+float: right;
+}
+
+.totalpage{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 14px;
+color: #59667A;	
+}
+
+.totalpage1{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 20px;
+color: #1F8CE6;	
+}
+
+.taxdeduction{
+	border:none;
+	font-family: 'Inria Sans';
+	margin-left: 3px;
+	padding-bottom: 13px;
+    border-radius: 2px;
+    background-color: #ebf6ff;
+    height: 18px;
+    line-height: 18px;
+    padding: 0px 5px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #66baff;
+    position: relative;
+    bottom: 2px;
+}
+.kakopay{
+	background-color: #ffeb00;
+    background-size: 36px 11px;
+    pointer-events: none;
+    display:inline- block;
+    width: 48px;
+    height: 20px;
+    border-radius: 10px;
+    font-size: 0;
+    text-indent: -444px;
+    padding: 1px 6px;
+}
+
+.samsungpay{
+	    pointer-events: none;
+    display: inline-block;
+    width: 84px;
+    height: 22px;
+    margin-top: 3px;
+}
+
+.payco{
+	display: inline-block;
+	  width: 48px;
+    height: 20px;
+}
+
+.creditcard{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #636C73;	
+}
+
+.warning{
+	font-family: 'Inria Sans';
+	margin-top: 10px;
+	margin-bottom: 7px;
+    position: relative;
+    padding-left: 9px;
+    color: #808991;
+    font-size: 13px;
+    line-height: 1.4em;
+}
+.warning:before {
+    content: '';
+    display: inline-block;
+    text-indent: -444px;
+    font-size: 0;
+    overflow: hidden;
+    background: url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2012%2012%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22%23d1d5d9%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22/%3E%3C/svg%3E) center center no-repeat;
+    background-size: 100% 100%;
+    width: 4px;
+    height: 4px;
+    display: block;
+    position: relative;
+    left: -8px;
+    top: 10px;
+}
+
+
+.warning1{
+	font-family: 'Inria Sans';
+	margin-bottom: 7px;
+    position: relative;
+    padding-left: 9px;
+    color: #808991;
+    font-size: 13px;
+    line-height: 1.4em;
+}
+.warning1:before {
+    content: '';
+    display: inline-block;
+    text-indent: -444px;
+    font-size: 0;
+    overflow: hidden;
+    background: url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2012%2012%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22%23d1d5d9%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22/%3E%3C/svg%3E) center center no-repeat;
+    background-size: 100% 100%;
+    width: 4px;
+    height: 4px;
+    display: block;
+    position: relative;
+    left: -8px;
+    top: 10px;
+}
+
+.agreepurchase{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 14px;
+color: #40474D;	
+}
+
+.seedetail{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 13px;
+color: #808991;	
+}
+
+.boxpur{
+	margin-top:20px;
+	border: 3px solid #f4f4f4;
+    padding: 20px 17px;
+}
+
+.coinhead{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 15px;
+color: #636C73;	
+}
+
+.coinp{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+color: #666666;	
+}
+
+.tablehead{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 12px;
+color: #636C73;	
+background-color: #F5FAFE;
+}
+
+.tablehead1{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 12px;
+color: #3E79B5;	
+}
+
+.tablehead2{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #636C73;	
+}
+
+.buttoncash{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+color: #808991;	
+}
+
+.findid{
+			font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+color: #0077D9;	
+margin: 0;
+padding-bottom: 12px;
+}
+
+#soulution{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #636C73;	
+}
+
+.youridis{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+color: #313538;	
+margin-top: 12px;
+}
+.firsttwo{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+color: #738097;	
+margin-bottom: 8px;
+letter-spacing: -0.03em;
+ line-height: 1.5em;
+}
+.pwdpage{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 12px;
+color: #0077D9;	
+}
+
+.alarmnew{
+
+margin-top: 17px;
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 12px;
+color: #1F8CE6;
+
+border: 1px solid #1F8CE6;
+background: white;
+cursor: none;
+border-radius: 4px;
+
+width: 168px;
+height: 30.25px;	
+}
+
+.editrequest{
+
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 12px;
+color: #808991;
+
+border: 1px solid #d1d5d9;
+background: white;
+cursor: none;
+border-radius: 4px;
+
+letter-spacing: -0.01em;
+
+width: 145px;
+height: 21px;	
+}
+
+.authorupdate{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+color: #92A7AD;
+
+}
+
+.authorcontent{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+color: #333333;
+
+line-height: 1.8em;
+word-break: break-all;
+}
+
+.authorbr{
+			font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 13px;
+color: #999999;
+
+line-height: 1.8em;
+word-break: break-all;
+
+padding-top: 7px;
+margin: 0;
+}
+
+.authorbooktot{
+font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 900;
+font-size: 16px;
+color: #333333;
+letter-spacing: 0.1em;
+
+display: table-cell;
+vertical-align: top;
+}
+
+
+
+.authortablealign{
+	display: table-cell;
+    text-align: right;
+    vertical-align: top;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.authortablealign li{
+	display: inline-block;
+    border-left: 1px solid #ccc;
+    height: 1em;
+    font-size: 15px;
+    vertical-align: top;
+    margin-right: -7px;
+}
+
+.authortablealign li:first-child{
+ border-left:none;
+}
+
+
+.authortablealign a{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 11px;
+color: #333333;
+vertical-align:top;
+padding: 8px;
+}
+
+.authorviewul{
+		display: table-cell;
+    text-align: right;
+    vertical-align: top;
+    margin: 0px;
+    padding: 0;
+}
+
+.authorviewul a{
+			
+
+font-weight: 500;
+font-size: 12px;
+color: #666666;
+vertical-align: top;
+padding:5px;
+}
+
+.authorviewul li{
+	display: inline-block;
+    border-left: 1px solid #ccc;
+    height: 1em;
+    font-size: 15px;
+    vertical-align: top;
+    margin-top:-10px;
+    /* margin-right: -7px; */
+}
+.authorviewul li:first-child{
+	border-left: none;
+}
+
+.authorviewulspan{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 11px;
+color: #999999;
+vertical-align:top;
+padding-left: 5px;
+padding-right:-20px;
+}
+.authordetailbook{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+color: #000000;
+}
+
+.authorviewbookcontent{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+color: #666666;
+}
+
+.authorviewsojang{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #666666;
+}
+
+.authorviewsojang2{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+color: #1F8CE6;
+}
+#rrreec{
+	color:#999999
+}
+#rrreec:hover{
+	color:#333333;
+}
+
+#forgetpwd{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+color: #738097;	
+padding: 17px;
+}
+
+#forgetpwd:hover{
+		 text-decoration: none;
+	 background-color: rgba(0,0,0,.05);
+}
+#soulution a {
+	color: #666666;	
+	cursor: default;
+	}
+#soulution a:link {
+	text-decoration: none;
+	}
+	
+#soultion a:visited{	
+	 text-decoration: none;
+	 color: blue;
+}
+#soulution a:hover{
+	 text-decoration: none;
+	 background-color: rgba(0,0,0,.05);
+	 
+	 
+}	
+ #toc-content {
+    display: none;
+  }
+  
+  #toc-toggle {
+    cursor: pointer;
+    color: #2962ff;
+  }
+ #toc-content1 {
+    display: none;
+  }
+  
+  #toc-toggle1 {
+    cursor: pointer;
+    color: #2962ff;
+  }
+ #toc-content2 {
+    display: none;
+  }
+  
+  #toc-toggle2 {
+    cursor: pointer;
+    color: #2962ff;
+  }

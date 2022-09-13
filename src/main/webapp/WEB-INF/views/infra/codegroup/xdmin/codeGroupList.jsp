@@ -162,17 +162,18 @@
 							</c:when>
 							
 							<c:otherwise>
+							
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<tr class="lltem" style="cursor: pointer;" onclick ="edit();">
-										<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-										<td>${orderListLength - status.index }</td>
-										<td><c:out value="${list.cgSeq }"/></td>
-										<td ><c:out value="${list.cgName }"/>d</td>
-										<td><c:out value="${list.cgKor }"/></td>
-										<td><c:out value="${list.total }"/></td>
-										<td></td>
-										<td></td>
-									</tr>
+										<tr  class="lltem" style="cursor: pointer;" onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">
+											<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+											<td>${orderListLength - status.index }</td>
+											<td><c:out value="${list.cgSeq }"/></td>
+											<td ><c:out value="${list.cgName }"/></td>
+											<td><c:out value="${list.cgKor }"/></td>
+											<td><c:out value="${list.total }"/></td>
+											<td></td>
+											<td></td>
+										</tr>
 								</c:forEach>								
 							</c:otherwise>
 						</c:choose>

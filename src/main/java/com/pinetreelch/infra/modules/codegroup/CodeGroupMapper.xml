@@ -41,17 +41,40 @@
         cgName
         ,cgKor
         ,useNY
-
+		,delNY
+		
         )
         VALUES (
 			
             #{cgName}
-            ,#{cgKor}
-           ,0
+            , #{cgKor}
+           	, 1
+           	, 1
+           	
         )
         	<selectKey resultType ="String" keyProperty = "cgSeq" order ="AFTER">
         		SELECT last_insert_id()
         	</selectKey>
 	</insert>
+	
+	<update id = "update"> 
+		update codeGroup
+		
+		set
+			cgName = #{cgName}
+			, cgKor = #{cgKor}
+			
+			
+		where cgSeq = #{cgSeq}
+	</update>
+	
+	
+	<select id = "selectOne" resultMap = "resultMapObj">
+		SELECT
+			a.*
+		FROM codeGroup a
+		WHERE 1 =1 
+			AND cgSeq = #{cgSeq}
+	</select>
 
 </mapper>

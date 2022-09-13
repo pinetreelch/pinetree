@@ -6,6 +6,17 @@ public class CodeGroupVo {
 	private String shValue;
 	private Integer shOption;
 	private Integer shUse;
+	
+	private String cgSeq;
+	
+
+	public String getCgSeq() {
+		return cgSeq;
+	}
+
+	public void setCgSeq(String cgSeq) {
+		this.cgSeq = cgSeq;
+	}
 
 	public Integer getShUse() {
 		return shUse;

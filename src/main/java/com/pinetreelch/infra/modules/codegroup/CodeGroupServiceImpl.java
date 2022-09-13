@@ -25,7 +25,7 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	@Override
 	public int insert(CodeGroup dto) throws Exception{
 		int result = dao.insert(dto);
-		System.out.println("service result: " + result);
+		System.out.println("service result123: " + result);
 		return result;
 	}
 	
@@ -33,5 +33,20 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	public List<CodeGroup> selectList() throws Exception {
 		List<CodeGroup> list = dao.selectList(); 
 		return list;
+	}
+	
+	@Override
+	public CodeGroup selectOne(CodeGroupVo vo) throws Exception{
+		CodeGroup result = dao.selectOne(vo);
+		System.out.println("service result456: " + result);
+		return result;
+	}
+	
+	@Override
+	public int update(CodeGroup dto) throws Exception {
+		System.out.println("리턴완료 impl");
+		
+		int result = dao.update(dto);
+		return result;
 	}
 }

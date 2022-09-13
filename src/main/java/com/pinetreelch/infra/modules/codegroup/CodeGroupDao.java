@@ -26,13 +26,24 @@ public class CodeGroupDao {
 	
 	public int insert(CodeGroup dto) {
 		int result = sqlSession.insert(namespace+".insert", dto );
-		System.out.println("dao result: "+ result);
+		System.out.println("dao result11: "+ result);
 		return result;
 	}
 	
 	public List<CodeGroup> selectList(){				 
 		// public List<CodeGroup> selectList(CodeGroupVo vo) {return sqlsession.selectList("com.pinetreelch.infra.modules.codegroup.CodeGroupMapper.selectList", vo)}
 		return sqlSession.selectList(namespace + ".selectList", ""); 
-		
+	}
+	
+	public CodeGroup selectOne(CodeGroupVo vo){
+		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		System.out.println("dao result22: " + result);
+		return result;
+	}
+	
+	public int update (CodeGroup dto) {
+		System.out.println("실행확인?");
+		int result = sqlSession.update(namespace + ".update", dto);
+		return result;
 	}
 }
