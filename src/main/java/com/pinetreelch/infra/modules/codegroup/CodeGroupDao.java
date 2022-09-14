@@ -24,8 +24,8 @@ public class CodeGroupDao {
 		
 	} // selectList라는 쿼리를 찾아가라는 명령, 이 함수가 중요, vo는 검색조건 쿼리도 같이 밀어넣으라는 것; 이 함수의 return값이 list;
 	
-	public int insert(CodeGroup dto) {
-		int result = sqlSession.insert(namespace+".insert", dto );
+	public int insert(CodeGroupVo vo) {
+		int result = sqlSession.insert(namespace+".insert", vo );
 		System.out.println("dao result11: "+ result);
 		return result;
 	}
@@ -41,9 +41,15 @@ public class CodeGroupDao {
 		return result;
 	}
 	
-	public int update (CodeGroup dto) {
+	public int update (CodeGroupVo vo) {
 		System.out.println("실행확인?");
-		int result = sqlSession.update(namespace + ".update", dto);
+		int result = sqlSession.update(namespace + ".update", vo);
+		return result;
+	}
+	
+	public int delete (CodeGroupVo vo) {
+		System.out.println("실행확인?");
+		int result = sqlSession.delete(namespace + ".delete", vo);
 		return result;
 	}
 }

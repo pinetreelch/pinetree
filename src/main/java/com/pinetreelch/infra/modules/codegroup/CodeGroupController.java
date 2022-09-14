@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -18,7 +19,7 @@ public class CodeGroupController {
 	
 
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception { //jsp로 넘길때 model이라는 객체를 사용함.
+	public String codeGroupList(Model model, @ModelAttribute CodeGroupVo vo) throws Exception { //jsp로 넘길때 model이라는 객체를 사용함.
 		
 		System.out.println("======================================");
 		System.out.println("vo.getShValue(): " + vo.getShValue());
@@ -34,43 +35,44 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm() throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
 		
-		return "infra/codegroup/xdmin/codeGroupForm";
+		return "infra/codegroup/xdmin/codeGroupForm2";
 	}
 	
 	@RequestMapping(value = "codeGroupInst")
-	public String codeGroupInst(CodeGroup dto) throws Exception{   //모델 객체 없음, jsp에 보낼일이 없으니까.
+	public String codeGroupInst(CodeGroupVo vo) throws Exception{   //모델 객체 없음, jsp에 보낼일이 없으니까.
 		
-		int result = service.insert(dto);
+		int result = service.insert(vo);
 		System.out.println("controller result: " + result);
 		
 		return "redirect:/codeGroup/codeGroupList";	
 	}
 	
-	@RequestMapping(value = "codeGroupEdit")
-	public String codeGroupEdit(CodeGroup dto) throws Exception{
-		
-		
-		return "redirect:/codeGroup/codeGroupView";
-	}
+
 	
 	@RequestMapping(value = "codeGroupView")
-	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception{
+	public String codeGroupView(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 		CodeGroup result = service.selectOne(vo);
-		
+		model.addAttribute("vo",vo);
 		model.addAttribute("item", result);
-		return "infra/codegroup/xdmin/codeGroupView";
+		return "infra/codegroup/xdmin/codeGroupView2";
 	}
 	
 	@RequestMapping(value = "codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto) throws Exception{
 		
-		int result = service.update(dto);
+		int result = service.update(vo);
 		System.out.println(result);
 	
-		
 		return "redirect: /codeGroup/codeGroupList";
 	}
 	
 	
-	
+	@RequestMapping(value = "codeGroupDele")
+	public String codeGroupDele(CodeGroupVo vo) throws Exception{
+		
+		int result = service.delete(vo);
+		System.out.println(result);
+			
+		return "redirect: /codeGroup/codeGroupList";
+	}
 }

@@ -23,8 +23,8 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int insert(CodeGroup dto) throws Exception{
-		int result = dao.insert(dto);
+	public int insert(CodeGroupVo vo) throws Exception{
+		int result = dao.insert(vo);
 		System.out.println("service result123: " + result);
 		return result;
 	}
@@ -43,10 +43,18 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int update(CodeGroup dto) throws Exception {
+	public int update(CodeGroupVo vo) throws Exception {
 		System.out.println("리턴완료 impl");
 		
-		int result = dao.update(dto);
+		int result = dao.update(vo);
+		return result;
+	}
+	
+	@Override
+	public int delete(CodeGroupVo vo) throws Exception {
+		System.out.println("리턴완료 impl");
+		
+		int result = dao.delete(vo);
 		return result;
 	}
 }

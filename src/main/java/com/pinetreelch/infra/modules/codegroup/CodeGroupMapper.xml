@@ -17,11 +17,11 @@
 	
 		SELECT
 		a. *
-		,(SELECT COUNT(aa.cSeq) FROM codeCd aa WHERE 1=1 AND aa.delNY = 0 AND aa.codeGroup_cgSeq = a.cgSeq) as count
+		,(SELECT COUNT(aa.cSeq) FROM codeCd aa WHERE 1=1 AND aa.delNY = 0 AND aa.codeGroup_cgSeq = a.cgSeq) as total
         FROM codeGroup a
         WHERE
         	1=1
-        
+        	
 			
 			<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
 			
@@ -48,8 +48,8 @@
 			
             #{cgName}
             , #{cgKor}
-           	, 1
-           	, 1
+           	, #{useornot}
+           	, #{delornot}
            	
         )
         	<selectKey resultType ="String" keyProperty = "cgSeq" order ="AFTER">
@@ -58,16 +58,22 @@
 	</insert>
 	
 	<update id = "update"> 
-		update codeGroup
+		UPDATE codeGroup
 		
-		set
-			cgName = #{cgName}
+		SET
+			cgName =  #{cgName}
 			, cgKor = #{cgKor}
+			, useNY = #{useornot}
+			, delNY = #{delornot}
 			
-			
-		where cgSeq = #{cgSeq}
+		WHERE cgSeq = #{cgSeq}
 	</update>
 	
+	<delete id="delete">
+		Delete FROM codeGroup
+		
+		WHERE cgSeq = #{cgSeq}
+	</delete>
 	
 	<select id = "selectOne" resultMap = "resultMapObj">
 		SELECT

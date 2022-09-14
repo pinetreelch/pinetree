@@ -104,32 +104,30 @@
 				
 					
 				<div style="padding-top: 30px;">
-					<form action="">
-						<div style="display:table; width: 100%; padding-bottom:150px;">
-								<div style="display:table-cell;">
-									<button type="button" style="background: #809091; border:1px solid #809091; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
-										<i class="fa-solid fa-list"></i>
-									</button>
-									
-									
-								</div>
+					<div style="display:table; width: 100%; padding-bottom:150px;">
+							<div style="display:table-cell;">
+								<button type="button" style="background: #809091; border:1px solid #809091; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
+									<i class="fa-solid fa-list"></i>
+								</button>
 								
-								<div style="display:table-cell; text-align: right;">
 								
-									<button style="background: red; border:1px solid yellow; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
-										<i class="fa-solid fa-x"></i>
-									</button>
-									
-									<button style="background: green; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
-										<i class="fa-solid fa-trash"></i>
-									</button>	
-									
-									<button type="button" style="background: blue; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
-										<i class="fa-solid fa-bookmark"></i>
-									</button>				
-								</div>
 							</div>
-						</form>
+							
+							<div style="display:table-cell; text-align: right;">
+							
+								<button style="background: red; border:1px solid yellow; border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+									<i class="fa-solid fa-x"></i>
+								</button>
+								
+								<button style="background: green; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+									<i class="fa-solid fa-trash"></i>
+								</button>	
+								
+								<button type="button" style="background: blue; border:1px solid yellow; border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+									<i class="fa-solid fa-bookmark"></i>
+								</button>				
+							</div>
+						</div>
 					</div>	
 				</div>
 			</div>

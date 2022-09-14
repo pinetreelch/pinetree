@@ -27,7 +27,7 @@ public class CodeController {
 		model.addAttribute("list", list);
 		
 		
-		return "infra/code/xdmin/codeList";
+		return "infra/code/xdmin/codeList2";
 	}
 	
 	@RequestMapping(value = "codeForm")
@@ -36,7 +36,7 @@ public class CodeController {
 		List<CodeGroup> list = service2.selectList();
 		model.addAttribute("list",list);
 		
-		return "infra/code/xdmin/codeForm";
+		return "infra/code/xdmin/codeForm2";
 	}
 	
 	@RequestMapping(value = "codeInst")
