@@ -57,4 +57,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		int result = dao.delete(vo);
 		return result;
 	}
+	
+	@Override
+	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		System.out.println("리턴완료 impl");
+		
+		int result = dao.selectOneCount(vo);
+		return result;
+	}
 }

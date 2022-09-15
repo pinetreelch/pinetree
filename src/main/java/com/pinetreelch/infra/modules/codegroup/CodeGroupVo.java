@@ -1,6 +1,8 @@
 package com.pinetreelch.infra.modules.codegroup;
 
-public class CodeGroupVo {
+import com.pinetreelch.infra.common.base.BaseVo;
+
+public class CodeGroupVo extends BaseVo{
 	
 	//vo는 쿼리에 던져주는 데이터
 	private String shValue;

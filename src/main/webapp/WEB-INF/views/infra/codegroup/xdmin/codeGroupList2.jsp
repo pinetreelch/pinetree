@@ -225,9 +225,15 @@
 
 						<div style="padding-top: 30px; padding: 15px;">  <!-- total 갯수 창-->
 
-
+						<form name = "formList" id = "formList" method ="post">
+							
+							<input type="hidden" name="thisPage" value="<c:out value = "${vo.thisPage}" default="1"/>">
+							
 							<h4 style="padding-bottom: 10px;">
-								Total: <span>1</span>
+								Total: 
+									<span>
+										${vo.totalRows }
+									</span>
 								<span style="float:right;">
 									
 										<select class="form-select" aria-label="Default select example" style="width: 80px; margin:0; display:inline-block;">
@@ -253,7 +259,7 @@
 									<th>등록일</th>
 									<th>수정일</th>
 								</tr>
-								
+								<!-- ${orderListLength - status.index  } ${vo.totalRows} -->
 								
 								<c:set var="orderListLength" value="${fn:length(list)}"/>
 								<c:choose>
@@ -267,7 +273,9 @@
 										<c:forEach items="${list}" var="list" varStatus="status">
 											<tr class="lltem" style="cursor: pointer;" >
 												<td style="text-align: center;" > <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">${orderListLength - status.index }</td>
+												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">
+													<c:out value = "${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow +status.index) }"/>
+												</td>
 												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgSeq }"/></td>
 												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgName }"/></td>
 												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgKor }"/></td>
@@ -316,14 +324,50 @@
 
 							<div>
 								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center" id ="pages">
-										<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">Next</a></li>
-									</ul>
+									<ul class="pagination justify-content-center mb-0">
+							                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+											<c:if test="${vo.startPage gt vo.pageNumToShow}">      
+							               		<li class="page-item">
+							               			<a class="page-link" href="javascript:goList(${vo.startPage - 1})">
+							               				<i class="fa-solid fa-angle-left"></i>
+							               			</a>
+							               		</li>
+											</c:if>
+											
+											<c:out value="${item.startPage }"/>
+											
+											<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+												<c:choose>
+												
+													<c:when test="${i.index eq vo.thisPage}">
+							              				  <li class="page-item active">
+							              				  	<a class="page-link" href="javascript:goList(${i.index})">
+							              				  		${i.index}
+							              				  	</a>
+							              				  </li>
+													</c:when>
+													
+													<c:otherwise>             
+							                			<li class="page-item">
+							                				<a class="page-link" href="javascript:goList(${i.index})">
+							                					${i.index}
+							                				</a>
+							                			</li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach> 
+											               
+											<c:if test="${vo.endPage ne vo.totalPages}">                
+							               				 <li class="page-item">
+							               				 	<a class="page-link" href="javascript:goList(${vo.endPage + 1})">
+							               				 		<i class="fa-solid fa-angle-right"></i>
+							               				 	</a>
+							               				 </li>
+											</c:if>
+						                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+						            </ul>
 								</nav>
+								</form>
 							</div>		
 
 							<div style="display:table; width: 100%; padding-bottom:10px;">
@@ -358,5 +402,32 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ 
+ <script>
+ 	var goUrlList = "/codeGroup/codeGroupList";
+	var goUrlInst = "/codeGroup/codeGroupInst";
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
+	var goUrlUele = "/codeGroup/codeGroupUele";
+	var goUrlDele = "/codeGroup/codeGroupDele";
+	
+	// var seq = $("input:text[name=cgSeq]");				/* #-> */
+	var seq = $("input:hidden[name=cgSeq]");
+	
+	
+	var form = $("form[name=form]");
+	var formVo = $("form[name=formVo]");
+	var formList = $("form[name=formList]");
+	
+	
+	$("#btnupdt").on("click", function(){
+		form.attr("action", goUrlUpdt).submit();
+	});
+	
+ 	goList = function(thisPage){
+ 		$("input:hidden[name=thisPage]").val(thisPage);
+ 		formList.attr("action", goUrlList).submit();
+ 	}
+ 	
+ </script>
 </body>
 </html>

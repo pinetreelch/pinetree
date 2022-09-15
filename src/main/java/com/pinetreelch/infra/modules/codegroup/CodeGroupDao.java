@@ -52,4 +52,11 @@ public class CodeGroupDao {
 		int result = sqlSession.delete(namespace + ".delete", vo);
 		return result;
 	}
+	
+	public int selectOneCount (CodeGroupVo vo) {
+		System.out.println("실행확인?");
+		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		System.out.println("돌아오니?");
+		return result;
+	}
 }
