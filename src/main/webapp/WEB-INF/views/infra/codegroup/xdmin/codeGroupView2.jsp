@@ -140,7 +140,7 @@
 						<div  class="row" style="padding-top: 20px;">
 							<div class="col"  style="display: inline-block; width: 500px;">
 								<%-- 이 코드그룹의 시퀀스 = <input name = "cgSeq" type="text" class="form-control" id="cgSeq" value="<c:out  value="${item.cgSeq}"/>"> --%>
-								<input type="hidden" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
+								<input type="text" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
 								
 							</div>
 							
@@ -171,7 +171,7 @@
 								</select>
 							  </div >
 							  
-							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
+							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">	
 							    <label for="8" class="form-label">삭제여부</label>
 							    <select class="form-select" name="delornot" >
 							    	<option value="">--선택---</option>

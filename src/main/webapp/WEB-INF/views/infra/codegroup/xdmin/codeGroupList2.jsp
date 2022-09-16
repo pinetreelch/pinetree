@@ -22,7 +22,7 @@
   	
   	<script>
 	  $( function() {
-	    $("#datepicker").datepicker({
+	    $("#shDateStart").datepicker({
 	    	dateFormat: 'yy-mm-dd'
 	    	,changeYear: true
 	    	,changeMonth: true
@@ -33,7 +33,7 @@
         	 
 	    });
 	    
-	    $("#datepicker2").datepicker({
+	    $("#shDateEnd").datepicker({
 	    	dateFormat: 'yy-mm-dd'
 	    	,changeYear: true
 	    	,changeMonth: true
@@ -43,19 +43,11 @@
        		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
         	 
 	    });
-	    $('#datepicker').datepicker('setDate', '-1M');
-	    $('#datepicker2').datepicker('setDate', 'today');
+	    
+	   	 $('#shDateStart').datepicker('setDate', '-1M');
+	    $('#shDateEnd').datepicker('setDate', 'today');
 	  } );
 	  
-	  
-	  function edit(){
-	 		
-	 		alert("edit");
-	 	
-	 		alert("끝");
-	 		
-	 	}
-	 
   	</script>
   	
   	
@@ -181,7 +173,7 @@
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
-					<form method="post" action="/codeGroup/codeGroupList/">
+					<form name = "formList" id = "formList" method ="post">
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
 									<select id="shUse" name = "shUse" class="form-select" aria-label="Default select example"style="width: 200px; margin-right:10px; display:inline-block;">
@@ -190,15 +182,18 @@
 									 <option value="1"<c:if test ="${vo.shUse eq 1}"> selected</c:if>>Y</option>
 									</select>
 
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block;">
-										<option selected >수정일</option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
+									<select id="shOptionDate" name = "shOptionDate" class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block;">
+										<option value ="" <c:if test = "${empty vo.shOptionDate}"> selected </c:if> >날짜</option>
+										<option value="1" <c:if test = "${vo.shOptionDate eq 1 }">  selected </c:if> >등록일</option>
+										<option value="2" <c:if test = "${vo.shOptionDate eq 2 }">  selected </c:if> >수정일</option>
+										<option value="3" <c:if test = "${vo.shOptionDate eq 3 }">  selected </c:if> >생일</option>
 									</select>
-
-									<input type="text" id="datepicker" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">		
-						 			<input type="text" id="datepicker2" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
+									
+									<%-- <fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
+									<input type="text" id="shDateStart" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
+									
+									<%-- <fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>		
+						 			<input type="text" id="shDateEnd" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
 
 									<br />
 								
@@ -211,23 +206,27 @@
 
 								<input value="<c:out  value="${vo.shValue}"/>" type="text" class="form-control" name="shValue" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
 
-								<button style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
+								<button name="btnSearch" id="btnSearch" style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
+								</button> 
 								
 								<button style="background: rgb(227, 227, 227); border:1px solid rgb(227, 227, 227); border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-arrow-rotate-right"></i>
 								</button>
 								
 								</div>
-							</form>
+						
 						</div>	<!-- 검색창-->
 
 						<div style="padding-top: 30px; padding: 15px;">  <!-- total 갯수 창-->
 
-						<form name = "formList" id = "formList" method ="post">
+						
 							
+							<input type="hidden" name="cgSeq">
+							<input type="hidden" name="mainKey">
 							<input type="hidden" name="thisPage" value="<c:out value = "${vo.thisPage}" default="1"/>">
+							<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+			
 							
 							<h4 style="padding-bottom: 10px;">
 								Total: 
@@ -272,102 +271,86 @@
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
 											<tr class="lltem" style="cursor: pointer;" >
-												<td style="text-align: center;" > <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">
-													<c:out value = "${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow +status.index) }"/>
+												<td style="text-align: center;" > <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> </td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+															<c:out value = "${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow +status.index) }"/>
 												</td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgSeq }"/></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgName }"/></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.cgKor }"/></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">
-													<c:set var="ny1" value="${list.useNY }"/>
-														<c:choose>
-														
-															<c:when test ="${ny1 eq 1 }">
-																Y
-															</c:when>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'" >
+														<c:out value="${list.cgSeq }"/>
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+														<c:out value="${list.cgName }"/>
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+														<c:out value="${list.cgKor }"/>
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+															<c:set var="ny1" value="${list.useNY }"/>
+															<c:choose>
 															
-															<c:when test ="${ny1 eq null }">
-																<b>(Null)</b>
-															</c:when>
+																<c:when test ="${ny1 eq 1 }">
+																	Y
+																</c:when>
 																
-															<c:otherwise>
-																N
-															</c:otherwise>
-														</c:choose>
+																<c:when test ="${ny1 eq null }">
+																	<b>(Null)</b>
+																</c:when>
+																	
+																<c:otherwise>
+																	N
+																</c:otherwise>
+															</c:choose>
 												</td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'">
-													<c:set var="ny2" value="${list.delNY }"/>
-														<c:choose>
-														
-															<c:when test ="${ny2 eq 1 }">
-																Y
-															</c:when>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+														<c:set var="ny2" value="${list.delNY }"/>
+															<c:choose>
 															
-															<c:when test ="${ny2 eq null }">
-																<b>(Null)</b>
-															</c:when>
-															
-															<c:otherwise>
-																N
-															</c:otherwise>
-														</c:choose>
+																<c:when test ="${ny2 eq 1 }">
+																	Y
+																</c:when>
+																
+																<c:when test ="${ny2 eq null }">
+																	<b>(Null)</b>
+																</c:when>
+																
+																<c:otherwise>
+																	N
+																</c:otherwise>
+															</c:choose>
 												</td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"><c:out value="${list.total }"/></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"></td>
-												<td onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq}"/>'"></td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+												</td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
 							</table>
-
+							<c:out value=" this page =${vo.thisPage }"></c:out> 		<br>
+							<c:out value=" rowNumToShow =${vo.rowNumToShow }"></c:out><br>
+							<c:out value=" shUse =${vo.shUse }"></c:out><br>
+							<c:out value=" shValue =${vo.shValue }"></c:out><br>
+							<c:out value=" shOption =${vo.shOption }"></c:out><br>	
+							<c:out value=" cgSeq =${vo.cgSeq }"></c:out>
+							
+							
 							<div>
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center mb-0">
-							                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
-											<c:if test="${vo.startPage gt vo.pageNumToShow}">      
-							               		<li class="page-item">
-							               			<a class="page-link" href="javascript:goList(${vo.startPage - 1})">
-							               				<i class="fa-solid fa-angle-left"></i>
-							               			</a>
-							               		</li>
-											</c:if>
-											
-											<c:out value="${item.startPage }"/>
-											
-											<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
-												<c:choose>
-												
-													<c:when test="${i.index eq vo.thisPage}">
-							              				  <li class="page-item active">
-							              				  	<a class="page-link" href="javascript:goList(${i.index})">
-							              				  		${i.index}
-							              				  	</a>
-							              				  </li>
-													</c:when>
-													
-													<c:otherwise>             
-							                			<li class="page-item">
-							                				<a class="page-link" href="javascript:goList(${i.index})">
-							                					${i.index}
-							                				</a>
-							                			</li>
-													</c:otherwise>
-												</c:choose>
-											</c:forEach> 
-											               
-											<c:if test="${vo.endPage ne vo.totalPages}">                
-							               				 <li class="page-item">
-							               				 	<a class="page-link" href="javascript:goList(${vo.endPage + 1})">
-							               				 		<i class="fa-solid fa-angle-right"></i>
-							               				 	</a>
-							               				 </li>
-											</c:if>
-						                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
-						            </ul>
-								</nav>
-								</form>
+								<!-- pagination s -->
+									<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+								<!-- pagination e -->
+								
 							</div>		
 
 							<div style="display:table; width: 100%; padding-bottom:10px;">
@@ -386,9 +369,10 @@
 										<i class="fa-solid fa-file-excel"></i>
 									</button>	
 									
-									<button type="button" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='/codeGroup/codeGroupForm/'"> 
+									<button  type="button" name ="btnForm" id="btnForm" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-plus"></i>
-									</button>				
+									</button>
+									</form>				
 								</div>
 							</div>	
 						</div>	<!-- 토탈 갯수 창 부터 시작된 div-->
@@ -409,6 +393,7 @@
 	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
 	var goUrlUele = "/codeGroup/codeGroupUele";
 	var goUrlDele = "/codeGroup/codeGroupDele";
+	var goUrlForm = "/codeGroup/codeGroupForm";
 	
 	// var seq = $("input:text[name=cgSeq]");				/* #-> */
 	var seq = $("input:hidden[name=cgSeq]");
@@ -418,9 +403,12 @@
 	var formVo = $("form[name=formVo]");
 	var formList = $("form[name=formList]");
 	
+	$("#btnSearch").on("click", function(){
+		formList.attr("action", goUrlList).submit();
+	});
 	
 	$("#btnupdt").on("click", function(){
-		form.attr("action", goUrlUpdt).submit();
+		formList.attr("action", goUrlUpdt).submit();
 	});
 	
  	goList = function(thisPage){
@@ -428,6 +416,24 @@
  		formList.attr("action", goUrlList).submit();
  	}
  	
+ 	$('#btnForm').on("click", function() {
+ 		
+		goForm(0);                
+	});
+ 	
+ 	goForm = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+    	formList.attr("action", goUrlForm).submit();
+	}
+ 	
+	goFormk = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+    	formList.attr("action", goUrlForm).submit();
+	}
+ 	
+	
  </script>
 </body>
 </html>

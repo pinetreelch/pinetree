@@ -135,44 +135,54 @@
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
-					<form method ="post" action = "/codeGroup/codeGroupInst" name="form">
+					<form method ="post"  name="form">
 						<div class="row" style="padding-top: 30px;" >
 							  <div class="col"  style="display: inline-block; width: 500px;">
+							  
+							  	<input type="hidden" value= "${vo.cgSeq}" name ="cgSeq">
+							  	
 							    <label for="1" class="form-label">코드그룹 코드 (한글)</label>
 							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cgName}"/>" type="text" class="form-control">
 							  </div>
 							  
 							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="2" class="form-label">코드그룹 코드(영문)</label>
-							    <input name = "cgKor" type="text" class="form-control" id="2">
+							    <input name = "cgKor" type="text" class="form-control" id="2" value="<c:out  value="${item.cgKor}"/>" >
 							  </div>
 						</div>
 						
 						<div  class="row" style="padding-top: 20px;">
 							  <div class="col" style="display: inline-block; width: 500px;">
 							    <label for="5" class="form-label">사용여부</label>
-							    <select class="form-select" name="useornot" >
+							    <select class="form-select" name="useNY" >
 								  <option value="" >--선택---</option>
-								  <option value="1">Y</option>
-								  <option value="0">N</option>
+								  <option value="1"  <c:if test="${item.useNY eq 1}">selected</c:if> >Y</option>
+								  <option value="0" <c:if test="${item.useNY eq 0}">selected</c:if> >N</option>
 								</select>
 							  </div >
 							  
 							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="8" class="form-label">삭제여부</label>
-							    <select class="form-select" name="delornot" >
+							    <select class="form-select" name="delNY" >
 							    	<option value="">--선택---</option>
-									<option value="1">Y</option>
-									<option value="0">N</option>
+									<option value="1"  <c:if test="${item.delNY eq 1}">selected</c:if> >Y</option>
+									<option value="0" <c:if test="${item.delNY eq 0}">selected</c:if>>N</option>
 								</select>
+								
+										<c:out value=" this page =${vo.thisPage }"></c:out> 		<br>
+							<c:out value=" rowNumToShow =${vo.rowNumToShow }"></c:out><br>
+							<c:out value=" shUse =${vo.shUse }"></c:out><br>
+							<c:out value=" shValue =${vo.shValue }"></c:out><br>
+							<c:out value=" shOption =${vo.shOption }"></c:out><br>	
+							<c:out value=" cgSeq =${vo.cgSeq }"></c:out>
 							  </div>
 						</div>
-					</form>
+					
 					
 					<div style="padding-top: 30px;">
 						<div style="display:table; width: 100%; padding-bottom:150px;">
 							<div style="display:table-cell;">
-								<button type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
+								<button type="button" id="btnList" name="btnList" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
 									<i class="fa-solid fa-list"></i>
 								</button>
 								
@@ -180,14 +190,40 @@
 							</div>
 							
 							<div style="display:table-cell; text-align: right;">
-									
+								<button  type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="background:rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+									<i class="fa-solid fa-x"></i>
+								</button>
 								
+									<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="staticBackdropLabel">삭제</h5>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									      </div>
+									      <div class="modal-body" style="text-align:left;">
+									        삭제하시겠습니까?
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+									        <button type="button" name="btndel"  id="btndel" class="btn btn-primary">삭제</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>	
+									
 								<button type="button"id="btninsert" name="btninsert" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-bookmark"></i>
-								</button>				
+								</button>			
+								
 							</div>
 						</div>
 					</div>
+					</form>
+					
+					<form method ="post"  name="formVo">
+						<%@include file="codeGroupVo.jsp"%>	
+					</form>
 				</div>	<!-- col12 -->
  		</div> 		<!-- 검정 테리 코드그룹 관리 안-->
 		
@@ -214,9 +250,24 @@
 	
 	
 	$("#btninsert").on("click", function(){
-		form.attr("action", goUrlInst).submit();
+		
+		if (seq.val() == "0" || seq.val()==""){
+			/* if(validationInst() == false) return false; */
+			form.attr("action", goUrlInst).submit();
+		} else {
+			/* if(validationUpdt() == false) return false; */
+			form.attr("action", goUrlUpdt).submit();
+		}
+		
 	});
 	
+	 $("#btndel").on("click", function(){
+			form.attr("action", goUrlDele).submit();
+		});
+	
+	 $("#btnList").on("click", function(){
+		 formVo.attr("action", goUrlList).submit();
+		});
  </script>
 </body>
 </html>
