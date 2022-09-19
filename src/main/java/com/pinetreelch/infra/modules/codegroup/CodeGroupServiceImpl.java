@@ -43,10 +43,10 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int update(CodeGroupVo vo) throws Exception {
+	public int update(CodeGroup dto) throws Exception {
 		System.out.println("리턴완료 impl");
 		
-		int result = dao.update(vo);
+		int result = dao.update(dto);
 		return result;
 	}
 	

@@ -41,9 +41,9 @@ public class CodeGroupDao {
 		return result;
 	}
 	
-	public int update (CodeGroupVo vo) {
+	public int update (CodeGroup dto) {
 		System.out.println("실행확인?");
-		int result = sqlSession.update(namespace + ".update", vo);
+		int result = sqlSession.update(namespace + ".update", dto);
 		return result;
 	}
 	

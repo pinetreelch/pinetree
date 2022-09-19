@@ -9,7 +9,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>codeGroupList</title>
+	<title>codeGroupForm</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
 </head>
@@ -155,7 +155,7 @@
 							  <div class="col" style="display: inline-block; width: 500px;">
 							    <label for="5" class="form-label">사용여부</label>
 							    <select class="form-select" name="useNY" >
-								  <option value="" >--선택---</option>
+								  <option value="" >-----선택-----</option>
 								  <option value="1"  <c:if test="${item.useNY eq 1}">selected</c:if> >Y</option>
 								  <option value="0" <c:if test="${item.useNY eq 0}">selected</c:if> >N</option>
 								</select>
@@ -169,13 +169,30 @@
 									<option value="0" <c:if test="${item.delNY eq 0}">selected</c:if>>N</option>
 								</select>
 								
-										<c:out value=" this page =${vo.thisPage }"></c:out> 		<br>
-							<c:out value=" rowNumToShow =${vo.rowNumToShow }"></c:out><br>
-							<c:out value=" shUse =${vo.shUse }"></c:out><br>
-							<c:out value=" shValue =${vo.shValue }"></c:out><br>
-							<c:out value=" shOption =${vo.shOption }"></c:out><br>	
-							<c:out value=" cgSeq =${vo.cgSeq }"></c:out>
+								
 							  </div>
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+							  <div class="col"  style="display: inline-block; width: 500px;">
+							  
+							  
+							  	
+							    <label for="1" class="form-label"></label>
+							    <input name = "startDate" id = "startDate" value="<c:out  value="${item.startDate}"/>" type="text" class="form-control">
+							    
+							    <c:out value="( this page =${vo.thisPage })"></c:out> 		
+								<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
+								<c:out value="( shUse =${vo.shUse }) "></c:out>
+								<c:out value="( shValue =${vo.shValue } )"></c:out>
+								<c:out value="( shOption =${vo.shOption })"></c:out>	
+								<c:out value="( cgSeq =${vo.cgSeq } )"></c:out>
+							  </div>
+							  	
+							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
+							
+							  </div>
+							 	
 						</div>
 					
 					
@@ -234,6 +251,7 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+ 
  <script>
 	var goUrlList = "/codeGroup/codeGroupList";
 	var goUrlInst = "/codeGroup/codeGroupInst";
@@ -256,6 +274,7 @@
 			form.attr("action", goUrlInst).submit();
 		} else {
 			/* if(validationUpdt() == false) return false; */
+			alert('update 실행');
 			form.attr("action", goUrlUpdt).submit();
 		}
 		
@@ -268,6 +287,7 @@
 	 $("#btnList").on("click", function(){
 		 formVo.attr("action", goUrlList).submit();
 		});
+	 
  </script>
 </body>
 </html>

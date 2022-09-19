@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pinetreelch.infra.common.util.UtilDateTime;
@@ -49,22 +50,29 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupForm(@ModelAttribute CodeGroupVo vo, Model model)  throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
+	public String codeGroupForm( @ModelAttribute("vo") CodeGroupVo vo, Model model)  throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는 utdt, insert는 inst. 
+																												//@ModelAttribute("vo")는 지금 vo에 있는것을 모델에 담아버리겠다고 선언한것.
 		
+		
+		
+		System.out.println("!!!!!!!!!!!!=  " + vo.getCgSeq());
 		CodeGroup result = service.selectOne(vo);
 		model.addAttribute("item", result);
-		model.addAttribute("vo", vo);
+		
 		
 		return "infra/codegroup/xdmin/codeGroupForm2";
 	}
 	
-	@SuppressWarnings(value= {"all"}) 							//안적어도됨
+	
 	@RequestMapping(value = "codeGroupInst")					// !!여기 빈페이지임
-	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{   //모델 객체 없음, jsp에 보낼일이 없으니까. //RedirectAttributes redirectAttributes 받는부분에 추가; 그리고 내용에 redirectAttributes.addFlashAttribute("vo" ,vo);
+	public String codeGroupInst(@ModelAttribute CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{   //모델 객체 없음, jsp에 보낼일이 없으니까. //RedirectAttributes redirectAttributes 받는부분에 추가; 그리고 내용에 redirectAttributes.addFlashAttribute("vo" ,vo);
 		
-		int result = service.insert(dto);
+		service.insert(dto);
 		
-		vo.setCgSeq(dto.getCgSeq());
+		vo.setCgSeq( dto.getCgSeq() );
+		
+		System.out.println("?????????????? == "+ vo.getCgSeq());
+		
 		redirectAttributes.addFlashAttribute("vo", vo);
 			
 		return "redirect:/codeGroup/codeGroupForm";						//redirect에서는 vo가 같이 안감;
@@ -83,8 +91,8 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto) throws Exception{
 		
-		System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-		int result = service.update(vo);
+		System.out.println("update");
+		int result = service.update(dto);
 		System.out.println(result);
 	
 		return "redirect: /codeGroup/codeGroupList";

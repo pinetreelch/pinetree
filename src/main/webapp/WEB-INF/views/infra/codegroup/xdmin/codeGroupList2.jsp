@@ -229,20 +229,21 @@
 			
 							
 							<h4 style="padding-bottom: 10px;">
-								Total: 
+								 
 									<span>
-										${vo.totalRows }
+									Total:
+									 <c:out value="${vo.totalRows}" > </c:out>	
 									</span>
-								<span style="float:right;">
 									
-										<select class="form-select" aria-label="Default select example" style="width: 80px; margin:0; display:inline-block;">
-											<option selected >10</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										</select>
-									
-								</span>
+									<span style="float:right;">
+										
+											<select class="form-select" aria-label="Default select example" style="width: 80px; margin:0; display:inline-block;">
+												<option selected >10</option>
+												<option value="1">One</option>
+												<option value="2">Two</option>
+												<option value="3">Three</option>
+											</select>
+									</span>	
 							</h4>
 							
 							<table class="table table-bordered" style="text-align: center;">
@@ -329,6 +330,7 @@
 												</td>
 												
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+													<c:out value="${list.startDate }"/>
 												</td>
 												
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
@@ -338,12 +340,12 @@
 									</c:otherwise>
 								</c:choose>
 							</table>
-							<c:out value=" this page =${vo.thisPage }"></c:out> 		<br>
-							<c:out value=" rowNumToShow =${vo.rowNumToShow }"></c:out><br>
-							<c:out value=" shUse =${vo.shUse }"></c:out><br>
-							<c:out value=" shValue =${vo.shValue }"></c:out><br>
-							<c:out value=" shOption =${vo.shOption }"></c:out><br>	
-							<c:out value=" cgSeq =${vo.cgSeq }"></c:out>
+							<c:out value="( this page =${vo.thisPage })"></c:out> 		
+							<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
+							<c:out value="( shUse =${vo.shUse }) "></c:out>
+							<c:out value="( shValue =${vo.shValue } )"></c:out>
+							<c:out value="( shOption =${vo.shOption })"></c:out>	
+							<c:out value="( cgSeq =${vo.cgSeq } )"></c:out>
 							
 							
 							<div>
@@ -422,7 +424,7 @@
 	});
  	
  	goForm = function(keyValue) {
-    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */						//form으로 넘어갈때 seq를 0으로 만듬; -> 애러 요인
     	seq.val(keyValue);
     	formList.attr("action", goUrlForm).submit();
 	}
@@ -432,7 +434,10 @@
     	seq.val(keyValue);
     	formList.attr("action", goUrlForm).submit();
 	}
+	
+
  	
+	
 	
  </script>
 </body>

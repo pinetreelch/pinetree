@@ -22,15 +22,16 @@
 				FROM codeGroup a
 					
 				WHERE 1=1
-						<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
-						<if test= "shValue != null"> AND a.cgName  LIKE CONCAT('%',#{shValue},'%')</if>
 						
-						<choose>
+						<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
+						
+						<choose>			
 							<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
 							<when test="shOption == 2">AND a.cgName LIKE CONCAT('%',#{shValue},'%')</when>
 							<when test="shOption == 3">AND a.cgKor LIKE CONCAT('%',#{shValue},'%')</when>
 							<otherwise></otherwise>
 						</choose>	
+						
 					ORDER BY a.cgSeq DESC limit 99999999999
 					
 					) aa
@@ -44,10 +45,11 @@
 			FROM codeGroup a
 					
 			WHERE 1=1
-				<if test= "shValue != null"> AND a.cgName  LIKE CONCAT('%',#{shValue},'%')</if>
-					<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
+				
+				<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
 			
 				<choose>
+				
 					<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
 					<when test="shOption == 2">AND a.cgName LIKE CONCAT('%',#{shValue},'%')</when>
 					<when test="shOption == 3">AND a.cgKor LIKE CONCAT('%',#{shValue},'%')</when>
@@ -92,15 +94,16 @@
         ,cgKor
         ,useNY
 		,delNY
-		
+		,startDate
         )
+        
         VALUES (
 			
             #{cgName}
             , #{cgKor}
            	, #{useNY}
            	, #{delNY}
-           	
+           	, #{startDate}
         )
         	<selectKey resultType ="String" keyProperty = "cgSeq" order ="AFTER">
         		SELECT last_insert_id()
@@ -118,6 +121,7 @@
 			, cgKor = #{cgKor}
 			, useNY = #{useNY}
 			, delNY = #{delNY}
+			, startDate = #{startDate}
 			
 		WHERE cgSeq = #{cgSeq}
 	</update>

@@ -8,9 +8,16 @@ public class CodeGroup {
 	private String cgKor;
 	private Integer useNY;
 	private Integer delNY;
+	private String startDate;
 	
 	// 코드변수
 	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
 	private String cSeq;
 	private String codeGroup_cgSeq;
 	private String total;

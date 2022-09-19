@@ -43,7 +43,7 @@
 						<div class="row" style="padding-top: 30px;" >
 							  <div class="col"  style="display: inline-block; width: 500px;">
 							    <label for="1" class="form-label">코드그룹 코드 (한글)</label>
-							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cgName}"/>" type="text" class="form-control">
+							    <input name = "cgName" id = "cgName" value="<c:out  value="${vo.cgName}"/>" type="text" class="form-control">
 							  </div>
 							  
 							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">

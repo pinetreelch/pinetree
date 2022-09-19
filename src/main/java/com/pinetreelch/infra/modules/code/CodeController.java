@@ -33,8 +33,7 @@ public class CodeController {
 	@RequestMapping(value = "codeForm")
 	public String codeForm(Model model) throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
 		
-		List<CodeGroup> list = service2.selectList();
-		model.addAttribute("list",list);
+		
 		
 		return "infra/code/xdmin/codeForm2";
 	}

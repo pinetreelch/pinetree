@@ -13,6 +13,13 @@ public class CodeGroupVo extends BaseVo{
 	private String shDateStart;
 	private String shDateEnd;
 	
+	private String cgSeq;
+	
+	private Integer useNY;
+	private Integer delNY;
+	
+	private String cgName;
+	private String cgKor;
 	
 	public String getShDateStart() {
 		return shDateStart;
@@ -30,11 +37,6 @@ public class CodeGroupVo extends BaseVo{
 		this.shDateEnd = shDateEnd;
 	}
 
-
-
-	private Integer useNY;
-	private Integer delNY;
-
 	public Integer getShOptionDate() {
 		return shOptionDate;
 	}
@@ -43,11 +45,6 @@ public class CodeGroupVo extends BaseVo{
 		this.shOptionDate = shOptionDate;
 	}
 
-	
-	
-	private String cgName;
-	private String cgKor;
-	
 	public String getCgName() {
 		return cgName;
 	}
@@ -80,11 +77,6 @@ public class CodeGroupVo extends BaseVo{
 	public void setDelNY(Integer delNY) {
 		this.delNY = delNY;
 	}
-
-
-
-	private String cgSeq;
-	
 
 	public String getCgSeq() {
 		return cgSeq;
