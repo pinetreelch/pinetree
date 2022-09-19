@@ -12,18 +12,20 @@ public class CodeGroup {
 	
 	// 코드변수
 	
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
+
 	private String cSeq;
 	private String codeGroup_cgSeq;
 	private String total;
 	
 	// colum에 없는 필드: 바로위 total 같은 것들을 생성할때 필드명 앞에 x를 붙임;
 	// ex private String xtotal;
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
 	public String getTotal() {
 		return total;
 	}

@@ -3,15 +3,17 @@ package com.pinetreelch.infra.modules.codegroup;
 
 import java.util.List;
 
+import com.pinetreelch.infra.common.util.UtilDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.pinetreelch.infra.common.util.UtilDateTime;
+
 
 
 @Controller										
@@ -51,9 +53,9 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm( @ModelAttribute("vo") CodeGroupVo vo, Model model)  throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는 utdt, insert는 inst. 
-																												//@ModelAttribute("vo")는 지금 vo에 있는것을 모델에 담아버리겠다고 선언한것.
+																												//@ModelAttribute("vo")는 지금 vo에 있는것을 모델에 담아버리겠다고 선언한것. -> *다시 한번 검토해야함
 		
-		
+	
 		
 		System.out.println("!!!!!!!!!!!!=  " + vo.getCgSeq());
 		CodeGroup result = service.selectOne(vo);
@@ -78,24 +80,20 @@ public class CodeGroupController {
 		return "redirect:/codeGroup/codeGroupForm";						//redirect에서는 vo가 같이 안감;
 	}
 	
-
-	
-	/*
-	 * @RequestMapping(value = "codeGroupView") public String
-	 * codeGroupView(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws
-	 * Exception{ CodeGroup result = service.selectOne(vo);
-	 * model.addAttribute("vo",vo); model.addAttribute("item", result); return
-	 * "infra/codegroup/xdmin/codeGroupView2"; }
-	 */
-	
 	@RequestMapping(value = "codeGroupUpdt")
-	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto) throws Exception{
+	public String codeGroupUpdt(@ModelAttribute CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
 		
-		System.out.println("update");
-		int result = service.update(dto);
-		System.out.println(result);
-	
-		return "redirect: /codeGroup/codeGroupList";
+
+		service.update(dto);
+		
+		vo.setCgSeq(dto.getCgSeq());
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ===========  " + vo.getCgSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+	//	return "redirect: /codeGroup/codeGroupForm"; 여기 보면 공백있음 redirect: 랑 /codeGroup 사이에 이러면 에러남;; 에러 이유가 무엇일까
+		return "redirect:/codeGroup/codeGroupForm";
 	}
 	
 	

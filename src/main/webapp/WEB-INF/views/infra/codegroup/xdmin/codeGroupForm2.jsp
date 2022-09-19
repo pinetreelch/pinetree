@@ -11,7 +11,33 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>codeGroupForm</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
+	 <link rel="stylesheet" href="/resources/css/admin.css" />	 
+	 
+	  <!-- Datepicker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  	
+  	<script>
+	  $( function() {
+		  
+	    $("#startDate1").datepicker({
+	    	dateFormat: 'yy-mm-dd'
+	    	,changeYear: true
+	    	,changeMonth: true
+	    	,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
+	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
+       		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
+       		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
+        	 
+	    });
+	    
+	   	
+	  } );
+  	</script>
+  	
 </head>
 
 <body style="background-image: url('/resources/images/wallpaperbetter.jpg'); background-size: 12% 12%;">
@@ -164,7 +190,7 @@
 							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="8" class="form-label">삭제여부</label>
 							    <select class="form-select" name="delNY" >
-							    	<option value="">--선택---</option>
+							    	<option value="">---선택---</option>
 									<option value="1"  <c:if test="${item.delNY eq 1}">selected</c:if> >Y</option>
 									<option value="0" <c:if test="${item.delNY eq 0}">selected</c:if>>N</option>
 								</select>
@@ -175,11 +201,27 @@
 						
 						<div class="row" style="padding-top: 30px;" >
 							  <div class="col"  style="display: inline-block; width: 500px;">
-							  
-							  
 							  	
 							    <label for="1" class="form-label"></label>
-							    <input name = "startDate" id = "startDate" value="<c:out  value="${item.startDate}"/>" type="text" class="form-control">
+							    
+							    <label for="1" class="form-label">등록일</label> <br />
+							    
+							  
+							    <c:choose>			
+									<c:when test="${vo.cgSeq eq 0 or item.startDate eq null}">
+										 <input  type="text" id="startDate1" name = "startDate" value="<c:out  value="${item.startDate}"/>" autocomplete="off">
+									</c:when>
+									
+									<c:otherwise>
+										 <input  type="text" id="startDate1" name = "startDate1" value="<c:out  value="${item.startDate}"/>" autocomplete="off" disabled>  <!-- disabled값을 못넘김 -->
+									</c:otherwise>
+								</c:choose>	
+							    
+							      
+							   <input  type="hidden" id="startDate" name = "startDate" value="<c:out  value="${item.startDate}"/>">						<!--  그래서 이 방법을 사용해야함 -->
+							   
+							    
+							    <br />
 							    
 							    <c:out value="( this page =${vo.thisPage })"></c:out> 		
 								<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
@@ -250,7 +292,7 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+ 
  
  <script>
 	var goUrlList = "/codeGroup/codeGroupList";
@@ -274,7 +316,7 @@
 			form.attr("action", goUrlInst).submit();
 		} else {
 			/* if(validationUpdt() == false) return false; */
-			alert('update 실행');
+			
 			form.attr("action", goUrlUpdt).submit();
 		}
 		
