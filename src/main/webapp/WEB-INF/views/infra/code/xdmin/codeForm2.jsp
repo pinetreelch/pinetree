@@ -137,15 +137,33 @@
 				<div class="col-12">
 					<form method ="post" action = "/codeGroup/codeGroupInst">
 						<div class="row" style="padding-top: 30px;" >
-							  <div class="col"  style="display: inline-block; width: 500px;">
-							    <label for="1" class="form-label">코드그룹 코드 (한글)</label>
-							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cgName}"/>" type="text" class="form-control">
-							  </div>
-							  
-							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
-							    <label for="2" class="form-label">코드그룹 코드(영문)</label>
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label">코드그룹 코드</label>
 							    <input name = "cgKor" type="text" class="form-control" id="2">
 							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+							   
+							  </div>
+							  
+							  
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							   <label for="1" class="form-label">코드 (한글)</label>
+							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cdName}"/>" type="text" class="form-control">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+							    
+							  </div>
+							  
+							  
 						</div>
 						
 						<div  class="row" style="padding-top: 20px;">
@@ -165,9 +183,13 @@
 									<option value="1">Y</option>
 									<option value="0">N</option>
 								</select>
+								
+							
+								
 							  </div>
 						</div>
-						<input type = "submit">	
+						
+						
 					</form>
 					
 					<div style="padding-top: 30px;">

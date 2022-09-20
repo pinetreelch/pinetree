@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pinetreelch.infra.modules.codegroup.CodeGroup;
@@ -31,9 +32,14 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model) throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
+	public String codeForm(@ModelAttribute("vo") CodeVo vo, Code dto,  Model model) throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는utdt, insert는 inst.
+		
+		Code result = service.selectOne(vo);
 		
 		
+		
+		
+		model.addAttribute("item", result);
 		
 		return "infra/code/xdmin/codeForm2";
 	}

@@ -274,7 +274,9 @@
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
 											<tr class="lltem" style="cursor: pointer;" >
-												<td style="text-align: center;" > <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> </td>
+												<td style="text-align: center;" > 
+													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+												 </td>
 												
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
 															<c:out value = "${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow +status.index) }"/>
@@ -342,6 +344,7 @@
 									</c:otherwise>
 								</c:choose>
 							</table>
+							
 							<c:out value="( this page =${vo.thisPage })"></c:out> 		
 							<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
 							<c:out value="( shUse =${vo.shUse }) "></c:out>

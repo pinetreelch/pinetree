@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.pinetreelch.infra.modules.code.Code;
+
 @Repository
 public class CodeGroupDao {
 	@Inject										//Autowired랑 같은 개념
@@ -59,4 +61,9 @@ public class CodeGroupDao {
 		System.out.println("돌아오니?");
 		return result;
 	}
+	
+//	for cache
+	public List<CodeGroup> selectListCachedCodeArrayList(){ 
+		return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null);
+		}
 }

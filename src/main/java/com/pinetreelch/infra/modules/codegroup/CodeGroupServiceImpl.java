@@ -1,14 +1,63 @@
 package com.pinetreelch.infra.modules.codegroup;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 public class CodeGroupServiceImpl implements CodeGroupService {
 	@Autowired
 	CodeGroupDao dao;				//autowired라는 new연산자를 통해 dao라는 객체를 만들어 놓음; 
+	
+	@PostConstruct					// 서버 시작할 떄 실행하게 하는 코드;
+	public void selectListCachedCodeArrayList() throws Exception {
+		List<CodeGroup> codeListFromDb = (ArrayList<CodeGroup>) dao.selectListCachedCodeArrayList();
+//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+		CodeGroup.cachedCodeArrayList.clear(); 
+		CodeGroup.cachedCodeArrayList.addAll(codeListFromDb);
+		System.out.println("cachedCodeArrayList: " + CodeGroup.cachedCodeArrayList.size() + " chached !");
+		
+		
+	}
+	
+	public static List<CodeGroup> selectListCachedCode(String cgSeq) throws Exception {
+		
+		System.out.println("dd@@@@@@@@");
+		List<CodeGroup> rt = new ArrayList<CodeGroup>();
+		for(CodeGroup codeRow : CodeGroup.cachedCodeArrayList) {
+			if (codeRow.getCgSeq().equals(cgSeq)) {
+				rt.add(codeRow);
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
+	
+	
+	public static String selectOneCachedCode(int codeGroup) throws Exception {
+		System.out.println("xx@@@@@@@@@");
+		String rt = "";
+		for(CodeGroup codeRow : CodeGroup.cachedCodeArrayList) {
+			if (codeRow.getCgSeq().equals(Integer.toString(codeGroup))) {
+				rt = codeRow.getCgName();
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
+	
+	
+	public static void clear() throws Exception {
+		CodeGroup.cachedCodeArrayList.clear();
+	}
 	
 	@Override
 	public List<CodeGroup> selectList(CodeGroupVo vo) throws Exception {

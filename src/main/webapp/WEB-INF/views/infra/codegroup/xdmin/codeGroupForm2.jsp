@@ -1,9 +1,12 @@
- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
+ 
+  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
+ <jsp:useBean id="CodeGroupServiceImpl" class="com.pinetreelch.infra.modules.codegroup.CodeGroupServiceImpl"/>
 
 <html>
 <head>
@@ -165,7 +168,7 @@
 						<div class="row" style="padding-top: 30px;" >
 							  <div class="col"  style="display: inline-block; width: 500px;">
 							  
-							  	<input type="hidden" value= "${vo.cgSeq}" name ="cgSeq">
+							  	<input type="hidden" value= "${vo.cgSeq}" name ="cgSeq"> 
 							  	
 							    <label for="1" class="form-label">코드그룹 코드 (한글)</label>
 							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cgName}"/>" type="text" class="form-control">
@@ -236,6 +239,8 @@
 							  </div>
 							 	
 						</div>
+						
+						
 					
 					
 					<div style="padding-top: 30px;">
@@ -281,7 +286,7 @@
 					</form>
 					
 					<form method ="post"  name="formVo">
-						<%@include file="codeGroupVo.jsp"%>	
+						<%@ include file="codeGroupVo.jsp" %>	
 					</form>
 				</div>	<!-- col12 -->
  		</div> 		<!-- 검정 테리 코드그룹 관리 안-->

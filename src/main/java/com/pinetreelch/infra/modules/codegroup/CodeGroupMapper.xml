@@ -110,6 +110,19 @@
         	</selectKey>
 	</insert>
 	
+	  <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			cgSeq
+			, cgName
+			
+		FROM
+			codeGroup
+			
+		WHERE 1=1
+		
+			AND delNY = 0
+		
+    </select>
 	
 	
 	<!-- update -->

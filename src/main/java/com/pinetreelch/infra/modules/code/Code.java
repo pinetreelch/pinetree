@@ -1,6 +1,12 @@
 package com.pinetreelch.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
+	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	//코드 테이블 변수
 	private String cSeq;
@@ -11,7 +17,14 @@ public class Code {
 	
 	//코드그룹 테이블 변수
 	private String cgName;
+	private String cgSeq;
 	
+	public String getCgSeq() {
+		return cgSeq;
+	}
+	public void setCgSeq(String cgSeq) {
+		this.cgSeq = cgSeq;
+	}
 	// ================================
 	public String getCgName() {
 		return cgName;

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.pinetreelch.infra.modules.code.CodeServiceImpl"/>
 
 <html>
 <head>
@@ -22,7 +23,7 @@
   	
   	<script>
 	  $( function() {
-	    $("#datepicker").datepicker({
+	    $("shStartDate").datepicker({
 	    	dateFormat: 'yy-mm-dd'
 	    	,changeYear: true
 	    	,changeMonth: true
@@ -33,7 +34,7 @@
         	 
 	    });
 	    
-	    $("#datepicker2").datepicker({
+	    $("#shEndDate").datepicker({
 	    	dateFormat: 'yy-mm-dd'
 	    	,changeYear: true
 	    	,changeMonth: true
@@ -43,18 +44,12 @@
        		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
         	 
 	    });
-	    $('#datepicker').datepicker('setDate', '-1M');
-	    $('#datepicker2').datepicker('setDate', 'today');
+	    $('#shStartDate').datepicker('setDate', '-1M');
+	    $('#shEndDate').datepicker('setDate', 'today');
 	  } );
 	  
 	  
-	  function edit(){
-	 		
-	 		alert("edit");
-	 	
-	 		alert("끝");
-	 		
-	 	}
+
 	 
   	</script>
   	
@@ -173,7 +168,8 @@
 		</div>
 		
 	</div>
-
+	
+	<form method="post" name = "form">
  	<div class="container-fluid bodyd3" style="padding-top: 50px;">																														<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
  			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">코드 관리</span></i>
@@ -181,7 +177,7 @@
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
-					<form method="post" action="/codeGroup/codeGroupList">
+					
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
 									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
@@ -231,7 +227,7 @@
 									</button>
 								
 								</div>
-							</form>
+						
 						</div>	<!-- 검색창-->
 
 						<div style="padding-top: 30px; padding: 15px;">  <!-- total 갯수 창-->
@@ -250,6 +246,9 @@
 									
 								</span>
 							</h4>
+							
+							
+							<input type="hidden" name="cSeq">
 							
 							<table class="table table-bordered" style="text-align: center;">
 								<tr style="background: #B8BFC4;">
@@ -279,15 +278,52 @@
 									
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr>
-												<td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-												<td>${orderListLength - status.index }</td>
-												<td><c:out value="${list.codeGroup_cgSeq }"/></td>
-												<td><c:out value="${list.cdName }"/></td>
-												<td><c:out value="${list.cSeq }"/></td>
+											<tr class="lltem" style="cursor: pointer;">
+												<td>
+													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+												</td>
+												
+												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cSeq }"/> )'">
+													${orderListLength - status.index }
+												</td>
+												
+												<td>
+												
+													<c:out value="${list.codeGroup_cgSeq }"/>
+													
+													
+													<div>
+														<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+														
+															<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+															
+																<c:if test="${list.codeGroup_cgSeq eq listGender.cgSeq}">
+																	<c:out value="${listGender.cdName }"/>
+																</c:if>
+																
+															</c:forEach>
+													</div>
+													
+													
+													
+												</td>
+												
+												<td>
+													<c:out value="${list.cdName }"/>
+												</td>
+												
+												<td>
+													<c:out value="${list.cSeq }"/>
+												</td>
+												
 												<td></td>
-												<td><c:out value="${list.cgName }"/></td>
+												
+												<td>
+													<c:out value="${list.cgName }"/>
+												</td>
+												
 												<td></td>
+												
 												<td>
 													<c:set var="ny1" value="${list.useNY }"/>
 														<c:choose>
@@ -301,6 +337,7 @@
 															</c:otherwise>
 														</c:choose>
 												</td>
+												
 												<td></td>
 												<td></td>
 												<td></td>
@@ -347,6 +384,7 @@
 						
 				</div> 			<!-- col끝 -->
  		</div> 		<!-- 검정 테리 코드그룹 관리 안-->
+ 		</form>
 		
 		<div style="visibility: hidden; height: 100px;"> 
 				d
@@ -354,5 +392,29 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ <script>
+ 	var goUrlList = "/code/codeList";
+	var goUrlInst = "/code/codeGroupInst";
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
+	var goUrlUele = "/codeGroup/codeGroupUele";
+	var goUrlDele = "/codeGroup/codeGroupDele";
+	var goUrlForm = "/code/codeForm";
+	
+	// var seq = $("input:text[name=cgSeq]");				/* #-> */
+	var seq = $("input:hidden[name=cSeq]");
+	
+	
+	var form = $("form[name=form]");
+	var formVo = $("form[name=formVo]");
+	var formList = $("form[name=formList]");
+ 	
+ 	
+	goFormk = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+    	form.attr("action", goUrlForm).submit();
+	}
+
+ </script>
 </body>
 </html>

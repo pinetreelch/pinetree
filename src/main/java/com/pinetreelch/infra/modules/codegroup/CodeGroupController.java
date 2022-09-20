@@ -55,7 +55,6 @@ public class CodeGroupController {
 	public String codeGroupForm( @ModelAttribute("vo") CodeGroupVo vo, Model model)  throws Exception {			//불러올 데이터가 없기에 비어있음 return받는 부분이 //업데이트는 utdt, insert는 inst. 
 																												//@ModelAttribute("vo")는 지금 vo에 있는것을 모델에 담아버리겠다고 선언한것. -> *다시 한번 검토해야함
 		
-	
 		
 		System.out.println("!!!!!!!!!!!!=  " + vo.getCgSeq());
 		CodeGroup result = service.selectOne(vo);
