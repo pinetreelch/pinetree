@@ -311,7 +311,7 @@
 						</div>
 						
 						<div class="row" style="padding-top: 10px;" >
-							<span id="guide" style="color:#999;display:none">d</span>
+							<span id="guide" style="color:#999;display:none"></span>
 						</div>
 						
 						
