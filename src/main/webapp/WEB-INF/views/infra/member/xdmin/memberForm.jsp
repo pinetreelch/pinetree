@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.pinetreelch.infra.modules.code.CodeServiceImpl"/>
 
 <html>
 <head>
@@ -154,6 +155,121 @@
 						
 						<div class="row" style="padding-top: 30px;" >
 						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label">회원 이름 </label>
+							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmName }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   <label for="2" class="form-label">성별 </label>
+							 	  <%--  <input name = "ifmmSeq" type="text" class="form-control" value = "${list.gender }"> --%>
+							 	  <div>
+							 	  
+									<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+									
+										<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+											
+											<c:choose>
+												<c:when test="${list.gender eq listGender.cSeq}">
+													<input name = "ifmmSeq" type="text" class="form-control" value = "${listGender.cdName }"> 
+												</c:when>
+												
+												<c:otherwise>
+													<input name = "ifmmSeq" type="text" class="form-control" value = "여자 "> 
+												</c:otherwise>
+											</c:choose>
+											
+											<%-- <c:if test="${list.gender eq listGender.cSeq}">  
+												<input name = "ifmmSeq" type="text" class="form-control" value = "${listGender.cdName }"> 
+												
+											</c:if> --%>
+											 
+											
+										</c:forEach>
+								</div>
+		 	  
+							  </div>
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label"> 아이디</label>
+							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmId }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								  
+							  </div>
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label">이메일 </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmail }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   <label for="2" class="form-label"> 도메인 </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmaildom }">
+							  </div>
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label">비밀번호 </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmPwd }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   
+							  </div>
+							  
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    <label for="2" class="form-label">핸드폰  </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmTel  }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   <label for="2" class="form-label">통신사</label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmtelCo  }">
+							  </div>
+							  
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
+							<div class="col" style="display: inline-block;  width: 500px;">
+							    	<label for="2" class="form-label">마케팅 수신동의 </label>
+							 	   	<input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktemailNY  }">
+							  </div>
+							  
+							  
+							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   <label for="2" class="form-label">앱 알림 </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktappAlertNY  }">
+							  </div>
+							  
+							   <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   <label for="2" class="form-label">야간 방해 금지 </label>
+							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktapppushnight  }">
+							  </div>
+							  
+						</div>
+						
+						<div class="row" style="padding-top: 30px;" >
+						
 							<div class="col" style="display: inline-block; width: 500px;">
 								
 								<label for="2" class="form-label">주소</label>
@@ -164,6 +280,10 @@
 							<div class="col" style="display: inline-block;  width: 500px;">
 								<label for="2" class="form-label">&nbsp; </label>  <br />
 								<input  type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn  btn-secondary" >
+								<input type = "button" name= "addrClear" id = "addrClear" class="btn btn-secondary" value = "삭제 ">
+								<input type = "button" name= "searchBtn" id = "searchBtn" class="btn btn-secondary" value = "좌표받기  ">
+								
+								
 							</div>
 
 						</div> 	
@@ -180,7 +300,7 @@
 						
 						<div class="row" style="padding-top: 10px;" >
 							<div class="col" style="display: inline-block; width: 500px;">
-								<span id="guide" style="color:#999;display:none"></span>
+								
 								<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="form-control">
 							</div>
 						
@@ -189,8 +309,28 @@
 							</div>
 						
 						</div>
+						
+						<div class="row" style="padding-top: 10px;" >
+							<span id="guide" style="color:#999;display:none"></span>
+						</div>
+						
+						
+						
+						<div class="row" style="padding-top: 10px;" >
+							<div class="col" style="display: inline-block; width: 500px;">
+								
+								<input type="text" id="xcoord" placeholder="X 좌표 " class="form-control">
+							</div>
+						
+							<div class="col" style="display: inline-block; width: 500px;">
+								<input type="text" id="ycoord" placeholder=" Y 좌표 " class="form-control">
+							</div>
+						
+						</div>
+						
+						<br>
 							
-							
+						<div id="map" style="width:500px;height:400px;"></div>	
 							
 							
 							
@@ -233,69 +373,147 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2"></script>
+ <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
+ 
 <script>
-function sample4_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+var options = { //지도를 생성할 때 필요한 기본 옵션
+	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+	level: 3 //지도의 레벨(확대, 축소 정도)
+};
 
-            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var roadAddr = data.roadAddress; // 도로명 주소 변수
-            var extraRoadAddr = ''; // 참고 항목 변수
-            
-            //---------------------------------------------------------
-            
-			
+var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
-			//-----------------------------------------------------------------
-			
-            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                extraRoadAddr += data.bname;
-            }
-            // 건물명이 있고, 공동주택일 경우 추가한다.
-            if(data.buildingName !== '' && data.apartment === 'Y'){
-               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            }
-            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-            if(extraRoadAddr !== ''){
-                extraRoadAddr = ' (' + extraRoadAddr + ')';
-            }
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample4_postcode').value = data.zonecode;
-            document.getElementById("sample4_roadAddress").value = roadAddr;
-            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-            
-            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-            if(roadAddr !== ''){
-                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-            } else {
-                document.getElementById("sample4_extraAddress").value = '';
-            }
+//------------------------------------------------
 
-            var guideTextBox = document.getElementById("guide");
-            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-            if(data.autoRoadAddress) {
-                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                guideTextBox.style.display = 'block';
 
-            } else if(data.autoJibunAddress) {
-                var expJibunAddr = data.autoJibunAddress;
-                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                guideTextBox.style.display = 'block';
-            } else {
-                guideTextBox.innerHTML = '';
-                guideTextBox.style.display = 'none';
-            }
-        }
-    }).open();
-}
 </script>
+
+<script>
+
+	function sample4_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            
+	            var roadAddr = data.roadAddress; // 도로명 주소 변수
+	            var extraRoadAddr = ''; // 참고 항목 변수
+	            
+	            //---------------------------------------------------------
+	            
+				
+	
+				//-----------------------------------------------------------------
+				
+	            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                extraRoadAddr += data.bname;
+	            }
+	            // 건물명이 있고, 공동주택일 경우 추가한다.
+	            if(data.buildingName !== '' && data.apartment === 'Y'){
+	               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	            }
+	            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	            if(extraRoadAddr !== ''){
+	                extraRoadAddr = ' (' + extraRoadAddr + ')';
+	            }
+	
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('sample4_postcode').value = data.zonecode;
+	            document.getElementById("sample4_roadAddress").value = roadAddr;
+	            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+	            
+	            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+	            if(roadAddr !== ''){
+	                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+	            } else {
+	                document.getElementById("sample4_extraAddress").value = '';
+	            }
+	
+	            var guideTextBox = document.getElementById("guide");
+	            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+	            if(data.autoRoadAddress) {
+	                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+	                guideTextBox.style.display = 'block';
+	
+	            } else if(data.autoJibunAddress) {
+	                var expJibunAddr = data.autoJibunAddress;
+	                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+	                guideTextBox.style.display = 'block';
+	            } else {
+	                guideTextBox.innerHTML = '';
+	                guideTextBox.style.display = 'none';
+	            }
+	        }
+	    }).open();
+	}
+	
+</script>
+
+
+<script >
+$("#addrClear").on("click", function(){
+	
+	document.getElementById('sample4_postcode').value = null;
+	document.getElementById('sample4_roadAddress').value = null;
+	document.getElementById('sample4_jibunAddress').value = null;
+	document.getElementById('sample4_detailAddress').value = null;
+	document.getElementById('sample4_extraAddress').value = null; 
+	document.getElementById('guide').value = null;
+});
+
+
+
+	
+	
+</script>
+
+<script >
+$("#searchBtn").on("click", function(){
+	alert('dd');
+	
+	var address = $("#sample4_roadAddress").val();
+	
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var callback = function(result, status) {
+		
+	    if (status === kakao.maps.services.Status.OK) {
+	    	
+	    	alert(JSON.stringify(result[0]));
+
+	    	
+	        console.log(result);
+	    }
+	    alert('xx');
+	    
+	    $("xcoord").val(result.address.x);  
+	    
+	    alert('aa');
+	};
+	
+	geocoder.addressSearch(address, callback);
+	
+	
+/* 	 geocoder.addressSearch(address, function (result, status){
+		if (status === kakao.maps.services.Status.OK) {
+	   
+	        $("xcoord").val(result[0].x);
+	    }
+	});  */
+
+	
+});
+</script>
+
+
 </body>
 </html>
