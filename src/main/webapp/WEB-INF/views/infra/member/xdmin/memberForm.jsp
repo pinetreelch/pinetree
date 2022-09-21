@@ -147,7 +147,6 @@
 							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmSeq }">
 							  </div>
 							  
-							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 							   
 							  </div>
@@ -277,7 +276,7 @@
 								<label for="2" class="form-label">&nbsp; </label>  <br />
 								<input  type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn  btn-secondary" >
 								<input type = "button" name= "addrClear" id = "addrClear" class="btn btn-secondary" value = "삭제 ">
-								<input type = "button" name= "searchBtn" id = "searchBtn" class="btn btn-secondary" value = "좌표받기  ">
+								
 		
 							</div>
 
@@ -313,18 +312,18 @@
 						<div class="row" style="padding-top: 10px;" >
 							<div class="col" style="display: inline-block; width: 500px;">
 								
-								<input type="text" id="xcoord" placeholder="X 좌표 " class="form-control">
+								<input type="text" id="xcoord" placeholder="X 좌표 " class="form-control" readonly>
 							</div>
 						
 							<div class="col" style="display: inline-block; width: 500px;">
-								<input type="text" id="ycoord" placeholder=" Y 좌표 " class="form-control">
+								<input type="text" id="ycoord" placeholder=" Y 좌표 " class="form-control" readonly>
 							</div>
 						
 						</div>
 						
 						<br>
 							
-						<div id="map" style="width:500px;height:400px;"></div>	
+						<div id="map" style="width:1300px;height:400px;"></div>	
 							
 							
 							
@@ -375,7 +374,7 @@
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
 	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-	level: 3 //지도의 레벨(확대, 축소 정도)
+	level: 1 //지도의 레벨(확대, 축소 정도)
 };
 
 var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
@@ -384,9 +383,7 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 //------------------------------------------------
 
 
-</script>
 
-<script>
 
 	function sample4_execDaumPostcode() {
 	    new daum.Postcode({
@@ -398,13 +395,55 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 	            
 	            var roadAddr = data.roadAddress; // 도로명 주소 변수
 	            var extraRoadAddr = ''; // 참고 항목 변수
+	            var xcord='';
+	            var ycord='';
+	            var xcordInt = 0;
+	            var ycordInt = 0;
+	            var geocoder = new kakao.maps.services.Geocoder();
+	            var callback = function(result, status) {
+	        		
+	        	    if (status === kakao.maps.services.Status.OK) {
+	        	    	
+	        	    
+	        	    	
+	        	    	var xcord = JSON.stringify(result[0].x);
+	        	    	var ycord = JSON.stringify(result[0].y);
+	        	    	
+	        	    	
+	        	    	
+	        	    	var xcordInt = parseFloat(result[0].x);
+	        	    	var ycordInt = parseFloat(result[0].y);
+	        	    	
+	        	    	
+	        	    	
+	        	    	document.getElementById('xcoord').value = xcordInt; 
+	        	    	document.getElementById('ycoord').value = ycordInt; 
+	        	    	
+	        	    	
+	        	            
+	 	                // 이동할 위도 경도 위치를 생성합니다 
+	 	                var moveLatLon = new kakao.maps.LatLng(ycordInt, xcordInt);
+	 	                
+	 	                // 지도 중심을 이동 시킵니다
+	 	                map.setCenter(moveLatLon);
+	 	                
+	 	           		// 마커가 표시될 위치입니다 
+	 	               var markerPosition  = new kakao.maps.LatLng(ycordInt, xcordInt); 
+	 	                
+	 	           		
+	 	           		// 마커를 생성합니다
+	 	             	 var marker = new kakao.maps.Marker({
+	 	                  position: markerPosition
+	 	             	 });
+	 	           		
+	 	             // 마커가 지도 위에 표시되도록 설정합니다
+	 	             	marker.setMap(map);
+	 	             
+	 	             
+	        	        console.log(result);
+	        	    }
+	        	};
 	            
-	            //---------------------------------------------------------
-	            
-				
-	
-				//-----------------------------------------------------------------
-				
 	            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
 	            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 	            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -418,11 +457,17 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 	            if(extraRoadAddr !== ''){
 	                extraRoadAddr = ' (' + extraRoadAddr + ')';
 	            }
-	
+				
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample4_postcode').value = data.zonecode;
 	            document.getElementById("sample4_roadAddress").value = roadAddr;
 	            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+	            
+	            //---------------------------------------------------------
+	            
+	           
+	            
+				//-----------------------------------------------------------------
 	            
 	            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 	            if(roadAddr !== ''){
@@ -446,8 +491,14 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 	                guideTextBox.innerHTML = '';
 	                guideTextBox.style.display = 'none';
 	            }
+	            
+ 				//---------------------------------------------------------
+	            geocoder.addressSearch(roadAddr, callback);
+				//----------------------------------------------------------------- 
 	        }
+	    
 	    }).open();
+	  
 	}
 	
 </script>
@@ -462,6 +513,8 @@ $("#addrClear").on("click", function(){
 	document.getElementById('sample4_detailAddress').value = null;
 	document.getElementById('sample4_extraAddress').value = null; 
 	document.getElementById('guide').value = null;
+	document.getElementById('xcoord').value = null;
+	document.getElementById('ycoord').value = null;
 });
 
 
@@ -470,8 +523,12 @@ $("#addrClear").on("click", function(){
 	
 </script>
 
+
 <script >
+
+/*
 $("#searchBtn").on("click", function(){
+	
 	alert('dd');
 	
 	var address = $("#sample4_roadAddress").val();
@@ -482,30 +539,40 @@ $("#searchBtn").on("click", function(){
 		
 	    if (status === kakao.maps.services.Status.OK) {
 	    	
-	    	alert(JSON.stringify(result[0]));
-
+	    	 alert(JSON.stringify(result[0].x));  
 	    	
+	    	var xcord = JSON.stringify(result[0].x);
+	    	var ycord = JSON.stringify(result[0].y);
+	    	
+	    	
+	    	
+	    	document.getElementById('xcoord').value = xcord; 
+	    	document.getElementById('ycoord').value = ycord; 
+	    	
+	    	
+	    	 /* $("xcoord").val('xcord'); 			->> 이거 왜 작동 안하지?????/  
 	        console.log(result);
 	    }
-	    alert('xx');
 	    
-	    $("xcoord").val(result.address.x);  
-	    
-	    alert('aa');
+	   
+	
 	};
 	
 	geocoder.addressSearch(address, callback);
 	
 	
-/* 	 geocoder.addressSearch(address, function (result, status){
+ 	 geocoder.addressSearch(address, function (result, status){
 		if (status === kakao.maps.services.Status.OK) {
 	   
 	        $("xcoord").val(result[0].x);
 	    }
-	});  */
+	});  
 
 	
 });
+
+ */
+
 </script>
 
 
