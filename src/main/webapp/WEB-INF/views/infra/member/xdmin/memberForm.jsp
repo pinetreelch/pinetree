@@ -132,7 +132,7 @@
 
 <form method ="post" action = "/codeGroup/codeGroupInst">
 
- 	<div class="container-fluid bodyd3" style="padding-top: 50px;">																														<!-- 본문내용 시작-->
+<div class="container-fluid bodyd3" style="padding-top: 50px;">																															<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
  			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">회원 추가</span></i>
  		</div>
@@ -199,7 +199,6 @@
 							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmId }">
 							  </div>
 							  
-							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								  
 							  </div>
@@ -211,7 +210,6 @@
 							    <label for="2" class="form-label">이메일 </label>
 							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmail }">
 							  </div>
-							  
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label"> 도메인 </label>
@@ -239,7 +237,6 @@
 							    <label for="2" class="form-label">핸드폰  </label>
 							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmTel  }">
 							  </div>
-							  
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label">통신사</label>
@@ -271,7 +268,6 @@
 						<div class="row" style="padding-top: 30px;" >
 						
 							<div class="col" style="display: inline-block; width: 500px;">
-								
 								<label for="2" class="form-label">주소</label>
 								<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control" readonly>
 							  
@@ -282,8 +278,7 @@
 								<input  type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn  btn-secondary" >
 								<input type = "button" name= "addrClear" id = "addrClear" class="btn btn-secondary" value = "삭제 ">
 								<input type = "button" name= "searchBtn" id = "searchBtn" class="btn btn-secondary" value = "좌표받기  ">
-								
-								
+		
 							</div>
 
 						</div> 	
@@ -300,7 +295,6 @@
 						
 						<div class="row" style="padding-top: 10px;" >
 							<div class="col" style="display: inline-block; width: 500px;">
-								
 								<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="form-control">
 							</div>
 						
