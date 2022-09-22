@@ -16,6 +16,7 @@ public class Member {
 	private Integer ifmmMktemailNY;
 	private Integer ifmmMktappAlertNY;
 	private Integer ifmmMktapppushnight;
+	
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}

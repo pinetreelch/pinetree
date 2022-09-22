@@ -195,7 +195,10 @@
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label"> 아이디</label>
-							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmId }">
+							    <input name = "idinput"id="idinput" type="text" class="form-control" value = "${list.ifmmId }">
+							    <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
+							    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
+							    </c:if>
 							  </div>
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
@@ -213,6 +216,9 @@
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label"> 도메인 </label>
 							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmaildom }">
+							 	   
+							 	   
+							 	   
 							  </div>
 						</div>
 						
@@ -371,6 +377,7 @@
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
  
 <script>
+
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
 	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
@@ -382,10 +389,8 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 
 //------------------------------------------------
 
-
-
-
 	function sample4_execDaumPostcode() {
+	
 	    new daum.Postcode({
 	        oncomplete: function(data) {
 	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -503,7 +508,6 @@ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리
 	
 </script>
 
-
 <script >
 $("#addrClear").on("click", function(){
 	
@@ -519,7 +523,51 @@ $("#addrClear").on("click", function(){
 	/* marker.setMap(null); */ 
 });
 
-
+/* 아이디 중복확인 --------------------------------------------------------- */
+$("#idcheck").on("click", function(){
+	
+	var idcheck = document.getElementById('idinput').value;
+	alert('아이디중복확인!!!!');
+	alert(idcheck);
+	
+	/* ajax */
+	
+	$.ajax({
+		url : "/member/testaction",
+		
+		type : 'post',
+		
+		data : {
+			name1 : idcheck,
+			age1 : "20",
+			gender1 : "man"
+		},
+		
+		success : function(data) {
+			alert('success');
+			alert(data);
+			
+			if(data == '1'){
+				alert('사용가');
+				document.getElementById('idinput').value = "사용가";
+			} else { 
+				alert('사용불가');
+				document.getElementById('idinput').value = "사용불가능";
+			}
+		 
+	     },
+		error : function(request,status,error){ 
+						
+			  	console.log("code: " + request.status)	
+		        console.log("message: " + request.responseText)
+		        console.log("error: " + error);
+			
+			      }
+	     
+	});
+	
+	
+});
 
 	
 	

@@ -39,15 +39,16 @@ public class CodeServiceImpl implements CodeService {
 	
 	@PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
-		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-		Code.cachedCodeArrayList.clear(); 
-		Code.cachedCodeArrayList.addAll(codeListFromDb);
+		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();						//codeListFromDb에 담아라;
+//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();			
+		Code.cachedCodeArrayList.clear(); 																		// Code파일에 있는 cachedCodArrayList를 데이터 담기전에 치워라
+		Code.cachedCodeArrayList.addAll(codeListFromDb);														// 
 		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
 	}
 	
 	public static List<Code> selectListCachedCode(String cSeq) throws Exception {
-		List<Code> rt = new ArrayList<Code>();
+		List<Code> rt = new ArrayList<Code>();																	// rt 라는 리스트생성;
+		
 		for(Code codeRow : Code.cachedCodeArrayList) {
 			if (codeRow.getcSeq().equals(cSeq)) {
 				rt.add(codeRow);
@@ -57,6 +58,15 @@ public class CodeServiceImpl implements CodeService {
 		}
 		return rt;
 	}
+	
+	// 여기부터
+	public static List<Code> selectListCachedCode() throws Exception {
+		List<Code> rt = Code.cachedCodeArrayList;
+	
+		return rt;
+	}
+	//여기까지 테스트 
+	
 	
 	public static String selectOneCachedCode(int code) throws Exception {
 		

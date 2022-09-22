@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(value = "/main/")
+@RequestMapping(value = "/main")
 public class MainController {
 
 	
@@ -15,4 +15,7 @@ public class MainController {
 		
 		return "main/book/bookList";
 	}
+	
+	
+	
 }

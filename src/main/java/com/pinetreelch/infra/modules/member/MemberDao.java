@@ -28,4 +28,10 @@ public class MemberDao {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 
 	}
+	
+	public Member selectOne1(MemberVo vo) {
+		
+		System.out.println("one1");
+		return sqlSession.selectOne(namespace + ".selectOne1", vo); 
+	}
 }

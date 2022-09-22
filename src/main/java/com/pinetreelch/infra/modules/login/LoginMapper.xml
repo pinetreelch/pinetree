@@ -4,9 +4,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.pinetreelch.infra.modules.member.MemberMapper">
+<mapper namespace="com.pinetreelch.infra.modules.login.LoginMapper">
 
-    <resultMap id="resultMapObj" type="com.pinetreelch.infra.modules.member.Member"></resultMap>
+    <resultMap id="resultMapObj" type="com.pinetreelch.infra.modules.login.Login"></resultMap>
 	
 	<sql id ="selectCommon">
 		FROM
@@ -35,15 +35,6 @@
 		FROM infraMember a
 		WHERE 1 =1 
 			AND ifmmSeq = #{ifmmSeq}
-	</select>
-	
-	
-	<select id = "selectOne1" resultMap = "resultMapObj">
-		SELECT
-			a.*
-		FROM infraMember a
-		WHERE 1 =1 
-			AND ifmmId = #{idcheck}
 	</select>
 	
 	
