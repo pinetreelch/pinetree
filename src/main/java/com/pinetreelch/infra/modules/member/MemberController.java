@@ -59,9 +59,6 @@ public class MemberController {
 				System.out.println("null 아니");
 				return "2";
 			}
-		
-
-	       
 	}
 	
 }

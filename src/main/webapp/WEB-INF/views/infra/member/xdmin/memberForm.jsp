@@ -196,6 +196,7 @@
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label"> 아이디</label>
 							    <input name = "idinput"id="idinput" type="text" class="form-control" value = "${list.ifmmId }">
+							    <input name = "idmessage"id="idmessage" type="text" class="form-control" value = "" readonly>
 							    <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
 							    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
 							    </c:if>
@@ -527,8 +528,7 @@ $("#addrClear").on("click", function(){
 $("#idcheck").on("click", function(){
 	
 	var idcheck = document.getElementById('idinput').value;
-	alert('아이디중복확인!!!!');
-	alert(idcheck);
+
 	
 	/* ajax */
 	
@@ -544,18 +544,15 @@ $("#idcheck").on("click", function(){
 		},
 		
 		success : function(data) {
-			alert('success');
-			alert(data);
-			
 			if(data == '1'){
-				alert('사용가');
-				document.getElementById('idinput').value = "사용가";
+			
+				document.getElementById('idmessage').value = "사용가능 ";
 			} else { 
-				alert('사용불가');
-				document.getElementById('idinput').value = "사용불가능";
+			
+				document.getElementById('idmessage').value = "사용불가능:이미 사용중인  아이디입니다.";
 			}
-		 
 	     },
+	     
 		error : function(request,status,error){ 
 						
 			  	console.log("code: " + request.status)	
