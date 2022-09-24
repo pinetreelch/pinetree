@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.pinetreelch.infra.modules.code.CodeServiceImpl"/>
 
 <html>
 <head>
@@ -266,6 +267,7 @@
 								</tr>
 								<!-- ${orderListLength - status.index  } ${vo.totalRows} -->
 								
+								<c:set var="cachedList" value="${CodeServiceImpl.selectListCachedCode()}"/>
 								<c:set var="orderListLength" value="${fn:length(list)}"/>
 								<c:choose>
 									<c:when test = "${fn:length(list) eq 0 }">
@@ -295,7 +297,12 @@
 												</td>
 												
 												<td>
-													<c:out value="${list.gender }"></c:out>
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.gender }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
+													
 												</td>
 												
 												<td>
@@ -307,7 +314,11 @@
 												</td>
 												
 												<td>
-													<c:out value="${list.ifmmEmaildom }"></c:out>
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.ifmmEmaildom }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
 												</td>
 												
 												<td>
@@ -319,18 +330,34 @@
 												</td>
 												
 												<td>
-													<c:out value="${list.ifmmtelCo }"></c:out>
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.ifmmtelCo }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
 												</td>
 												
 												<td>
-													<c:out value="${list.ifmmMktemailNY }"></c:out>
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.ifmmMktemailNY }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
 												</td>
 												<td>
-													<c:out value="${list.ifmmMktappAlertNY }"></c:out>
+													 <c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.ifmmMktappAlertNY }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
 												</td>
 												
 												<td>
-													<c:out value="${list.ifmmMktapppushnight }"></c:out>
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.ifmmMktapppushnight }">
+															<c:out value="${clist.cdName }"></c:out>
+														</c:if>
+													</c:forEach>
 												</td>
 												
 

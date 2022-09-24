@@ -164,28 +164,38 @@
 								   <label for="2" class="form-label">성별 </label>
 							 	  <%--  <input name = "ifmmSeq" type="text" class="form-control" value = "${list.gender }"> --%>
 							 	  <div>
-							 	  
-									<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+										<c:set var="cachedList" value="${CodeServiceImpl.selectListCachedCode()}"/>
+										
 									
-										<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
 											
-											<c:choose>
-												<c:when test="${list.gender eq listGender.cSeq}">
-													<input name = "ifmmSeq" type="text" class="form-control" value = "${listGender.cdName }"> 
+												<select class="form-select" name="gender" >
+													<option value="" >-----선택-----</option>
+													<option value="1"  <c:if test="${list.gender eq 1 }"> selected </c:if>> 
+														남자 
+													</option>	
+																							
+													<option value="2"  <c:if test="${list.gender eq 2 }"> selected </c:if>>
+														 여자 
+													</option>															
+												</select>
+												
+											
+											
+											<%-- <c:choose>
+												<c:when test="${list.ifmmSeq > 0 }">
+													<c:forEach items="${cachedList}" var="clist" varStatus="status">
+														<c:if test="${clist.cSeq eq list.gender }">
+															<input  id = "gender" name = "gender" type="text" class="form-control" value = "${clist.cdName }">
+														</c:if>
+													</c:forEach>
 												</c:when>
 												
 												<c:otherwise>
-													<input name = "ifmmSeq" type="text" class="form-control" value = "여자 "> 
+														<input  id = "gender" name = "gender" type="text" class="form-control" value = "">
 												</c:otherwise>
-											</c:choose>
-											
-											<%-- <c:if test="${list.gender eq listGender.cSeq}">  
-												<input name = "ifmmSeq" type="text" class="form-control" value = "${listGender.cdName }"> 
 												
-											</c:if> --%>
-											 
-											
-										</c:forEach>
+											</c:choose> --%>
+
 								</div>
 		 	  
 							  </div>
@@ -197,6 +207,7 @@
 							    <label for="2" class="form-label"> 아이디</label>
 							    <input name = "idinput"id="idinput" type="text" class="form-control" value = "${list.ifmmId }">
 							    <input name = "idmessage"id="idmessage" type="text" class="form-control" value = "" readonly>
+							    
 							    <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
 							    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
 							    </c:if>
@@ -216,10 +227,42 @@
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label"> 도메인 </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmaildom }">
-							 	   
-							 	   
-							 	   
+								   
+								 	<select class="form-select" name="ifmmEmaildom" >
+								 		<option value="" >-----선택-----</option>
+								 		
+								 		<option value="6"  <c:if test="${list.ifmmEmaildom eq 6 }"> selected </c:if>> 
+												naver.com 
+										</option>	
+										
+										<option value="7"  <c:if test="${list.ifmmEmaildom eq 7}"> selected </c:if>> 
+												gmail.com 
+										</option>
+										
+										<option value="8"  <c:if test="${list.ifmmEmaildom eq 8}"> selected </c:if>> 
+												daum.net 
+										</option>
+										
+										<option value="9"  <c:if test="${list.ifmmEmaildom eq 9}"> selected </c:if>> 
+												yahoo.com
+										</option>	
+								 	</select>
+								   
+								   
+								   <%-- <c:choose>
+											<c:when test="${list.ifmmSeq > 0 }">
+										    	<c:forEach items="${cachedList}" var = "clist" varStatus="status">
+											    	<c:if test="${clist.cSeq eq list.ifmmEmaildom }">
+											    		 <input name = "ifmmEmaildom" type="text" class="form-control" value = "${clist.cdName }">
+											    	</c:if>
+											   </c:forEach>
+											</c:when>
+											
+											<c:otherwise>
+														<input name = "ifmmEmaildom" type="text" class="form-control" value = "${clist.cdName }">
+											</c:otherwise>
+									</c:choose> --%>
+								   
 							  </div>
 						</div>
 						
@@ -246,7 +289,38 @@
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label">통신사</label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmtelCo  }">
+								   	
+									<select class="form-select" name="ifmmtelCo" >
+										<option value="" >-----선택-----</option>
+										
+										<option value="3"  <c:if test="${list.ifmmtelCo eq 3 }"> selected </c:if>> 
+												KT
+										</option>	
+										
+										<option value="4"  <c:if test="${list.ifmmtelCo eq 4}"> selected </c:if>> 
+												SKT
+										</option>
+										
+										<option value="5"  <c:if test="${list.ifmmtelCo eq 5}"> selected </c:if>> 
+												LGU+ 
+										</option>
+									</select>								   	
+								   <%-- 	<c:choose>
+											<c:when test="${list.ifmmSeq > 0 }">
+										    	<c:forEach items="${cachedList}" var = "clist" varStatus="status">
+											    	<c:if test="${clist.cSeq eq list.ifmmtelCo }">
+											    		 <input name = "ifmmtelCo" id = "ifmmtelCo" type="text" class="form-control" value = "${clist.cdName }">
+											    	</c:if>
+											   </c:forEach>
+											</c:when>
+											
+											<c:otherwise>
+														 <input name = "ifmmtelCo" id = "ifmmtelCo" type="text" class="form-control" value = "">
+											</c:otherwise>
+									</c:choose> --%>
+								   
+								   
+							 	  
 							  </div>
 							  
 						</div>
@@ -255,18 +329,103 @@
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    	<label for="2" class="form-label">마케팅 수신동의 </label>
-							 	   	<input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktemailNY  }">
+							    	
+							    	<select class="form-select" name="ifmmMktemailNY" >
+							    		<option value="" >-----선택-----</option>
+							    		
+						    			<option value="14"  <c:if test="${list.ifmmMktemailNY eq 14 }"> selected </c:if>> 
+												Yes
+										</option>	
+										
+										<option value="15"  <c:if test="${list.ifmmMktemailNY eq 15 }"> selected </c:if>> 
+												No
+										</option>	
+							    	</select>
+							    	
+							    	<%-- <c:choose>
+												<c:when test="${list.ifmmSeq > 0 }">
+											    	<c:forEach items="${cachedList }" var = "clist" varStatus = "vatstatus">
+											    		<c:if test="${clist.cSeq eq list.ifmmMktemailNY }">
+											    			<input name = "ifmmMktemailNY" type="text" class="form-control" value = "${clist.cdName  }">
+											    		</c:if>
+											    	</c:forEach>
+												</c:when>
+												
+												<c:otherwise>
+															<input name = "ifmmMktemailNY" type="text" class="form-control" value = "${clist.cdName  }">
+												</c:otherwise>
+												
+									</c:choose> --%>
+	 	   
 							  </div>
 							  
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label">앱 알림 </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktappAlertNY  }">
+								   
+								   <select class="form-select" name="ifmmMktappAlertNY" >
+								   	
+								   	<option value="" >-----선택-----</option>
+								   	
+								   	<option value="16"  <c:if test="${list.ifmmMktappAlertNY eq 16 }"> selected </c:if>> 
+												Yes
+									</option>
+								   
+								   <option value="17"  <c:if test="${list.ifmmMktappAlertNY eq 17 }"> selected </c:if>> 
+												No
+									</option>
+									
+								   </select>
+								   
+								   	<%-- <c:choose>
+											<c:when test="${list.ifmmSeq > 0 }">
+										    	<c:forEach items="${cachedList}" var = "clist" varStatus="status">
+											    	<c:if test="${clist.cSeq eq list.ifmmMktappAlertNY }">
+											    		 <input name = "ifmmMktappAlertNY" id = "ifmmMktappAlertNY" type="text" class="form-control" value = "${clist.cdName }">
+											    	</c:if>
+											   </c:forEach>
+											</c:when>
+											
+											<c:otherwise>
+														 <input name = "ifmmMktappAlertNY" id = "ifmmMktappAlertNY" type="text" class="form-control" value = "">
+											</c:otherwise>
+									</c:choose> --%>
 							  </div>
 							  
 							   <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
 								   <label for="2" class="form-label">야간 방해 금지 </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmMktapppushnight  }">
+								   
+								   
+								   <select class="form-select" name="ifmmMktapppushnight" >
+								   	
+								   	<option value="" >-----선택-----</option>
+								   	
+								   	<option value="18"  <c:if test="${list.ifmmMktapppushnight eq 18 }"> selected </c:if>> 
+												Yes
+									</option>
+								   
+								   <option value="19"  <c:if test="${list.ifmmMktapppushnight eq 19 }"> selected </c:if>> 
+												No
+									</option>
+									
+								   </select>
+								   
+								   
+								   <%-- <c:choose>
+											<c:when test="${list.ifmmSeq > 0 }">
+										    	<c:forEach items="${cachedList}" var = "clist" varStatus="status">
+											    	<c:if test="${clist.cSeq eq list.ifmmMktappAlertNY }">
+											    		 <input name = "ifmmMktapppushnight" id = "ifmmMktapppushnight" type="text" class="form-control" value = "${clist.cdName }">
+											    	</c:if>
+											   </c:forEach>
+											</c:when>
+											
+											<c:otherwise>
+														 <input name = "ifmmMktapppushnight" id = "ifmmMktapppushnight" type="text" class="form-control" value = "">
+											</c:otherwise>
+									</c:choose> --%>
+								   
+							 	  
 							  </div>
 							  
 						</div>
@@ -340,7 +499,7 @@
 						<div style="padding-top: 30px;">
 							<div style="display:table; width: 100%; padding-bottom:150px;">
 								<div style="display:table-cell;">
-									<button type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
+									<button type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" >
 										<i class="fa-solid fa-list"></i>
 									</button>
 									

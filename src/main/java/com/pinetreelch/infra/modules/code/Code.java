@@ -14,6 +14,8 @@ public class Code {
 	private String useNY;
 	private String delNY;
 	private String codeGroup_cgSeq;
+
+	
 	
 	//코드그룹 테이블 변수
 	private String cgName;

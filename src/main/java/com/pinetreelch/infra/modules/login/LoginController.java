@@ -11,11 +11,9 @@ public class LoginController {
 
 	
 	@RequestMapping(value = "")
-	public String lgoin() {
+	public String login() {
 		
 		return "member/login";
 	}
-	
-	
-	
+
 }
