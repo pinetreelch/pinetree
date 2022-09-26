@@ -84,6 +84,11 @@
 	letter-spacing: 0.1em;
 	color: #40474D;
 }
+
+.idckmessage{
+	font-size: 13px;
+	
+}
 #accorditem{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-style: normal;

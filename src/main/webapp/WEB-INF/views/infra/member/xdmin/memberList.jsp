@@ -344,6 +344,7 @@
 														</c:if>
 													</c:forEach>
 												</td>
+												
 												<td>
 													 <c:forEach items="${cachedList}" var="clist" varStatus="status">
 														<c:if test="${clist.cSeq eq list.ifmmMktappAlertNY }">
@@ -360,7 +361,6 @@
 													</c:forEach>
 												</td>
 												
-
 											</tr>
 										</c:forEach>
 									</c:otherwise>

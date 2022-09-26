@@ -285,7 +285,7 @@
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'" >
 														<c:out value="${list.cgSeq }"/>
 												</td>
-												
+												 
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
 														<c:out value="${list.cgName }"/>
 												</td>

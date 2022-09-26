@@ -204,13 +204,11 @@
 						<div class="row" style="padding-top: 30px;" >
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
-							    <label for="2" class="form-label"> 아이디</label>
+							    <label for="2" class="form-label"> 아이디 </label>
+							    <div name="spanmessage" id="spanmessage" class="idckmessage"></div>
 							    <input name = "idinput"id="idinput" type="text" class="form-control" value = "${list.ifmmId }">
-							    <input name = "idmessage"id="idmessage" type="text" class="form-control" value = "" readonly>
 							    
-							    <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
-							    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
-							    </c:if>
+							    
 							  </div>
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
@@ -526,7 +524,7 @@
  		</div>
 	</form>
 		<div style="visibility: hidden; height: 100px;"> 
-				d
+				
 		</div>	
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -536,7 +534,7 @@
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
  
-<script>
+<script> 
 
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -684,43 +682,60 @@ $("#addrClear").on("click", function(){
 });
 
 /* 아이디 중복확인 --------------------------------------------------------- */
-$("#idcheck").on("click", function(){
+$("#idinput").on("focusout", function(){
 	
 	var idcheck = document.getElementById('idinput').value;
-
 	
+
+	/* var contentx = ' <i class="fa-solid fa-circle-exclamation"></i> 이미 사용중인 아이디입니다  ';
+	var contextnot = '<i class="fa-solid fa-circle-exclamation">' + '</i>' + '이미 사용중인 아이디입니다 '; */
 	/* ajax */
 	
-	$.ajax({
-		url : "/member/testaction",
-		
-		type : 'post',
-		
-		data : {
-			name1 : idcheck,
-			age1 : "20",
-			gender1 : "man"
-		},
-		
-		success : function(data) {
-			if(data == '1'){
+	
+	
+	if( (idcheck.length > 5 && idcheck.length < 20) && (typeof idcheck == 'string')){
+		$.ajax({
+			url : "/member/testaction",
 			
-				document.getElementById('idmessage').value = "사용가능 ";
-			} else { 
+			type : 'post',
 			
-				document.getElementById('idmessage').value = "사용불가능:이미 사용중인  아이디입니다.";
-			}
-	     },
-	     
-		error : function(request,status,error){ 
-						
-			  	console.log("code: " + request.status)	
-		        console.log("message: " + request.responseText)
-		        console.log("error: " + error);
+			data : {
+				name1 : idcheck,
+				age1 : "20",
+				gender1 : "man"
+			},
 			
-			      }
-	     
-	});
+			success : function(data) {
+				if(data == '1'){
+					/* document.getElementById('spanmessage').textContent = "사용가능한 아이디입니다.  "; */
+					
+					document.querySelector('#spanmessage').innerHTML='<span style = "color: green; letter-spacing: 0.1px;"> ※ 사용가능한 &nbsp; 아이디입니다. </span>';
+				} else { 
+					
+					
+					document.querySelector('#spanmessage').innerHTML='<span style = "color: red; letter-spacing: 0.1px;"><i class="fa-solid fa-circle-exclamation"></i> 이미 존재하는 아이디 입니다.</span>';
+					/* document.querySelector('#spanmessage').insertAdjacentHTML('beforeend', contentx); */
+					
+					/* document.getElementById('spanmessage').textContent = "이미 사용중인  아이디입니다."; */
+				}
+		     },     
+			error : function(request,status,error){ 
+							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				
+				      }	     
+		});
+		
+	}
+	else{
+		alert('no!!');
+	}
+	
+	
+	
+	
 	
 	
 });

@@ -13,7 +13,19 @@ public class LoginController {
 	@RequestMapping(value = "")
 	public String login() {
 		
-		return "member/login";
+		return "main/login/login";
+	}
+	
+	@RequestMapping(value = "/signup1")
+	public String signup1() {
+		
+		return "main/login/signuppageone";
+	}
+	
+	@RequestMapping(value = "/signup2")
+	public String signup2() {
+		
+		return "main/login/signuppagetwo";
 	}
 
 }
