@@ -33,17 +33,11 @@ var options = { //지도를 생성할 때 필요한 기본 옵션
 	        		
 	        	    if (status === kakao.maps.services.Status.OK) {
 	        	    	
-	        	    
-	        	    	
 	        	    	var xcord = JSON.stringify(result[0].x);
 	        	    	var ycord = JSON.stringify(result[0].y);
 	        	    	
-	        	    	
-	        	    	
 	        	    	var xcordInt = parseFloat(result[0].x);
 	        	    	var ycordInt = parseFloat(result[0].y);
-	        	    	
-	        	    	
 	        	    	
 	        	    	document.getElementById('xcoord').value = xcordInt; 
 	        	    	document.getElementById('ycoord').value = ycordInt; 
