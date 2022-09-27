@@ -724,7 +724,6 @@ $("#idinput").on("focusout", function(){
 				  	console.log("code: " + request.status)	
 			        console.log("message: " + request.responseText)
 			        console.log("error: " + error);
-				
 				      }	     
 		});
 		

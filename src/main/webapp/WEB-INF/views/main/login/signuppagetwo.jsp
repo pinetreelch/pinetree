@@ -27,16 +27,16 @@
  	<div class="container">
  		<div class="row bodylogin" style="margin-top: 60px; margin-bottom: 70px; text-align: center;" >
  			<div class="col-12">
-				<form>
+				<form name = "form">
 					<div>
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="ifmmId" placeholder= "아이디"  style="height: 48px;">
-								  <label for="floatingInput" id="ifmmId" class="signupform" > 아이디 </label>
+								  <input type="text" class="form-control" id="ifmmId" name = "ifmmId" placeholder= "아이디"  style="height: 48px;">
+								  <label for="floatingInput" id="idlabel" name= "" class="signupform" > 아이디 </label>
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="floatingInput1" placeholder="비밀번호"  style="height: 48px;">
-								  <label for="floatingInput1" id="labelpwd" class="signupform">비밀번호</label>
+								  <input type="text" class="form-control" id="ifmmPwd" name = "ifmmPwd"placeholder="비밀번호"  style="height: 48px;">
+								  <label for="floatingInput1"  class="signupform">비밀번호</label>
 							</div>
 							
 							<div class="form-floating">
@@ -63,10 +63,19 @@
 									<label for="floatingInput5" id="labeldob" class="signupform">출생년도</label>							
 								</div>
 								
-								<div class="col-6" style="vertical-align: center; margin-top: 10px; padding-left: 3px;">
+								<div class="col-6" style="display: table; vertical-align: middle; margin-top: 10px; padding-left: 3px;">
 									
-									<input type= "radio" name = "gender"  id="gender" class=" signupformgender" style=" margin-left: 11px; border: 1px solid rgb(199, 206, 212); background-color: white; border-radius:5px; width: 40%; height: 48px; color: rgb(137, 150, 176); ">남</input>
-									<input type = "radio" name = "gender" id="gender" class=" signupformgender" style=" margin-left:11px; border: 1px solid rgb(199, 206, 212);  background-color: white; border-radius:5px; width: 40%; height: 48px;">여</input>
+									<div style="display: table-cell; text-align: right;">	
+										<label class = "radiolabel">
+											<input type = "radio" name = "gender" id = "male" value = "1"/>
+											<span>남자 </span>
+										</label>
+										
+										<label class = "radiolabel">
+											<input type = "radio" name = "gender" id = "female" value = "2"/>
+											<span>여자 </span>
+										</label> 
+									</div>
 								</div>
 							</div>
 							
@@ -168,7 +177,7 @@
 							</div>
 							
 							<div class="col-12 d-grid" style="padding-top: 10px;">
-								  <button type="button" class="btn btn-primary signupcomplete" style="height: 48px; background-color:#1F8CE6" onclick="location.href='/login/signup3/'">회원 가입 완료</button>
+								  <button type="button" id = "btnSignin"class="btn btn-primary signupcomplete" style="height: 48px; background-color:#1F8CE6" >회원 가입 완료</button>
 							</div>
 					</div>	
 				</form>
@@ -179,9 +188,11 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>			
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
  <script src= "/resources/jscript/kakaomap.js"></script>
+ <script src= "/resources/jscript/clearaddress.js"></script>
+ <script src = "/resources/jscript/validiation.js"></script>
  <script>
  	// 체크박스 전체 선택하기, 해제하기
  	function selectAll(selectAll){
@@ -191,6 +202,15 @@
  			checkbox.checked = selectAll.checked
  		})
  	}
+ 	
+ 	// insert 하기 
+ 	var goUrlInst = "/member/memberInst";
+ 	var form = $("form[name=form]");
+ 	
+ 	$("#btnSignin").on("click", function(){
+		form.attr("action", goUrlInst).submit();
+	});
+ 	
  </script>
 </body>
 </html>

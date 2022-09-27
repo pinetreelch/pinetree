@@ -29,9 +29,22 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 
 	}
 	
-	public Member selectOne1(MemberVo vo) {
+	public int selectOne1(Member dto) {
 		
 		System.out.println("one1");
-		return sqlSession.selectOne(namespace + ".selectOne1", vo); 
+		return sqlSession.selectOne(namespace + ".selectOne1", dto); 
+	}
+	
+	
+	public Member selectOneForLogin(Member dto) {
+		
+		
+		return sqlSession.selectOne(namespace + ".selectOneForLogin", dto); 
+	}
+	
+	public  int insert(Member dto) {
+		
+		int result = sqlSession.insert(namespace + ".insert", dto); 
+		return result;
 	}
 }

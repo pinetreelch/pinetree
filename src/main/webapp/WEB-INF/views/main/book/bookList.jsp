@@ -158,7 +158,7 @@
 		<br />
 		<br />
 		
-		<section> 오늘 리디의 발견</section>
+		<section> 오늘 리디의 발견  sessId: <c:out value="${sessId }"/><br> sessSeq: <c:out value="${sessSeq }"/><br> sessName: <c:out value="${sessName }"/><br></section>
 			<div class="row">
 				<div class="col-4" style="padding-top: 30px;">
 					<a href="">	

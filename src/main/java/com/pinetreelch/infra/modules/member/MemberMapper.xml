@@ -24,8 +24,25 @@
 	
 	</select>
 	
-	<insert id = "insert"> 
-	
+	<insert id = "insert" > 
+		
+		INSERT INTO infraMember(
+		
+		ifmmId
+		,ifmmPwd 
+		)
+		
+		VALUES(
+		
+		#{ifmmId}
+		,#{ifmmPwd}
+		
+		)	
+			
+		<selectKey resultType ="String" keyProperty = "ifmmSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        </selectKey>
+        
 	</insert>
 	
 	
@@ -38,12 +55,26 @@
 	</select>
 	
 	
-	<select id = "selectOne1" resultMap = "resultMapObj">
+	<select id = "selectOne1" resultType = "Integer">
 		SELECT
-			a.*
+			count(*)
+			
 		FROM infraMember a
 		WHERE 1 =1 
-			AND ifmmId = #{idcheck}
+			AND ifmmId = #{ifmmId}
+	</select>
+	
+	<select id = "selectOneForLogin" resultMap = "resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+			,a.ifmmName
+			
+			
+		FROM infraMember a
+		WHERE 1 =1 
+			AND a.ifmmId = #{ifmmId}
+			AND a.ifmmPwd = #{ifmmPwd}
 	</select>
 	
 	

@@ -4,11 +4,15 @@ package com.pinetreelch.infra.modules.login;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pinetreelch.infra.modules.member.Member;
+import com.pinetreelch.infra.modules.member.MemberService;
+
 
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController {
-
+	
+	MemberService service12;
 	
 	@RequestMapping(value = "")
 	public String login() {
@@ -27,5 +31,9 @@ public class LoginController {
 		
 		return "main/login/signuppagetwo";
 	}
+	
+	
+	
+	
 
 }

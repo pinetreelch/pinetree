@@ -568,6 +568,7 @@ font-style: normal;
 font-weight: 600;
 font-size: 15px;
 color: #94A2B8;	
+
 }
 .signupformagree{
 
@@ -1237,6 +1238,34 @@ font-style: normal;
 font-weight: 600;
 font-size: 12px;
 color: #1F8CE6;
+}
+
+.radiolabel input[type="radio"]{
+	display:none;
+	height: 48px;
+}
+
+.radiolabel input[type="radio"] + span {
+	font-family: 'Inria Sans';
+	font-style: normal;
+	font-weight: 500;
+	color:#707070;
+	
+	
+	display: inline-block;
+	padding: 15px 15px;
+
+	border: 1px solid #dfdfdf;
+	border-radius: 5px;
+	background-color:#ffffff;
+	text-align: center;
+	cursor: pointer;
+	height: 48px;	
+}
+
+.radiolabel input[type="radio"]:checked + span{
+	background-color: #4b94d0;
+	color: #ffffff;
 }
 #rrreec{
 	color:#999999
