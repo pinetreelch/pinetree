@@ -23,6 +23,22 @@
 	
 	<context:component-scan base-package="com.pinetreelch.infra" />
 	
+		<!-- session interceptor s 2022.03.13 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/codeGroup/**"/>
+			<mapping path="/code/**"/>
+			<mapping path="/member/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/member/logoutProc" />
+			<exclude-mapping path="/member/logincheck" />
+			<exclude-mapping path="/member/testaction" />
+			<exclude-mapping path="/member/memberInst" />
+			
+			<beans:bean id="checkLoginSessionInterception" class="com.pinetreelch.infra.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.03.13 for logincheck -->
 	
 	
 </beans:beans>

@@ -17,6 +17,14 @@ public class Member {
 	private Integer ifmmMktappAlertNY;
 	private Integer ifmmMktapppushnight;
 	
+	private String ifmmDob;
+	
+	public String getIfmmDob() {
+		return ifmmDob;
+	}
+	public void setIfmmDob(String ifmmDob) {
+		this.ifmmDob = ifmmDob;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}

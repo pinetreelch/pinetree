@@ -7,11 +7,13 @@
 
 <html>
 <head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>회원가입 페이지 2</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
+	<link rel="stylesheet" href="/resources/css/bookListcss.css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">	 
 </head>
 
 
@@ -27,52 +29,69 @@
  	<div class="container">
  		<div class="row bodylogin" style="margin-top: 60px; margin-bottom: 70px; text-align: center;" >
  			<div class="col-12">
-				<form name = "form">
+				<form name = "form" method ="post" >
 					<div>
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="ifmmId" name = "ifmmId" placeholder= "아이디"  style="height: 48px;">
-								  <label for="floatingInput" id="idlabel" name= "" class="signupform" > 아이디 </label>
+								  <input type="text" class="form-control" id="ifmmId" name = "ifmmId" placeholder= "아이디"  style="height: 48px;" autocomplete = "off">
+								  <label for="floatingInput" id="idlabel" class="signupform" > 아이디 </label>
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="ifmmPwd" name = "ifmmPwd"placeholder="비밀번호"  style="height: 48px;">
+								  <input type="text" class="form-control" id="ifmmPwd" name = "ifmmPwd"placeholder="비밀번호"  style="height: 48px;" autocomplete = "off">
 								  <label for="floatingInput1"  class="signupform">비밀번호</label>
 							</div>
 							
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="floatingInput2" placeholder="비밀번호 확인"  style="height: 48px;"> 
+								  <input type="text" class="form-control" id="floatingInput2" placeholder="비밀번호 확인"  style="height: 48px;" autocomplete = "off"> 
 								  <label for="floatingInput2" id="labelpwdre" class="signupform" >비밀번호 확인</label>  
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="floatingInput3" placeholder="이메일 주소"  style="height: 48px;">
+								  <input type="text" class="form-control" id="ifmmEmail" name = "ifmmEmail" placeholder="이메일 주소"  style="height: 48px;" autocomplete = "off">
 								  <label for="floatingInput3" id="labelemail" class="signupform" >이메일 주소</label>
+								  <input type = "hidden" id = "ifmmEmaildom" name = "ifmmEmaildom" />
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="floatingInput4" placeholder="이름"  style="height: 48px;" >
+								  <input type="text" class="form-control" id="ifmmName" name = "ifmmName" placeholder="이름"  style="height: 48px;" autocomplete = "off">
 								  <label for="floatingInput4" id="labelname" class="signupform">이름</label>
 								  <br />
+							</div>
+							
+							<div class="input-group mb-3">
+							  <button id = "telcoBtn" class="btn btn-outline-secondary dropdown-toggle" type="button" placeholder= "휴대전화 " data-bs-toggle="dropdown" aria-expanded="false" style="background-color: gray; color:white;">통신사</button>
+								  <ul class="dropdown-menu">
+								    <li class="dropdown-item">KT</li>
+								    <li class="dropdown-item" >SKT</li>
+								    <li class="dropdown-item" >LGU+</li>
+							<!-- 		<li><hr class="dropdown-divider"></li>
+								    <li class="dropdown-item" >KT 알뜰폰</li>
+								    <li class="dropdown-item" >SKT 알뜰폰</li>
+								    <li class="dropdown-item" >LGU+ 알뜰폰 </li> -->
+								  </ul>
+							  <input id = "ifmmTel" name = "ifmmTel" type="text" class="form-control" aria-label="Text input with dropdown button" >  
+							  <input type = "hidden" id =  "ifmmtelCo" name = "ifmmtelCo">
 							</div>
 							
 							<div class="col-12 signupform2" style="text-align: left;">선택입력</div>
 							
 							<div class="row">
 								<div class="form-floating col-6" style="float: left;   margin-top: 10px;">
-									<input type="text" class="form-control" id="floatingInput5" placeholder="name@example.com" style="height: 48px;;" >
-									<label for="floatingInput5" id="labeldob" class="signupform">출생년도</label>							
+								<!-- 	<input type="text" class="form-control" id="floatingInput5" placeholder="name@example.com" style="height: 48px;;" >
+									<label for="floatingInput5" id="labeldob" class="signupform">출생년도</label>	 -->	
+									<input type="text" id="ifmmDob" name = "ifmmDob" style = "height: 48px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">					
 								</div>
 								
 								<div class="col-6" style="display: table; vertical-align: middle; margin-top: 10px; padding-left: 3px;">
 									
 									<div style="display: table-cell; text-align: right;">	
 										<label class = "radiolabel">
-											<input type = "radio" name = "gender" id = "male" value = "1"/>
+											<input type = "radio" name = "gender" id = "male" value = "1 "/>
 											<span>남자 </span>
 										</label>
 										
 										<label class = "radiolabel">
-											<input type = "radio" name = "gender" id = "female" value = "2"/>
+											<input type = "radio" name = "gender" id = "female" value = "2 "/>
 											<span>여자 </span>
 										</label> 
 									</div>
@@ -153,22 +172,25 @@
 								</div>
 								
 								<div class="form-check" style="margin-left: 10px; margin-top: 16px;margin-bottom: 16px; margin-left: 30px;">
-								  <input class="form-check-input" type="checkbox" name="checkitem" id="flexRadioDefault1">
-								  <label class="form-check-label signupformagree1" for="flexRadioDefault1">
-								    이벤트, 혜택 알림 수신 동의 (선택 )
+								  <input class="form-check-input" type="checkbox" name="ifmmMktemailNY" value = "14">
+								  <input class="form-check-input" type="hidden" name="ifmmMktemailNY" value = "15">
+								  <label class="form-check-label signupformagree1" for="ifmmMktemailNY">
+								    이벤트, 혜택 알림 이메일 수신 동의 (선택 )
 								  </label> 
 								</div>
 								
 								<div class="form-check" style="margin-left: 10px; margin-top: 16px;margin-bottom: 16px; margin-left: 30px;">
-								  <input class="form-check-input" type="checkbox" name="checkitem" id="flexRadioDefault1">
-								  <label class="form-check-label signupformagree1" for="flexRadioDefault1">
+								  <input class="form-check-input" type="checkbox" name="ifmmMktappAlertNY" value = "16">
+								  <input class="form-check-input" type="hidden" name="ifmmMktappAlertNY" value = "17">
+								  <label class="form-check-label signupformagree1" for="ifmmMktappAlertNY">
 								    마케팅 수신동의 (선택 )
 								  </label>
 								    <span class="signupformagree2" style="float:right; padding-right: 10px; margin-top: 6px;">내용 확인 ></span>
 								</div>
 								
 								<div class="form-check" style="margin-left: 10px; margin-top: 16px;margin-bottom: 16px;">
-								  <input class="form-check-input" type="checkbox" name="checkitem" id="flexRadioDefault1">
+								  <input class="form-check-input" type="checkbox" name="ifmmMktapppushnight" value = "18">
+								  <input class="form-check-input" type="hidden" name="ifmmMktapppushnight" value = "19">
 								  <label class="form-check-label signupformagree1" for="flexRadioDefault1">
 								    야간 방해 금지 (선택 ) 
 								  </label>
@@ -187,13 +209,64 @@
 	
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ 
+
+ 
+ <!-- Ajax -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- Ajax -->
+  
+   <!-- Date picker -->
+  
+ <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+ <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ <script src = "/resources/jscript/datepicker.js"></script>
+ <!-- Date picker -->
+  
+  <!-- Kakao -->
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>			
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
  <script src= "/resources/jscript/kakaomap.js"></script>
+   <!-- Kakao -->
+   
+   
  <script src= "/resources/jscript/clearaddress.js"></script>
  <script src = "/resources/jscript/validiation.js"></script>
  <script>
+ 	
+ 	
+ 	
+ 	// 통신사 li선택하기
+ 	$(document).on("click",".dropdown-menu li", function(){
+ 		var val1 = $(this).text();
+ 		
+ 		
+ 		switch (val1) {
+ 			case 'KT':
+ 				$('#telcoBtn').text(val1);
+ 				$('#ifmmtelCo').val('3');
+ 				break;
+ 			
+ 			
+ 			case 'SKT' :
+ 				$('#telcoBtn').text(val1);
+ 				$('#ifmmtelCo').val('4');
+ 				break;
+ 			
+ 			
+		 	case 'LGU+' :
+	 			$('#telcoBtn').text(val1);
+				$('#ifmmtelCo').val('5');
+				break;
+				}					
+ 		// btntelco.innerText = val1;
+		 
+	});
+ 	
+	// Emaildom
+ 	
+ 	 
+ 	
  	// 체크박스 전체 선택하기, 해제하기
  	function selectAll(selectAll){
  		const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -201,6 +274,11 @@
  		checkboxes.forEach((checkbox) => {
  			checkbox.checked = selectAll.checked
  		})
+ 		
+ 		var emailget = $('#ifmmEmail').val();
+ 		var emailsplit = emailget.split('@');
+ 		alert(emailsplit[1]);
+ 	
  	}
  	
  	// insert 하기 
@@ -210,6 +288,10 @@
  	$("#btnSignin").on("click", function(){
 		form.attr("action", goUrlInst).submit();
 	});
+ 	
+ 
+ 	
+ 	
  	
  </script>
 </body>

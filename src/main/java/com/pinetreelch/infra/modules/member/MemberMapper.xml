@@ -29,13 +29,31 @@
 		INSERT INTO infraMember(
 		
 		ifmmId
-		,ifmmPwd 
+		,ifmmPwd
+		,ifmmName
+		,ifmmEmail 
+		,gender
+		,ifmmDob
+		,ifmmMktemailNY
+		,ifmmMktappAlertNY
+		,ifmmMktapppushnight
+		,ifmmTel
+		,ifmmtelCo
 		)
 		
 		VALUES(
 		
-		#{ifmmId}
+		#{ifmmId} 
 		,#{ifmmPwd}
+		,#{ifmmName}
+		,#{ifmmEmail}
+		,#{gender}
+		,#{ifmmDob}
+		,#{ifmmMktemailNY}
+		,#{ifmmMktappAlertNY}
+		,#{ifmmMktapppushnight}
+		,#{ifmmTel}
+		,#{ifmmtelCo}
 		
 		)	
 			

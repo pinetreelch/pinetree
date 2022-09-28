@@ -63,7 +63,7 @@
    								<section id="login" class="account-container account-login">
    								
    								
-   									<form name = "form" id = "form" class="account-form">
+   									<form name = "form" id = "form" class="account-form" method = "post">
    									
    										<legend class="invisible">
       															로그인
@@ -135,7 +135,6 @@
 	
 			 	if(data.rt == "success"){
 			 		var ifm = data.ifmmSeq;
-					alert('회원정보가 존재합니다 -> 로그인 실행 ');
 					document.getElementById('ifmmSeq').value = ifm;
  					
 					form.attr("action", goHome).submit();
@@ -145,12 +144,11 @@
 				
 		     },
 		          
-			error : function(request,_status,error){ 
+			error : function(request, status, error){ 
 							
 				  	console.log("code: " + request.status)	
 			        console.log("message: " + request.responseText)
 			        console.log("error: " + error);
-				
 				 }	     
 		});	
  		

@@ -9,7 +9,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>bookList</title>
+	<title>홈페이지 </title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
@@ -20,9 +20,20 @@
 				<div class="row align-items-center">
 					<div class="col" style="padding-top:6px;">
 						<a class="heading" href="" >도서</a >
-						<a class="heading float-end" href="/login/">&nbsp;<b>로그인</b> </a>
-						<span class="heading float-end" href=""> ⦁&nbsp;</span>
-						<a class="heading float-end" href="/login/signup1/"> <b>회원가입</b>&nbsp;&nbsp;</a>
+						
+						<c:choose>
+							<c:when test ="${sessSeq eq null}">
+								<a class="heading float-end" href="/login/">&nbsp;<b>로그인</b> </a>
+									<span class="heading float-end"> ⦁&nbsp;</span>
+								<a class="heading float-end" href="/login/signup1/"> <b>회원가입</b>&nbsp;&nbsp;</a>
+							</c:when>
+							
+							<c:otherwise>
+								 <span class="heading float-end" style = "cursor: pointer;" id = "logoutBtn"><b>로그아웃</b></span> 
+							</c:otherwise>
+						</c:choose>
+						
+						
 					</div>		 	
 			 	</div>
 		 	</div>
@@ -161,7 +172,7 @@
 		<section> 오늘 리디의 발견  sessId: <c:out value="${sessId }"/><br> sessSeq: <c:out value="${sessSeq }"/><br> sessName: <c:out value="${sessName }"/><br></section>
 			<div class="row">
 				<div class="col-4" style="padding-top: 30px;">
-					<a href="">	
+					<div id = "climate" style= "cursor:pointer;">	
 						<div style="text-align:center; background: linear-gradient(#ffffff 50%, #880506  50%); border-radius: 10px; ">
 											<img src="https://img.ridicdn.net/cover/3120000561/large#1" alt="" class="imgslide" style="width: 104px; height: 150px; border-radius:5px; "/>
 						</div>
@@ -170,7 +181,7 @@
 							<span class="booklistspan">우리에게 남은 시간은 얼마일까?</span><br />
 							<span class="booksublistspan">기후위기? 인류위기!!!</span>
 						</div>
-					</a>
+					</div>
 				</div>
 				<div class="col-4" style="padding-top: 30px;">
 					<a href="">
@@ -179,7 +190,7 @@
 						</div>
 						<br />
 						<div style="text-align:center;">
-							<span class="booklistspan"> <고구려>김진명의 첫 에세이 <br /> 삶에 대한 작가의 고찰</span> <br />
+							<span class="booklistspan">  &lt; 고구려 &rt; 김진명의 첫 에세이 <br /> 삶에 대한 작가의 고찰</span> <br />
 							<span class="booksublistspan">때로는 행복대신 불행을 택하기도 한다</span>
 						</div>
 					</a>
@@ -619,5 +630,44 @@
  
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+  $("#logoutBtn").on("click", function(){
+		alert('logout');
+
+		
+		$.ajax({ 
+			url : "/member/logoutProc",
+			
+			type : 'post',
+			
+			data : {
+				
+			},
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					location.href = "/main/"
+				 } else {
+					 // by pass
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 
+							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});	
+	});
+  
+  $("#climate").on("click", function(){
+		location.href = "/book/bookview";
+	});
+  
+  </script>
 </body>
 </html>

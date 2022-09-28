@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(value = "/book/")
+@RequestMapping(value = "/book")
 public class BookController {
 
 	
-	@RequestMapping(value = "/bookdetail")
+	@RequestMapping(value = "/bookview")
 	public String bookdetail() {
 		
-		return "book/bookview";
+		return "/main/book/bookView";
 	}
 	
 	@RequestMapping(value = "/bookauthor")

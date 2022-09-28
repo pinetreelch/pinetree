@@ -451,11 +451,7 @@
     	seq.val(keyValue);
     	formList.attr("action", goUrlForm).submit();
 	}
-	
 
- 	
-	
-	
  </script>
 </body>
 </html>
