@@ -37,12 +37,12 @@
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="ifmmPwd" name = "ifmmPwd"placeholder="비밀번호"  style="height: 48px;" autocomplete = "off">
-								  <label for="floatingInput1"  class="signupform">비밀번호</label>
+								  <input type="password" class="form-control" id="ifmmPwd" name = "ifmmPwd"placeholder="비밀번호"  style="height: 48px;" autocomplete = "off">
+								  <label for="floatingInput1"  class="signupform" id = "pwdlabel">비밀번호</label>
 							</div>
 							
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="floatingInput2" placeholder="비밀번호 확인"  style="height: 48px;" autocomplete = "off"> 
+								  <input type="text" class="form-control" id="ifmmPwdCheck" placeholder="비밀번호 확인"  style="height: 48px;" autocomplete = "off"> 
 								  <label for="floatingInput2" id="labelpwdre" class="signupform" >비밀번호 확인</label>  
 							</div>
 							
@@ -275,9 +275,7 @@
  			checkbox.checked = selectAll.checked
  		})
  		
- 		var emailget = $('#ifmmEmail').val();
- 		var emailsplit = emailget.split('@');
- 		alert(emailsplit[1]);
+ 		
  	
  	}
  	
@@ -289,10 +287,40 @@
 		form.attr("action", goUrlInst).submit();
 	});
  	
- 
  	
+ 	//email도메인 벨류 추
  	
- 	
+ 	$("#ifmmEmail").on("focusout", function(){
+ 		var emailget = $('#ifmmEmail').val();
+ 		var emailsplit = emailget.split('@');
+ 		
+ 		
+ 		switch (emailsplit[1]) {
+			case 'naver.com':
+				$('#ifmmEmaildom').val('6');
+				break;
+			
+			
+			case 'gmail.com' :
+				$('#ifmmEmaildom').val('7');
+				break;
+			
+			
+		 	case 'daum.net' :
+				$('#ifmmEmaildom').val('8');
+				break;
+				
+		 	case 'yahoo.com' :
+				$('#ifmmEmaildom').val('9');
+				break;
+				
+		 	default  :
+				$('#ifmmEmaildom').val('20');
+				break;
+				}	
+ 	 	 	 	
+	});
+
  </script>
 </body>
 </html>
