@@ -136,7 +136,7 @@
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li style="text-shadow: 2px 2px 2px #b4b4b4,3px 3px 3px #6a79a3; font-weight: 500;  "><a href="/member/memberList">회원 관리</a></li>
-				         	<li><a href="">회원 추가(수정)</a></li>
+				         	<li><a href="/member/memberForm">회원 추가(수정)</a></li>
 				         	<li><a href="">결제 관리</a></li>
 				         </ul>
 				      </div>
@@ -248,7 +248,7 @@
 									</span>	
 							</h4>
 							
-							<table class="table table-bordered" style="text-align: center;">
+							<table class="table table-bordered " style="text-align: center;  ">
 								<tr style="background: #B8BFC4;">
 									<th style="text-align: center;"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
 									<th style="text-align: center;">#</th>
@@ -402,7 +402,7 @@
 		<div style="visibility: hidden; height: 100px;"> 
 				d
 		</div>	
- 	<!-- row 끝-->
+
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  

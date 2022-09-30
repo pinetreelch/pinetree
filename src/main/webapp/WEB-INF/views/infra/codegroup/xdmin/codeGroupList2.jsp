@@ -134,7 +134,8 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">회원 관리</a></li>
+				         	<li><a href="/member/memberList">회원 관리</a></li>
+				         	<li><a href="/member/memberForm">회원 추가(수정)</a></li>
 				         	<li><a href="">결제 관리</a></li>
 				         </ul>
 				      </div>

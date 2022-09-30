@@ -21,7 +21,7 @@
 	<div class="container-fluid">
  		<div class="row border-bottom" style="height: 40px;" >
 			<div class="col-12" style="text-align: center;">
-				<a href="../book/bookList.html"><img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg" alt="" style="width: 40px; height: 35px;"/></a>
+				<a href="/"><img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg" alt="" style="width: 40px; height: 35px;"/></a>
 			</div>
  		</div>
  	</div>
@@ -214,7 +214,7 @@
  
  <!-- Ajax -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <!-- Ajax -->
+ <!-- Ajax -->
   
    <!-- Date picker -->
   

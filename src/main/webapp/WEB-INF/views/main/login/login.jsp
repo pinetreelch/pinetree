@@ -39,7 +39,7 @@
       	<div class="is-pc">
       		<header class="page-header">
       			<h1 class="page-title">
-      				<a href="../book/bookList.html" class="page-title-link">
+      				<a href="/" class="page-title-link">
       					<svg width="2.69565em" height="1em" viewBox="0 0 62 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       						<title>RIDI</title>
       							<path d="M19.4128 7.95198V7.89236C19.4128 3.30513 16.1702 0.455688 10.9496 0.455688H0V22.557H5.53674V15.7507
