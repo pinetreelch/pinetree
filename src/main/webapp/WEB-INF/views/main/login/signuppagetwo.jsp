@@ -42,7 +42,7 @@
 							</div>
 							
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="ifmmPwdCheck" placeholder="비밀번호 확인"  style="height: 48px;" autocomplete = "off"> 
+								  <input type="password" class="form-control" id="ifmmPwdCheck" placeholder="비밀번호 확인"  style="height: 48px;" autocomplete = "off"> 
 								  <label for="floatingInput2" id="labelpwdre" class="signupform" >비밀번호 확인</label>  
 							</div>
 							

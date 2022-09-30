@@ -3,7 +3,7 @@
 
 
 /* 아이디 중복확인 --------------------------------------------------------- */
-$("#ifmmId").on("focusout", function(){
+$("#ifmmId").on("keyup", function(){
 		var id = document.getElementById('ifmmId');
 		var idlab = document.getElementById('idlabel');
 		var idcheck = id.value;
@@ -64,7 +64,7 @@ $("#ifmmId").on("focusout", function(){
 
 // 비밀번호 조건 확인
 
-	$("#ifmmPwd").on("focusout", function(){
+	$("#ifmmPwd").on("keyup", function(){
 		
 		const regex1 = /^[a-z|A-Z|0-9|\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]+$/; 				// 입력받은 문자가a-z A-Z 0-9  이루어진 문자열인지?
 		const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;								// 특수문자가 있는지?
@@ -100,9 +100,13 @@ $("#ifmmId").on("focusout", function(){
 
 	});
 	
+	
+	
 // 비밀번호 확인
 
-	$("#ifmmPwdCheck").on("focusout", function(){
+	$("#ifmmPwdCheck").on("keyup", function(){
+		
+		const pwdcheck = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$. %^&*-]).{8,20}$/;
 		var pwdlab = document.getElementById('pwdlabel');
 		var pwd = document.getElementById('ifmmPwd');
 		var pwdval = pwd.value;
@@ -110,13 +114,36 @@ $("#ifmmId").on("focusout", function(){
 		
 		var pwdre = document.getElementById('ifmmPwdCheck');
 		var pwdreVal = pwdre.value;
+		var labpwdre = document.getElementById('labelpwdre');
 		
-		alert('dd');
-		alert(pwdreVal);
-		
-		if (pwdval == pwdreVal){
-			alert('true');
-		} else{
-			alert('no');
+		if( pwdcheck.test(pwdval) ){
+			if (pwdval == pwdreVal){
+				
+				$('#labelpwdre').text('※ 비밀번호가 일치합니다.');
+				   	labpwdre.style.color = "rgb(64, 132, 88)";
+				   	pwdre.classList.remove('is-invalid','is-valid'); 
+				   	pwdre.classList.add('is-valid');
+				   	
+			} else{
+				
+				$('#labelpwdre').text('비밀번호가 일치하는지 확인해주세요 ');
+				   	labpwdre.style.color = "rgb(204, 68, 74)";
+				   	pwdre.classList.remove('is-invalid','is-valid'); 
+				   	pwdre.classList.add('is-invalid');
+			}
+		} else {
+			
+					$('#labelpwdre').text('양식에 맞는 올바른 비밀번호를 먼저 작성해주세요  ');
+					
+				   	labpwdre.style.color = "rgb(204, 68, 74)";
+				   	pwdre.classList.remove('is-invalid','is-valid'); 
+				   	pwdre.classList.add('is-invalid');
+				   	pwd.focus();
 		}
 	});
+	
+	
+	// 이메일 형식 확인 
+	
+	const emailcheck = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+	

@@ -26,14 +26,14 @@
 								<a class="heading float-end" href="/login/">&nbsp;<b>로그인</b> </a>
 									<span class="heading float-end"> ⦁&nbsp;</span>
 								<a class="heading float-end" href="/login/signup1/"> <b>회원가입</b>&nbsp;&nbsp;</a>
-									<span class="heading float-end"> ⦁&nbsp;</span>
-								<a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a>
+								<!-- 	<span class="heading float-end"> ⦁&nbsp;</span>
+								<a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a> -->
 							</c:when>
 							
 							<c:otherwise>
 								 <span class="heading float-end" style = "cursor: pointer;" id = "logoutBtn"><b>로그아웃</b></span> 
-								 	<span class="heading float-end"> ⦁ &nbsp;</span>
-								 <a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a>
+								 	<!-- <span class="heading float-end"> ⦁ &nbsp;</span>
+								 <a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a> -->
 							</c:otherwise>
 						</c:choose>
 						
