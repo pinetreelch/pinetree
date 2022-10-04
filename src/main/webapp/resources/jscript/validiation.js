@@ -144,6 +144,45 @@ $("#ifmmId").on("keyup", function(){
 	
 	
 	// 이메일 형식 확인 
+
+	$("#ifmmEmail").on("focusout", function(){
+		const emailcheck = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+		var emailad = document.getElementById('ifmmEmail');
+		var emailadval = emailad.value;
+		var emaillab = document.getElementById('labelemail');
+		
+		if(emailcheck.test(emailadval)){
+			
+			$('#labelemail').text('※ 사용가능한 이메일입니다.');
+			emaillab.style.color = "rgb(64, 132, 88)";
+			emailad.classList.remove('is-invalid','is-valid');
+			
+		}	else {
+			
+			$('#labelemail').text(' ex) abcde12345@naver.com');
+			emailad.classList.add('is-invalid');
+			emaillab.style.color = "rgb(204, 68, 74)";
+			
+		}	
+		
+	});
 	
-	const emailcheck = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+	//이름	
+	$("#ifmmName").on("focusout", function(){
+		const namecheck = /^[가-힣]{2,4}$/;
+		
+		var nameid = document.getElementById('ifmmName');
+		var nameval = nameid.value; 
+		var namelab = document.getElementById('labelname');
+		
+		if(namecheck.test(nameval)){
+			nameid.classList.remove('is-invalid');
+			namelab.style.color = "rgb(64, 132, 88)";
+		}	else {
+			nameid.classList.add('is-invalid');
+			namelab.style.color = "rgb(204, 68, 74)";			
+		}
+	});
 	
+	
+

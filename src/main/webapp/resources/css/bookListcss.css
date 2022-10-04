@@ -1329,3 +1329,9 @@ padding: 17px;
     cursor: pointer;
     color: #2962ff;
   }
+  
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

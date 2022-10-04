@@ -69,7 +69,8 @@
 								    <li class="dropdown-item" >SKT 알뜰폰</li>
 								    <li class="dropdown-item" >LGU+ 알뜰폰 </li> -->
 								  </ul>
-							  <input id = "ifmmTel" name = "ifmmTel" type="text" class="form-control" aria-label="Text input with dropdown button" >  
+							  <input id = "ifmmTel" name = "ifmmTel" type="number" class="form-control" aria-label="Text input with dropdown button" maxlength = "13">  
+							  
 							  <input type = "hidden" id =  "ifmmtelCo" name = "ifmmtelCo">
 							</div>
 							
@@ -79,7 +80,7 @@
 								<div class="form-floating col-6" style="float: left;   margin-top: 10px;">
 								<!-- 	<input type="text" class="form-control" id="floatingInput5" placeholder="name@example.com" style="height: 48px;;" >
 									<label for="floatingInput5" id="labeldob" class="signupform">출생년도</label>	 -->	
-									<input type="text" id="ifmmDob" name = "ifmmDob" style = "height: 48px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">					
+									<input type="text" id="ifmmDob" name = "ifmmDob" style = "height: 48px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;" readonly>					
 								</div>
 								
 								<div class="col-6" style="display: table; vertical-align: middle; margin-top: 10px; padding-left: 3px;">
@@ -210,8 +211,6 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  
-
- 
  <!-- Ajax -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  <!-- Ajax -->
@@ -288,7 +287,7 @@
 	});
  	
  	
- 	//email도메인 벨류 추
+ 	//email도메인 벨류 추가 
  	
  	$("#ifmmEmail").on("focusout", function(){
  		var emailget = $('#ifmmEmail').val();
