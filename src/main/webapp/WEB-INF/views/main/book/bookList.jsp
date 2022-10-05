@@ -172,375 +172,217 @@
 		<br />
 		<br />
 		
-		<section> 오늘 리디의 발견  </section>
+		<section> 최근 들어온 책   </section>
 			<div class="row">
-				<div class="col-4" style="padding-top: 30px;">
-					<div id = "climate" style= "cursor:pointer;">	
-						<div style="text-align:center; background: linear-gradient(#ffffff 50%, #880506  50%); border-radius: 10px; ">
-											<img src="https://img.ridicdn.net/cover/3120000561/large#1" alt="" class="imgslide" style="width: 104px; height: 150px; border-radius:5px; "/>
+			
+				<c:forEach items="${list}" var="list" begin = "0" end = "2" step = "1" varStatus="status" >
+					<div class="col-4" style="padding-top: 30px;">
+						<div style="text-align:center;
+									<c:if test="${status.index eq 0}">  background: linear-gradient(#ffffff 50%, #590916  50%); </c:if> 
+									<c:if test="${status.index eq 1}"> background: linear-gradient(#ffffff 50%, #880506  50%); </c:if> 
+									<c:if test="${status.index eq 2}"> background: linear-gradient(#ffffff 50%, #04285C  50%); </c:if> 
+									
+									 border-radius: 10px; ">
+											<img src="${list.url }" alt="" class="imgslide" style="width: 104px; height: 150px; border-radius:5px; "/>
 						</div>
 						<br />
 						<div style="text-align:center;">
-							<span class="booklistspan">우리에게 남은 시간은 얼마일까?</span><br />
-							<span class="booksublistspan">기후위기? 인류위기!!!</span>
+							<span class="booklistspan">  ${list.tdbkSubtitle }</span> <br />
+							<span class="booksublistspan"> ${list.tdbkBookTitle }   </span>
 						</div>
 					</div>
-				</div>
-				<div class="col-4" style="padding-top: 30px;">
-					<a href="">
-						<div style="text-align:center; background: linear-gradient(#ffffff 50%, #590916  50%); border-radius: 10px; ">
-											<img src="https://img.ridicdn.net/cover/4409000010/large#1" alt="" class="imgslide" style="width: 104px; height: 150px; border-radius:5px; "/>
-						</div>
-						<br />
-						<div style="text-align:center;">
-							<span class="booklistspan">  &lt; 고구려 &rt; 김진명의 첫 에세이 <br /> 삶에 대한 작가의 고찰</span> <br />
-							<span class="booksublistspan">때로는 행복대신 불행을 택하기도 한다</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-4" style="padding-top: 30px;">
-					<a href="">
-						<div style="text-align:center; background: linear-gradient(#ffffff 50%, #04285C  50%); border-radius: 10px; ">
-											<img src="https://img.ridicdn.net/cover/111038339/large#1" alt="" class="imgslide" style="width: 104px; height: 150px; "/>
-						</div>
-						<br />
-						<div style="text-align:center;">
-							<span class="booklistspan"> 기획, 출간까지 10여년, 한국사 통사의 정수를 담다</span><br />
-							<span class="booksublistspan">시민의 한국사 세트</span>
-						</div>
-					</a>
-				</div>
+					
+				</c:forEach>
 			</div>
 			
 		<section style="padding-top: 50px; padding-bottom: 6px;">지금 많이 읽고 있는 책</section>
+		
 			<div class="row" style="padding-top: 20px;">
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
+				<c:forEach items="${list2}" var="list2" begin = "0" end = "2" step = "1" varStatus="status" >
+				<c:set var = "count" value= "0"></c:set>
+					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/606002388/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
+							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">1</span>
+							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">역행자</span></a><br />
-								<a href=""><span class="booksublistspan1">자청</span></a><br />
+								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<a href="">
+									<span class="booksublistspan1">							
+										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
+											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
+												<c:set var = "count" value= "${count + 1}"></c:set>
+													<c:if test="${count <= 2 }">
+														<c:if test="${count eq 2 }">,</c:if>
+														${list3.tdauName}														
+														<c:if test="${count eq 2 }">...</c:if>	
+													</c:if>																
+											</c:if>											
+										</c:forEach>									
+									</span>
+								</a>
+								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
 									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
 									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
 								</span>
 							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/1648000401/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">4</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">달라구트 꿈 백화점 2</span></a> <br />
-								<a  href=""><span class="booksublistspan1">이미예</span></a> <br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<img src="https://img.ridicdn.net/cover/682001565/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px; border-color: #787878; border: solid; border-width:1px;"/>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">7</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div id="ll" class=" align-self-center">
-								<a href="book/bookdetail"><span class="booklistspan">미키7</span></a><br />
-								<a  href="./authorView.html"><span class="booksublistspan1">에드워드 애슈턴</span></a><br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
+						</div>				
+					</div>
+				</c:forEach>
 			</div>
 			
 			<div class="row" style="padding-top: 20px;">
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
+				<c:forEach items="${list2}" var="list2" begin = "3" end = "5" step = "1" varStatus="status" >
+					<c:set var = "count" value= "0"></c:set>
+					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<img src="https://img.ridicdn.net/cover/1176000033/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/>
+							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">2</span>
+							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">개정판 ㅣ 하얀 늑대들</span></a> <br />
-								<a href=""><span class="booksublistspan1">윤현승</span></a> <br />
+								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<a href="">
+									<span class="booksublistspan1">							
+										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
+											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
+												<c:set var = "count" value= "${count + 1}"></c:set>
+													<c:if test="${count <= 2 }">
+														<c:if test="${count eq 2 }">,</c:if>
+														${list3.tdauName}														
+														<c:if test="${count eq 2 }">...</c:if>	
+													</c:if>																
+											</c:if>											
+										</c:forEach>									
+									</span>
+								</a>
+								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
 									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
 									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
 								</span>
 							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<img src="https://img.ridicdn.net/cover/3306000090/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">5</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">개정 번역판 ㅣ 해리 포터와...</span></a><br />
-								<a href=""><span class="booksublistspan1">조앤.K.롤링</span></a><br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/222002609/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">8</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">돈의 흐름</span></a><br />
-								<a href=""><span class="booksublistspan1">전인구</span></a><br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
+						</div>				
+					</div>
+				</c:forEach>
 			</div>
 			
-			<div class="row" style="padding-top: 20px; padding-bottom:30px;">
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
+			<div class="row" style="padding-top: 20px;">
+				<c:forEach items="${list2}" var="list2" begin = "6" end = "8" step = "1" varStatus="status" >
+					<c:set var = "count" value= "0"></c:set>
+					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/510001099/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
+							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">3</span>
+							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">프로젝트 헤일메리</span></a> <br />
-								<a href=""><span class="booksublistspan1">앤디 위어</span></a> <br />
+								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<a href="">
+									<span class="booksublistspan1">							
+										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
+											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
+												<c:set var = "count" value= "${count + 1}"></c:set>
+													<c:if test="${count <= 2 }">
+														<c:if test="${count eq 2 }">,</c:if>
+														${list3.tdauName}														
+														<c:if test="${count eq 2 }">...</c:if>	
+													</c:if>																
+											</c:if>											
+										</c:forEach>									
+									</span>
+								</a>
+								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
 									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
 									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
 								</span>
 							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px; ">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/1242001110/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">6</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">행성</span></a><br />
-								<a href=""><span class="booksublistspan1">베르나르 베르베르</span></a><br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
-				<div class="col-4 d-flex " style="width:383px; height: 116px;">
-						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img src="https://img.ridicdn.net/cover/754031890/small#1" alt="" style="width:80px; height: 109.33px; border-radius:7px; border-color: #787878; border: solid; border-width:1px;"/></a>
-						</div>
-						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-								<span style="display: inline-block; margin-top: 50px;">9</span>
-						</div>
-						<div  class="d-flex" style="width:174px; height: 116px; ">
-							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">오은영의 화해</span></a> <br />
-								<a href=""><span class="booksublistspan1">오은영</span></a> <br />
-								<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-							</div>
-						</div>
-				</div>
+						</div>				
+					</div>
+				</c:forEach>
 			</div>
-			<section style="padding-bottom:16px; ">리디북스 추천도서 ></section>
-				<div class="row">
-					<div class="col-2">
-						<a href=""><img src="https://img.ridicdn.net/cover/3120000561/small?dpi=xxhdpi#1" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">기후위기?인류위기!!</span></a> <br />
-						<a href=""><span class="booksublistspan1">오지은,유혜민,이소연,정은..</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
+			
+			
+			
+			<section style="padding-bottom:16px; margin-top: 30px;">리디북스 추천도서 ></section>
+				<div class="row">				
+					<c:forEach items="${random}" var="random" begin = "0" end = "5" step = "1" varStatus="status" >
+							<c:set var = "count1" value= "0"></c:set>
+							<div class="col-2">
+							<a href=""><img class = "border" src="${random.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
+							<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">${random.tdbkBookTitle }</span></a> <br />
+							<a href="">
+								<span class="booksublistspan1">
+									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
+											<c:if test="${list3.tradBook_tdbkSeq   eq  random.tdbkSeq}">
+														
+												<c:set var = "count1" value= "${count1 + 1}"></c:set>
+													<c:if test="${count1 <= 2 }">
+														<c:if test="${count1 eq 2 }">,</c:if>
+															${list3.tdauName}														
+														<c:if test="${count1 eq 2 }">...</c:if>	
+													</c:if>																
+											</c:if>											
+										</c:forEach>
 								</span>
-						
-						</span>
-						
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/729/l9791165343729.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">달러구트 꿈 백화점 2</span></a> <br />
-						<a href=""><span class="booksublistspan1">이미예</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						
-						</span>
-						
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/730/l9791170521730.jpg" alt="" style="width:180px; height: 261px; border-radius:5px; border-color: #787878; border: solid; border-width:1px;" /></a> <br />
-						<a href="./bookView.html"><span class="booklistspan"  style="display:inline-block; padding-top:10px;">미키7</span></a> <br />
-						<a href=""><span class="booksublistspan1">에드워드 애슈턴</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						
-						</span>
-						
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/362/l9788932922362.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">행성 1</span></a> <br />
-						<a href=""><span class="booksublistspan1">베르나르 베르베르</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						
-						</span>
-						
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/735/l9788925588735.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">프로젝트 헤일메리</span></a> <br />
-						<a href=""><span class="booksublistspan1">앤디 위어</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						
-						</span>
-						
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/208/l9788950996208.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">돈의 흐름</span></a> <br />
-						<a href=""><span class="booksublistspan1">전인구</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						</span>
-					</div>
+							</a> 
+							<br />
+							<span>
+										<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
+										<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
+										<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
+							</span>						
+							</div>					
+					</c:forEach>
 				</div>
+				
+				
 		<section style="padding-top: 30px; padding-bottom: 16px;">MD's PICK ></section>
+		
+		
 			<div class="row">
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/204/l9791167763204.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan" style="display:inline-block; padding-top:10px;">때로는 행복 대신 불행을 택하기도 한다</span></a> <br />
-						<a href=""><span class="booksublistspan1">김진명</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								
-						</span>
-					</div>
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/116/l9788959526116.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">하얀 늑대들</span></a> <br />
-						<a href=""><span class="booksublistspan1">윤현승</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
+				<c:forEach items="${randomTwo}" var="randomTwo" begin = "0" end = "5" step = "1" varStatus="status" >
+							<c:set var = "count2" value= "0"></c:set>
+							<div class="col-2">
+							<a href=""><img class = "border" src="${randomTwo.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
+							<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">${randomTwo.tdbkBookTitle }</span></a> <br />
+							<a href="">
+								<span class="booksublistspan1">
+									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
+											<c:if test="${list3.tradBook_tdbkSeq   eq  randomTwo.tdbkSeq}">
+														
+												<c:set var = "count1" value= "${count2 + 1}"></c:set>
+													<c:if test="${count2 <= 2 }">
+														<c:if test="${count2 eq 2 }">,</c:if>
+															${list3.tdauName}														
+														<c:if test="${count2 eq 2 }">...</c:if>	
+													</c:if>																
+											</c:if>											
+										</c:forEach>
 								</span>
-						</span>
-					</div>
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/716/l9788901260716.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">역행자</span></a> <br />
-						<a href=""><span class="booksublistspan1">자청</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						</span>
-					</div>
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/730/l9791170521730.jpg" alt="" style="width:180px; height: 261px; border-radius:5px; border-color: #787878; border: solid; border-width:1px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">미키7</span></a> <br />
-						<a href=""><span class="booksublistspan1">에드워드 애슈턴</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						</span>
-					</div>
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/870/l9788997396870.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">오은영의 화해</span></a> <br />
-						<a href=""><span class="booksublistspan1">오은영</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						</span>
-					</div>
-				<div class="col-2">
-						<a href=""><img src="http://image.kyobobook.co.kr/images/book/large/697/l2090000115697.jpg" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-						<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">시민의 한국사</span></a> <br />
-						<a href=""><span class="booksublistspan1">한국역사연구회</span></a> <br />
-						<span>
-									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
-								</span>
-						</span>
-					</div>
+							</a> 
+							<br />
+							<span>
+										<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
+										<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
+										<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
+							</span>						
+							</div>					
+					</c:forEach>
 			</div>
-</div>			
+		</div>			
 			<footer>
 				<div class="container-fluid" style="padding-top: 30px;">
 						<hr  style="background-color: #F0F0F0;">

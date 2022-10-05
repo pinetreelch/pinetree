@@ -14,7 +14,79 @@
 	
 	
 	<select id="selectList" resultMap="resultMapObj">
+		select
+			a.tdbkSeq
+			,a.tdbkBookTitle
+		    ,b.url
+		    ,a.tdbkSubtitle
+		    ,a.registeredDate
+		from tradBook a
+		left join bkUploaded b on pSeq = tdbkSeq 
+		where 
+			1=1
+		order by registeredDate DESC
 	
+	</select>
+	
+	<select id="selectBook" resultMap="resultMapObj">
+	
+		select
+			a.tdbkSeq
+		    ,a.tdbkBookTitle
+		    ,b.url
+		    ,a.visitors
+		from
+			tradBook a
+		left join bkUploaded b on a.tdbkSeq = b.pSeq
+		where 
+			1=1
+		order by a.visitors DESC
+    	
+	</select>
+	
+	<select id="selectRandom" resultMap="resultMapObj">
+		select
+			a.tdbkSeq
+		    ,a.tdbkBookTitle
+		    ,b.url
+		    ,b.urllarge
+		from
+			tradBook a
+		left join bkUploaded b on a.tdbkSeq = b.pSeq
+		where 
+			1=1
+		order by RAND();
+	</select>
+	
+	<select id="selectRandomTwo" resultMap="resultMapObj">
+		select
+			a.tdbkSeq
+		    ,a.tdbkBookTitle
+		    ,b.url
+		    ,b.urllarge
+		from
+			tradBook a
+		left join bkUploaded b on a.tdbkSeq = b.pSeq
+		where 
+			1=1
+		order by RAND();
+	</select>
+	
+	<select id="selectList1" resultMap="resultMapObj">
+		select
+			a.tdbkSeq
+		    ,a.tdbkBookTitle
+		    , c.tdauName
+		    , b.tradAuthor_tdatSeq
+		    , b.tradBook_tdbkSeq
+		from
+			tradBook a
+		left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
+		left join tradAuthor c on tradAuthor_tdatSeq =tdauSeq
+		where 
+			1=1
+		order by a.visitors DESC
+
 	
 	</select>
 	
