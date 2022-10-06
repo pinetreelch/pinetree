@@ -7,11 +7,11 @@
 
 <html>
 <head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>홈페이지 </title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
+	  	<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>홈페이지 </title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	  	<link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
 <body>
 	<div class="container-fluid">
@@ -36,7 +36,7 @@
 								 <a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a> -->
 							</c:otherwise>
 						</c:choose>
-						
+						  
 					</div>		 	
 			 	</div>
 		 	</div>
@@ -58,20 +58,20 @@
 				 		<nav  style="display: inline-block;">
 				 			<ul >
 				 				<li style="display: inline-block; padding-right: 40px;">
-				 					<form action="">
 				 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
-				 					</form>
 				 				</li>
+				 				
 				 				<li style="display: inline-block;">
 				 					<a href="">
 				 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
 				 					</a>
 				 				</li>
+				 				
 				 				<li style="display: inline-block;">
-				 					<a href="../myPage/myPageList.html">
-				 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;" "></i>
+				 					<a href="">
+				 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i>
 				 					</a>
-				 				</li>
+				 				</li>				 				
 						 	</ul>
 					 	</nav>
 				</div>
@@ -172,9 +172,11 @@
 		<br />
 		<br />
 		
+		
 		<section> 최근 들어온 책   </section>
+			<form name = "form" id = "form" method = "post">
+			<input type = "hidden" name = "tdbkSeq" id = "tdbkSeq">
 			<div class="row">
-			
 				<c:forEach items="${list}" var="list" begin = "0" end = "2" step = "1" varStatus="status" >
 					<div class="col-4" style="padding-top: 30px;">
 						<div style="text-align:center;
@@ -182,16 +184,20 @@
 									<c:if test="${status.index eq 1}"> background: linear-gradient(#ffffff 50%, #880506  50%); </c:if> 
 									<c:if test="${status.index eq 2}"> background: linear-gradient(#ffffff 50%, #04285C  50%); </c:if> 
 									
-									 border-radius: 10px; ">
+									 border-radius: 10px;
+									 cursor: pointer;
+									"
+								 onclick = "location.href='javascript:goBookView( <c:out value="${list.tdbkSeq }"/> )'" 
+									
+									>
 											<img src="${list.url }" alt="" class="imgslide" style="width: 104px; height: 150px; border-radius:5px; "/>
 						</div>
 						<br />
-						<div style="text-align:center;">
-							<span class="booklistspan">  ${list.tdbkSubtitle }</span> <br />
+						<div style="text-align:center; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${list.tdbkSeq }"/> )'" >
+							<span class="booklistspan" >  ${list.tdbkSubtitle }</span> <br />
 							<span class="booksublistspan"> ${list.tdbkBookTitle }   </span>
 						</div>
-					</div>
-					
+					</div>				
 				</c:forEach>
 			</div>
 			
@@ -202,14 +208,14 @@
 				<c:set var = "count" value= "0"></c:set>
 					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
+							<img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'"  />
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
 							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<span style = "cursor: pointer" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'"> ${list2.tdbkBookTitle } </span><br />
 								<a href="">
 									<span class="booksublistspan1">							
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
@@ -241,14 +247,14 @@
 					<c:set var = "count" value= "0"></c:set>
 					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
+							<img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'" />
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
+							<span style="display: inline-block; margin-top: 50px;">${status.count + 3}</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<span style = "cursor: pointer;" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'" >${list2.tdbkBookTitle }</span> <br />
 								<a href="">
 									<span class="booksublistspan1">							
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
@@ -280,14 +286,14 @@
 					<c:set var = "count" value= "0"></c:set>
 					<div class="col-4 d-flex " style="width:383px; height: 116px; ">
 						<div style="width:83px; height: 116px;   text-align: center; padding-right: 2px;">
-							<a href=""><img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px;"/></a>
+							<img class = "border" src="${list2.url}" alt="" style="width:80px; height: 109.33px; border-radius:7px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'"/>
 						</div>
 						<div style="width:83px; height: 116px;  text-align: center;padding-right: 50px; padding-right: 2px;">
-							<span style="display: inline-block; margin-top: 50px;">${status.count }</span>
+							<span style="display: inline-block; margin-top: 50px;">${status.count + 6 }</span>
 						</div>
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
-								<a href=""><span class="booklistspan">${list2.tdbkBookTitle }</span></a><br />
+								<span style = "cursor: pointer;" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'" >${list2.tdbkBookTitle }</span><br />
 								<a href="">
 									<span class="booksublistspan1">							
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
@@ -321,8 +327,8 @@
 					<c:forEach items="${random}" var="random" begin = "0" end = "5" step = "1" varStatus="status" >
 							<c:set var = "count1" value= "0"></c:set>
 							<div class="col-2">
-							<a href=""><img class = "border" src="${random.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-							<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">${random.tdbkBookTitle }</span></a> <br />
+							<img class = "border" src="${random.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${random.tdbkSeq }"/> )'" /> <br />
+							<span class="booklistspan"  style="display:inline-block; padding-top:10px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${random.tdbkSeq }"/> )'">${random.tdbkBookTitle }</span> <br />
 							<a href="">
 								<span class="booksublistspan1">
 									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
@@ -340,9 +346,9 @@
 							</a> 
 							<br />
 							<span>
-										<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
-										<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
-										<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
+									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
+									<span style="color: #DC3232; font-size: 13px; position:relative; bottom: 2px;">4.8</span>
+									<span class="booksublistspan2" style="position:relative; bottom: 2px;">(255)</span>		
 							</span>						
 							</div>					
 					</c:forEach>
@@ -356,8 +362,8 @@
 				<c:forEach items="${randomTwo}" var="randomTwo" begin = "0" end = "5" step = "1" varStatus="status" >
 							<c:set var = "count2" value= "0"></c:set>
 							<div class="col-2">
-							<a href=""><img class = "border" src="${randomTwo.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px;" /></a> <br />
-							<a href=""><span class="booklistspan"  style="display:inline-block; padding-top:10px;">${randomTwo.tdbkBookTitle }</span></a> <br />
+							<img class = "border" src="${randomTwo.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${randomTwo.tdbkSeq }"/> )'" /> <br />
+							<span class="booklistspan"  style="display:inline-block; padding-top:10px; cursor: pointer;"> ${randomTwo.tdbkBookTitle } </span><br />
 							<a href="">
 								<span class="booksublistspan1">
 									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
@@ -382,6 +388,7 @@
 							</div>					
 					</c:forEach>
 			</div>
+			</form>
 		</div>			
 			<footer>
 				<div class="container-fluid" style="padding-top: 30px;">
@@ -514,5 +521,18 @@
 	});
   
   </script>
+  
+  <script>
+  	var seq = $("input:hidden[name=tdbkSeq]");
+  	var goUrlView = "/main/bookView";
+  	var form = $("form[name=form]");
+  	
+  	goBookView = function(keyValue) {
+  	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+  	seq.val(keyValue);
+  	form.attr("action", goUrlView).submit();
+	}
+  </script>
+  
 </body>
 </html>

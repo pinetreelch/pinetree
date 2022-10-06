@@ -17,7 +17,8 @@
 	      document.getElementById('toc-toggle1').textContent = '접기';
 	    }
 	  }
-  function openCloseToc2() {
+   
+	 function openCloseToc2() {
 	    if(document.getElementById('toc-content2').style.display === 'block') {
 	      document.getElementById('toc-content2').style.display = 'none';
 	      document.getElementById('toc-toggle2').textContent = '펼쳐보기';
@@ -25,4 +26,15 @@
 	      document.getElementById('toc-content2').style.display = 'block';
 	      document.getElementById('toc-toggle2').textContent = '접기';
 	    }
-	  }
+	  }  
+	
+	  
+	 function openCloseToc3() {
+	    if(document.getElementById('toc-content3').style.display === 'block') {
+	      document.getElementById('toc-content3').style.display = 'none';
+	      document.getElementById('toc-toggle3').textContent = '펼쳐보기';
+	    } else {
+	      document.getElementById('toc-content3').style.display = 'block';
+	      document.getElementById('toc-toggle3').textContent = '접기';
+	    }
+	  }  

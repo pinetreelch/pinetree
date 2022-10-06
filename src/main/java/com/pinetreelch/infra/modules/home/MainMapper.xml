@@ -90,6 +90,39 @@
 	
 	</select>
 	
+	
+	<!-- selectOne -->
+	<select id = "selectOne" resultMap = "resultMapObj">
+	SELECT 
+	    a.tdbkSeq
+	    ,b.urllarge
+	    ,a.tdbkBookTitle
+	    ,a.tdbkSubtitle
+	    ,a.tdPaperprice
+	    ,a.tdbkDiscountprice
+	    ,a.tdbkSales
+	    ,a.tdbkIntro
+	    ,a.tdbkIntro2
+	    ,a.tdbkPusblisherOpinion
+	    ,a.tdbkPusblisherOpinion2
+	    ,a.tdbkToc
+	    ,a.tdbkToc2
+	    ,a.tdbkPublisher
+	    ,a.tdbkDop
+	    ,a.tdbkDopType
+	    ,a.tdbkDopPaper
+	    ,a.tdbkDopPtype
+	    ,a.tdbkGenre
+	    ,a.tdbkListenFunction
+	    ,a.tdbkFileinfo
+	    ,a.tdbkSupportDevice
+	    ,a.tdbkIsbn
+	FROM tradBook a
+	LEFT JOIN bkUploaded b ON a.tdbkSeq = b.pSeq
+	where 1=1
+		AND tdbkSeq = #{tdbkSeq}
+	</select>
+	
 	<insert id = "insert"> 
 	
 	</insert>

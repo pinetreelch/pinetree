@@ -1330,6 +1330,15 @@ padding: 17px;
     color: #2962ff;
   }
   
+  #toc-content3 {
+    display: none;
+  }
+  
+  #toc-toggle3 {
+    cursor: pointer;
+    color: #2962ff;
+  }
+  
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

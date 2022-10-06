@@ -45,5 +45,16 @@ public class MainController {
 		
 		return "main/book/bookList";
 	}
+	
+	@RequestMapping(value = "/bookView")
+	public String bookView(Main dto, Model model) throws Exception {
+		
+		System.out.println("book sequence = "+ dto.getTdbkSeq());
+		
+		Main result = service.selectOne(dto);
+		model.addAttribute("booklist",result);
+		
+		return "main/book/bookView";
+	}
 
 }

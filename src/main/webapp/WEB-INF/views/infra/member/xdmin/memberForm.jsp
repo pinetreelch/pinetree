@@ -139,6 +139,42 @@
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
+				
+						<div class="row" style="padding-top: 30px;" >						
+							<div class="col" style="display: inline-block;  width: 250px;">
+							 	<label for="2" class="form-label">파일 첨부  </label> <br>
+								<input type= "file" name="uploadFile" multiple>
+								<div class= "border" style = " height: 150px; padding:5px; background-color: #cedaed;">
+									<p style= "background-color: white;">dfsdvsdvsdvsdvsdvsdv.pdf   <span style="float:right; padding-right: 5px;"> <button type="button" style="width: 25px; height: 25px;">X</button>  </span>	</p>
+								
+								</div>
+							</div>
+							
+							<div class="col" style="display: inline-block;  width: 250px;">
+							 	<label for="2" class="form-label">이미지 첨부  </label> <br>
+								<input type= "file" name="uploadFile" multiple>
+								<div class= "border" style = " height: 150px; padding: 5px; background-color: #cedaed;" >
+									<div class="row" style="padding-bottom: 5px; text-align: center;">
+										<div class="col-2">
+											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
+											<button type="button" style="position: relative; bottom: 25px; right: 23px; width: 25px; height: 25px;">X</button>
+										</div>
+										<div class="col-2">
+											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
+											<button type="button" style="position: relative; bottom: 25px; right: 23px;  width: 25px; height: 25px;">X</button>
+										</div>
+										<div class="col-2">
+											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
+											<button type="button" style="position: relative; bottom: 25px; right: 23px;  width: 25px; height: 25px;">X</button>
+										</div>
+									</div>
+									
+									
+								
+								</div>
+							</div>
+						</div>
+						
 					
 						<div class="row" style="padding-top: 30px;" >
 						

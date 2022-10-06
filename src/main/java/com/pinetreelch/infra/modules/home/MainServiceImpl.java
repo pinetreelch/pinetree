@@ -53,5 +53,13 @@ public class MainServiceImpl implements MainService {
 		
 		return result;
 	}
+	
+	@Override
+	public Main selectOne(Main dto) throws Exception{
+		
+		Main result = dao.selectOne(dto);
+		
+		return result;
+	}
 
 }

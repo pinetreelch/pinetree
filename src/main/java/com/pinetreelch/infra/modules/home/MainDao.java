@@ -39,4 +39,9 @@ public class MainDao {
 	public List<Main> selectRandomTwo(){				 
 		return sqlSession.selectList(namespace + ".selectRandomTwo"); 
 	}
+	
+	public Main selectOne(Main dto){				 
+		return sqlSession.selectOne(namespace + ".selectOne", dto); 
+	}
+	
 }
