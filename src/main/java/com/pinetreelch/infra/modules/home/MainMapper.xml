@@ -123,6 +123,46 @@
 		AND tdbkSeq = #{tdbkSeq}
 	</select>
 	
+	<select id = "selectListAuthor" resultMap = "resultMapObj">
+	select
+		a.tdbkSeq
+	    ,a.tdbkBookTitle
+	    ,c.tdauSeq
+	    ,c.tdauName
+	    ,c.tdauNameEng
+	    ,c.tdauAuthorOrTranslator
+	    ,c.tdauIntro
+	from
+		tradBook a
+	left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
+	left join tradAuthor c on tdauSeq =tradAuthor_tdatSeq
+	where 
+		1=1
+		AND tdbkSeq = #{tdbkSeq}
+		AND tdauAuthorOrTranslator = 1 
+	</select>
+	
+		<select id = "selectListTranslator" resultMap = "resultMapObj">
+	select
+		a.tdbkSeq
+	    ,a.tdbkBookTitle
+		,c.tdauSeq
+	    ,c.tdauName
+	    ,c.tdauNameEng
+	    ,c.tdauAuthorOrTranslator
+	    ,c.tdauIntro
+	    
+	    
+	from
+		tradBook a
+	left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
+	left join tradAuthor c on tdauSeq =tradAuthor_tdatSeq
+	where 
+		1=1
+		AND tdbkSeq = #{tdbkSeq}
+		AND tdauAuthorOrTranslator = 0
+	</select> 
+	
 	<insert id = "insert"> 
 	
 	</insert>

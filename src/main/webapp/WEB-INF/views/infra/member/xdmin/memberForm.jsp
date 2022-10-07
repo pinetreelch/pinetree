@@ -143,36 +143,39 @@
 						<div class="row" style="padding-top: 30px;" >						
 							<div class="col" style="display: inline-block;  width: 250px;">
 							 	<label for="2" class="form-label">파일 첨부  </label> <br>
-								<input type= "file" name="uploadFile" multiple>
+								<input type= "file" name="uploadFile" id = "uploadFile" multiple>
 								<div class= "border" style = " height: 150px; padding:5px; background-color: #cedaed;">
-									<p style= "background-color: white;">dfsdvsdvsdvsdvsdvsdv.pdf   <span style="float:right; padding-right: 5px;"> <button type="button" style="width: 25px; height: 25px;">X</button>  </span>	</p>
-								
+								 <ul>
+									<li style= "background-color: white;">dfsdvsdvsdvsdvsdvsdv.pdf   <span style="float:right; padding-right: 5px;"> <button type="button" style="width: 25px; height: 25px;">X</button>  </span>	</li>
+								</ul>
 								</div>
 							</div>
 							
 							<div class="col" style="display: inline-block;  width: 250px;">
 							 	<label for="2" class="form-label">이미지 첨부  </label> <br>
-								<input type= "file" name="uploadFile" multiple>
+								<input type= "file" name="uploadImage" id = "uploadImage" multiple>
 								<div class= "border" style = " height: 150px; padding: 5px; background-color: #cedaed;" >
 									<div class="row" style="padding-bottom: 5px; text-align: center;">
-										<div class="col-2">
+										<div class="col-2" style= "margin-right:5px;">
 											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
-											<button type="button" style="position: relative; bottom: 25px; right: 23px; width: 25px; height: 25px;">X</button>
+											<button type="button" style="position: relative; bottom: 25px; right: 8px; width: 25px; height: 25px;">X</button>
 										</div>
-										<div class="col-2">
+										
+										<div class="col-2" style= "margin-right:5px;">
 											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
-											<button type="button" style="position: relative; bottom: 25px; right: 23px;  width: 25px; height: 25px;">X</button>
+											<button type="button" style="position: relative; bottom: 25px; right: 8px;  width: 25px; height: 25px;">X</button>
 										</div>
-										<div class="col-2">
+										
+										<div class="col-2" style= "margin-right:5px;">
 											<img style="height: 70px; width: 70px;" alt="" src="http://image.kyobobook.co.kr/images/book/large/750/l9788983927750.jpg">
-											<button type="button" style="position: relative; bottom: 25px; right: 23px;  width: 25px; height: 25px;">X</button>
+											<button type="button" style="position: relative; bottom: 25px; right: 8px;  width: 25px; height: 25px;">X</button>
 										</div>
-									</div>
-									
-									
-								
+									</div>		
 								</div>
 							</div>
+							
+							<button type ="button" onclick = "submit213('uploadFile', 0, 0, 1, 800000, 10000000, 2 )" >제출 </button>
+							<button type ="button"  id= "submitbtn1" >누르지마세요  </button>
 						</div>
 						
 					
@@ -569,6 +572,144 @@
   
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
+ 
+<script>
+
+$("#submitbtn").on("click", function(){
+	var obj = document.getElementById("uploadFile").files;	
+	var obj2 = document.getElementById("uploadImage").files;	
+	
+	alert(obj);
+	alert(obj.length);
+	
+	for(var i = 0; i < obj.length; i ++){
+		alert(obj[i].size);
+	}
+	
+	var totalsize = 0;
+	
+	if(obj.length > 3){
+		return false;	
+	} else {
+		for(var j = 0; j < obj.length; j ++){
+			if(obj[j].size > 800000){
+				alert(obj[j].name + "이 파일이  3mb를 초과합니다.")
+				return false;
+			} else {
+				totalsize = totalsize + obj[j].size;
+			}
+		}
+		alert('total size = ' + totalsize);
+		
+		if(totalsize < 1000000){
+			alert('submit');
+		} else {
+			alert('전체 파일 용량이 10mb를 초과합니다.');
+			return false;
+		}
+	}		
+});
+
+submit213 = function(objName, allowedMaxTotalFileNumber , seq, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType){
+	
+	var totalFileSize = 0;
+	var obj = $("#" + objName +"")[0].files;	
+	var fileCount = obj.length;
+	
+	const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+	const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+	const MAX_TOTAL_FILE_NUMBER = 5;				//	5
+	
+	// 이미지 전용
+	var extArray1 = new Array();
+	extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+	
+	for(var i = 0; i < obj.length; i ++){
+		alert(obj[i].size);
+	}
+	
+	allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+	
+	if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+	
+	for (var i = 0 ; i < fileCount ; i++) {
+		if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+		if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+
+		totalFileSize += $("#" + objName +"")[0].files[i].size;
+	}
+	
+	if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+	
+
+	/* stopppppppppppppppp
+	return false;
+	if (uiType == 1) {
+		
+	}else if(uiType == 2) {
+		$("#ulFile" + seq).children().remove();
+		
+		for (var i = 0 ; i < fileCount ; i++) {
+			addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+		}
+	}else {
+		return false;
+	}
+	alert('제출 ');
+	return false;
+}
+*/
+checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+	if(allowedMaxTotalFileNumber < fileCount){
+		alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//		$("#file"+seq).val("");
+//		obj.val("");
+		return false;
+	}
+}
+
+checkUploadedExt = function(objName, seq, div) {
+	
+	// 이미지 전용
+	var extArray1 = new Array();
+	extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+	
+	var ext = objName.split('.').pop().toLowerCase();
+	var extArray = eval("extArray" + div);
+	
+	
+	if(extArray.indexOf(ext) == -1) {
+		alert("허용된 확장자가 아닙니다.");
+//		$("#file"+seq).val("");
+		return false;
+	}
+}
+
+checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+	if(obj.size > allowedEachFileSize){
+		alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+		/* $("#file"+seq).val(""); */
+		return false;
+	}
+}
+
+function kbToMb(bytes) {
+    var e = Math.floor(Math.log(bytes)/Math.log(1024));
+
+    if(e == "-Infinity") return 0;
+    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
+}
+
+checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+	if(totalSize > allowedTotalFileSize){
+		alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+		/* $("#file"+seq).val(""); */
+		return false;
+	}
+}
+
+</script> 
  
 <script> 
 

@@ -43,10 +43,37 @@ public class Main {
 	private String tdbkSupportDevice;
 	private String tdbkIsbn;
 	
+	private Integer tdauAuthorOrTranslator;
+	
+	private Integer tdauSeq;
+	private String tdauNameEng;
+	private String tdauIntro;
 	
 	
-	
-	
+	public Integer getTdauSeq() {
+		return tdauSeq;
+	}
+	public void setTdauSeq(Integer tdauSeq) {
+		this.tdauSeq = tdauSeq;
+	}
+	public String getTdauNameEng() {
+		return tdauNameEng;
+	}
+	public void setTdauNameEng(String tdauNameEng) {
+		this.tdauNameEng = tdauNameEng;
+	}
+	public String getTdauIntro() {
+		return tdauIntro;
+	}
+	public void setTdauIntro(String tdauIntro) {
+		this.tdauIntro = tdauIntro;
+	}
+	public Integer getTdauAuthorOrTranslator() {
+		return tdauAuthorOrTranslator;
+	}
+	public void setTdauAuthorOrTranslator(Integer tdauAuthorOrTranslator) {
+		this.tdauAuthorOrTranslator = tdauAuthorOrTranslator;
+	}
 	public String getTdbkPusblisherOpinion2() {
 		return tdbkPusblisherOpinion2;
 	}

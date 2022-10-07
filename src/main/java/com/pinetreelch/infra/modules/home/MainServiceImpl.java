@@ -61,5 +61,21 @@ public class MainServiceImpl implements MainService {
 		
 		return result;
 	}
-
+	
+	@Override
+	public List<Main> selectListAuthor(Main dto) throws Exception{
+		
+		List<Main> result = dao.selectListAuthor(dto);
+		
+		return result;
+	}
+	
+	
+	@Override
+	public List<Main> selectListTranslator(Main dto) throws Exception{
+		
+		List<Main> result = dao.selectListTranslator(dto);
+		
+		return result;
+	}
 }

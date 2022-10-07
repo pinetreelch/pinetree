@@ -107,11 +107,61 @@
 									<span class="booksublistspan2" style="position:relative; bottom: 2px;">명</span>		
 								</div>
 								<div>
-									<a href="./authorView.html"><span class="bookauthor1">에드워드 애슈턴</span></a>
-									<span class="bookauthor2">저</span>
-									<span class="bookauthor2">|</span>
-									<span class="bookauthor1">배지혜</span>
-									<span class="bookauthor2">역</span>
+										
+										<c:set var = "listlength" value="${fn:length(authorlist)}"></c:set>
+										<c:set var = "tlistlength" value = "${fn:length(translatorlist)}"></c:set>
+									<%-- <c:set var = "tname" value = "${translatorlist.tdauName }"></c:set> --%>
+										
+										<c:choose>
+											<c:when test="${listlength > 2 }">
+												<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  >	
+													<c:set var = "count" value= "${count + 1}"></c:set>
+														<c:if test="${count <= 2 }">
+																<c:if test="${count eq 2 }"><span class="bookauthor1">,</span></c:if>
+																<span class="bookauthor1">${authorlist.tdauName}	</span>
+														</c:if>																
+												</c:forEach>	
+												
+												<span class="bookauthor2">외 </span>
+												<span class="bookauthor1"> <strong>${listlength - 2}</strong>명</span>			
+												<span class="bookauthor2">저  </span>
+												
+												<c:if test="${tlistlength > 0 }">
+													<span class="bookauthor2">|</span>
+														<c:forEach items="${translatorlist}" var="translatorlist" varStatus="status1"  >	
+															<span class="bookauthor1">${translatorlist.tdauName }</span>
+														</c:forEach>
+													<span class="bookauthor2">역</span>
+												</c:if>
+												
+											</c:when>
+											
+											<c:when test="${listlength <=2 }">
+												<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  >	
+													<c:set var = "count" value= "${count + 1}"></c:set>
+														<c:if test="${count <= 2 }">
+																<c:if test="${count eq 2 }"><span class="bookauthor1">,</span></c:if>
+																<span class="bookauthor1">${authorlist.tdauName}	</span>
+														</c:if>																
+												</c:forEach>	
+												<span class="bookauthor2">저  </span>
+												
+												<c:if test="${tlistlength > 0 }">
+													<span class="bookauthor2">|</span>
+														<c:forEach items="${translatorlist}" var="translatorlist" varStatus="status1"  >	
+															<span class="bookauthor1">${translatorlist.tdauName }</span>
+														</c:forEach>
+													<span class="bookauthor2">역</span>
+												</c:if>
+											</c:when>
+										</c:choose>
+									<!-- 
+										<a href="./authorView.html"><span class="bookauthor1">에드워드 애슈턴</span></a>
+										<span class="bookauthor2">저</span>
+										<span class="bookauthor2">|</span>
+										<span class="bookauthor1">배지혜</span>
+										<span class="bookauthor2">역</span> -->
+									
 								</div>
 								<div>
 									<span class="bookauthor1"> ${booklist.tdbkPublisher } </span>
@@ -294,7 +344,7 @@
 					<div class="col-12">
 						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">저자 프로필</div>
 					</div>
-					<div class="col-12">
+					<!-- <div class="col-12">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px;">
 							<ul class="border-bottom"style="list-style:none; padding-left:0px; padding-top: 5px; padding-bottom:25px; "> 
 								<li style="float: left">
@@ -307,11 +357,22 @@
 								</li>
 							</ul>
 						</div>
-					</div>
-					<div class="col-12">
+					</div> -->
+					<div class="col-12" style = "padding-top: 20px;">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
-							<span class="authorprofileName">에드워드 애슈턴</span>
-							<span class="authorprofileName2">Edward Ashton</span>
+							<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  >
+							<span class="authorprofileName">
+								
+								 	${authorlist.tdauName }
+								 
+							</span>
+							
+							 <c:if test="${authorlist.tdauNameEng ne null }">
+								<span class="authorprofileName2">
+										${authorlist.tdauNameEng}
+								</span>
+							</c:if> 
+							</c:forEach>
 						</div>
 					</div>
 					<div class="col-12">
@@ -323,6 +384,7 @@
 						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
 							저자 소개
 						</div>
+						
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
 												    	
 							    	<p>

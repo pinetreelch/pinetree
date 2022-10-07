@@ -44,4 +44,12 @@ public class MainDao {
 		return sqlSession.selectOne(namespace + ".selectOne", dto); 
 	}
 	
+	public List<Main> selectListAuthor(Main dto){				 
+		return sqlSession.selectList(namespace + ".selectListAuthor", dto); 
+	}
+	
+	
+	public List<Main> selectListTranslator(Main dto){				 
+		return sqlSession.selectList(namespace + ".selectListTranslator", dto); 
+	}
 }

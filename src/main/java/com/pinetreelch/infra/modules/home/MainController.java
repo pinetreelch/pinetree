@@ -51,10 +51,17 @@ public class MainController {
 		
 		System.out.println("book sequence = "+ dto.getTdbkSeq());
 		
+		
 		Main result = service.selectOne(dto);
+		List<Main> result2 = service.selectListAuthor(dto);
+		List<Main> result3 = service.selectListTranslator(dto);
+		
 		model.addAttribute("booklist",result);
+		model.addAttribute("authorlist",result2);
+		model.addAttribute("translatorlist",result3);
 		
 		return "main/book/bookView";
 	}
+	
 
 }

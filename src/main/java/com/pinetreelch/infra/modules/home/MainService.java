@@ -10,4 +10,6 @@ public interface MainService {
 	public List<Main> selectRandom() throws Exception;
 	public List<Main> selectRandomTwo() throws Exception;
 	public Main selectOne(Main dto) throws Exception;
+	public List<Main> selectListAuthor(Main dto) throws Exception;
+	public List<Main> selectListTranslator(Main dto) throws Exception;
 }
