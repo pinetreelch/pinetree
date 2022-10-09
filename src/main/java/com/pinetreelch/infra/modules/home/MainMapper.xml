@@ -73,18 +73,20 @@
 	</select>
 	
 	<select id="selectList1" resultMap="resultMapObj">
-		select
+ 		select
 			a.tdbkSeq
 		    ,a.tdbkBookTitle
 		    , c.tdauName
 		    , b.tradAuthor_tdatSeq
 		    , b.tradBook_tdbkSeq
+			, c.tdauAuthorOrTranslator	
 		from
 			tradBook a
 		left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
 		left join tradAuthor c on tradAuthor_tdatSeq =tdauSeq
 		where 
 			1=1
+            AND c.tdauAuthorOrTranslator = 1
 		order by a.visitors DESC
 
 	
@@ -132,6 +134,7 @@
 	    ,c.tdauNameEng
 	    ,c.tdauAuthorOrTranslator
 	    ,c.tdauIntro
+	    ,c.tdauIntro2
 	from
 		tradBook a
 	left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
@@ -151,7 +154,7 @@
 	    ,c.tdauNameEng
 	    ,c.tdauAuthorOrTranslator
 	    ,c.tdauIntro
-	    
+	    ,c.tdauIntro2 
 	    
 	from
 		tradBook a

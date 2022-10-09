@@ -245,6 +245,10 @@ line-height: 24px;
 color: #000000;
 }
 
+.authorhover:hover{
+	text-decoration: underline;
+}
+
 .footer1{
 	font-family: 'Inria Sans';
 font-style: normal;

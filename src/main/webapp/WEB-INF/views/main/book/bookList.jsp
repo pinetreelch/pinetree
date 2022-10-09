@@ -113,7 +113,6 @@
 				      <a href=""><img src="/resources/images/cat2.png" class="d-block" alt="..." style="width:1150px; height: 400px;"></a>
 				      <div class="carousel-caption d-none d-md-block">
 				      	<span class="caroubox">ONLY</span> <br></br>
-				        
 				        	<span class="contentfill" style="position: relative; right:360px;">우리가 상상하는</span><br />
 				        	<span class="contentfill" style="position: relative; right:374px;" >이야기의 미래</span> <br />
 				        	<span class="caroup" style="position: relative; right: 353px;">우주라이크 소설 7월 신작 OPEN!</span>
@@ -216,20 +215,20 @@
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
 								<span style = "cursor: pointer" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'"> ${list2.tdbkBookTitle } </span><br />
-								<a href="">
-									<span class="booksublistspan1">							
+								
+									<span >							
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
 											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
-														<c:if test="${count eq 2 }">,</c:if>
-														${list3.tdauName}														
-														<c:if test="${count eq 2 }">...</c:if>	
+														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">,</span></c:if>
+												         	<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;">${list3.tdauName}</span>
+														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span></c:if>	 
 													</c:if>																
 											</c:if>											
 										</c:forEach>									
 									</span>
-								</a>
+				
 								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
@@ -255,20 +254,20 @@
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
 								<span style = "cursor: pointer;" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'" >${list2.tdbkBookTitle }</span> <br />
-								<a href="">
-									<span class="booksublistspan1">							
+									<span >			
+													
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
 											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
-														<c:if test="${count eq 2 }">,</c:if>
-														${list3.tdauName}														
-														<c:if test="${count eq 2 }">...</c:if>	
+														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">,</span></c:if>
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span>															
+														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
-										</c:forEach>									
+										</c:forEach>	
+																		
 									</span>
-								</a>
 								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
@@ -294,20 +293,18 @@
 						<div  class="d-flex" style="width:174px; height: 116px; ">
 							<div  class=" align-self-center">
 								<span style = "cursor: pointer;" class="booklistspan" onclick = "location.href='javascript:goBookView( <c:out value="${list2.tdbkSeq }"/> )'" >${list2.tdbkBookTitle }</span><br />
-								<a href="">
-									<span class="booksublistspan1">							
+									<span >							
 										<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
-											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">
+											<c:if test="${list3.tradBook_tdbkSeq   eq  list2.tdbkSeq}">  <!-- eq 8번 시퀀 -->
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
-														<c:if test="${count eq 2 }">,</c:if>
-														${list3.tdauName}														
-														<c:if test="${count eq 2 }">...</c:if>	
+														<c:if test="${count eq 2 }"> <span  class="booksublistspan1 authorhover">,</span> </c:if>
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName}</span> 														
+														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span>  </c:if>	
 													</c:if>																
 											</c:if>											
 										</c:forEach>									
 									</span>
-								</a>
 								<br />								
 								<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
@@ -329,21 +326,19 @@
 							<div class="col-2">
 							<img class = "border" src="${random.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${random.tdbkSeq }"/> )'" /> <br />
 							<span class="booklistspan"  style="display:inline-block; padding-top:10px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${random.tdbkSeq }"/> )'">${random.tdbkBookTitle }</span> <br />
-							<a href="">
-								<span class="booksublistspan1">
+								<span >
 									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
 											<c:if test="${list3.tradBook_tdbkSeq   eq  random.tdbkSeq}">
 														
 												<c:set var = "count1" value= "${count1 + 1}"></c:set>
 													<c:if test="${count1 <= 2 }">
-														<c:if test="${count1 eq 2 }">,</c:if>
-															${list3.tdauName}														
-														<c:if test="${count1 eq 2 }">...</c:if>	
+														<c:if test="${count1 eq 2 }"> <span class="booksublistspan1 authorhover">,</span> </c:if>
+														 <span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
+														<c:if test="${count1 eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
 										</c:forEach>
 								</span>
-							</a> 
 							<br />
 							<span>
 									<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
@@ -364,21 +359,18 @@
 							<div class="col-2">
 							<img class = "border" src="${randomTwo.urllarge }" alt="" style="width:180px; height: 261px; border-radius:5px; cursor: pointer;" onclick = "location.href='javascript:goBookView( <c:out value="${randomTwo.tdbkSeq }"/> )'" /> <br />
 							<span class="booklistspan"  style="display:inline-block; padding-top:10px; cursor: pointer;"> ${randomTwo.tdbkBookTitle } </span><br />
-							<a href="">
-								<span class="booksublistspan1">
+								<span >
 									<c:forEach items="${list3}" var="list3" varStatus="status1"  >	 							
-											<c:if test="${list3.tradBook_tdbkSeq   eq  randomTwo.tdbkSeq}">
-														
-												<c:set var = "count1" value= "${count2 + 1}"></c:set>
+											<c:if test="${list3.tradBook_tdbkSeq   eq  randomTwo.tdbkSeq}">														
+												<c:set var = "count2" value= "${count2 + 1}"></c:set>
 													<c:if test="${count2 <= 2 }">
-														<c:if test="${count2 eq 2 }">,</c:if>
-															${list3.tdauName}														
-														<c:if test="${count2 eq 2 }">...</c:if>	
+														<c:if test="${count2 eq 2 }"> <span class="booksublistspan1 authorhover">,</span> </c:if>
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
+														<c:if test="${count2 eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
-										</c:forEach>
+									</c:forEach>
 								</span>
-							</a> 
 							<br />
 							<span>
 										<i class="fa-solid fa-star fa-2xs" style="color: #DC3232;"></i>
@@ -525,6 +517,7 @@
   <script>
   	var seq = $("input:hidden[name=tdbkSeq]");
   	var goUrlView = "/main/bookView";
+  	var goUrlAuthorView = "/main/authorView";
   	var form = $("form[name=form]");
   	
   	goBookView = function(keyValue) {
@@ -532,6 +525,11 @@
   	seq.val(keyValue);
   	form.attr("action", goUrlView).submit();
 	}
+  	
+  	goAuthorView = function(keyValue){
+  		seq.val(keyValue);
+  		form.attr("action", goUrlAuthorView).submit();
+  	}
   </script>
   
 </body>

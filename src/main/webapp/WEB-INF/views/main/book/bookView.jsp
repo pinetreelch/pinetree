@@ -304,11 +304,11 @@
 					</div>
 					<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 40px;">											   
 						    	
-						    	<p>
+						    	<p style="line-height: 30px;">
 							    	${booklist.tdbkIntro }
 								</p>
 								
-								<p id="toc-content">
+								<p id="toc-content" style="line-height: 30px;">
 									${booklist.tdbkIntro2 }
 								</p>
 								<button class="float-end" style="border:none; background-color: white;">
@@ -344,27 +344,66 @@
 					<div class="col-12">
 						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">저자 프로필</div>
 					</div>
-					<!-- <div class="col-12">
+					
+							
+					<c:if test="${fn:length(authorlist) > 1 || fn:length(translatorlist) > 0 }">
+					<div class="col-12">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px;">
 							<ul class="border-bottom"style="list-style:none; padding-left:0px; padding-top: 5px; padding-bottom:25px; "> 
+							
 								<li style="float: left">
 									<span class="authorprofile" style="margin-right: 7px;">저자</span>
-									<span class="authorprofile2 border-end" style=" padding-right: 17px;"><a href="" style="padding-right: 17px;">에드워드 애슈턴</a></span> 
+									
+									
+									
+									<c:forEach items="${authorlist }" var="authorlist" varStatus="status1">
+										<span class="authorprofile2
+												  <c:if test="${status1.last}"> border-end</c:if>" 
+											  style=" <c:choose>
+														<c:when test="${status1.last }">
+															padding-right: 17px;
+														</c:when>
+														
+														<c:otherwise>
+															padding-right: 3px;
+														</c:otherwise>
+													</c:choose>">
+												  <a href="">
+												  	${authorlist.tdauName }
+												   </a>
+												   
+												  	<c:choose>
+												  		<c:when test="${status1.last }">
+												  		</c:when>
+												  		
+												  		<c:otherwise>
+												  			<span style="padding-left: 3px;">•</span>
+												  		</c:otherwise>
+												  	</c:choose>											 
+										</span>
+									</c:forEach>
 								</li>
+								
+								<c:if test="${ fn:length(translatorlist) > 0}">
 								<li style="float: left">
 									<span class="authorprofile" style="padding-left: 17px; margin-right: 7px;">번역</span>
-									<span class="authorprofile2" style=" padding-right: 17px;"><a href="">배지혜</a></span>  
+									
+									<c:forEach items="${translatorlist}" var = "translatorlist" varStatus="status1">
+										<span class="authorprofile2" style=" padding-right: 17px;"> ${translatorlist.tdauName} </span>
+									</c:forEach>  
 								</li>
+								</c:if>
 							</ul>
 						</div>
-					</div> -->
+					</div> 
+					</c:if> 
+					
 					<div class="col-12" style = "padding-top: 20px;">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
-							<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  >
+
+							<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  begin= "0" end = "0">
 							<span class="authorprofileName">
-								
 								 	${authorlist.tdauName }
-								 
 							</span>
 							
 							 <c:if test="${authorlist.tdauNameEng ne null }">
@@ -373,11 +412,12 @@
 								</span>
 							</c:if> 
 							</c:forEach>
+							
 						</div>
 					</div>
 					<div class="col-12">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
-
+							abcde
 						</div>
 					</div>
 					<div class="col-12">
@@ -387,24 +427,36 @@
 						
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
 												    	
-							    	<p>
-										에드워드 애슈턴 Edward Ashton<br />
-										어느 이탈리아 소시지 회사의 뉴스레터에서부터 《이스케이프 팟(Escape Pod)》, 《아날로그(Analog)》, 《파이어사이드 픽션(Fireside Fiction)》 매거진에 이르기까지 다양한 매체를 통해 여러 단편을 선보였으며 소설 『4월의 사흘(Three Days in April)》』 과 『평범의 종말(The End of Ordinary)』의 작가이기도 하다. <br />
-										그는 아내, 여러 명의 딸, 시무룩한 모습이 사랑스러운 개 맥스와 함께 뉴욕 북부의 숲속 오두막(cabin in the woods)에서 살고 있다. (영화 「캐빈 인 더 우즈」 아님.)<br />
-										여가 시간에는 암 연구를 하고 침울한 대학원생들에게 양자 물리학을 가르치거나 목공예를 즐긴다.<br />
-										<br />
-	
+							    	<p style="line-height: 30px;">
+										<c:forEach items = "${authorlist}" var = "authorlist" varStatus = "status" begin= "0" end = "0" step = "1">
+											${authorlist.tdauIntro}
+										</c:forEach>
 									</p>
+								
+							<c:if test="${ fn:length(authorlist) > 1 || fn:length(translatorlist) > 0  }">	
+									<p id="toc-content1" style="line-height: 30px;">
+										
+										<c:forEach items = "${authorlist}" var = "authorlist" varStatus = "status" begin= "0" end = "0" step = "1">
+											${authorlist.tdauIntro2}
+										</c:forEach>
 									
-									<p id="toc-content1">
-										역자 소개 _배지혜<br />
-										뉴욕 시립대 버룩칼리지 경제학과를 졸업했다. 유학 시절 재미있게 읽던 작품을 한국어로 옮기고 싶다는 욕심이 생겼고, 현재 글밥아카데미를 수료한 뒤 바른번역 소속으로 활동중이다. 대표 역서로는 『시체와 폐허의 땅』, 『지속가능한 여행을 하고 있습니다』 등이 있다.
+										<c:forEach items = "${authorlist}" var = "authorlist" varStatus = "status" begin= "1" end = "10" step = "1">
+											${authorlist.tdauIntro}
+										</c:forEach>
+										
+										<c:if test="${ fn:length(translatorlist) > 0}">
+											<c:forEach items="${translatorlist }" var="translatorlist" varStatus="status">
+												${translatorlist.tdauIntro }
+											</c:forEach>
+										</c:if>
 									</p>
+							
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
 										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
 									</span>
 								</button>	
+							</c:if>	
 						</div>
 						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
 							목차
@@ -452,10 +504,6 @@
 						<div class="border-bottom" style="display:inline-block; width: 171px;">
 							<span class="rank">4위</span>
 							<span class="title">&nbsp;역행자</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">5위</span>
-							<span class="title">&nbsp;개정판 | 하얀늑대들</span>
 						</div>
 						<div class="border-bottom" style="display:inline-block; width: 171px;">
 							<span class="rank">5위</span>

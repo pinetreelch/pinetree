@@ -48,8 +48,17 @@ public class Main {
 	private Integer tdauSeq;
 	private String tdauNameEng;
 	private String tdauIntro;
+	private String tdauIntro2;
 	
 	
+	
+	
+	public String getTdauIntro2() {
+		return tdauIntro2;
+	}
+	public void setTdauIntro2(String tdauIntro2) {
+		this.tdauIntro2 = tdauIntro2;
+	}
 	public Integer getTdauSeq() {
 		return tdauSeq;
 	}

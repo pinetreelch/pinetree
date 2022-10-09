@@ -63,5 +63,19 @@ public class MainController {
 		return "main/book/bookView";
 	}
 	
+	@RequestMapping(value = "/authorView")
+	public String authorView(Main dto, Model model) throws Exception {
+		
+		System.out.println("authorView Page bookSeq =" + dto.getTdbkSeq());
+		
+		List<Main> result2 = service.selectListAuthor(dto);
+		List<Main> result3 = service.selectListTranslator(dto);
+		
+		model.addAttribute("authorlist",result2);
+		model.addAttribute("translatorlist",result3);
+		
+		return "main/book/authorView";
+	}
+	
 
 }
