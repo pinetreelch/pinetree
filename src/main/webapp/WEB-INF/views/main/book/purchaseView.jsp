@@ -68,7 +68,7 @@
 				<div class="row">
 					<div class="col-12" style="width:594px;">
 						<h3 class="purchasedetail" style="padding-bottom: 14px; margin:0px;">
-							주문 목록
+							주문 목록 
 							<span class="nmbbooks"> 1 </span>
 						</h3>
 						
