@@ -38,6 +38,11 @@
 	 </div>
  
 	<div class="container bodyd" >
+	<form name= "form" method ="post">
+		<input type="hidden" name = "tdbkSeq" id ="tdbkSeq" value ="${booklist.tdbkSeq }"/>
+		<input type="hidden" name = "tdbkathSeq" id ="tdbkathSeq" />
+		<input type="hidden" name = "tradAuthor_tdatSeq" id ="tradAuthor_tdatSeq" />
+	
 	 	<div class="row" >
 	 		<div class="col-4">
 	 			<div style="padding-top: 30px; display: inline-block;">
@@ -52,9 +57,7 @@
 		 		<nav  style="display: inline-block;">
 		 			<ul >		 			
 		 				<li style="display: inline-block; padding-right: 40px;">
-		 					<form action="">
 		 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
-		 					</form>
 		 				</li>
 		 				
 		 				<li style="display: inline-block;">
@@ -118,11 +121,11 @@
 													<c:set var = "count" value= "${count + 1}"></c:set>
 														<c:if test="${count <= 2 }">
 																<c:if test="${count eq 2 }"><span class="bookauthor1">,</span></c:if>
-																<span class="bookauthor1">${authorlist.tdauName}	</span>
+																<span class="bookauthor1"> ${authorlist.tdauName}	</span>
 														</c:if>																
 												</c:forEach>	
 												
-												<span class="bookauthor2">외 </span>
+												<span class="bookauthor2 ">외 </span>
 												<span class="bookauthor1"> <strong>${listlength - 2}</strong>명</span>			
 												<span class="bookauthor2">저  </span>
 												
@@ -176,7 +179,7 @@
 									<table class="table" style="width: 550px;">
 											<tr>
 												<th class="border-end border-top" style="text-align: center; vertical-align: middle; background-color: #F7FAFC">
-													<span class="sojang">소장</span> 
+													<span class="sojang ">소장</span> 
 												</th>
 												<td class="border-top">
 													<div>
@@ -211,7 +214,7 @@
 								</div>
 								
 								<div style="padding-right: 55px;">
-									<button type="button" class="btn btn-primary float-end sojangbutton" style="width: 112px; height: 48px;" onclick="location.href='../purchase/purchaseView.html'">소장하기</button>
+									<button type="button" id="buybtn" class="btn btn-primary float-end sojangbutton" style="width: 112px; height: 48px;" >소장하기</button>
 									<button  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
 											<i class="fa-solid fa-cart-shopping fa-lg" style="color: rgba(0, 0, 0, 0.5);"></i>
 									</button>
@@ -538,7 +541,7 @@
 			</div>
 		</div>
 		
-		
+		</form>
 </div>
 	
 	<footer>
@@ -629,11 +632,23 @@
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  <script src = "/resources/jscript/bookview/openclose.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ <script>
+ 	var form = $("form[name=form]");
+ 	var goUrlAuthorView = "/main/authorView";
+ 	var goUrlPurchaseView = "/main/purchaseView";
+ 	
+ 	var seq = $("input:hidden[name=tdbkSeq]");
+ 	var aa = document.getElementById('tdbkSeq').value;
+ 	
+ 	$("#buybtn").on("click", function(){
+ 		form.attr("action", goUrlPurchaseView).submit();
+ 	});
+ 	
+ </script>
 <script>
   $("#logoutBtn").on("click", function(){
 		alert('logout');
 
-		
 		$.ajax({ 
 			url : "/member/logoutProc",
 			

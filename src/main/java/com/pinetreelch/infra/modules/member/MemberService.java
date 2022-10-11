@@ -10,4 +10,5 @@ public interface MemberService {
 	public int selectOne1(Member dto) throws Exception;
 	public Member selectOneForLogin(Member dto) throws Exception;
 	public  void insert(Member dto) throws Exception;
+	public  void insert123(Member dto) throws Exception;
 }

@@ -29,7 +29,6 @@
 		INSERT INTO infraMember(
 		
 		ifmmId
-		,ifmmPwd
 		,ifmmName
 		,ifmmEmail 
 		,gender
@@ -61,6 +60,56 @@
         		SELECT last_insert_id()
         </selectKey>
         
+	</insert>
+	
+	
+	<insert id = "insert123" > 
+		
+		INSERT INTO infraMember(
+		
+		ifmmId
+
+		)
+		
+		VALUES(
+		
+		#{ifmmId} 
+
+		
+		)	
+			
+		<selectKey resultType ="String" keyProperty = "ifmmSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        </selectKey>
+        
+	</insert>
+	
+	
+	<insert id="insertUploaded">
+		INSERT INTO memberUploaded (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+			,pseq
+		 
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+			,3
+		)
 	</insert>
 	
 	

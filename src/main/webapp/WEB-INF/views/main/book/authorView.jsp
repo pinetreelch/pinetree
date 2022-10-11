@@ -69,8 +69,8 @@
 			<div class="col-12">
 				<div style="padding-left:20px; padding-top: 20px; padding-right:20px;">
 					<div class="border-bottom border-1" >	
-							<span class="authorprofileName">에드워드 애슈턴</span>
-							<span class="authorprofileName2">Edward Ashton</span><br />
+							<span class="authorprofileName">${authorname.tdauName }</span>
+							<c:if test="${authorname.tdauNameEng ne null }"> ${authorname.tdauNameEng }</c:if> <br>
 							<button class="alarmnew">+ 작가 신간알림 ⦁ 소식</button>
 							
 							<p style="padding-top:14px; padding-bottom:20px; margin: 0; text-align:right;">
@@ -114,9 +114,7 @@
 	         	         
 	         	         <p class="authorbr">
 	         	         	&lt; 
-	         	         	<c:forEach items="${authorlist }" var = "authorlist" varStatus= "status">
-	         	         		${authorlist.tdbkBookTitle }
-	         	         	</c:forEach>
+	         	         		${authorname.tdbkBookTitle }
 	         	         	 &gt; 
 	         	         	 
 	         	         	 저자소개
@@ -147,15 +145,18 @@
 				<div class="border-bottom">
 					<div style="display: table; width: 100%;">
 					
+					<c:forEach items="${booklist}" var="booklist" varStatus="status">
 						<div style="display: table-cell; padding: 20px 15px; padding-right:0; vertical-align: top; width:125px;">
 							<a href="./bookView.html">
-								<img class="border" src="http://image.kyobobook.co.kr/images/book/large/730/l9791170521730.jpg" alt="" style="width:110px; height: 167px;"/>
+								<img class="border" src="${booklist.urllarge }" alt="" style="width:110px; height: 167px;"/>
 							</a>
 							
 						</div>
 						
 						<div style="display: table-cell; padding: 20px 15px; vertical-align: top;">
-							<p class="authordetailbook"><a href="./bookView.html">미키7</a></p>
+						
+						
+							<p class="authordetailbook"><a href="./bookView.html"> ${booklist.tdbkBookTitle }</a></p>
 							
 							<div style="display:table;">
 								<ul class="authorviewul"style="padding:0; ">
@@ -176,52 +177,62 @@
 									</li>
 										
 									<li style="margin-right: -5px;">
-										<a href="">
-											에드워드 애슈턴
-										</a>
+										<c:forEach items="${authorlist }" var = "authorlist" varStatus = "status">
+											<c:set var = "count" value= "${count + 1}"></c:set>
+											<span class= "authorviewul2" <c:if test="${!status.last }"> style="margin-right: -10px;" </c:if> <c:if test="${status.last }"> style="margin-right: -5px;" </c:if>       >
+												<c:if test="${count <= 2 }">
+													<c:if test="${count eq 2 }">,</c:if>
+													${authorlist.tdauName }
+												</c:if>
+											</span>									
+										</c:forEach>
+										
+										<c:if test="${fn:length(authorlist) > 2}">
+											<span class= "authorviewul2">
+												외 ${fn:length(authorlist) - 2 }명 												
+											</span>
+										</c:if>
+									</li>
+									
+									<c:if test="${fn:length(translatorlist) > 0 }">
+										<li style="margin-right: -5px;">
+											<span class= "authorviewul2">
+											<c:forEach items="${translatorlist}" var = "translatorlist" varStatus="status">
+												${translatorlist.tdauName }
+											</c:forEach>
+												<span>역</span>
+											</span>
+										</li>
+									</c:if>
+									
+									<li style="margin-right: -5px;">
+										<span class= "authorviewul2">
+											${booklist.tdbkPublisher }
+										</span>
 									</li>
 									
 									<li style="margin-right: -5px;">
-										<a href="">
-											배지혜
-											<span>역</span>
-										</a>
-									</li>
-									
-									<li style="margin-right: -5px;">
-										<a href="">
-											황금가지
-										</a>
-									</li>
-									
-									<li style="margin-right: -5px;">
-										<a href="">
-											영미소설
-										</a>
+										<span class= "authorviewul2">
+											${booklist.tdbkGenre}
+										</span>
 									</li>
 								</ul>
 							</div>
 							
 							<p class="authorviewbookcontent">
-								          &lt;책소개&gt;
-							<a href="./bookView.html" style="color:#666666;">
-							「기생충」으로 아카데미상을 수상한 봉준호 감독의 차기 SF 영화의 원작!
-							복제인간으로 끊임없이 되살아나는 한 사내를 주인공으로, 
-							정체성에 대한 철학적 질문과 계급간의 모순을 파고든 SF 장편소설.
-							
-							"『미키7』은 모험 소설을 가장한 세련된 철학적 풍자다....
-							</a>
+								${booklist.tdbkIntro3 }
 							</p>
 							
 							<p>
-								<span class="authorviewsojang">소장</span>
+								<span class="authorviewsojang">판매가 </span>
 								<span class="authorviewsojang2">
-									10,500
+										<fmt:formatNumber value="${booklist.tdbkSales }" pattern="#,###"/>
 									<span>원</span>
 								</span>
 								
 							</p>
-						</div>		
+						</div>
+						</c:forEach>		
 				</div>	
 			</div>
 		</div>

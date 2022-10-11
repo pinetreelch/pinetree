@@ -80,6 +80,7 @@
 		    , b.tradAuthor_tdatSeq
 		    , b.tradBook_tdbkSeq
 			, c.tdauAuthorOrTranslator	
+			, b.tdbkathSeq
 		from
 			tradBook a
 		left join tradBookAuthor b on tradBook_tdbkSeq = tdbkSeq
@@ -125,6 +126,35 @@
 		AND tdbkSeq = #{tdbkSeq}
 	</select>
 	
+	<select id = "selectOneBook" resultMap = "resultMapObj">
+	select
+		a.tdbkSeq
+	    ,b.urllarge
+	    ,a.tdbkBookTitle
+	    ,a.tdbkSales
+	from
+		tradBook a
+	left join bkUploaded b on a.tdbkSeq = b.pSeq
+	where
+		1=1
+		AND a.tdbkSeq = #{tdbkSeq}	
+	</select>
+	
+	<select id = "selectOneAuthor" resultMap = "resultMapObj">
+	select 
+		a.tdbkathSeq
+	    , b.tdbkBookTitle
+	    , c.tdauName
+	    , c.tdauNameEng
+	 from
+		tradBookAuthor a
+	left join tradBook b on b.tdbkSeq = a.tradBook_tdbkSeq
+	left join tradAuthor c on c.tdauSeq = a.tradAuthor_tdatSeq 
+	where 
+		1=1
+	    AND a.tdbkathSeq = #{tdbkathSeq}
+	</select>
+	
 	<select id = "selectListAuthor" resultMap = "resultMapObj">
 	select
 		a.tdbkSeq
@@ -164,6 +194,27 @@
 		1=1
 		AND tdbkSeq = #{tdbkSeq}
 		AND tdauAuthorOrTranslator = 0
+	</select> 
+	
+	<select id = "selectBooks" resultMap = "resultMapObj">
+	select
+		a.tdbkSeq
+        , d.urllarge
+        , a.tdbkBookTitle
+        , c.tdauName
+        , b.tradAuthor_tdatSeq
+        , a.tdbkIntro3
+        , a.tdbkGenre
+        , a.tdbkPublisher
+        , a.tdbkSales
+    from
+		tradBook a
+	left join tradBookAuthor b on b.tradBook_tdbkSeq = a.tdbkSeq
+    left join tradAuthor c on b.tradAuthor_tdatSeq = c.tdauSeq
+    left join bkUploaded d on a.tdbkSeq = d.pSeq
+    where
+		1=1
+        AND  b.tradAuthor_tdatSeq = #{tradAuthor_tdatSeq}
 	</select> 
 	
 	<insert id = "insert"> 

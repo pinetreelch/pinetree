@@ -67,14 +67,33 @@ public class MainController {
 	public String authorView(Main dto, Model model) throws Exception {
 		
 		System.out.println("authorView Page bookSeq =" + dto.getTdbkSeq());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + dto.getTdbkathSeq());
+		System.out.println("@@@!@@@#@##@323 ====== " + dto.getTradAuthor_tdatSeq());
 		
+		
+		Main result = service.selectOneAuthor(dto);
 		List<Main> result2 = service.selectListAuthor(dto);
 		List<Main> result3 = service.selectListTranslator(dto);
+		List<Main> result4 = service.selectBooks(dto);
 		
+		model.addAttribute("authorname",result);
 		model.addAttribute("authorlist",result2);
 		model.addAttribute("translatorlist",result3);
+		model.addAttribute("booklist",result4);
 		
 		return "main/book/authorView";
+	}
+	
+	@RequestMapping(value = "/purchaseView")
+	public String purchaseView(Main dto, Model model) throws Exception {
+		
+		System.out.println(dto.getTdbkSeq());
+		
+		Main result = service.selectOneBook(dto);
+		
+		model.addAttribute("bookinfo",result);
+		
+		return "main/book/purchaseView";
 	}
 	
 

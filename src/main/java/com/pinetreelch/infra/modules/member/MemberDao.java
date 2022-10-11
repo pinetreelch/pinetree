@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class MemberDao {
 	
@@ -47,4 +49,16 @@ public class MemberDao {
 		int result = sqlSession.insert(namespace + ".insert", dto); 
 		return result;
 	}
+	
+	
+	public  int insert123(Member dto) {
+		
+		int result = sqlSession.insert(namespace + ".insert123", dto); 
+		return result;
+	}
+	
+//	uploaded
+	public int insertUploaded(Member dto) { 
+		return sqlSession.insert(namespace + ".insertUploaded", dto); 
+		}
 }

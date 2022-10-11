@@ -54,10 +54,21 @@ public class MemberController {
 	public String memberIsnt(Member dto) throws Exception {
 		
 		System.out.println(dto.getIfmmId());
-		System.out.println(dto.getIfmmPwd());
+		
 		service.insert(dto);
 		
 		return "main/login/login";
+	}
+	
+	@RequestMapping(value = "/memberInst1")
+	public String memberIsnt1(Member dto) throws Exception {
+		
+		System.out.println(dto.getIfmmId()+"@@@@@@@@@@@@@");
+		
+		
+		service.insert123(dto);
+		
+		return "redirect:/member/memberList";
 	}
 	
 	

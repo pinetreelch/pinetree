@@ -1,6 +1,11 @@
 package com.pinetreelch.infra.modules.member;
 
-public class Member {
+import org.springframework.web.multipart.MultipartFile;
+
+
+import com.pinetreelch.infra.common.base.Base;
+
+public class Member extends Base{
 	private String ifmmSeq;
 	private String ifmmName;
 	private Integer gender;
@@ -18,6 +23,18 @@ public class Member {
 	private Integer ifmmMktapppushnight;
 	
 	private String ifmmDob;
+	
+	
+	private MultipartFile[] ifmmUploadedFile;
+	
+	
+	
+	public MultipartFile[] getIfmmUploadedFile() {
+		return ifmmUploadedFile;
+	}
+	public void setIfmmUploadedFile(MultipartFile[] ifmmUploadedFile) {
+		this.ifmmUploadedFile = ifmmUploadedFile;
+	}
 	
 	public String getIfmmDob() {
 		return ifmmDob;

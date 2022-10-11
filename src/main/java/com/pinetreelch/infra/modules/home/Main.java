@@ -27,6 +27,7 @@ public class Main {
 	private Integer tdbkSales;
 	private String tdbkIntro;
 	private String tdbkIntro2;
+	private String tdbkIntro3;
 	private String tdbkPusblisherOpinion;
 	private String tdbkPusblisherOpinion2;
 	private String tdbkToc;
@@ -50,9 +51,23 @@ public class Main {
 	private String tdauIntro;
 	private String tdauIntro2;
 	
+	private String tdbkathSeq;
 	
 	
 	
+	
+	public String getTdbkIntro3() {
+		return tdbkIntro3;
+	}
+	public void setTdbkIntro3(String tdbkIntro3) {
+		this.tdbkIntro3 = tdbkIntro3;
+	}
+	public String getTdbkathSeq() {
+		return tdbkathSeq;
+	}
+	public void setTdbkathSeq(String tdbkathSeq) {
+		this.tdbkathSeq = tdbkathSeq;
+	}
 	public String getTdauIntro2() {
 		return tdauIntro2;
 	}

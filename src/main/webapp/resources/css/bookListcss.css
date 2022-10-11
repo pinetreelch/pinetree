@@ -340,6 +340,17 @@ line-height: 22px;
 
 color: #666666;
 }
+
+.abcd{
+	padding: 0px;
+}
+
+.abcd:hover{
+	text-decoration: underline;
+}
+
+
+
 .bookauthor2{
 	
 font-family: 'Inria Sans';
@@ -1179,7 +1190,7 @@ padding: 8px;
     padding: 0;
 }
 
-.authorviewul a{
+.authorviewul2 {
 			
 
 font-weight: 500;
@@ -1341,6 +1352,10 @@ padding: 17px;
   #toc-toggle3 {
     cursor: pointer;
     color: #2962ff;
+  }
+  
+  #onlyhover:hover {
+  	text-decoration: underline;
   }
   
 input::-webkit-outer-spin-button,

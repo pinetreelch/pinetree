@@ -130,8 +130,8 @@
 		
 	</div>
 
-<form method ="post" action = "/codeGroup/codeGroupInst">
 
+<form name= "form" method= "post" enctype="multipart/form-data">
 <div class="container-fluid bodyd3" style="padding-top: 50px;">																															<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
  			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">회원 추가</span></i>
@@ -143,7 +143,7 @@
 						<div class="row" style="padding-top: 30px;" >						
 							<div class="col" style="display: inline-block;  width: 250px;">
 							 	<label for="2" class="form-label">파일 첨부  </label> <br>
-								<input type= "file" name="uploadFile" id = "uploadFile" multiple>
+								<input type= "file" name="ifmmUploadedFile" id = "ifmmUploadedFile" multiple>
 								<div class= "border" style = " height: 150px; padding:5px; background-color: #cedaed;">
 								 <ul>
 									<li style= "background-color: white;">dfsdvsdvsdvsdvsdvsdv.pdf   <span style="float:right; padding-right: 5px;"> <button type="button" style="width: 25px; height: 25px;">X</button>  </span>	</li>
@@ -174,7 +174,7 @@
 								</div>
 							</div>
 							
-							<button type ="button" onclick = "submit213('uploadFile', 0, 0, 1, 800000, 10000000, 2 )" >제출 </button>
+							<button type ="button" onclick = "submit213('ifmmUploadedFile', 0, 0, 1, 800000, 10000000, 2 )" >제출 </button>
 							<button type ="button"  id= "submitbtn1" >누르지마세요  </button>
 						</div>
 						
@@ -195,7 +195,7 @@
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">회원 이름 </label>
-							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmName }">
+							    <input name = "ifmmName" id= "ifmmName"type="text" class="form-control" value = "${list.ifmmName }">
 							  </div>
 							  
 							  
@@ -205,8 +205,6 @@
 							 	  <div>
 										<c:set var="cachedList" value="${CodeServiceImpl.selectListCachedCode()}"/>
 										
-									
-											
 												<select class="form-select" name="gender" >
 													<option value="" >-----선택-----</option>
 													<option value="1"  <c:if test="${list.gender eq 1 }"> selected </c:if>> 
@@ -245,7 +243,7 @@
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label"> 아이디 </label>
 							    <div name="spanmessage" id="spanmessage" class="idckmessage"></div>
-							    <input name = "idinput"id="idinput" type="text" class="form-control" value = "${list.ifmmId }">
+							    <input name = "ifmmId" id="ifmmId" type="text" class="form-control" value = "${list.ifmmId }">
 							    
 							    
 							  </div>
@@ -552,7 +550,7 @@
 										<i class="fa-solid fa-trash"></i>
 									</button>	
 									
-									<button type="button" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+									<button type="button" id="insertbtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-bookmark"></i>
 									</button>				
 								</div>
@@ -561,7 +559,8 @@
 				</div>	<!-- col12 -->
  			</div> 		<!-- 검정 테리 코드그룹 관리 안-->
  		</div>
-	</form>
+ 	</form>
+	
 		<div style="visibility: hidden; height: 100px;"> 
 				
 		</div>	
@@ -572,43 +571,21 @@
   
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69e4faebb36ff5a8c6779b3c2d9ddaa2&libraries=services"></script>
+ <script src="/resources/jscript/fileattatch.js"></script>
+ 
+
+<script>
+var goUrlInst = "/member/memberInst1";
+var form = $("form[name=form]");
+
+
+$("#insertbtn").on("click", function(){
+	form.attr("action", goUrlInst).submit();
+});
+
+</script>
  
 <script>
-
-$("#submitbtn").on("click", function(){
-	var obj = document.getElementById("uploadFile").files;	
-	var obj2 = document.getElementById("uploadImage").files;	
-	
-	alert(obj);
-	alert(obj.length);
-	
-	for(var i = 0; i < obj.length; i ++){
-		alert(obj[i].size);
-	}
-	
-	var totalsize = 0;
-	
-	if(obj.length > 3){
-		return false;	
-	} else {
-		for(var j = 0; j < obj.length; j ++){
-			if(obj[j].size > 800000){
-				alert(obj[j].name + "이 파일이  3mb를 초과합니다.")
-				return false;
-			} else {
-				totalsize = totalsize + obj[j].size;
-			}
-		}
-		alert('total size = ' + totalsize);
-		
-		if(totalsize < 1000000){
-			alert('submit');
-		} else {
-			alert('전체 파일 용량이 10mb를 초과합니다.');
-			return false;
-		}
-	}		
-});
 
 submit213 = function(objName, allowedMaxTotalFileNumber , seq, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType){
 	
@@ -641,73 +618,19 @@ submit213 = function(objName, allowedMaxTotalFileNumber , seq, allowedExtdiv, al
 	
 	if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
 	
-
-	/* stopppppppppppppppp
-	return false;
 	if (uiType == 1) {
 		
-	}else if(uiType == 2) {
-		$("#ulFile" + seq).children().remove();
+	} else if(uiType == 2) {
 		
-		for (var i = 0 ; i < fileCount ; i++) {
-			addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-		}
-	}else {
-		return false;
 	}
+	
+	
 	alert('제출 ');
 	return false;
 }
-*/
-checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
-	if(allowedMaxTotalFileNumber < fileCount){
-		alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
-//		$("#file"+seq).val("");
-//		obj.val("");
-		return false;
-	}
-}
 
-checkUploadedExt = function(objName, seq, div) {
-	
-	// 이미지 전용
-	var extArray1 = new Array();
-	extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
-	
-	var ext = objName.split('.').pop().toLowerCase();
-	var extArray = eval("extArray" + div);
-	
-	
-	if(extArray.indexOf(ext) == -1) {
-		alert("허용된 확장자가 아닙니다.");
-//		$("#file"+seq).val("");
-		return false;
-	}
-}
 
-checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
 
-	if(obj.size > allowedEachFileSize){
-		alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
-		/* $("#file"+seq).val(""); */
-		return false;
-	}
-}
-
-function kbToMb(bytes) {
-    var e = Math.floor(Math.log(bytes)/Math.log(1024));
-
-    if(e == "-Infinity") return 0;
-    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
-}
-
-checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
-	if(totalSize > allowedTotalFileSize){
-		alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
-		/* $("#file"+seq).val(""); */
-		return false;
-	}
-}
 
 </script> 
  
@@ -908,70 +831,8 @@ $("#idinput").on("focusout", function(){
 	else{
 		alert('no!!');
 	}
-	
-	
-	
-	
-	
-	
-});
-
-	
+});	
 	
 </script>
-
-
-<script >
-
-/*
-$("#searchBtn").on("click", function(){
-	
-	alert('dd');
-	
-	var address = $("#sample4_roadAddress").val();
-	
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	var callback = function(result, status) {
-		
-	    if (status === kakao.maps.services.Status.OK) {
-	    	
-	    	 alert(JSON.stringify(result[0].x));  
-	    	
-	    	var xcord = JSON.stringify(result[0].x);
-	    	var ycord = JSON.stringify(result[0].y);
-	    	
-	    	
-	    	
-	    	document.getElementById('xcoord').value = xcord; 
-	    	document.getElementById('ycoord').value = ycord; 
-	    	
-	    	
-	    	 /* $("xcoord").val('xcord'); 			->> 이거 왜 작동 안하지?????/  
-	        console.log(result);
-	    }
-	    
-	   
-	
-	};
-	
-	geocoder.addressSearch(address, callback);
-	
-	
- 	 geocoder.addressSearch(address, function (result, status){
-		if (status === kakao.maps.services.Status.OK) {
-	   
-	        $("xcoord").val(result[0].x);
-	    }
-	});  
-
-	
-});
-
- */
-
-</script>
-
-
 </body>
 </html>

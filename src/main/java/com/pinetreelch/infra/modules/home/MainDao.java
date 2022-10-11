@@ -43,6 +43,13 @@ public class MainDao {
 	public Main selectOne(Main dto){				 
 		return sqlSession.selectOne(namespace + ".selectOne", dto); 
 	}
+	public Main selectOneAuthor(Main dto){				 
+		return sqlSession.selectOne(namespace + ".selectOneAuthor", dto); 
+	}
+	
+	public Main selectOneBook(Main dto){				 
+		return sqlSession.selectOne(namespace + ".selectOneBook", dto); 
+	}
 	
 	public List<Main> selectListAuthor(Main dto){				 
 		return sqlSession.selectList(namespace + ".selectListAuthor", dto); 
@@ -51,5 +58,8 @@ public class MainDao {
 	
 	public List<Main> selectListTranslator(Main dto){				 
 		return sqlSession.selectList(namespace + ".selectListTranslator", dto); 
+	}
+	public List<Main> selectBooks(Main dto){				 
+		return sqlSession.selectList(namespace + ".selectBooks", dto); 
 	}
 }

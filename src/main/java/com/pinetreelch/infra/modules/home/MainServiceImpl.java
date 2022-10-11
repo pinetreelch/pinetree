@@ -78,4 +78,28 @@ public class MainServiceImpl implements MainService {
 		
 		return result;
 	}
+	
+	@Override
+	public List<Main> selectBooks(Main dto) throws Exception{
+		
+		List<Main> result = dao.selectBooks(dto);
+		
+		return result;
+	}
+	
+	@Override
+	public Main selectOneAuthor (Main dto) throws Exception{
+		
+		Main result = dao.selectOneAuthor(dto);
+		
+		return result;
+	}
+	
+	@Override
+	public Main selectOneBook (Main dto) throws Exception{
+		
+		Main result = dao.selectOneBook(dto); 
+		
+		return result;
+	}
 }

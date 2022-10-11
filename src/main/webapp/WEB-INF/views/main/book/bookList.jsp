@@ -172,9 +172,12 @@
 		<br />
 		
 		
-		<section> 최근 들어온 책 sdf  </section>
+		<section> 최근 들어온 책   </section>
 			<form name = "form" id = "form" method = "post">
 			<input type = "hidden" name = "tdbkSeq" id = "tdbkSeq">
+			<input type = "hidden" name = "tdbkathSeq" id = "tdbkathSeq">
+			<input type = "hidden" name = "tradAuthor_tdatSeq" id = "tradAuthor_tdatSeq">
+			
 			<div class="row">
 				<c:forEach items="${list}" var="list" begin = "0" end = "2" step = "1" varStatus="status" >
 					<div class="col-4" style="padding-top: 30px;">
@@ -222,7 +225,7 @@
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
 														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">,</span></c:if>
-												         	<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;">${list3.tdauName}</span>
+												         	<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/>, <c:out value="${list3.tdbkathSeq }"/>, <c:out value="${list3.tradAuthor_tdatSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName}</span>
 														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span></c:if>	 
 													</c:if>																
 											</c:if>											
@@ -261,7 +264,7 @@
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
 														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">,</span></c:if>
-															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span>															
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/>, <c:out value="${list3.tdbkathSeq }"/>, <c:out value="${list3.tradAuthor_tdatSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span>															
 														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
@@ -299,7 +302,7 @@
 												<c:set var = "count" value= "${count + 1}"></c:set>
 													<c:if test="${count <= 2 }">
 														<c:if test="${count eq 2 }"> <span  class="booksublistspan1 authorhover">,</span> </c:if>
-															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName}</span> 														
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/>, <c:out value="${list3.tdbkathSeq }"/>, <c:out value="${list3.tradAuthor_tdatSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName}</span> 														
 														<c:if test="${count eq 2 }"> <span class="booksublistspan1 authorhover">...</span>  </c:if>	
 													</c:if>																
 											</c:if>											
@@ -333,7 +336,7 @@
 												<c:set var = "count1" value= "${count1 + 1}"></c:set>
 													<c:if test="${count1 <= 2 }">
 														<c:if test="${count1 eq 2 }"> <span class="booksublistspan1 authorhover">,</span> </c:if>
-														 <span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
+														 <span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/>, <c:out value="${list3.tdbkathSeq }"/>, <c:out value="${list3.tradAuthor_tdatSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
 														<c:if test="${count1 eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
@@ -365,7 +368,7 @@
 												<c:set var = "count2" value= "${count2 + 1}"></c:set>
 													<c:if test="${count2 <= 2 }">
 														<c:if test="${count2 eq 2 }"> <span class="booksublistspan1 authorhover">,</span> </c:if>
-															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
+															<span class="booksublistspan1 authorhover" onclick = "location.href='javascript:goAuthorView( <c:out value="${list3.tdbkSeq }"/>, <c:out value="${list3.tdbkathSeq }"/>, <c:out value="${list3.tradAuthor_tdatSeq }"/> )'" style="cursor: pointer;"> ${list3.tdauName} </span> 														
 														<c:if test="${count2 eq 2 }"> <span class="booksublistspan1 authorhover">...</span> </c:if>	
 													</c:if>																
 											</c:if>											
@@ -516,6 +519,8 @@
   
   <script>
   	var seq = $("input:hidden[name=tdbkSeq]");
+  	var seqAt = $("input:hidden[name=tdbkathSeq]");
+  	var seqAtSeq = $("input:hidden[name=tradAuthor_tdatSeq]");
   	var goUrlView = "/main/bookView";
   	var goUrlAuthorView = "/main/authorView";
   	var form = $("form[name=form]");
@@ -526,8 +531,10 @@
   	form.attr("action", goUrlView).submit();
 	}
   	
-  	goAuthorView = function(keyValue){
+  	goAuthorView = function(keyValue, keyValue2, keyValue3){
   		seq.val(keyValue);
+  		seqAt.val(keyValue2);
+  		seqAtSeq.val(keyValue3);
   		form.attr("action", goUrlAuthorView).submit();
   	}
   </script>
