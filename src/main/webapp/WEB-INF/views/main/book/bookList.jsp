@@ -172,7 +172,7 @@
 		<br />
 		
 		
-		<section> 최근 들어온 책   </section>
+		<section> 최근 들어온 책 sdf  </section>
 			<form name = "form" id = "form" method = "post">
 			<input type = "hidden" name = "tdbkSeq" id = "tdbkSeq">
 			<div class="row">
