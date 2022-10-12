@@ -24,11 +24,24 @@ public class Member extends Base{
 	
 	private String ifmmDob;
 	
+	private Integer mainkey;
+	
+	private String siteadd;
 	
 	private MultipartFile[] ifmmUploadedFile;
 	
-	
-	
+	public String getSiteadd() {
+		return siteadd;
+	}
+	public void setSiteadd(String siteadd) {
+		this.siteadd = siteadd;
+	}
+	public Integer getMainkey() {
+		return mainkey;
+	}
+	public void setMainkey(Integer mainkey) {
+		this.mainkey = mainkey;
+	}
 	public MultipartFile[] getIfmmUploadedFile() {
 		return ifmmUploadedFile;
 	}

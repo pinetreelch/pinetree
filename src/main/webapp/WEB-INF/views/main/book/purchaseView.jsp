@@ -83,7 +83,21 @@
 									<div style="padding-top:10px; padding-bottom: 15px;">
 										<div style="display:inline-block; width: 220px; padding-left: 15px; padding-bottom: 15px; padding-top:15px;">
 											<p class="purchaseauthorname" style="margin:0">${bookinfo.tdbkBookTitle }</p>
-											<p class="purchasebookname" style="margin-top: 10px;">에드워드 애슈턴</p>
+											<p class="purchasebookname" style="margin-top: 10px;">
+												<c:set var = "length" value="${fn:length(authorlist)}"></c:set> 
+												<c:forEach items="${authorlist }" var="authorlist" varStatus="status">
+												<c:set var="count" value="${count+1}"></c:set>
+													<c:if test="${count < 3 }">	
+														${authorlist.tdauName }
+														<c:if test="${count eq 1 }">,</c:if>
+													</c:if>
+												</c:forEach>
+												
+												<c:if test="${length > 2 }">
+												외 ${length - 2}명 
+												</c:if>
+												
+											</p>
 										</div>
 										<div style="display:inline-block; width: 250px;">
 											<span class="purchaseprice" style="float: right;">원</span>

@@ -15,7 +15,10 @@ public class LoginController {
 	MemberService service12;
 	
 	@RequestMapping(value = "")
-	public String login() {
+	public String login(Login dto) {
+		
+		System.out.println("loginpage실행 ");
+		System.out.println("@@@@@ = "+ dto.getSiteadd());
 		
 		return "main/login/login";
 	}
@@ -28,7 +31,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/signup2")
 	public String signup2() {
-		
+	
 		return "main/login/signuppagetwo";
 	}
 	

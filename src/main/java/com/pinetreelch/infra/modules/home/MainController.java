@@ -90,8 +90,10 @@ public class MainController {
 		System.out.println(dto.getTdbkSeq());
 		
 		Main result = service.selectOneBook(dto);
+		List<Main> result2 = service.selectListAuthor(dto);
 		
 		model.addAttribute("bookinfo",result);
+		model.addAttribute("authorlist",result2);
 		
 		return "main/book/purchaseView";
 	}

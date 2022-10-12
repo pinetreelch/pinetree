@@ -14,6 +14,8 @@
 	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
 <body>
+	<form name= "form" method ="post">
+	<input type="hidden" id = "siteadd" name="siteadd">
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
@@ -38,7 +40,6 @@
 	 </div>
  
 	<div class="container bodyd" >
-	<form name= "form" method ="post">
 		<input type="hidden" name = "tdbkSeq" id ="tdbkSeq" value ="${booklist.tdbkSeq }"/>
 		<input type="hidden" name = "tdbkathSeq" id ="tdbkathSeq" />
 		<input type="hidden" name = "tradAuthor_tdatSeq" id ="tradAuthor_tdatSeq" />
@@ -66,10 +67,8 @@
 		 					</a>
 		 				</li>
 		 				
-		 				<li style="display: inline-block;">
-		 					<a href="">
-		 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i>
-		 					</a>
+		 				<li style="display: inline-block;">		 					
+		 						<span style="cursor: pointer; "id = "mypage" name = "mypage" onclick = "mypageclick('/member/mypage')" ><i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i></span>
 		 				</li>		
 				 	</ul>
 			 	</nav>
@@ -541,9 +540,9 @@
 			</div>
 		</div>
 		
-		</form>
+		
 </div>
-	
+</form>	
 	<footer>
 				<div class="container-fluid" style="padding-top: 30px;">
 						<hr  style="background-color: #F0F0F0;">
@@ -638,12 +637,22 @@
  	var goUrlPurchaseView = "/main/purchaseView";
  	
  	var seq = $("input:hidden[name=tdbkSeq]");
- 	var aa = document.getElementById('tdbkSeq').value;
  	
+ 	var aa = document.getElementById('tdbkSeq').value;
+
  	$("#buybtn").on("click", function(){
  		form.attr("action", goUrlPurchaseView).submit();
  	});
+
+ </script>
+ 
+ <script>
+ 	var siteadd = $("input:hidden[name=siteadd]");
  	
+	mypageclick = function(address){
+		siteadd.val(address);
+ 		form.attr("action", address).submit();
+ 	}
  </script>
 <script>
   $("#logoutBtn").on("click", function(){

@@ -116,7 +116,7 @@
  	var form = $("form[name=form]");
  	
  	$("#btnLogin").on("click", function(){
- 		alert('login');
+ 		
  		
  		var idcheck = document.getElementById('ifmmId').value;
 		var pwd =	document.getElementById('ifmmPwd').value;
@@ -138,7 +138,7 @@
 					document.getElementById('ifmmSeq').value = ifm;
  					
 					form.attr("action", goHome).submit();
-				 } else {
+				 } else if(data.rt == "fail") {
 					 alert('회원정보가 없음 - > 다시 입력하세요 ');
 				 }
 				

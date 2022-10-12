@@ -14,6 +14,9 @@
 	  	<link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
 <body>
+	<form name = "form" method= "post">
+	<input type="hidden" name = "mainkey" id = "mainkey">
+	<input type ="hidden" name = "sessSeq" id = "sessSeq" value="${sessSeq}">
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
@@ -67,10 +70,8 @@
 				 					</a>
 				 				</li>
 				 				
-				 				<li style="display: inline-block;">
-				 					<a href="">
-				 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i>
-				 					</a>
+				 				<li style="display: inline-block;">			 					
+				 						<span style="cursor:pointer;" id ="mypage" name ="myapge"> <i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i></span>				 					
 				 				</li>				 				
 						 	</ul>
 					 	</nav>
@@ -521,9 +522,16 @@
   	var seq = $("input:hidden[name=tdbkSeq]");
   	var seqAt = $("input:hidden[name=tdbkathSeq]");
   	var seqAtSeq = $("input:hidden[name=tradAuthor_tdatSeq]");
+  	var sessSeq = $("input:hidden[name=sessSeq]");
+  	var mainkey = $("input:hidden[name=mainkey]");
   	var goUrlView = "/main/bookView";
   	var goUrlAuthorView = "/main/authorView";
   	var form = $("form[name=form]");
+  	
+  	$("#mypage").on("click", function(){
+  		alert(sessSeq.val());
+  	});
+  	
   	
   	goBookView = function(keyValue) {
   	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
@@ -538,6 +546,6 @@
   		form.attr("action", goUrlAuthorView).submit();
   	}
   </script>
-  
+  </form>
 </body>
 </html>

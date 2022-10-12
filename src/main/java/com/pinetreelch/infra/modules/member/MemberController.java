@@ -94,6 +94,14 @@ public class MemberController {
 //			}
 //	}
 	
+	@RequestMapping(value = "/mypage")
+	public String mypage(Member dto) throws Exception {
+		
+		
+		return "/mypage/mypagelist";
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/testaction")
 	public Map<String, Object> testaction(Member dto) throws Exception{

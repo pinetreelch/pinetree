@@ -1,9 +1,11 @@
 package com.pinetreelch.infra.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 
 public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 
@@ -16,10 +18,12 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 		} else {
 			
 			System.out.println("CheckLoginSessionInterception 실행!!!!!!!");
+			String referer = request.getHeader("Referer");
 			response.sendRedirect("/login/");
-            return false;
+
+					
+           return false;
 		}
-		
 		return super.preHandle(request, response, handler);
 	}
 	
