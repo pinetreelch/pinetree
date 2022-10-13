@@ -98,10 +98,18 @@ public class MemberController {
 	public String mypage(Member dto) throws Exception {
 		
 		
+		
 		return "/mypage/mypagelist";
 	}
 	
-	
+	@RequestMapping(value = "/infochangecheck")
+	public String infochange(Member dto) throws Exception {
+		
+		System.out.println(dto.getMainkey());
+		
+		return "/mypage/infochangecheck";
+	}
+		
 	@ResponseBody
 	@RequestMapping(value = "/testaction")
 	public Map<String, Object> testaction(Member dto) throws Exception{
@@ -132,9 +140,7 @@ public class MemberController {
 		System.out.println(result.getIfmmSeq());
 		
 		if (result == null) {
-
-			returnMap.put("rt", "fail");
-			
+			returnMap.put("rt", "fail");			
 		} else {
 			
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
