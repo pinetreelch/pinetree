@@ -526,10 +526,12 @@
   	var mainkey = $("input:hidden[name=mainkey]");
   	var goUrlView = "/main/bookView";
   	var goUrlAuthorView = "/main/authorView";
+  	var goUrlMyapge = "/member/mypage"
   	var form = $("form[name=form]");
   	
   	$("#mypage").on("click", function(){
-  		alert(sessSeq.val());
+  		mainkey.val(sessSeq.val());
+  		form.attr("action", goUrlMyapge).submit();
   	});
   	
   	

@@ -273,9 +273,7 @@
  		checkboxes.forEach((checkbox) => {
  			checkbox.checked = selectAll.checked
  		})
- 		
- 		
- 	
+
  	}
  	
  	// insert 하기 

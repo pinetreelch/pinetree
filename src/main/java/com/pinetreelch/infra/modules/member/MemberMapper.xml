@@ -24,11 +24,28 @@
 	
 	</select>
 	
+	<select id="selectwishlist" resultMap="resultMapObj">
+		select
+			a.tdwlSeq
+		    , a.tradBook_tdbkSeq
+		    , c.urllarge
+		    , b.tdbkBookTitle
+		    , b.tdbkSales
+		    , a.iframMember_ifmmSeq
+	    from tradWishlist a
+	    left join tradBook b on b.tdbkSeq = a.tradBook_tdbkSeq
+	    left join bkUploaded c on a.tradBook_tdbkSeq = c.pSeq
+	    where 1=1
+			AND a.iframMember_ifmmSeq = #{ifmmSeq}
+	
+	</select>
+	
 	<insert id = "insert" > 
 		
 		INSERT INTO infraMember(
 		
 		ifmmId
+		,ifmmPwd
 		,ifmmName
 		,ifmmEmail 
 		,gender
@@ -144,5 +161,24 @@
 			AND a.ifmmPwd = #{ifmmPwd}
 	</select>
 	
+	<select id = "selectOneMember" resultMap = "resultMapObj">
+		select
+			*
+		from
+			infraMember a
+		where 
+			1=1
+		    AND a.ifmmSeq = ${ifmmSeq}
+	</select>
+	
+	<!-- update -->
+	<update id = "update"> 
+		update
+			infraMember
+		set
+			ifmmPwd = #{ifmmPwd}
+		where 
+			ifmmId = #{ifmmId}
+	</update>
 	
 </mapper>

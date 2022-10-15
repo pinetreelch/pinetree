@@ -95,19 +95,49 @@ public class MemberController {
 //	}
 	
 	@RequestMapping(value = "/mypage")
-	public String mypage(Member dto) throws Exception {
+	public String mypage(Member dto, HttpServletRequest hrequest, Model model) throws Exception {
 		
 		
+		System.out.println("@@@!!@!@!@!"+getSessionSeqCore(hrequest));
+		dto.setIfmmSeq(getSessionSeqCore(hrequest));
+		
+		Member result = service.selectOneMember(dto);
+		
+		model.addAttribute("memberinfo",result);
 		
 		return "/mypage/mypagelist";
 	}
 	
-	@RequestMapping(value = "/infochangecheck")
-	public String infochange(Member dto) throws Exception {
+	@RequestMapping(value = "/wishlist")
+	public String wishlist(Member dto, HttpServletRequest hrequest, Model model) throws Exception {
 		
-		System.out.println(dto.getMainkey());
+		dto.setIfmmSeq(getSessionSeqCore(hrequest));
+		
+		List<Member> result = service.selectwishlist(dto);
+		model.addAttribute("wishlist",result);
+		return "/mypage/wishlist";
+	}
+	
+	@RequestMapping(value = "/infochangecheck")
+	public String infochange(Member dto, HttpServletRequest hrequest, Model model) throws Exception {
+		
+		dto.setIfmmSeq(getSessionSeqCore(hrequest));
+		
+		Member result = service.selectOneMember(dto);
+		model.addAttribute("memberinfo",result);
 		
 		return "/mypage/infochangecheck";
+	}
+	
+	@RequestMapping(value = "/myinfoview")
+	public String myinfoview(Member dto, HttpServletRequest hrequest, Model model) throws Exception {
+		
+		dto.setIfmmSeq(getSessionSeqCore(hrequest));
+		
+		Member result = service.selectOneMember(dto);
+		model.addAttribute("memberinfo",result);
+		
+		return "/mypage/myinfoview";
 	}
 		
 	@ResponseBody
@@ -126,6 +156,41 @@ public class MemberController {
 		
 		return returnMap;
 		
+	}
+	
+	@SuppressWarnings("unused")
+	@ResponseBody
+	@RequestMapping(value = "/passwordcheck")
+	public Map<String, Object> passwordcheck(Member dto, HttpSession httpSession) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println(dto.getIfmmPwd());
+		Member result = service.selectOneForLogin(dto);
+
+		
+		if (result == null) {
+			returnMap.put("rt", "fail");			
+		} else {			
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	
+	@SuppressWarnings("unused")
+	@ResponseBody
+	@RequestMapping(value = "/passwordupdate")
+	public Map<String, Object> passwordupdate(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println(dto.getIfmmPwd());
+		System.out.println(dto.getIfmmId());
+		service.update(dto);
+
+		returnMap.put("rt", "success");			
+
+		return returnMap;
 	}
 	
 	@SuppressWarnings("unused")

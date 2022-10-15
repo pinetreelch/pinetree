@@ -19,12 +19,13 @@
 	<input type="hidden" name = "ifmmSeq" id="ifmmSeq" value="${sessSeq}"/>
 	<input type="hidden" name = "ifmmId" id="ifmmId" value="${memberinfo.ifmmId}"/>
 	
-		<div class="container-fluid">
+	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
 				<div class="row align-items-center">
 					<div class="col" style="padding-top:6px;">
-						<a class="heading" href="" >도서 </a >
+					
+						<a class="heading" href="" >도서</a >
 						
 						<c:choose>
 							<c:when test ="${sessSeq eq null}">
@@ -52,7 +53,7 @@
 	 	<div class="row" >
 	 		<div class="col-4">
 	 			<div class="aa" style="padding-top: 30px; display: inline-block;">
-				 	<a  href="/main/" style="display: inline-block; color:black;">	
+				 	<a  href="../book/bookList.html" style="display: inline-block; color:black;">	
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px; color:black;">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
 				 	</a>
@@ -63,7 +64,9 @@
 		 		<nav  style="display: inline-block;">
 		 			<ul >
 		 				<li style="display: inline-block; padding-right: 40px;">
+		 					<form action="">
 		 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
+		 					</form>
 		 				</li>
 		 				<li style="display: inline-block;">
 		 					<a href="">
@@ -71,7 +74,7 @@
 		 					</a>
 		 				</li>
 		 				<li style="display: inline-block;">
-		 					<a href="">
+		 					<a href="./myPageList.html">
 		 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px; color: black;"></i>
 		 					</a>
 		 				</li>
@@ -85,13 +88,20 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="menutitle">마이리디</div>
-						<div class="border-bottom" style="padding-top:17px; padding-bottom:17px; color: #1F8CE6; width: 130px;">
-							<a href="./myPageList.html" class="menutitle1" style="color: #40474D">
-							<div style="display:inline-block; padding-right: 5px; "><i class="fa-solid fa-house"></i></div>
+						<div id="xxx" class="border-bottom" style="padding-top:17px; padding-bottom:17px; width: 130px;">
+							<!-- <a href="" class="menutitle1" style="color: #40474D">
+								<span style="display:inline-block; padding-right: 5px;">
+									<i class="fa-solid fa-house"></i>
+								</span>
 								마이리디 홈
+							</a> -->
+							
+							<a href="">
+								<i class="fa-solid fa-house"></i>
+								<span style="padding-left: 5px;">마이리디 홈</span>
 							</a>
 						</div>
-						
+
 						<div class="border-bottom" style="width: 135px; padding-top: 17px; padding-bottom: 19px;">
 							<div class="menutitle2">
 								<i class="fa-solid fa-book-open"></i>
@@ -100,7 +110,7 @@
 							
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 선호작품</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 최근 조회한 작품</div>
-							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"> <a href="./wishlistView.html">위시 리스트</a></div>
+							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"> <a href="" style="color:#1F8CE6">위시 리스트</a></div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 독서노트</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 신간알림</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 이벤트 알림 설정</div>
@@ -112,7 +122,7 @@
 								<span style="margin-left: 5px;">구매헤택</span>
 							</div>
 							
-							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 결제 내역</div>
+							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"><a href="./purchasehistoryView.html" style="color: black;">결제 내역</a> </div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 리디 캐시</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 리디포인트</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 쿠폰</div>
@@ -128,7 +138,7 @@
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 내 기기 관리</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 내 리뷰 관리</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;">
-								 <a href="./myPageView.html" class="menutitle3" style="color:#1F8CE6; ">정보 변경</a>
+								 <a href="./myPageView.html" class="menutitle3">정보 변경</a>
 							</div>
 						</div>
 					</div>
@@ -136,27 +146,133 @@
 			</div>
 			
 			<div class="col-8" style="width: 721px;">
-				<div class="changeinfo">정보 변경</div>
-				<p class="changeinfoptag" style="padding-top: 25px; padding-bottom:10px;">보안을 위해 비밀번호를 한번 더 입력해 주세요.</p>
-				<div>
-					<ul style="float:left; padding:0;">
-						<li style="float:left">
-								  <div class="col-12">
-								    <input id= "pwd" name = "pwd" type="password" class="form-control" style=" width: 220px; height: 31.59px;">
-								    
-								    
-								  </div>
-						</li>
-						<li style="float:left">
-							<button id="send" name="send" class="check" style="background-color: #1F8CE6; width:59.84px; height: 30px; border-color: blue; border-radius: 3px; border-width:1px;">
-								확인
-							</button>
-						</li>
-					</ul>
+				<div class="row">
+					<div class="col-12">
+						<h3 class="wishlisttitle">
+							위시리스트
+							<span class="wishlistsubtitle"> 3</span>
+						</h3>
+						
+						<div class="d-grid"style="padding-top: 10px;">
+							<ul class="border-bottom border-2 wishul" style="padding-left:0; ;float:left; display:block; height: 30px; margin-bottom:0;">
+								<li id="wishli" style="float:left; border-bottom: 2px solid black; height:30px;"><a href="">등록순</a></li>
+								<li id="wishli" style="float:left; padding-left: 15px;">인기순</li>
+								<li id="wishli" style="float:left; padding-left: 15px;">낮은 가격순</li>
+								<li id="wishli" style="float:left; padding-left: 15px;">할인 도서</li>
+							</ul>
+						</div>
+						
+						<div class="border-bottom"style="padding-top:15px; padding-bottom:15px;">
+							<div class="form-check" style="display: inline-block;">
+							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
+							  <label class="form-check-label marketad" for="flexCheckDefault" >
+							    전체 선택
+							  </label>
+							</div>
+							
+							<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px; float: right; width: 68px; height: 28px;padding:7px; margin-left: 5px;">선택 삭제</button>
+							<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px; float: right; width: 104px; height: 28px;padding:7px;">선택 카트로 이동</button>
+						</div>
+						
+						<div class="border-bottom" style="height: 124px;">
+							<div style="display:inline-block;">
+								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
+							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
+							  		<a href="../book/bookView.html">
+							  			<img class="border" src="http://image.kyobobook.co.kr/images/book/large/730/l9791170521730.jpg" alt="" style="width: 60px; height: 84px;"/>
+							  		</a>
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
+							  		<span class="wishlistbktitle"><a href="../book/bookView.html">미키7</a></span>
+							  		<p style="padding-top: 2px;">
+							  			<span class="wishlistauthor">애드워드 에슈턴</span>
+							  		</p>
+							  		
+									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
+							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
+							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
+							  			<span class="wishlistauthor3" > 소장</span>
+							  			<span class="wishlistauthor2" > 9,000 원</span>
+							  		</p>	
+							  	</div>
+							</div>
+						</div>
+
+						<div class="border-bottom" style="height: 124px;">
+							<div style="display:inline-block;">
+								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
+							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
+							  		<img class="border" src="http://image.kyobobook.co.kr/images/book/large/870/l9788997396870.jpg" alt="" style="width: 60px; height: 84px;" />
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
+							  		<span class="wishlistbktitle">오은영의 화해</span>
+							  		<p style="padding-top: 2px;">
+							  			<span class="wishlistauthor">오은영</span>
+							  		</p>
+							  		
+									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
+							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
+							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
+							  			<span class="wishlistauthor3" > 소장</span>
+							  			<span class="wishlistauthor2" > 14,000 원</span>
+							  		</p>	
+							  	</div>
+							</div>
+						</div>
+						
+						<div class="border-bottom" style="height: 124px;">
+							<div style="display:inline-block;">
+								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
+							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
+							  		<img class="border" src="http://image.kyobobook.co.kr/images/book/large/362/l9788932922362.jpg" alt="" style="width: 60px; height: 84px;" />
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
+							  		<span class="wishlistbktitle">행성</span>
+							  		<p style="padding-top: 2px;">
+							  			<span class="wishlistauthor">베르나르 베르베르</span>
+							  		</p>
+							  		
+									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
+							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
+							  	</div>
+							  	
+							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
+							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
+							  			<span class="wishlistauthor3" > 소장</span>
+							  			<span class="wishlistauthor2" > 12,000 원</span>
+							  		</p>	
+							  	</div>
+							</div>
+						</div>
+						
+						
+						
+						
+					</div>
 				</div>
 			</div>
 		</div>
 	</div> <!--  container boyd end -->
+	
+		
 	</form>
 	
 	
@@ -248,53 +364,7 @@
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
 <script src = "/resources/jscript/bookview/openclose.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
-	var form = $("form[name=form]");
-	var sessSeq = $("input:hidden[name=sessSeq]");
-	var sessSeqVal = sessSeq.val();
-	var mainkey = $("input:hidden[name=mainkey]");
-	var goUrlInfo = "/member/infochangecheck";
-	var goUrlInfo2 = "/member/myinfoview";
-	
-	var pwd = $("input:password[name=pwd]");
-	var pwdval = pwd.val();
-	var ifmmId = $("#ifmmId").val();
-	
-	$("#send").on("click", function(){
-		var pwdval = pwd.val();
-		var ifmmId = $("#ifmmId").val();
-		
-		$.ajax({ 
-			url : "/member/passwordcheck",
-			
-			type : 'post',
-			
-			data : {
-				ifmmId : ifmmId,
-				ifmmPwd : pwdval
-			},
-			
-			success : function(data) {
-	
-			 	if(data.rt == "success"){
-			 			form.attr("action", goUrlInfo2).submit();
-				 } else if(data.rt == "fail") {
-					 alert('비밀번호가 틀렸습니다. 다시 입력하세요.  ');
-				 }
-				
-		     },
-		          
-			error : function(request, status, error){ 
-					alert('error');	
-				  	console.log("code: " + request.status)	
-			        console.log("message: " + request.responseText)
-			        console.log("error: " + error);
-				 }	     
-		});
 
-	}); 
-	
-</script>
 
 </body>
 </html>

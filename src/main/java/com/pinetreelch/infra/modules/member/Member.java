@@ -30,6 +30,53 @@ public class Member extends Base{
 	
 	private MultipartFile[] ifmmUploadedFile;
 	
+	
+	private Integer tdwlSeq;
+	private Integer tradBook_tdbkSeq;
+	private String urllarge;
+	private String tdbkBookTitle;
+	
+	private Integer tdbkSales;
+	private Integer iframMember_ifmmSeq;
+	
+	
+	
+	public Integer getTdwlSeq() {
+		return tdwlSeq;
+	}
+	public void setTdwlSeq(Integer tdwlSeq) {
+		this.tdwlSeq = tdwlSeq;
+	}
+	public Integer getTradBook_tdbkSeq() {
+		return tradBook_tdbkSeq;
+	}
+	public void setTradBook_tdbkSeq(Integer tradBook_tdbkSeq) {
+		this.tradBook_tdbkSeq = tradBook_tdbkSeq;
+	}
+	public String getUrllarge() {
+		return urllarge;
+	}
+	public void setUrllarge(String urllarge) {
+		this.urllarge = urllarge;
+	}
+	public String getTdbkBookTitle() {
+		return tdbkBookTitle;
+	}
+	public void setTdbkBookTitle(String tdbkBookTitle) {
+		this.tdbkBookTitle = tdbkBookTitle;
+	}
+	public Integer getTdbkSales() {
+		return tdbkSales;
+	}
+	public void setTdbkSales(Integer tdbkSales) {
+		this.tdbkSales = tdbkSales;
+	}
+	public Integer getIframMember_ifmmSeq() {
+		return iframMember_ifmmSeq;
+	}
+	public void setIframMember_ifmmSeq(Integer iframMember_ifmmSeq) {
+		this.iframMember_ifmmSeq = iframMember_ifmmSeq;
+	}
 	public String getSiteadd() {
 		return siteadd;
 	}

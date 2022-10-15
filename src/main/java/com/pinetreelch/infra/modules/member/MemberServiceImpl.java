@@ -24,6 +24,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public List<Member> selectwishlist(Member dto) throws Exception{
+		
+		List<Member> result = dao.selectwishlist(dto);
+		
+		return result;
+	}
+	
+	@Override
 	public Member selectOne(MemberVo vo) throws Exception{
 		Member result = dao.selectOne(vo);
 		
@@ -54,6 +62,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public void update(Member dto) throws Exception{
+		
+		dto.setIfmmPwd(UtilSecurity.encryptSha256(dto.getIfmmPwd()));		
+		dao.update(dto);		
+	}
+	
+	@Override
 	public void insert123(Member dto) throws Exception{
 		
 		int j=0;
@@ -77,5 +92,12 @@ public class MemberServiceImpl implements MemberService{
 		dao.insert123(dto);		
 	}
 	
+	@Override
+	public Member selectOneMember(Member dto) throws Exception{
+		
+		Member result = dao.selectOneMember(dto);
+		
+		return result;
+	}
 	
 }

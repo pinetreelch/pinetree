@@ -21,9 +21,13 @@ public class MemberDao {
 	
 	
 	public List<Member> selectList(MemberVo vo){				 
-		
-		
+	
 		return sqlSession.selectList(namespace + ".selectList", vo); 
+	}
+	
+	public List<Member> selectwishlist(Member dto){				 
+		
+		return sqlSession.selectList(namespace + ".selectwishlist", dto); 
 	}
 	
 	public Member selectOne(MemberVo vo) {
@@ -57,8 +61,17 @@ public class MemberDao {
 		return result;
 	}
 	
+	public void update(Member dto) {
+		sqlSession.update(namespace + ".update", dto); 
+	}
+	
 //	uploaded
 	public int insertUploaded(Member dto) { 
 		return sqlSession.insert(namespace + ".insertUploaded", dto); 
 		}
+	
+	public Member selectOneMember(Member dto) {
+		
+		return sqlSession.selectOne(namespace + ".selectOneMember", dto); 
+	}
 }

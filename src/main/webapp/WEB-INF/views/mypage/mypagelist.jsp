@@ -98,7 +98,7 @@
 							
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 선호작품</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 최근 조회한 작품</div>
-							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"> <a href="./wishlistView.html">위시 리스트</a></div>
+							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"> <a href="/member/wishlist">위시 리스트</a></div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 독서노트</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 신간알림</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 이벤트 알림 설정</div>
@@ -139,8 +139,8 @@
 						<div class="row" style="padding-top:24px; padding-bottom: 20px; padding-right: 20px; padding-left: 20px">
 							<div class="col-12">
 								<div style="height: 105px;">
-									<div class="idshow">pinetreelch</div>
-									<div class="emailshow">chanho.lee0215@gmail.com</div>
+									<div class="idshow">${memberinfo.ifmmId }</div>
+									<div class="emailshow">${memberinfo.ifmmEmail}</div>
 								</div>
 								<div style="height: 145px;">
 								</div>
@@ -149,11 +149,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					<div class="col-12" style="width:522px; height: 336px; padding-top: 24px; padding-bottom:20px;">
 						<div class="row" style="" >
 							<div class="col-12">
-								<ul  class="border-bottom border-1" style="padding-left:0; float:left; text-align: center; height: 146px; margin: 0;">
+								<ul  class="border-bottom border-1" style="padding-left:0; float:left; text-align: center; height: 146px; margin: 0;"> 
 									<li style="float:left; width: 160px;">
 										<div class="border border-dark border-2" style="border-radius: 50%; width: 30px; height: 30px; display:inline-block; text-align: center;">
 											<i class="fa-solid fa-won-sign fa-xs" style="margin-top: 13px;"></i>
