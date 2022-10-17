@@ -18,6 +18,7 @@
 	<input type="hidden" name = "mainkey" id="mainkey"/>
 	<input type="hidden" name = "ifmmSeq" id="ifmmSeq" value="${sessSeq}"/>
 	<input type="hidden" name = "ifmmId" id="ifmmId" value="${memberinfo.ifmmId}"/>
+	<input type="hidden" name = "tdbkSeq" id="tdbkSeq" />
 	
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
@@ -207,7 +208,7 @@
 							  		</p>
 							  		
 									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
-							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
+							  		<button onclick="deletebtn(${wishlist.tradBook_tdbkSeq}); return false;" class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
 							  	</div>
 							  	
 							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
@@ -318,6 +319,20 @@
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
 <script src = "/resources/jscript/bookview/openclose.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+	
+	var tdbkSeq = $("input:hidden[name=tdbkSeq]");
+	
+	
+	
+
+	deletebtn = function (bookSeq){
+		tdbkSeq.val(bookSeq);
+		alert("d"+tdbkSeq.val());
+		return false;
+	}
+
+</script>
 
 
 </body>
