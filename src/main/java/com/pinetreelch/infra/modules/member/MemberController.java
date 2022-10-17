@@ -114,8 +114,49 @@ public class MemberController {
 		dto.setIfmmSeq(getSessionSeqCore(hrequest));
 		
 		List<Member> result = service.selectwishlist(dto);
+		List<Member> result2 = service.selectAuthor(dto);
+		
 		model.addAttribute("wishlist",result);
+		model.addAttribute("authorlist",result2);
 		return "/mypage/wishlist";
+	}
+	
+	@SuppressWarnings("unused")
+	@ResponseBody
+	@RequestMapping(value = "/wishlistcheck")
+	public Map<String, Object> wishlistcheck(Member dto) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("!!!!!!!"+dto.getIfmmSeq());
+		System.out.println("!!!!!!!" + dto.getTdbkSeq());
+		
+		List<Member> result = service.wishlistcheck(dto);
+	
+		
+		if(result.size() > 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+	
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/wishlistinsert")
+	public Map<String, Object> wishlistinsert(Member dto) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("@@@@@@@@@@@@@@@@@"+dto.getIfmmSeq());
+		System.out.println("@@@@@@@@@@@@@@@@@" + dto.getTdbkSeq());
+		
+		service.insertwishlist(dto);
+		
+		returnMap.put("rt", "success");
+		
+		return returnMap;
 	}
 	
 	@RequestMapping(value = "/infochangecheck")

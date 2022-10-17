@@ -30,6 +30,11 @@ public class MemberDao {
 		return sqlSession.selectList(namespace + ".selectwishlist", dto); 
 	}
 	
+	public List<Member> selectAuthor(Member dto){				 
+		
+		return sqlSession.selectList(namespace + ".selectAuthor", dto); 
+	}
+	
 	public Member selectOne(MemberVo vo) {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 
@@ -41,6 +46,10 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOne1", dto); 
 	}
 	
+	public List<Member> wishlistcheck(Member dto) {
+		
+		return sqlSession.selectList(namespace + ".wishlistcheck", dto); 
+	}
 	
 	public Member selectOneForLogin(Member dto) {
 		
@@ -54,6 +63,11 @@ public class MemberDao {
 		return result;
 	}
 	
+	public  int insertwishlist(Member dto) {
+		
+		int result = sqlSession.insert(namespace + ".insertwishlist", dto); 
+		return result;
+	}
 	
 	public  int insert123(Member dto) {
 		

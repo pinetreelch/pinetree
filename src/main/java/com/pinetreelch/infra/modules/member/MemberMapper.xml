@@ -40,6 +40,21 @@
 	
 	</select>
 	
+	
+	<select id="selectAuthor" resultMap="resultMapObj">
+		select
+			a.tdbkathSeq
+		    , a.tradAuthor_tdatSeq
+		    , b.tdauName
+		    , a.tradBook_tdbkSeq
+		from
+			tradBookAuthor a
+		left join tradAuthor b on a.tradAuthor_tdatSeq = b.tdauSeq
+		where 
+			1=1
+	
+	</select>
+	
 	<insert id = "insert" > 
 		
 		INSERT INTO infraMember(
@@ -129,6 +144,16 @@
 		)
 	</insert>
 	
+	<insert id="insertwishlist">
+		INSERT INTO tradWishlist (
+			tradBook_tdbkSeq
+			, iframMember_ifmmSeq
+		 
+		) values (
+			#{tdbkSeq}
+			,#{ifmmSeq}
+		)
+	</insert>
 	
 	<select id = "selectOne" resultMap = "resultMapObj">
 		SELECT
@@ -146,6 +171,18 @@
 		FROM infraMember a
 		WHERE 1 =1 
 			AND ifmmId = #{ifmmId}
+	</select>
+	
+	<select id = "wishlistcheck" resultMap="resultMapObj">
+		select
+			tdwlSeq
+			,tradBook_tdbkSeq
+		from 
+			tradWishlist
+		where
+			iframMember_ifmmSeq = #{ifmmSeq}
+		    AND tradBook_tdbkSeq = #{tdbkSeq}
+
 	</select>
 	
 	<select id = "selectOneForLogin" resultMap = "resultMapObj">

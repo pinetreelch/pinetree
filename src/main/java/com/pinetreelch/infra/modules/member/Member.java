@@ -39,8 +39,38 @@ public class Member extends Base{
 	private Integer tdbkSales;
 	private Integer iframMember_ifmmSeq;
 	
+	private Integer tdbkathSeq;
+	private Integer tradAuthor_tdatSeq;
+	private String tdauName;
+
+	private Integer tdbkSeq;
+
 	
 	
+	public Integer getTdbkSeq() {
+		return tdbkSeq;
+	}
+	public void setTdbkSeq(Integer tdbkSeq) {
+		this.tdbkSeq = tdbkSeq;
+	}
+	public Integer getTdbkathSeq() {
+		return tdbkathSeq;
+	}
+	public void setTdbkathSeq(Integer tdbkathSeq) {
+		this.tdbkathSeq = tdbkathSeq;
+	}
+	public Integer getTradAuthor_tdatSeq() {
+		return tradAuthor_tdatSeq;
+	}
+	public void setTradAuthor_tdatSeq(Integer tradAuthor_tdatSeq) {
+		this.tradAuthor_tdatSeq = tradAuthor_tdatSeq;
+	}
+	public String getTdauName() {
+		return tdauName;
+	}
+	public void setTdauName(String tdauName) {
+		this.tdauName = tdauName;
+	}
 	public Integer getTdwlSeq() {
 		return tdwlSeq;
 	}

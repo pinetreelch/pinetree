@@ -41,6 +41,7 @@
  
 	<div class="container bodyd" >
 		<input type="hidden" name = "tdbkSeq" id ="tdbkSeq" value ="${booklist.tdbkSeq }"/>
+		<input type="hidden" name = "ifmmSeq" value ="${sessSeq }"/>
 		<input type="hidden" name = "tdbkathSeq" id ="tdbkathSeq" />
 		<input type="hidden" name = "tradAuthor_tdatSeq" id ="tradAuthor_tdatSeq" />
 	
@@ -217,7 +218,7 @@
 									<button  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
 											<i class="fa-solid fa-cart-shopping fa-lg" style="color: rgba(0, 0, 0, 0.5);"></i>
 									</button>
-									<button  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
+									<button onclick="wishbtnclick(${booklist.tdbkSeq }); return false;"  id="wishbtn"  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
 											<i class="fa-solid fa-heart fa-lg" style="color: rgba(0, 0, 0, 0.5);"></i>
 									</button>
 								</div>
@@ -635,14 +636,97 @@
  	var form = $("form[name=form]");
  	var goUrlAuthorView = "/main/authorView";
  	var goUrlPurchaseView = "/main/purchaseView";
+ 	var goUrlWishlistAdd = "/member/wishlistinsert"; 
+ 	var goUrlWishlistCheck = "/member/wishlistcheck"; 
  	
  	var seq = $("input:hidden[name=tdbkSeq]");
+ 	var ifmmSeq = $("input:hidden[name=ifmmSeq]");
  	
  	var aa = document.getElementById('tdbkSeq').value;
 
  	$("#buybtn").on("click", function(){
  		form.attr("action", goUrlPurchaseView).submit();
  	});
+ 	
+ 	wishbtnclick = function( bookSeq){
+
+ 		var exit = false;
+ 		
+
+ 		if(ifmmSeq.val() == ""){
+ 			alert("로그인이 필요합니다.");
+ 			return false;
+ 		} 
+ 		
+ 		$.ajax({ 
+			url : goUrlWishlistCheck,
+			
+			type : 'post',
+			
+			async: false,
+			
+			data : {
+				
+				ifmmSeq : ifmmSeq.val(),
+				tdbkSeq : seq.val()				
+			},
+			
+			
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					alert('위시리스트에 이 책이 없습니다.');
+				 } else {
+					 alert('이 책이 이미 존재합니다');
+					 exit = true;					 
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});
+ 		
+ 		if (exit){
+ 			return false;
+ 		}
+ 		
+ 		$.ajax({ 
+			url : goUrlWishlistAdd,
+			
+			type : 'post',
+			
+			async: false,
+			
+			data : {
+				
+				ifmmSeq : ifmmSeq.val(),
+				tdbkSeq : seq.val()
+				
+			},
+			
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					alert('위시리스트에 책이 저장되었습니다.');
+				 } else {
+					 // by pass
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});
+ 	}
 
  </script>
  

@@ -53,7 +53,7 @@
 	 	<div class="row" >
 	 		<div class="col-4">
 	 			<div class="aa" style="padding-top: 30px; display: inline-block;">
-				 	<a  href="../book/bookList.html" style="display: inline-block; color:black;">	
+				 	<a  href="/main/" style="display: inline-block; color:black;">	
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px; color:black;">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
 				 	</a>
@@ -150,7 +150,7 @@
 					<div class="col-12">
 						<h3 class="wishlisttitle">
 							위시리스트
-							<span class="wishlistsubtitle"> 3</span>
+							<span class="wishlistsubtitle"> ${fn:length(wishlist) }</span>
 						</h3>
 						
 						<div class="d-grid"style="padding-top: 10px;">
@@ -174,6 +174,8 @@
 							<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px; float: right; width: 104px; height: 28px;padding:7px;">선택 카트로 이동</button>
 						</div>
 						
+						<c:forEach items="${wishlist }" var="wishlist" varStatus="status">
+						<c:set var = "count" value="0"></c:set>
 						<div class="border-bottom" style="height: 124px;">
 							<div style="display:inline-block;">
 								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
@@ -182,14 +184,26 @@
 							  	
 							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
 							  		<a href="../book/bookView.html">
-							  			<img class="border" src="http://image.kyobobook.co.kr/images/book/large/730/l9791170521730.jpg" alt="" style="width: 60px; height: 84px;"/>
+							  			<img class="border" src="${wishlist.urllarge }" alt="" style="width: 60px; height: 84px;"/>
 							  		</a>
 							  	</div>
 							  	
 							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
-							  		<span class="wishlistbktitle"><a href="../book/bookView.html">미키7</a></span>
+							  		<span class="wishlistbktitle">${wishlist.tdbkBookTitle }</span>
 							  		<p style="padding-top: 2px;">
-							  			<span class="wishlistauthor">애드워드 에슈턴</span>
+							  			<span class="wishlistauthor">
+							  				<c:forEach items="${authorlist}" var="authorlist" varStatus="status">							  						
+							  					<c:if test="${authorlist.tradBook_tdbkSeq eq wishlist.tradBook_tdbkSeq }">
+							  						<c:set var = "count" value = "${count + 1 }"></c:set>
+							  						<c:if test="${count <= 2 }">	
+							  							<c:if test="${count eq 2 }">,</c:if>							  						
+								  						${authorlist.tdauName }
+								  						
+							  						</c:if>						  						
+							  					</c:if>
+							  				</c:forEach>
+							  				<c:if test="${count > 2 }">외 ${count-2 }명</c:if>
+							  			</span>
 							  		</p>
 							  		
 									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
@@ -199,73 +213,13 @@
 							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
 							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
 							  			<span class="wishlistauthor3" > 소장</span>
-							  			<span class="wishlistauthor2" > 9,000 원</span>
+							  			<span class="wishlistauthor2" > <fmt:formatNumber value="${wishlist.tdbkSales }" pattern="#,###"/>  원</span>
 							  		</p>	
 							  	</div>
 							</div>
 						</div>
-
-						<div class="border-bottom" style="height: 124px;">
-							<div style="display:inline-block;">
-								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
-							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
-							  		<img class="border" src="http://image.kyobobook.co.kr/images/book/large/870/l9788997396870.jpg" alt="" style="width: 60px; height: 84px;" />
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
-							  		<span class="wishlistbktitle">오은영의 화해</span>
-							  		<p style="padding-top: 2px;">
-							  			<span class="wishlistauthor">오은영</span>
-							  		</p>
-							  		
-									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
-							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
-							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
-							  			<span class="wishlistauthor3" > 소장</span>
-							  			<span class="wishlistauthor2" > 14,000 원</span>
-							  		</p>	
-							  	</div>
-							</div>
-						</div>
-						
-						<div class="border-bottom" style="height: 124px;">
-							<div style="display:inline-block;">
-								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
-							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 20px; padding-bottom: 20px; ">
-							  		<img class="border" src="http://image.kyobobook.co.kr/images/book/large/362/l9788932922362.jpg" alt="" style="width: 60px; height: 84px;" />
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 400px;">
-							  		<span class="wishlistbktitle">행성</span>
-							  		<p style="padding-top: 2px;">
-							  			<span class="wishlistauthor">베르나르 베르베르</span>
-							  		</p>
-							  		
-									<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 96px; height: 30px;padding:7px;"> 카트로 이동</button>
-							  		<button class="movetocart" style="background-color:white;border: 1px solid #d1d5d9; border-radius: 4px;  width: 60px; height: 30px;padding:7px; "> 삭제</button>
-							  	</div>
-							  	
-							  	<div style="float:left; padding-top: 15px; padding-bottom: 25px; padding-left: 15px; width: 209px;">
-							  		<p style="padding-top: 30px; padding-left: 80px;">							  			
-							  			<span class="wishlistauthor3" > 소장</span>
-							  			<span class="wishlistauthor2" > 12,000 원</span>
-							  		</p>	
-							  	</div>
-							</div>
-						</div>
-						
-						
-						
-						
+						</c:forEach>
+	
 					</div>
 				</div>
 			</div>
