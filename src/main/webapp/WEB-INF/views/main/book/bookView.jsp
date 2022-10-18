@@ -68,6 +68,10 @@
 		 					</a>
 		 				</li>
 		 				
+		 				<li style="display: inline-block;">
+				 					<i class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px;"></i>
+		 				</li>
+		 				
 		 				<li style="display: inline-block;">		 					
 		 						<span style="cursor: pointer; "id = "mypage" name = "mypage" onclick = "mypageclick('/member/mypage')" ><i class="fa-regular fa-user fa-xl" style="padding-top:30px;" ></i></span>
 		 				</li>		

@@ -13,7 +13,7 @@ public class Code {
 	private String cdName;
 	private String useNY;
 	private String delNY;
-	private String codeGroup_cgSeq;
+	private String codeGroup_cgSeq; 
 
 	
 	

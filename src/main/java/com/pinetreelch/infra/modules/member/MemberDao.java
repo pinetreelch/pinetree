@@ -69,6 +69,12 @@ public class MemberDao {
 		return result;
 	}
 	
+	public  int deleteWishlist(Member dto) {
+		
+		int result = sqlSession.delete(namespace + ".deleteWishlist", dto); 
+		return result;
+	}
+	
 	public  int insert123(Member dto) {
 		
 		int result = sqlSession.insert(namespace + ".insert123", dto); 

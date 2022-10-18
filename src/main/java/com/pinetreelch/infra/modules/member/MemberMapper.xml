@@ -218,4 +218,13 @@
 			ifmmId = #{ifmmId}
 	</update>
 	
+	<delete id="deleteWishlist">
+		Delete 
+		FROM tradWishlist
+			
+		WHERE 
+			1=1
+	        AND iframMember_ifmmSeq = #{ifmmSeq}
+	        AND tradBook_tdbkSeq = #{tdbkSeq}
+	</delete>
 </mapper>

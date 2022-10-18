@@ -10,6 +10,7 @@ public interface MemberService {
 	public List<Member> selectAuthor(Member dto) throws Exception;
 	public Member selectOne(MemberVo vo) throws Exception;
 	public int selectOne1(Member dto) throws Exception;
+	public int deleteWishlist(Member dto) throws Exception;
 	public List<Member> wishlistcheck(Member dto) throws Exception;
 	public Member selectOneForLogin(Member dto) throws Exception;
 	public Member selectOneMember(Member dto) throws Exception;

@@ -63,11 +63,17 @@
 		 				<li style="display: inline-block; padding-right: 40px;">
 		 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
 		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 					<a href="">
 		 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px; color: black;"></i>
 		 					</a>
 		 				</li>
+		 				
+		 				<li style="display: inline-block;">
+				 					<i class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px;"></i>
+		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 					<a href="">
 		 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px; color: black;"></i>

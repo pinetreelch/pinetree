@@ -60,6 +60,14 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 	
+	
+	@Override
+	public int deleteWishlist(Member dto) throws Exception{
+		int result = dao.deleteWishlist(dto);
+		
+		return result;
+	}
+	
 	@Override
 	public Member selectOneForLogin(Member dto) throws Exception{
 		

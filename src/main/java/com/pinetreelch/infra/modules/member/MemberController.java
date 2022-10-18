@@ -22,7 +22,7 @@ import com.pinetreelch.infra.common.constants.Constants;
 public class MemberController {
 
 	@Autowired
-	MemberServiceImpl service;
+	MemberServiceImpl service; 
 	
 	public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
 		HttpSession httpSession =  httpServletRequest.getSession();
@@ -153,6 +153,22 @@ public class MemberController {
 		System.out.println("@@@@@@@@@@@@@@@@@" + dto.getTdbkSeq());
 		
 		service.insertwishlist(dto);
+		
+		returnMap.put("rt", "success");
+		
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/wishlistdelete")
+	public Map<String, Object> wishlistdelete(Member dto) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("@@@@@@@@@@@@@@@@@" + dto.getTdbkSeq());
+		System.out.println("@@@@@@@@@@@@@@@@@" + dto.getIfmmSeq());
+		
+		int result = service.deleteWishlist(dto);
 		
 		returnMap.put("rt", "success");
 		

@@ -65,15 +65,19 @@
 		 		<nav  style="display: inline-block;">
 		 			<ul >
 		 				<li style="display: inline-block; padding-right: 40px;">
-		 					<form action="">
 		 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
-		 					</form>
 		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 					<a href="">
 		 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px; color: black;"></i>
 		 					</a>
 		 				</li>
+		 				
+		 				<li style="display: inline-block;">
+				 					<i class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px;"></i>
+		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 					<a href="./myPageList.html">
 		 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px; color: black;"></i>
@@ -177,7 +181,7 @@
 						
 						<c:forEach items="${wishlist }" var="wishlist" varStatus="status">
 						<c:set var = "count" value="0"></c:set>
-						<div class="border-bottom" style="height: 124px;">
+						<div class="border-bottom" style="height: 124px;" id="div${wishlist.tradBook_tdbkSeq}">
 							<div style="display:inline-block;">
 								<div class="form-check" style="float:left; padding-top: 50px; padding-bottom: 30px;">
 							  		<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="width: 18px; height: 18px;">
@@ -321,14 +325,50 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 	
+	var ifmmSeq = $("input:hidden[name=ifmmSeq]");
 	var tdbkSeq = $("input:hidden[name=tdbkSeq]");
+	var goUrlWishDelete = "/member/wishlistdelete";
 	
 	
 	
 
 	deletebtn = function (bookSeq){
 		tdbkSeq.val(bookSeq);
-		alert("d"+tdbkSeq.val());
+		
+		var getdivId = "div"+bookSeq;
+		var divId = document.getElementById(getdivId);
+		
+		$.ajax({ 
+			url : goUrlWishDelete,
+			
+			type : 'post',
+			
+			async: false,
+			
+			data : {
+				
+				tdbkSeq : tdbkSeq.val()
+				,ifmmSeq : ifmmSeq.val()
+			},
+			
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					divId.remove();
+				 } else {
+					 // by pass
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});
+
 		return false;
 	}
 
