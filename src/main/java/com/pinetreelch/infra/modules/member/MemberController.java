@@ -38,7 +38,7 @@ public class MemberController {
 		
 		return "infra/member/xdmin/memberList";
 	}
-	
+	 
 	@RequestMapping(value = "/memberForm")
 	public String memberForm(MemberVo vo, Model model) throws Exception {
 		

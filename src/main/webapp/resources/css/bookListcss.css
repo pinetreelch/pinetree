@@ -1363,3 +1363,102 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/* 여기부터 카트 페이지  */
+
+.buyavailable{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+color: inherit;
+}
+
+.sojangnum{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 200;
+font-size: 14px;
+color: inherit;
+
+}
+.selectall{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 13px;
+color: #40474d;
+padding-left: 5px;
+line-height: 18px;
+}
+
+.btnStyle{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+letter-spacing: -.03em;
+margin: 0;
+	padding: 7px;
+	color: #808991;
+    background: #fff;
+    border: 1px solid #d1d5d9;
+    box-shadow: 0 1px 1px 0 rgb(209 213 217 / 30%);
+    border-radius: 4px;
+    line-height: 1em;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.ctbooktitle{
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 1.4em;
+margin-bottom: 5px;
+}
+
+.ctbookauthor{
+	color: #666;
+	font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 1.2em;
+margin-bottom: 18px;
+}
+
+.ctbtn{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+border: 1px solid #d1d5d9;
+border-radius: 4px;
+text-align: center;
+color: #808991;
+box-shadow: 0 1px 1px 0 rgb(209 213 217 / 30%);
+padding: 8px 18px;
+text-decoration: none;
+margin: 0;
+}
+
+.ctchoose{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+color: #5382b9;
+margin: 0;
+}
+
+.cttotal{
+			font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+color: #1f8ce6;
+margin: 0;
+
+}
