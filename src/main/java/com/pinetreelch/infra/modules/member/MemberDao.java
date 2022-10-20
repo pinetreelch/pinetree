@@ -35,6 +35,11 @@ public class MemberDao {
 		return sqlSession.selectList(namespace + ".selectAuthor", dto); 
 	}
 	
+	public List<Member> selectcart(Member dto){				 
+		
+		return sqlSession.selectList(namespace + ".selectcart", dto); 
+	}
+	
 	public Member selectOne(MemberVo vo) {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 

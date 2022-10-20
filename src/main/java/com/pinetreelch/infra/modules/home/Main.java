@@ -53,9 +53,17 @@ public class Main {
 	
 	private String tdbkathSeq;
 	
+	private Integer pagetype;
 	
 	
 	
+	
+	public Integer getPagetype() {
+		return pagetype;
+	}
+	public void setPagetype(Integer pagetype) {
+		this.pagetype = pagetype;
+	}
 	public String getTdbkIntro3() {
 		return tdbkIntro3;
 	}

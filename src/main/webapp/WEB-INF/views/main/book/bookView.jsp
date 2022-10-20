@@ -218,7 +218,8 @@
 								</div>
 								
 								<div style="padding-right: 55px;">
-									<button type="button" id="buybtn" class="btn btn-primary float-end sojangbutton" style="width: 112px; height: 48px;" >소장하기</button>
+									<input type="hidden" id = "pagetype" name = "pagetype" value ="1">
+									<button onclick="buybutton()"  type="button" id="buybtn" class="btn btn-primary float-end sojangbutton" style="width: 112px; height: 48px;" >소장하기</button>
 									<button  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
 											<i class="fa-solid fa-cart-shopping fa-lg" style="color: rgba(0, 0, 0, 0.5);"></i>
 									</button>
@@ -648,9 +649,10 @@
  	
  	var aa = document.getElementById('tdbkSeq').value;
 
- 	$("#buybtn").on("click", function(){
+ 	
+ 	buybutton = function(){
  		form.attr("action", goUrlPurchaseView).submit();
- 	});
+ 	}
  	
  	wishbtnclick = function( bookSeq){
 

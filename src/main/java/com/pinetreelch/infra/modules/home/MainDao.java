@@ -47,8 +47,8 @@ public class MainDao {
 		return sqlSession.selectOne(namespace + ".selectOneAuthor", dto); 
 	}
 	
-	public Main selectOneBook(Main dto){				 
-		return sqlSession.selectOne(namespace + ".selectOneBook", dto); 
+	public List<Main> selectOneBook(Main dto){				 
+		return sqlSession.selectList(namespace + ".selectOneBook", dto); 
 	}
 	
 	public List<Main> selectListAuthor(Main dto){				 

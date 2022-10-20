@@ -14,6 +14,9 @@
 	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
 <body>
+	<form name ="form" id = "form" method ="post">
+	<input type="hidden" name = "ifmmSeq" id= "ifmmSeq" value="${sessSeq}"/>
+	
 		<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
@@ -58,15 +61,21 @@
 		 		<nav  style="display: inline-block;">
 		 			<ul >
 		 				<li style="display: inline-block; padding-right: 40px;">
-		 					<form action="">
+		 					
 		 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
-		 					</form>
+		 				
 		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 					<a href="">
 		 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
 		 					</a>
 		 				</li>
+		 				
+		 				<li style="display: inline-block;">
+				 					<i id="cart" name="cart" class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px; cursor: pointer;"></i>
+		 				</li>
+		 				
 		 				<li style="display: inline-block;">
 		 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;"></i>
 		 				</li>
@@ -83,44 +92,49 @@
 					<div class="col-12" style="width:594px;">
 						<h3 class="purchasedetail" style="padding-bottom: 14px; margin:0px;">
 							주문 목록 
-							<span class="nmbbooks"> 1 </span>
+							<span class="nmbbooks"> ${fn:length(bookinfo)} </span>
 						</h3>
 						
 						<table class="table border-top">
-							<tr>
-								<td style="width: 68px; padding: 0px;padding-top: 15px; padding-bottom: 15px;">
-									<a href="../book/bookView.html">
-										<img src="${bookinfo.urllarge }" class="border" alt="" style="width: 60px; height:87px; margin-left: 8px;"/>
-									</a>
-								</td>
-								<td style="width: 525px; padding: 0;">
-									<div style="padding-top:10px; padding-bottom: 15px;">
-										<div style="display:inline-block; width: 220px; padding-left: 15px; padding-bottom: 15px; padding-top:15px;">
-											<p class="purchaseauthorname" style="margin:0">${bookinfo.tdbkBookTitle }</p>
-											<p class="purchasebookname" style="margin-top: 10px;">
-												<c:set var = "length" value="${fn:length(authorlist)}"></c:set> 
-												<c:forEach items="${authorlist }" var="authorlist" varStatus="status">
-												<c:set var="count" value="${count+1}"></c:set>
-													<c:if test="${count < 3 }">	
-														${authorlist.tdauName }
-														<c:if test="${count eq 1 }">,</c:if>
-													</c:if>
-												</c:forEach>
-												
-												<c:if test="${length > 2 }">
-												외 ${length - 2}명 
-												</c:if>
-												
-											</p>
+							<c:if test="${fn:length(bookinfo) < 1}">
+								주문목록에 담겨있는 상품이 없습니다.
+							</c:if>
+							<c:forEach items="${bookinfo }" var ="bookinfo" varStatus="status">
+								<tr class="border-bottom">
+									<c:set var = "count" value="${0}"></c:set>
+									<td style="width: 68px; padding: 0px;padding-top: 15px; padding-bottom: 15px;">
+										<a href="../book/bookView.html">
+											<img src="${bookinfo.urllarge }" class="border" alt="" style="width: 60px; height:87px; margin-left: 8px;"/>
+										</a>
+									</td>
+									<td style="width: 525px; padding: 0;">
+										<div style="padding-top:10px; padding-bottom: 15px;">
+											<div style="display:inline-block; width: 220px; padding-left: 15px; padding-bottom: 15px; padding-top:15px;">
+												<p class="purchaseauthorname" style="margin:0">${bookinfo.tdbkBookTitle }</p>
+												<p class="purchasebookname" style="margin-top: 10px;">
+													
+													<c:forEach items="${authorlist }" var="authorlist" varStatus="status">																											
+															<c:if test="${authorlist.tdbkSeq eq bookinfo.tdbkSeq }">
+															<c:set var = "count" value="${count + 1}"></c:set>
+																<c:if test="${count eq 2 }">,</c:if>
+																 <c:if test="${count < 3 }"> ${authorlist.tdauName }</c:if>
+															</c:if>
+													</c:forEach>
+													<c:if test="${count > 2 }">
+														외 ${count -2 }명
+													</c:if>													 
+												</p>
+											</div>
+											<div style="display:inline-block; width: 250px;">
+												<span class="purchaseprice" style="float: right;">원</span>
+												<span class="purchaseprice" style="float: right;"> <fmt:formatNumber value="${bookinfo.tdbkSales }" pattern="#,###"/> </span>
+											</div>
 										</div>
-										<div style="display:inline-block; width: 250px;">
-											<span class="purchaseprice" style="float: right;">원</span>
-											<span class="purchaseprice" style="float: right;"> <fmt:formatNumber value="${bookinfo.tdbkSales }" pattern="#,###"/> </span>
-										</div>
-									</div>
-								</td>
-							</tr>
+									</td>
+								</tr>
+							</c:forEach>	
 						</table>
+						
 					</div>
 					<div class="col-12" style="width:358px; padding-left:50px;">
 						<h3 class="purchasedetail" style="padding-bottom: 14px; margin:0;">
@@ -129,7 +143,7 @@
 						<div style="border:solid; border-width: 1px;border-color: #87B4E9;">
 							<div class="border-bottom" style="padding-top: 12px; padding-bottom: 12px; padding-right: 15px; padding-left:15px">
 								<span class="totpurchase">총 주문 금액</span>
-								<span class="totpurchase1"> <fmt:formatNumber value="${bookinfo.tdbkSales }" pattern="#,###"/> </span>
+								<span class="totpurchase12"> 12,000</span>
 							</div>
 							
 							<div class="border-bottom" style="padding-top: 15px; padding-bottom: 15px; padding-right: 15px; padding-left:15px">
@@ -451,9 +465,20 @@
 					</div>
 				</div>
 			</footer>
+		</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
 <script src = "/resources/jscript/bookview/openclose.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+	var form = $("form[name=form]");
+	var goUrlCart = "/member/cart";
+	
+	$("#cart").on("click", function(){
+		form.attr("action", goUrlCart).submit();			
+	}); 
+	
+	
+</script>
 </body>
 </html>

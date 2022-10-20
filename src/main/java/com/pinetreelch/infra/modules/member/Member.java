@@ -44,9 +44,24 @@ public class Member extends Base{
 	private String tdauName;
 
 	private Integer tdbkSeq;
-
+	
+	private Integer cartSeq;
+	private Integer infraMember_ifmmSeq;
 	
 	
+	
+	public Integer getCartSeq() {
+		return cartSeq;
+	}
+	public void setCartSeq(Integer cartSeq) {
+		this.cartSeq = cartSeq;
+	}
+	public Integer getInfraMember_ifmmSeq() {
+		return infraMember_ifmmSeq;
+	}
+	public void setInfraMember_ifmmSeq(Integer infraMember_ifmmSeq) {
+		this.infraMember_ifmmSeq = infraMember_ifmmSeq;
+	}
 	public Integer getTdbkSeq() {
 		return tdbkSeq;
 	}

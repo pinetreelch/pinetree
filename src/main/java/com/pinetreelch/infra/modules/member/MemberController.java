@@ -121,6 +121,16 @@ public class MemberController {
 		return "/mypage/wishlist";
 	}
 	
+	@RequestMapping(value = "/cart")
+	public String cart(Member dto, Model model) throws Exception {
+		
+		List<Member> result = service.selectcart(dto);
+		
+		model.addAttribute("cartlist",result);
+	
+		return "/mypage/cart";
+	}
+	
 	@SuppressWarnings("unused")
 	@ResponseBody
 	@RequestMapping(value = "/wishlistcheck")

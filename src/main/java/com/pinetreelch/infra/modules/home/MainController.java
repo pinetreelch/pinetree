@@ -3,6 +3,7 @@ package com.pinetreelch.infra.modules.home;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pinetreelch.infra.modules.member.Member;
 import com.pinetreelch.infra.modules.member.MemberServiceImpl;
 
 
@@ -20,6 +22,9 @@ public class MainController {
 	
 	@Autowired
 	MainServiceImpl service;
+	
+	@Autowired
+	MemberServiceImpl service2;
 
 	public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
 		HttpSession httpSession =  httpServletRequest.getSession();
@@ -85,15 +90,28 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/purchaseView")
-	public String purchaseView(Main dto, Model model) throws Exception {
+	public String purchaseView(Member dto2,Main dto, Model model) throws Exception {
 		
-		System.out.println(dto.getTdbkSeq());
 		
-		Main result = service.selectOneBook(dto);
-		List<Main> result2 = service.selectListAuthor(dto);
+		System.out.println(dto.getPagetype());
 		
-		model.addAttribute("bookinfo",result);
-		model.addAttribute("authorlist",result2);
+		if(dto.getPagetype() == 1) {
+			System.out.println(dto.getTdbkSeq());
+			List<Main> result = service.selectOneBook(dto);
+			List<Main> result2 = service.selectListAuthor(dto);
+			
+			model.addAttribute("bookinfo",result);
+			model.addAttribute("authorlist",result2);
+		}
+		
+		if(dto.getPagetype() == 2) {
+			System.out.println("dvdv");
+			List<Main> result2 = service.selectListAuthor(dto);
+			List<Member> result = service2.selectcart(dto2);
+
+			model.addAttribute("bookinfo",result);
+			model.addAttribute("authorlist",result2);
+		}
 		
 		return "main/book/purchaseView";
 	}

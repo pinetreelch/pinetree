@@ -818,7 +818,15 @@ font-style: normal;
 font-weight: 800;
 font-size: 16px;
 color: #000000;	
-float: right;
+}
+
+.totpurchase12{
+		font-family: 'Inria Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 16px;
+color: #000000;
+float: right;	
 }
 
 .totpurchase2{

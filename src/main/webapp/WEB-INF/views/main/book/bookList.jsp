@@ -17,6 +17,7 @@
 	<form name = "form" method= "post">
 	<input type="hidden" name = "mainkey" id = "mainkey">
 	<input type ="hidden" name = "sessSeq" id = "sessSeq" value="${sessSeq}">
+	<input type ="hidden" name = "ifmmSeq" id = "ifmmSeq" value="${sessSeq}">
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
@@ -71,7 +72,7 @@
 				 				</li>
 				 								 				
 				 				<li style="display: inline-block;">
-				 					<i class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px;"></i>
+				 					<i class="fa-solid fa-cart-shopping fa-xl" id="cart" name= "cart" style="padding-top:30px; width: 50px; cursor: pointer;" onclick="clickcart(${sessSeq})"></i>
 				 				</li>	
 				 					 					
 				 				<li style="display: inline-block;">			 					
@@ -528,9 +529,11 @@
   	var seqAtSeq = $("input:hidden[name=tradAuthor_tdatSeq]");
   	var sessSeq = $("input:hidden[name=sessSeq]");
   	var mainkey = $("input:hidden[name=mainkey]");
+  	var ifmmSeq = $("input:hidden[name=ifmmSeq]");
   	var goUrlView = "/main/bookView";
   	var goUrlAuthorView = "/main/authorView";
-  	var goUrlMyapge = "/member/mypage"
+  	var goUrlMyapge = "/member/mypage";
+  	var goUrlCart = "/member/cart"
   	var form = $("form[name=form]");
   	
   	$("#mypage").on("click", function(){
@@ -538,6 +541,13 @@
   		form.attr("action", goUrlMyapge).submit();
   	});
   	
+  	clickcart = function(memberSeq){
+  		if(memberSeq == null || memberSeq == ""){
+  			alert("로그인해주세요 ");	
+  		} else{
+  			form.attr("action", goUrlCart).submit();
+  		}
+  	}
   	
   	goBookView = function(keyValue) {
   	/* if(keyValue != 0) seq.val(btoa(keyValue)); */

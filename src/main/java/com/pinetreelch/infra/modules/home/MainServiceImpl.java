@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pinetreelch.infra.modules.member.Member;
+import com.pinetreelch.infra.modules.member.MemberDao;
+
 
 
 
@@ -13,6 +16,9 @@ public class MainServiceImpl implements MainService {
 	
 	@Autowired
 	MainDao dao;
+	MemberDao dao2;
+	
+
 	
 	@Override
 	public List<Main> selectList() throws Exception{
@@ -96,9 +102,9 @@ public class MainServiceImpl implements MainService {
 	}
 	
 	@Override
-	public Main selectOneBook (Main dto) throws Exception{
+	public List<Main> selectOneBook (Main dto) throws Exception{
 		
-		Main result = dao.selectOneBook(dto); 
+		List<Main> result = dao.selectOneBook(dto); 
 		
 		return result;
 	}

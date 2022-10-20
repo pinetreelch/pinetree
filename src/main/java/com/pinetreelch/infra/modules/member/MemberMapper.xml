@@ -55,6 +55,23 @@
 	
 	</select>
 	
+	<select id="selectcart" resultMap="resultMapObj">
+		select
+			a.cartSeq
+		    , a.infraMember_ifmmSeq
+		    , a.tradBook_tdbkSeq
+		    , b.tdbkBookTitle
+		    , b.tdbkSales
+		    , c.urllarge
+		from
+			cart a
+		left join tradBook b on a.tradBook_tdbkSeq = b.tdbkSeq
+		left join bkUploaded c on a.tradBook_tdbkSeq = c.pseq
+		where 
+			1=1
+		    AND a.infraMember_ifmmSeq = 49	
+	</select>
+	
 	<insert id = "insert" > 
 		
 		INSERT INTO infraMember(
