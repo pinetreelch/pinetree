@@ -29,6 +29,8 @@
 			<mapping path="/codeGroup/**"/>
 			<mapping path="/code/**"/>
 			<mapping path="/member/**"/>
+			<mapping path="/main/purchasesuccess"/>			
+			<mapping path="/main/purchaseView"/>			
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/member/logoutProc" />
 			<exclude-mapping path="/member/logincheck" />

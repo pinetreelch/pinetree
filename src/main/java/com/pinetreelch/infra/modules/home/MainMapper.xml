@@ -216,7 +216,18 @@
         AND  b.tradAuthor_tdatSeq = #{tradAuthor_tdatSeq}
 	</select> 
 	
-	<insert id = "insert"> 
+	<insert id = "insertbuy"> 
+		INSERT INTO buy(	
+			date
+			,infraMember_ifmmSeq
+			,orderuuid
+		)
+		
+		VALUES(
+			#{modDateTime}
+			,#{ifmmSeq}
+			,#{orderuuid}
+		)	
 	
 	</insert>
 

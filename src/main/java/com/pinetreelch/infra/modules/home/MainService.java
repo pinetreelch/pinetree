@@ -4,6 +4,9 @@ import java.util.List;
 
 
 public interface MainService {
+	
+	public void setRegMod(Main dto) throws Exception;
+	
 	public List<Main> selectList() throws Exception;
 	public List<Main> selectList1() throws Exception;
 	public List<Main> selectBook() throws Exception;
@@ -15,4 +18,5 @@ public interface MainService {
 	public List<Main> selectListAuthor(Main dto) throws Exception;
 	public List<Main> selectListTranslator(Main dto) throws Exception;
 	public List<Main> selectBooks(Main dto) throws Exception;
+	public int insertbuy(Main dto) throws Exception;
 }

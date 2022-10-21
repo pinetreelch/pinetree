@@ -62,4 +62,8 @@ public class MainDao {
 	public List<Main> selectBooks(Main dto){				 
 		return sqlSession.selectList(namespace + ".selectBooks", dto); 
 	}
+	
+	public int insertbuy(Main dto){				 
+		return sqlSession.insert(namespace + ".insertbuy", dto); 
+	}
 }

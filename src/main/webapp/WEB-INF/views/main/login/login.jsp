@@ -75,7 +75,7 @@
 												</label>
 												<label class="account-label">
 													<span class="invisible">비밀번호 입력</span>
-													<input type="password"  id="ifmmPwd" id = "ifmmPwd" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="account-input">
+													<input  onkeypress="if(event.keyCode==13){keypress();}" type="password"  id="ifmmPwd" id = "ifmmPwd" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="account-input">
 												</label>
 												
 													<div class="remember-wrapper">
@@ -151,10 +151,50 @@
 			        console.log("error: " + error);
 				 }	     
 		});	
- 		
- 		
 		/* form.attr("action", goUrlInst).submit(); */
 	});
+ 	
+ 	keypress = function(){
+ 		var idcheck = document.getElementById('ifmmId').value;
+		var pwd =	document.getElementById('ifmmPwd').value;
+		
+		$.ajax({ 
+			url : "/member/logincheck",
+			
+			type : 'post',
+			
+			data : {
+				ifmmId : idcheck,
+				ifmmPwd : pwd
+			},
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){
+			 		var ifm = data.ifmmSeq;
+					document.getElementById('ifmmSeq').value = ifm;
+ 					
+					form.attr("action", goHome).submit();
+				 } else if(data.rt == "fail") {
+					 alert('회원정보가 없음 - > 다시 입력하세요 ');
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 
+							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});	
+ 	}
+ 	
+  </script>
+  
+  <script>
+  
+  
   </script>
 </body>
 </html>

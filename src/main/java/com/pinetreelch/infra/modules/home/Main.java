@@ -1,5 +1,6 @@
 package com.pinetreelch.infra.modules.home;
 
+import java.util.Date;
 
 public class Main {
 	
@@ -55,9 +56,38 @@ public class Main {
 	
 	private Integer pagetype;
 	
+	private String orderuuid;
+	private Integer ifmmSeq;
+	private Date modDateTime;
+	private Integer[] checkboxSeqArray;
+
 	
 	
 	
+	public String getOrderuuid() {
+		return orderuuid;
+	}
+	public void setOrderuuid(String orderuuid) {
+		this.orderuuid = orderuuid;
+	}
+	public Integer getIfmmSeq() {
+		return ifmmSeq;
+	}
+	public void setIfmmSeq(Integer ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
+	}
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
+	}
+	public Integer[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+	public void setCheckboxSeqArray(Integer[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
 	public Integer getPagetype() {
 		return pagetype;
 	}

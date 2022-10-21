@@ -60,6 +60,7 @@
 			a.cartSeq
 		    , a.infraMember_ifmmSeq
 		    , a.tradBook_tdbkSeq
+		    , b.tdbkSeq
 		    , b.tdbkBookTitle
 		    , b.tdbkSales
 		    , c.urllarge
@@ -69,7 +70,7 @@
 		left join bkUploaded c on a.tradBook_tdbkSeq = c.pseq
 		where 
 			1=1
-		    AND a.infraMember_ifmmSeq = 49	
+		    AND a.infraMember_ifmmSeq = #{ifmmSeq}	
 	</select>
 	
 	<insert id = "insert" > 
@@ -202,7 +203,7 @@
 
 	</select>
 	
-	<select id = "selectOneForLogin" resultMap = "resultMapObj">
+	<select id = "selectOneForLogin" resultMap="resultMapObj">
 		SELECT
 			a.ifmmSeq
 			,a.ifmmId

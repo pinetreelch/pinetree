@@ -272,6 +272,7 @@ public class MemberController {
 		System.out.println(result.getIfmmSeq());
 		
 		if (result == null) {
+			System.out.println("없");
 			returnMap.put("rt", "fail");			
 		} else {
 			

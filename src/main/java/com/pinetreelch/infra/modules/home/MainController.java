@@ -3,7 +3,6 @@ package com.pinetreelch.infra.modules.home;
 
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pinetreelch.infra.common.util.UtilDateTime;
 import com.pinetreelch.infra.modules.member.Member;
 import com.pinetreelch.infra.modules.member.MemberServiceImpl;
 
@@ -25,12 +25,16 @@ public class MainController {
 	
 	@Autowired
 	MemberServiceImpl service2;
+	
+	
 
 	public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
 		HttpSession httpSession =  httpServletRequest.getSession();
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
 		return rtSeq;
 	}
+	
+	
 	
 	@RequestMapping(value = "/")
 	public String home(Main dto, Model model) throws Exception {
@@ -114,6 +118,19 @@ public class MainController {
 		}
 		
 		return "main/book/purchaseView";
+	}
+	
+	@RequestMapping(value = "/purchasesuccess")
+	public String purchasesuccess(Main dto) throws Exception {
+		
+		dto.getIfmmSeq();
+		int result = service.insertbuy(dto);
+		
+		for(int i : dto.getCheckboxSeqArray()) {
+			System.out.println(i);
+		}
+		
+		return "main/book/purchaseSuccessView";
 	}
 	
 

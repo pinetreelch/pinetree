@@ -16,6 +16,8 @@
 <body>
 	<form name ="form" id = "form" method ="post">
 	<input type="hidden" name = "ifmmSeq" id= "ifmmSeq" value="${sessSeq}"/>
+	<input type="hidden" name="checkboxSeqArray">
+	
 	
 		<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
@@ -100,8 +102,9 @@
 								주문목록에 담겨있는 상품이 없습니다.
 							</c:if>
 							<c:forEach items="${bookinfo }" var ="bookinfo" varStatus="status">
+								<input type="hidden" id="checkboxSeq" name ="checkboxSeq" value= "${bookinfo.tdbkSeq }"/>
 								<tr class="border-bottom">
-									<c:set var = "count" value="${0}"></c:set>
+									<c:set var = "count" value="${0}"></c:set>									
 									<td style="width: 68px; padding: 0px;padding-top: 15px; padding-bottom: 15px;">
 										<a href="../book/bookView.html">
 											<img src="${bookinfo.urllarge }" class="border" alt="" style="width: 60px; height:87px; margin-left: 8px;"/>
@@ -113,12 +116,12 @@
 												<p class="purchaseauthorname" style="margin:0">${bookinfo.tdbkBookTitle }</p>
 												<p class="purchasebookname" style="margin-top: 10px;">
 													
-													<c:forEach items="${authorlist }" var="authorlist" varStatus="status">																											
-															<c:if test="${authorlist.tdbkSeq eq bookinfo.tdbkSeq }">
+													<c:forEach items="${authorlist }" var="authorlist" varStatus="status">																																										
+														<c:if test="${bookinfo.tdbkSeq eq authorlist.tdbkSeq}">
 															<c:set var = "count" value="${count + 1}"></c:set>
 																<c:if test="${count eq 2 }">,</c:if>
-																 <c:if test="${count < 3 }"> ${authorlist.tdauName }</c:if>
-															</c:if>
+																<c:if test="${count < 3 }"> ${authorlist.tdauName }</c:if>
+														</c:if>
 													</c:forEach>
 													<c:if test="${count > 2 }">
 														외 ${count -2 }명
@@ -128,6 +131,7 @@
 											<div style="display:inline-block; width: 250px;">
 												<span class="purchaseprice" style="float: right;">원</span>
 												<span class="purchaseprice" style="float: right;"> <fmt:formatNumber value="${bookinfo.tdbkSales }" pattern="#,###"/> </span>
+												<c:set var = "totalprice" value="${totalprice + bookinfo.tdbkSales}"></c:set>
 											</div>
 										</div>
 									</td>
@@ -143,7 +147,7 @@
 						<div style="border:solid; border-width: 1px;border-color: #87B4E9;">
 							<div class="border-bottom" style="padding-top: 12px; padding-bottom: 12px; padding-right: 15px; padding-left:15px">
 								<span class="totpurchase">총 주문 금액</span>
-								<span class="totpurchase12"> 12,000</span>
+								<span class="totpurchase12"> <fmt:formatNumber value="${totalprice }" pattern="#,###"/> </span>
 							</div>
 							
 							<div class="border-bottom" style="padding-top: 15px; padding-bottom: 15px; padding-right: 15px; padding-left:15px">
@@ -180,7 +184,7 @@
 							<div  style="background-color: #EBF6FF;padding-top: 22px; padding-bottom: 22px; text-align: center; border-bottom:solid; border-color: #87B4E9; border-width: 1px;">
 								<p style="margin:0;">
 									<span class="totalpage">총 결제 금액</span>
-									<span class="totalpage1" style="margin-right: -5px;">12,000</span>
+									<span class="totalpage1" style="margin-right: -5px;"> <fmt:formatNumber value="${totalprice }" pattern="#,###"/></span>
 									<span class="totalpage">원</span>
 								</p>
 							</div>
@@ -321,7 +325,7 @@
 						</div>
 						
 						<div class="d-grid">
-							<button type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" >결제하기</button>
+							<button id="buybtn" type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" >결제하기</button>
 						</div>
 						
 						<ul style="padding:0; margin-top: 15px;">
@@ -473,12 +477,20 @@
 <script>
 	var form = $("form[name=form]");
 	var goUrlCart = "/member/cart";
+	var goUrlSuccess = "/main/purchasesuccess";
+	var checkboxSeqArray = [];
 	
 	$("#cart").on("click", function(){
 		form.attr("action", goUrlCart).submit();			
 	}); 
 	
-	
+	$("#buybtn").on("click", function(){
+		$("input:hidden[name=checkboxSeq]").each(function(){
+			checkboxSeqArray.push($(this).val());
+		});		
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);		
+		form.attr("action", goUrlSuccess).submit();	
+	});	
 </script>
 </body>
 </html>

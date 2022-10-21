@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pinetreelch.infra.modules.member.Member;
+import com.pinetreelch.infra.common.util.UtilDateTime;
+import com.pinetreelch.infra.common.util.Utiluuid;
 import com.pinetreelch.infra.modules.member.MemberDao;
 
 
@@ -18,7 +19,12 @@ public class MainServiceImpl implements MainService {
 	MainDao dao;
 	MemberDao dao2;
 	
-
+	@Override
+	public void setRegMod(Main dto) throws Exception {				
+		dto.setModDateTime(UtilDateTime.nowDate());
+		dto.setOrderuuid(Utiluuid.uuidmake());
+	}
+	
 	
 	@Override
 	public List<Main> selectList() throws Exception{
@@ -105,6 +111,16 @@ public class MainServiceImpl implements MainService {
 	public List<Main> selectOneBook (Main dto) throws Exception{
 		
 		List<Main> result = dao.selectOneBook(dto); 
+		
+		return result;
+	}
+	
+	@Override
+	public int insertbuy (Main dto) throws Exception{
+		
+		setRegMod(dto);
+		System.out.println(dto.getModDateTime());
+		int result = dao.insertbuy(dto); 
 		
 		return result;
 	}
