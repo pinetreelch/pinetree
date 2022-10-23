@@ -41,7 +41,7 @@
  
 	<div class="container bodyd" >
 		<input type="hidden" name = "tdbkSeq" id ="tdbkSeq" value ="${booklist.tdbkSeq }"/>
-		<input type="hidden" name = "ifmmSeq" value ="${sessSeq }"/>
+		<input type="hidden" name = "ifmmSeq" id="ifmmSeq" value ="${sessSeq }"/>
 		<input type="hidden" name = "tdbkathSeq" id ="tdbkathSeq" />
 		<input type="hidden" name = "tradAuthor_tdatSeq" id ="tradAuthor_tdatSeq" />
 	
@@ -63,13 +63,11 @@
 		 				</li>
 		 				
 		 				<li style="display: inline-block;">
-		 					<a href="">
-		 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
-		 					</a>
+		 						<i id="bookopen" class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
 		 				</li>
 		 				
 		 				<li style="display: inline-block;">
-				 					<i class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px;"></i>
+				 					<i id="cart"  class="fa-solid fa-cart-shopping fa-xl" style="padding-top:30px; width: 50px; cursor: pointer;"></i> 
 		 				</li>
 		 				
 		 				<li style="display: inline-block;">		 					
@@ -77,6 +75,13 @@
 		 				</li>		
 				 	</ul>
 			 	</nav>
+			 	
+			 	<input type="hidden" id="cartlength" value="${fn:length(cartlist)}" />
+			 	<c:if test="${fn:length(cartlist) > 0}">
+							<div id="circlediv">
+								${fn:length(cartlist)}
+							</div>	
+				</c:if>
 			</div>
 		</div>
 		
@@ -780,7 +785,8 @@
   	 $("#cartbtn").on("click", function(){
  		 var tdbkSeq = $("input:hidden[name=tdbkSeq]");
 		 var tdbkSeqVal = tdbkSeq.val();
-  		
+		 var exit = false;
+		 
 		 if(ifmmSeq.val() == "" || ifmmSeq.val() == null){
 			 	alert("로그인이 필요합니다. ");
 			 	return false;
@@ -797,28 +803,90 @@
 					,tdbkSeq : tdbkSeqVal					
 				},
 				
+				async: false,
+				
 				success : function(data) {
 		
 				 	if(data.rt == "success"){			 		
-				 		alert('카트에 이 책이 존재하지 않음  ');
-				 		return false;
+				 		// by pass
 					 } else {
 						 // by pass
 						 alert('카트에 존재함 ');
+						 exit = true;
 						 return false;
 					 }
 					
 			     },
 			          
-				error : function(request, status, error){ 
-								
+				error : function(request, status, error){ 								
 					  	console.log("code: " + request.status)	
 				        console.log("message: " + request.responseText)
 				        console.log("error: " + error);
 					 }	     
 			});	
+		
+		 if(exit){
+			 return false;
+		 }
+		 
+		
+		 $.ajax({ 
+				url : "/member/cartinsert",
+				
+				type : 'post',
+				
+				data : {
+					
+					ifmmSeq : ifmmSeq.val()
+					,tdbkSeq : tdbkSeqVal					
+				},
+				
+				async: false,
+				
+				success : function(data) {
+		
+				 	if(data.rt == "success"){			 		
+				 		alert("카트에 추가되었습니다. ");
+				 		return false;
+					 } 
+					
+			     },
+			          
+				error : function(request, status, error){ 								
+					  	console.log("code: " + request.status)	
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+					 }	     
+			});	
+			
+			const element = document.getElementById("circlediv");
+			element.innerHTML = '${fn:length(cartlist) + 1}';
+			
+			
 		return false;
   	 });
   </script> 
+  
+  <script>
+  	$("#cart").on("click", function(){		
+  		
+  		if( $("#ifmmSeq").val() == null || $("#ifmmSeq").val() == "" ){
+  			
+  			alert("로그인이 필요합니다.");
+  			return false;
+  			
+  		} 
+
+		form.attr("action", "/member/cart").submit();
+  		
+  	});
+  </script>
+  
+  <script>
+  	$("#bookopen").on("click", function(){
+  		alert("dd");
+  		
+  	});
+  </script>
 </body>
 </html>

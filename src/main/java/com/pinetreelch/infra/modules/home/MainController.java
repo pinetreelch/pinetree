@@ -56,7 +56,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/bookView")
-	public String bookView(Main dto, Model model) throws Exception {
+	public String bookView(Member dto2, Main dto, Model model) throws Exception {
 		
 		System.out.println("book sequence = "+ dto.getTdbkSeq());
 		
@@ -64,10 +64,12 @@ public class MainController {
 		Main result = service.selectOne(dto);
 		List<Main> result2 = service.selectListAuthor(dto);
 		List<Main> result3 = service.selectListTranslator(dto);
+		List<Member> cartlist = service2.selectcart(dto2);
 		
 		model.addAttribute("booklist",result);
 		model.addAttribute("authorlist",result2);
 		model.addAttribute("translatorlist",result3);
+		model.addAttribute("cartlist", cartlist);
 		
 		return "main/book/bookView";
 	}

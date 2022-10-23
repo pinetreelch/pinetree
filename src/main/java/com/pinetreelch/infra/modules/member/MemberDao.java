@@ -46,6 +46,11 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".cartcheck", dto); 
 	}
 	
+	public int cartinsert(Member dto) {
+		
+		return sqlSession.insert(namespace + ".cartinsert", dto); 
+	}
+	
 	public Member selectOne(MemberVo vo) {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 

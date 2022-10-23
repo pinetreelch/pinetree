@@ -186,6 +186,18 @@
 		)
 	</insert>
 	
+	<insert id="cartinsert">
+		INSERT INTO cart (
+			infraMember_ifmmSeq
+            ,tradBook_tdbkSeq
+		 
+		) values (
+			#{ifmmSeq}
+			,#{tdbkSeq}
+			
+		)
+	</insert>
+	
 	<select id = "selectOne" resultMap = "resultMapObj">
 		SELECT
 			a.*

@@ -150,6 +150,19 @@ public class MemberController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/cartinsert")
+	public Map<String, Object> cartinsert(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.cartinsert(dto);
+
+		returnMap.put("rt", "success");			
+		
+		return returnMap;
+	}
+	
 	@SuppressWarnings("unused")
 	@ResponseBody
 	@RequestMapping(value = "/wishlistcheck")
