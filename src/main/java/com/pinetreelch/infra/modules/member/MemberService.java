@@ -9,6 +9,7 @@ public interface MemberService {
 	public List<Member> selectwishlist(Member dto) throws Exception;
 	public List<Member> selectAuthor(Member dto) throws Exception;
 	public List<Member> selectcart(Member dto) throws Exception;
+	public Member cartcheck(Member dto) throws Exception;
 	public Member selectOne(MemberVo vo) throws Exception;
 	public int selectOne1(Member dto) throws Exception;
 	public int deleteWishlist(Member dto) throws Exception;

@@ -41,6 +41,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public Member cartcheck(Member dto) throws Exception{
+		Member result = dao.cartcheck(dto);
+		
+		return result;
+	}
+	
+	@Override
 	public List<Member> selectAuthor(Member dto) throws Exception{
 		
 		List<Member> result = dao.selectAuthor(dto);

@@ -131,6 +131,25 @@ public class MemberController {
 		return "/mypage/cart";
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "/cartcheck")
+	public Map<String, Object> cartcheck(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println(dto.getIfmmPwd());
+		Member result = service.cartcheck(dto);
+
+		
+		if (result == null) {
+			returnMap.put("rt", "success");			
+		} else {			
+			returnMap.put("rt", "fail"); 
+		}
+		return returnMap;
+	}
+	
 	@SuppressWarnings("unused")
 	@ResponseBody
 	@RequestMapping(value = "/wishlistcheck")
@@ -148,8 +167,7 @@ public class MemberController {
 			returnMap.put("rt", "fail");
 		} else {
 			returnMap.put("rt", "success");
-		}
-	
+		}	
 		return returnMap;
 	}
 	
@@ -280,6 +298,7 @@ public class MemberController {
 			httpSession.setAttribute("sessSeq", result.getIfmmSeq());
 			httpSession.setAttribute("sessId", result.getIfmmId());
 			httpSession.setAttribute("sessName", result.getIfmmName());
+			
 			
 			returnMap.put("rt", "success");
 			returnMap.put("ifmmSeq", result.getIfmmSeq());

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pinetreelch.infra.common.util.UtilDateTime;
 import com.pinetreelch.infra.modules.member.Member;
 import com.pinetreelch.infra.modules.member.MemberServiceImpl;
 
@@ -37,20 +36,21 @@ public class MainController {
 	
 	
 	@RequestMapping(value = "/")
-	public String home(Main dto, Model model) throws Exception {
+	public String home(Main dto, Member dto2, Model model) throws Exception {
 		
 		List<Main> result = service.selectList();
 		List<Main> result2 = service.selectBook();
 		List<Main> result3 = service.selectList1();
-		List<Main> random = service.selectRandom();
+		List<Main> random = service.selectRandom(); 
 		List<Main> randomTwo = service.selectRandomTwo();
+		List<Member> cartlist = service2.selectcart(dto2);
 		
 		model.addAttribute("list", result);
 		model.addAttribute("list2", result2);
 		model.addAttribute("list3", result3);
 		model.addAttribute("random", random);
 		model.addAttribute("randomTwo", randomTwo);
-		
+		model.addAttribute("cartlist", cartlist);
 		
 		return "main/book/bookList";
 	}

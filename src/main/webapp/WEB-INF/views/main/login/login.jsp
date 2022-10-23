@@ -64,7 +64,7 @@
    								
    								
    									<form name = "form" id = "form" class="account-form" method = "post">
-   									
+   										
    										<legend class="invisible">
       															로그인
 										</legend>
@@ -96,7 +96,7 @@
 													</div>
 											</div>
 											<button id="btnLogin" name= "btnLogin"type="button" class="full-button login-button main rui_button_blue_50" >로그인</button>
-											<input id="ifmmSeq" name = "ifmmSeq" type = "hidden" value= ""/>
+											<input id="ifmmSeq" name = "ifmmSeq" type = "hidden" />
 							<a class="full-button login-button signup-button sub rui_button_white_50" type="button" href="/login/signup1">
      						 회원가입
     						</a>
@@ -135,9 +135,9 @@
 	
 			 	if(data.rt == "success"){
 			 		var ifm = data.ifmmSeq;
-					document.getElementById('ifmmSeq').value = ifm;
- 					
+					document.getElementById('ifmmSeq').value = ifm;	
 					form.attr("action", goHome).submit();
+					
 				 } else if(data.rt == "fail") {
 					 alert('회원정보가 없음 - > 다시 입력하세요 ');
 				 }

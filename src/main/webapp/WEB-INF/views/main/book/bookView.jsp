@@ -220,7 +220,7 @@
 								<div style="padding-right: 55px;">
 									<input type="hidden" id = "pagetype" name = "pagetype" value ="1">
 									<button onclick="buybutton()"  type="button" id="buybtn" class="btn btn-primary float-end sojangbutton" style="width: 112px; height: 48px;" >소장하기</button>
-									<button  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
+									<button  id= "cartbtn" class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
 											<i class="fa-solid fa-cart-shopping fa-lg" style="color: rgba(0, 0, 0, 0.5);"></i>
 									</button>
 									<button onclick="wishbtnclick(${booklist.tdbkSeq }); return false;"  id="wishbtn"  class="float-end" style="width:48px; height:48px; border:solid 1px; border-color:rgba(0, 0, 0, 0.2); border-radius:5px; background-color: white; margin-right: 5px;">
@@ -775,7 +775,50 @@
 				 }	     
 		});	
 	});
-  
+  </script>
+  <script>
+  	 $("#cartbtn").on("click", function(){
+ 		 var tdbkSeq = $("input:hidden[name=tdbkSeq]");
+		 var tdbkSeqVal = tdbkSeq.val();
+  		
+		 if(ifmmSeq.val() == "" || ifmmSeq.val() == null){
+			 	alert("로그인이 필요합니다. ");
+			 	return false;
+		 }
+
+		 $.ajax({ 
+				url : "/member/cartcheck",
+				
+				type : 'post',
+				
+				data : {
+					
+					ifmmSeq : ifmmSeq.val()
+					,tdbkSeq : tdbkSeqVal					
+				},
+				
+				success : function(data) {
+		
+				 	if(data.rt == "success"){			 		
+				 		alert('카트에 이 책이 존재하지 않음  ');
+				 		return false;
+					 } else {
+						 // by pass
+						 alert('카트에 존재함 ');
+						 return false;
+					 }
+					
+			     },
+			          
+				error : function(request, status, error){ 
+								
+					  	console.log("code: " + request.status)	
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+					 }	     
+			});	
+		return false;
+  	 });
   </script> 
 </body>
 </html>

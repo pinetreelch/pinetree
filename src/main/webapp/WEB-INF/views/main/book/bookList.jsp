@@ -84,7 +84,11 @@
 						 	</ul>
 					 	</nav>
 						
-						<div id="circlediv">2</div>	
+						<c:if test="${fn:length(cartlist) > 0}">
+							<div id="circlediv">
+								${fn:length(cartlist)}
+							</div>	
+						</c:if>
 				</div>
 		</div>
 		

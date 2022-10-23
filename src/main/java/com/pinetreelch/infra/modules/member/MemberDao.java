@@ -40,6 +40,12 @@ public class MemberDao {
 		return sqlSession.selectList(namespace + ".selectcart", dto); 
 	}
 	
+
+	public Member cartcheck(Member dto) {
+		
+		return sqlSession.selectOne(namespace + ".cartcheck", dto); 
+	}
+	
 	public Member selectOne(MemberVo vo) {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 

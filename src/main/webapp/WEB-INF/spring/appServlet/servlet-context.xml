@@ -37,6 +37,7 @@
 			<exclude-mapping path="/member/testaction" />
 			<exclude-mapping path="/member/memberInst" />
 			
+			
 			<beans:bean id="checkLoginSessionInterception" class="com.pinetreelch.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	
