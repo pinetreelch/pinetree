@@ -104,7 +104,8 @@
 							<c:forEach items="${bookinfo }" var ="bookinfo" varStatus="status">
 								<input type="hidden" id="checkboxSeq" name ="checkboxSeq" value= "${bookinfo.tdbkSeq }"/>
 								<tr class="border-bottom">
-									<c:set var = "count" value="${0}"></c:set>									
+									<c:set var = "count" value="${0}"></c:set>
+																		
 									<td style="width: 68px; padding: 0px;padding-top: 15px; padding-bottom: 15px;">
 										<a href="../book/bookView.html">
 											<img src="${bookinfo.urllarge }" class="border" alt="" style="width: 60px; height:87px; margin-left: 8px;"/>

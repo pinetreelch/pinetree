@@ -163,6 +163,20 @@ public class MemberController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/cartdelete")
+	public Map<String, Object> cartdelete(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.cartdelete(dto);
+
+		returnMap.put("rt", "success");			
+		
+		return returnMap;
+	}
+	
+	
 	@SuppressWarnings("unused")
 	@ResponseBody
 	@RequestMapping(value = "/wishlistcheck")

@@ -51,6 +51,11 @@ public class MemberDao {
 		return sqlSession.insert(namespace + ".cartinsert", dto); 
 	}
 	
+	public int cartdelete(Member dto) {
+		
+		return sqlSession.delete(namespace + ".cartdelete", dto); 
+	}
+
 	public Member selectOne(MemberVo vo) {
 		
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 

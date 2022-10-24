@@ -73,8 +73,8 @@ public class Main {
 	public Integer getIfmmSeq() {
 		return ifmmSeq;
 	}
-	public void setIfmmSeq(Integer ifmmSeq) {
-		this.ifmmSeq = ifmmSeq;
+	public void setIfmmSeq(Integer string) {
+		this.ifmmSeq = string;
 	}
 	public Date getModDateTime() {
 		return modDateTime;

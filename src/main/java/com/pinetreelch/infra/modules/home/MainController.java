@@ -36,7 +36,10 @@ public class MainController {
 	
 	
 	@RequestMapping(value = "/")
-	public String home(Main dto, Member dto2, Model model) throws Exception {
+	public String home(Main dto, Member dto2, Model model, HttpServletRequest hrequest) throws Exception {
+		
+		
+		
 		
 		List<Main> result = service.selectList();
 		List<Main> result2 = service.selectBook();

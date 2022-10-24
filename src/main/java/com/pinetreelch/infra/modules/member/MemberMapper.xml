@@ -270,4 +270,15 @@
 	        AND iframMember_ifmmSeq = #{ifmmSeq}
 	        AND tradBook_tdbkSeq = #{tdbkSeq}
 	</delete>
+	
+	<delete id="cartdelete">
+		delete
+		from
+			cart
+		where
+			1=1
+		    AND infraMember_ifmmSeq = #{ifmmSeq}
+		    AND tradBook_tdbkSeq = #{tdbkSeq}
+				
+	</delete>
 </mapper>

@@ -20,6 +20,7 @@
 	<input type="hidden" name = "ifmmId" id="ifmmId" value="${memberinfo.ifmmId}"/>
 	<input type="hidden" name = "tdbkSeq" id="tdbkSeq" />
 	<input type="hidden" name = "pagetype" id = "pagetype" value="2"/>
+	<input type="hidden" name="checkboxSeqArray">
 	
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
@@ -70,7 +71,7 @@
 		 				
 		 				<li style="display: inline-block;">
 		 					<a href="">
-		 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
+		 						<i id="bookopen" class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
 		 					</a>
 		 				</li>
 		 				
@@ -109,24 +110,24 @@
 							<div class="border-bottom" style="display: table; width: 94%; margin-left: 3%; vertical-align: middle; margin-right:3%; height: 60px; ">					
 								<div style="display: table-row;">								
 									<div style="display: table-cell; width: 50%; vertical-align: middle;" >
-										 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-										<span class="selectall">전체 선택</span> 
+										 <input class="form-check-input" type="checkbox" id="checkall" >
+										<span class="selectall" >전체 선택</span> 
 									</div>
 										
 									<div style="display: table-cell; width: 50%; text-align:right; vertical-align: middle;"> 
-										<button class="btnStyle"> 선택 위시리스트로 이동 </button> 
+										<button class="btnStyle" id="savewishlist"> 선택 위시리스트로 이동 </button> 
 										<button class="btnStyle"> 선택 삭제 </button> 
 									</div>									
 								</div>
 							</div>
-							
+							 
 							<c:set var="totalprice"></c:set>
 							<c:forEach items="${cartlist }" var =  "cartlist" varStatus="status" >
-								<div <c:if test="${!status.last }">class="border-bottom"</c:if>  style="display: table; width: 94%; margin-left: 3%; margin-right:3%; height: 127px; vertical-align: middle; ">					
+								<div id="div${cartlist.tdbkSeq }" <c:if test="${!status.last }">class="border-bottom"</c:if>  style="display: table; width: 94%; margin-left: 3%; margin-right:3%; height: 127px; vertical-align: middle; ">					
 									<div style="display: table-row;">	
 																
 										<div style="display: table-cell; width: 20%; vertical-align: middle; ">
-											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="vertical-align: middle">
+											<input  value = "${cartlist.tdbkSeq }" class="form-check-input" type="checkbox"  name="checkboxitem" id="checkbox${status.count }" style="vertical-align: middle" >
 											<img class="border" src="${cartlist.urllarge }" alt="" style="width: 60px; height: 87px; margin-left: 5px;"/>
 										</div>
 										
@@ -135,7 +136,7 @@
 											<p class="ctbookauthor">에드워드 에슈턴 </p>
 											<div style= "vertical-align:bottom"> 
 												<button class="btnStyle"> 위시리스트로 이동 </button> 
-												<button class="btnStyle"> 삭제 </button> 					
+												<button class="btnStyle" onclick="deleteOne(${cartlist.tdbkSeq}, ${cartlist.tdbkSales }); return false;"> 삭제 </button> 					
 											 </div>
 										</div>	
 																		
@@ -175,7 +176,8 @@
 									</div>
 									
 									<div style="display: table-cell; vertical-align: middle; text-align: right;">
-										<span class="totpurchase1" style="vertical-align: middle; "> <strong> <fmt:formatNumber value="${totalprice }" pattern="#,###"/></strong></span>
+										<input type="hidden" id="tempprice" name="tempprice" value="${totalprice}"/>
+										<span class="totpurchase1" style="vertical-align: middle;" id = "test1"> <strong id="str"> <fmt:formatNumber value="${totalprice }" pattern="#,###" /> </strong></span>
 										<span class="totpurchase1" style="vertical-align: middle; ">원 </span>
 									</div>	
 								</div>
@@ -187,7 +189,7 @@
 									</div>
 									
 									<div style="display: table-cell; vertical-align: middle; text-align: right;">
-										<span class="totpurchase1" style="vertical-align: middle; "> <strong> <fmt:formatNumber value="${totalprice }" pattern="#,###"/> </strong></span>
+										<span class="totpurchase1" style="vertical-align: middle; "> <strong> 0 </strong></span>
 										<span class="totpurchase1" style="vertical-align: middle; ">원 </span>
 									</div>	
 								</div>
@@ -309,16 +311,96 @@
 <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
 <script src = "/resources/jscript/bookview/openclose.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
-	
+<script>	
 	var form = $("form[name=form]");
 	var goUrlPurchase = "/main/purchaseView";
+	var checkboxSeqArray = [];
 	
 	$("#sojangbtn").on("click", function(){
 		form.attr("action", goUrlPurchase).submit();
+	});	
+	
+	$("#savewishlist").click(function(){
+		alert("wish");
+		checkboxSeqArray = [];
+		$("input[name=checkboxitem]:checked").each(function(){
+			checkboxSeqArray.push($(this).val());
+		});	
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+							
+		return false;
 	});
 	
+	deleteOne = function(bseq, price){
+		
+		$('#tdbkSeq').val(bseq);
+		var bkseq = $('#tdbkSeq').val();
+		var imseq = $('#ifmmSeq').val();
+		
+		alert('이 책의 시퀀스' + bkseq);
+		alert('멤버 시퀀스는 ' + imseq);
+		
+		$.ajax({
+			
+			url: "/member/cartdelete",
+			
+			type: 'post',
+			
+			async: false,
+			
+			data : {
+				ifmmSeq : imseq,
+				tdbkSeq : bkseq
+			},
+			
+			success : function(data){
+				alert("delete");
+			},
+			
+			error : function(request, status, error){
+				console.log("code: " + request.status)	
+		        console.log("message: " + request.responseText)
+		        console.log("error: " + error);
+			}
+		});		
+		$("#div"+bseq).remove();		
+	}
 	
+	$("#bookopen").click(function(){
+		var str = $("#test1 strong").text();
+		var temp = $("#tempprice").val();
+		var temptest = temp - 9000 ;
+		temptest = Number(temptest);
+		alert(temptest);
+		
+		 $("#test1 strong").html('<fmt:formatNumber value="${totalprice}" pattern="#,###" />');
+		return false;
+	})
+
 </script>
+
+<script>	
+	$(document).ready(function(){
+		$("#checkall").click(function(){
+			if( $('#checkall').is(':checked')) {
+				$("input[name=checkboxitem]").prop("checked", true);
+			} else{
+				$("input[name=checkboxitem]").prop("checked", false);
+			}	
+		});
+		
+		$("input[name=checkboxitem]").click(function() {
+			var total = $("input[name=checkboxitem]").length;
+			var checked = $("input[name=checkboxitem]:checked").length;
+			
+			if(total != checked){
+				$("#checkall").prop("checked", false);
+			} else {
+				$("#checkall").prop("checked", true);
+			}			
+		})
+	});
+</script>
+
 </body>
 </html>
