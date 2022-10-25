@@ -55,10 +55,10 @@
 		<div class="row" >
 	 		<div class="col-4">
 	 			<div style="padding-top: 30px; display: inline-block;">
-				 	<a  href="/main/" style="display: inline-block">	
+				 	<span id="home" style="cursor: pointer">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px;">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
-				 	</a>
+				 	</span>
 				 </div>
 			</div>
 		
@@ -86,6 +86,13 @@
 		 				</li>
 				 	</ul>
 			 	</nav>
+			 	
+			 	<input type="hidden" id="cartlength" value="${fn:length(cartlist)}" />
+			 	<c:if test="${fn:length(cartlist) > 0}">
+							<div id="circlediv">
+								${fn:length(cartlist)}
+							</div>	
+				</c:if>
 			</div>
 		</div>
 	</div>  <!-- container bodyd end -->
@@ -176,11 +183,12 @@
 									</div>
 									
 									<div style="display: table-cell; vertical-align: middle; text-align: right;">
-										<input type="hidden" id="tempprice" name="tempprice" value="${totalprice}"/>
+										<input type = "hidden" id="totalprice" name="totalprice" value="${totalprice }"/>
+										<input type="hidden" id="tempprice" name="tempprice" value = "0"/>
 										<span class="totpurchase1" style="vertical-align: middle;" id = "test1"> <strong id="str"> <fmt:formatNumber value="${totalprice }" pattern="#,###" /> </strong></span>
 										<span class="totpurchase1" style="vertical-align: middle; ">원 </span>
 									</div>	
-								</div>
+								</div>	
 								
 								<div style="display: table-row; vertical-align: middle; line-height: 35px;">
 									<div style="display: table-cell; vertical-align: middle;">
@@ -203,7 +211,7 @@
 									</div>
 									
 									<div style="display: table-cell; vertical-align: middle; text-align: right;">
-										<span class="cttotal" style="vertical-align: middle; "> <strong> <fmt:formatNumber value="${totalprice }" pattern="#,###"/> </strong></span>
+										<span class="cttotal" style="vertical-align: middle; " id = "test2"> <strong> <fmt:formatNumber value="${totalprice }" pattern="#,###"/> </strong></span>
 										<span class="cttotal" style="vertical-align: middle; ">원 </span>
 									</div>	
 								</div>
@@ -337,9 +345,7 @@
 		var bkseq = $('#tdbkSeq').val();
 		var imseq = $('#ifmmSeq').val();
 		
-		alert('이 책의 시퀀스' + bkseq);
-		alert('멤버 시퀀스는 ' + imseq);
-		
+	
 		$.ajax({
 			
 			url: "/member/cartdelete",
@@ -354,7 +360,7 @@
 			},
 			
 			success : function(data){
-				alert("delete");
+				//bypass
 			},
 			
 			error : function(request, status, error){
@@ -363,17 +369,49 @@
 		        console.log("error: " + error);
 			}
 		});		
-		$("#div"+bseq).remove();		
+		$("#div"+bseq).remove();	
+		
+		var totprice = $("#totalprice").val();				
+		var temp = $("#tempprice").val();
+		
+		var totpriceInt = parseInt(totprice);
+		var tempint = parseInt(temp);
+		
+		var totnumbook = ${fn:length(cartlist)};
+		
+		$("#tempprice").val(tempint + price);
+		
+		temp = $("#tempprice").val();
+		tempint = parseInt(temp);
+		
+		var temptest = totpriceInt - tempint;
+		
+		var cn = temptest.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+		
+		totnumbook = totnumbook - 1;
+		
+		$("#circlediv").html(totnumbook);
+		$("#test1 strong").html(cn);
+		$("#test2 strong").html(cn);
+		
+		
+		return false;		
 	}
 	
 	$("#bookopen").click(function(){
 		var str = $("#test1 strong").text();
-		var temp = $("#tempprice").val();
-		var temptest = temp - 9000 ;
-		temptest = Number(temptest);
-		alert(temptest);
 		
-		 $("#test1 strong").html('<fmt:formatNumber value="${totalprice}" pattern="#,###" />');
+		var temp = $("#tempprice").val();		
+		var tempint = parseInt(temp);
+		$("#tempprice").val(9000 + tempint);
+		
+		temp = $("#tempprice").val();
+		
+		var temptest = ${totalprice} - temp ;
+		
+		var cn = temptest.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+		$("#test1 strong").html(cn);
 		return false;
 	})
 
@@ -402,5 +440,10 @@
 	});
 </script>
 
+<script>
+$("#home").click(function(){
+	  form.attr("action", "/main/").submit(); 
+   });
+</script>
 </body>
 </html>

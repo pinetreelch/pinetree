@@ -51,10 +51,10 @@
 	 	<div class="row" >
 		 		<div class="col-4">
 		 			<div style="padding-top: 30px; display: inline-block;">
-					 	<a  href="" style="display: inline-block">	
+					 	<span id = "home" style="cursor: pointer">
 						 	<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px;">
 						 	<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
-					 	</a>
+					 	</span>
 					 	
 					 </div>
 				</div>
@@ -570,6 +570,11 @@
   		seqAtSeq.val(keyValue3);
   		form.attr("action", goUrlAuthorView).submit();
   	}
+  </script>
+  <script>
+   $("#home").click(function(){
+	  form.attr("action", "/main/").submit(); 
+   });
   </script>
   </form>
 </body>

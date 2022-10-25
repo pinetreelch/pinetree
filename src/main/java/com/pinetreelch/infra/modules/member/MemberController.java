@@ -125,9 +125,9 @@ public class MemberController {
 	public String cart(Member dto, Model model) throws Exception {
 		
 		List<Member> result = service.selectcart(dto);
-		
+		List<Member> cartlist = service.selectcart(dto);
 		model.addAttribute("cartlist",result);
-	
+		model.addAttribute("cartlist", cartlist);
 		return "/mypage/cart";
 	}
 	
