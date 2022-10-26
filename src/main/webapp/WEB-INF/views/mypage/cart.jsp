@@ -394,7 +394,7 @@
 		$("#test1 strong").html(cn);
 		$("#test2 strong").html(cn);
 		
-		
+		                                                                                                                                                                                                                                     
 		return false;		
 	}
 	
