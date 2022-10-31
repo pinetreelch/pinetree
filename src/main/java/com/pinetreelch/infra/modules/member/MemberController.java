@@ -2,6 +2,7 @@ package com.pinetreelch.infra.modules.member;
 
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -99,10 +100,13 @@ public class MemberController {
 		
 		
 		System.out.println("@@@!!@!@!@!"+getSessionSeqCore(hrequest));
+		List<Member> cartlist = service.selectcart(dto);
+		
 		dto.setIfmmSeq(getSessionSeqCore(hrequest));
 		
 		Member result = service.selectOneMember(dto);
 		
+		model.addAttribute("cartlist", cartlist);
 		model.addAttribute("memberinfo",result);
 		
 		return "/mypage/mypagelist";
@@ -313,11 +317,13 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		System.out.println(dto.getIfmmPwd());
+		
 		Member result = service.selectOneForLogin(dto);
-		System.out.println(result.getIfmmSeq());
+		
+		
 		
 		if (result == null) {
-			System.out.println("없");
+			System.out.println("없음 ");
 			returnMap.put("rt", "fail");			
 		} else {
 			

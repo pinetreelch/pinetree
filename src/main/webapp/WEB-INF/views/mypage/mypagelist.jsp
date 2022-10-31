@@ -17,6 +17,7 @@
 	<form name="form" method = "post">
 	<input type="hidden" name = "mainkey" id="mainkey"/>
 	<input type="hidden" name = "sessSeq" id="sessSeq" value="${sessSeq}"/>
+	<input type="hidden" name = "ifmmSeq" value="${sessSeq}"/>		
 		<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
@@ -50,10 +51,10 @@
 	 	<div class="row" >
 	 		<div class="col-4">
 	 			<div class="aa" style="padding-top: 30px; display: inline-block;">
-				 	<a  href="/main/" style="display: inline-block; color:black;">	
+				 	<span id="home" style="cursor: pointer">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px; color:black;">
 					 	<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
-				 	</a>
+				 	</span>
 				 </div>
 			</div>
 		
@@ -81,6 +82,13 @@
 		 				</li>
 				 	</ul>
 			 	</nav>
+			 	
+			 	<input type="hidden" id="cartlength" value="${fn:length(cartlist)}" />
+			 	<c:if test="${fn:length(cartlist) > 0}">
+							<div id="circlediv">
+								${fn:length(cartlist)}
+							</div>	
+				</c:if>
 			</div>
 		</div>
 		<!-- padding-left:29px; padding-right:20px; -->
@@ -104,7 +112,7 @@
 							
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 선호작품</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 최근 조회한 작품</div>
-							<div class="menutitle34" style="padding-top:14px; padding-left: 22px;"> <a href="/member/wishlist">위시 리스트</a></div>
+							<div class="menutitle3" id="wishlist" style="padding-top:14px; padding-left: 22px; cursor: pointer; "> 위시 리스트 </div>  
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 독서노트</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 신간알림</div>
 							<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 이벤트 알림 설정</div>
@@ -250,16 +258,16 @@
 									<li id="wishl" style="float:left;  width: 160px;">
 										<a href="./wishlistView.html">
 											<div style=" display:inline-block; text-align: center; height: 30px;">
-											<i class="fa-regular fa-heart fa-xl" style="margin-top: 15px; margin-left: 2px;"></i>
-										</div>
+												<i class="fa-regular fa-heart fa-xl" style="margin-top: 15px; margin-left: 2px;"></i>
+											</div>
 										
-										<h3 class="litem" style="padding-top:10px;">
-											 위시리스트
-										</h3>
+											<h3 class="litem" style="padding-top:10px;">
+												 위시리스트
+											</h3>
 										
-										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>0</span>
-											 <span>개</span>
+											<h3 class="cashleft" style="padding-top:3px;">
+												 <span>0</span>
+												 <span>개</span>
 											</h3>
 										</a>
 									</li>
@@ -428,15 +436,21 @@
 	var mainkey = $("input:hidden[name=mainkey]");
 	
 	var goUrlInfo = "/member/infochangecheck";
+	var goUrlHome = "/main/";
+	var goWishList = "/member/wishlist"; 
 	
 	myinfo = function(){
-		mainkey.val(sessSeqVal);
-		
-		
+		mainkey.val(sessSeqVal);	
 		form.attr("action",goUrlInfo).submit();
 	}
 	
+	$("#home").click("action", function(){
+		form.attr("action", goUrlHome).submit();
+	});
 	
+	$("#wishlist").click("action", function(){
+		form.attr("action", goWishList).submit();
+	});
 </script>
 </body>
 </html>

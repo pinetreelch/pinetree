@@ -21,7 +21,7 @@
  <link rel="stylesheet" href="https://static.ridicdn.net/books/dist/css/rui.css?20220725120448">
 <link rel="stylesheet" href="https://static.ridicdn.net/store/dist/account.css?20220725120822">
 
-	<title>리디 로그인</title>
+	<title>로그인</title>
 	
 	 <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>

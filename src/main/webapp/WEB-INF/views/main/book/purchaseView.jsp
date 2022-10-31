@@ -184,6 +184,7 @@
 							
 							<div  style="background-color: #EBF6FF;padding-top: 22px; padding-bottom: 22px; text-align: center; border-bottom:solid; border-color: #87B4E9; border-width: 1px;">
 								<p style="margin:0;">
+									<input type="hidden" value="${totalprice}" id="totalprice" name="totalprice" />
 									<span class="totalpage">총 결제 금액</span>
 									<span class="totalpage1" style="margin-right: -5px;"> <fmt:formatNumber value="${totalprice }" pattern="#,###"/></span>
 									<span class="totalpage">원</span>
@@ -486,10 +487,13 @@
 	}); 
 	
 	$("#buybtn").on("click", function(){
+		
 		$("input:hidden[name=checkboxSeq]").each(function(){
 			checkboxSeqArray.push($(this).val());
 		});		
-		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);		
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+		alert(checkboxSeqArray);	
+	
 		form.attr("action", goUrlSuccess).submit();	
 	});	
 </script>

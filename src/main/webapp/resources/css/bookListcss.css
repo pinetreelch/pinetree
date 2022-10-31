@@ -1497,3 +1497,11 @@ font-size: 14px;
 color: inherit;
 line-height: 30px;
 }
+
+.hideeffect{
+	  width:5px;
+      padding:0 5px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+}

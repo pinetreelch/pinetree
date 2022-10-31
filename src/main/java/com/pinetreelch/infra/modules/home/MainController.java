@@ -37,10 +37,7 @@ public class MainController {
 	
 	@RequestMapping(value = "/")
 	public String home(Main dto, Member dto2, Model model, HttpServletRequest hrequest) throws Exception {
-		
-		
-		
-		
+
 		List<Main> result = service.selectList();
 		List<Main> result2 = service.selectBook();
 		List<Main> result3 = service.selectList1();
@@ -68,11 +65,13 @@ public class MainController {
 		List<Main> result2 = service.selectListAuthor(dto);
 		List<Main> result3 = service.selectListTranslator(dto);
 		List<Member> cartlist = service2.selectcart(dto2);
+		List<Main> result4 = service.selectBook();
 		
 		model.addAttribute("booklist",result);
 		model.addAttribute("authorlist",result2);
 		model.addAttribute("translatorlist",result3);
 		model.addAttribute("cartlist", cartlist);
+		model.addAttribute("selectbooklist",result4);
 		
 		return "main/book/bookView";
 	}

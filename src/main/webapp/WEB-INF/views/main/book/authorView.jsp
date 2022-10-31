@@ -92,14 +92,13 @@
 					<div style="padding: 20px 0;">
 						 <p class="authorcontent">
 							<c:forEach items="${authorlist }" var = "authorlist" varStatus="status">
-								${authorlist.tdauIntro }
-								
-								<c:if test="${authorlist.tdauIntro2 ne null}">
-									${authorlist.tdauIntro2 }
+								<c:if test="${authorlist.tdauName eq    }">
+									${authorlist.tdauName } <br/>
 								</c:if>
-							</c:forEach>
-							
-							
+								<%-- <c:if test="${authorlist.tdauIntro2 ne null}">
+									${authorlist.tdauIntro2 }
+								</c:if> --%>
+							</c:forEach> 		
 						</p>
 						
 						<p class="authorcontent" style="margin:0;">

@@ -221,12 +221,14 @@
 			date
 			,infraMember_ifmmSeq
 			,orderuuid
+			,totalprice
 		)
 		
 		VALUES(
 			#{modDateTime}
 			,#{ifmmSeq}
 			,#{orderuuid}
+			,#{totalprice}
 		)	
 	
 	</insert>

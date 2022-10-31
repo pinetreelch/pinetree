@@ -356,7 +356,9 @@
 					</c:if>
 					
 					<div class="col-12">
-						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">저자 프로필</div>
+						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
+							저자 프로필
+						</div>
 					</div>
 					
 							
@@ -368,9 +370,14 @@
 								<li style="float: left">
 									<span class="authorprofile" style="margin-right: 7px;">저자</span>
 									
+									<c:forEach items="${authorlist}" var="authorlist" varStatus="status1">
+										<c:if test="${authorlist.tdbkSeq eq booklist.tdbkSeq }">
+											<c:set var = "totauthor" value="${totauthor + 1}"></c:set>
+										</c:if>
+									</c:forEach>
 									
-									
-									<c:forEach items="${authorlist }" var="authorlist" varStatus="status1">
+									<c:forEach items="${authorlist}" var="authorlist" varStatus="status1">
+										
 										<span class="authorprofile2
 												  <c:if test="${status1.last}"> border-end</c:if>" 
 											  style=" <c:choose>
@@ -382,18 +389,17 @@
 															padding-right: 3px;
 														</c:otherwise>
 													</c:choose>">
+													
 												  <a href="">
-												  	${authorlist.tdauName }
-												   </a>
-												   
-												  	<c:choose>
-												  		<c:when test="${status1.last }">
-												  		</c:when>
+												  	<c:if test="${authorlist.tdbkSeq eq booklist.tdbkSeq }">
+												  		<c:set var ="checknum" value="${checknum + 1 }"></c:set>
+												  		${authorlist.tdauName } 
 												  		
-												  		<c:otherwise>
-												  			<span style="padding-left: 3px;">•</span>
-												  		</c:otherwise>
-												  	</c:choose>											 
+												  		<c:if test="${totauthor>1 && checknum ne totauthor}">
+													  		<span style="padding-left: 3px;">•</span>
+													  	</c:if>												  		
+												  	</c:if>
+												   </a>											  										 
 										</span>
 									</c:forEach>
 								</li>
@@ -414,17 +420,22 @@
 					
 					<div class="col-12" style = "padding-top: 20px;">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
-
-							<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  begin= "0" end = "0">
-							<span class="authorprofileName">
-								 	${authorlist.tdauName }
-							</span>
-							
-							 <c:if test="${authorlist.tdauNameEng ne null }">
-								<span class="authorprofileName2">
-										${authorlist.tdauNameEng}
-								</span>
-							</c:if> 
+							<c:set var="profilecount" value="0"></c:set>
+							<c:forEach items="${authorlist}" var="authorlist" varStatus="status1"  >
+								<c:if test="${authorlist.tdbkSeq eq booklist.tdbkSeq }">
+									<c:if test="${profilecount < 1 }">
+										<span class="authorprofileName">
+											 	${authorlist.tdauName }
+										</span>
+										
+										<c:set var="profilecount" value="${profilecount +1 }"></c:set>
+										 <c:if test="${authorlist.tdauNameEng ne null }">
+											<span class="authorprofileName2">
+													${authorlist.tdauNameEng}
+											</span>
+										</c:if> 
+									</c:if>	
+								</c:if>
 							</c:forEach>
 							
 						</div>
@@ -442,8 +453,10 @@
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
 												    	
 							    	<p style="line-height: 30px;">
-										<c:forEach items = "${authorlist}" var = "authorlist" varStatus = "status" begin= "0" end = "0" step = "1">
-											${authorlist.tdauIntro}
+										<c:forEach items = "${authorlist}" var = "authorlist" varStatus = "status">
+											<c:if test="${authorlist.tdbkSeq eq booklist.tdbkSeq }">
+												${authorlist.tdauIntro}
+											</c:if>
 										</c:forEach>
 									</p>
 								
@@ -503,46 +516,12 @@
 				<div class="row" style="padding-top:40px;">
 					<div class="col-12">
 						<h2 class="nowbest border-bottom" style="display:inline-block; width: 171px;">지금 베스트셀러</h2>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">1위</span>
-							<span class="title">&nbsp;기후위기? 인류위기!!</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">2위</span>
-							<span class="title">&nbsp;때로는 행복대신 불행을...</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">3위</span>
-							<span class="title">&nbsp;시민의 한국사</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">4위</span>
-							<span class="title">&nbsp;역행자</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">5위</span>
-							<span class="title">&nbsp;개정판 | 하얀늑대들</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">6위</span>
-							<span class="title">&nbsp;프로젝트 헤일메리</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">7위</span>
-							<span class="title">&nbsp;달라구트 꿈 백화점2</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">8위</span>
-							<span class="title">&nbsp;행성</span>
-						</div>
-						<div class="border-bottom" style="display:inline-block; width: 171px;">
-							<span class="rank">9위</span>
-							<span class="title">&nbsp;돈의 흐름</span>
-						</div>
-						<div  style="display:inline-block; width: 171px;">
-							<span class="rank">10위</span>
-							<span class="title" style="line-height:12px;">&nbsp;개정판 | 하얀늑대들</span> 
-						</div>
+						<c:forEach items="${selectbooklist }" var="selectlist" varStatus="status" begin="0" end="9" step="1">
+							<div class="border-bottom hideeffect" style="display:inline-block; width: 171px; cursor: pointer;">
+								<span class="rank">${status.count}위</span>
+								<span class="title">&nbsp;${selectlist.tdbkBookTitle}</span>
+							</div>
+						</c:forEach>
 						<br />
 						<div class=" d-grid " style="display:inline-block; width: 171px;">
 							<button class="border-bottom border-end border-start border-top more" style="background-color: #EEEEEE; color:#666666;">더보기▸</button>

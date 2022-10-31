@@ -20,7 +20,6 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 			System.out.println("CheckLoginSessionInterception 실행!!!!!!!");
 			String referer = request.getHeader("Referer");
 			response.sendRedirect("/login/");
-
 					
            return false;
 		}

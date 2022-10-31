@@ -61,9 +61,17 @@ public class Main {
 	private Date modDateTime;
 	private Integer[] checkboxSeqArray;
 
+	private Integer totalprice;
 	
 	
 	
+	
+	public Integer getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(Integer totalprice) {
+		this.totalprice = totalprice;
+	}
 	public String getOrderuuid() {
 		return orderuuid;
 	}
