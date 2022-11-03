@@ -83,7 +83,5 @@ public class CodeGroup {
 	}
 	public void setDelNY(Integer delNY) {
 		this.delNY = delNY;
-	}
-	
-	
+	}	
 }

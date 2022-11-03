@@ -143,6 +143,7 @@
 	<select id = "selectOneAuthor" resultMap = "resultMapObj">
 	select 
 		a.tdbkathSeq
+		, b.tdbkSeq
 	    , b.tdbkBookTitle
 	    , c.tdauName
 	    , c.tdauNameEng

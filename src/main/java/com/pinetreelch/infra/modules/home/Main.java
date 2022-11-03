@@ -63,9 +63,16 @@ public class Main {
 
 	private Integer totalprice;
 	
+	private String ctime;
 	
 	
 	
+	public String getCtime() {
+		return ctime;
+	}
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
 	public Integer getTotalprice() {
 		return totalprice;
 	}

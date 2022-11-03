@@ -34,7 +34,7 @@ public class MainController {
 	}
 	
 	
-	
+	 
 	@RequestMapping(value = "/")
 	public String home(Main dto, Member dto2, Model model, HttpServletRequest hrequest) throws Exception {
 
@@ -77,7 +77,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/authorView")
-	public String authorView(Main dto, Model model) throws Exception {
+	public String authorView( Member dto2, Main dto, Model model) throws Exception {
 		
 		System.out.println("authorView Page bookSeq =" + dto.getTdbkSeq());
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + dto.getTdbkathSeq());
@@ -88,11 +88,13 @@ public class MainController {
 		List<Main> result2 = service.selectListAuthor(dto);
 		List<Main> result3 = service.selectListTranslator(dto);
 		List<Main> result4 = service.selectBooks(dto);
+		List<Member> cartlist = service2.selectcart(dto2);
 		
 		model.addAttribute("authorname",result);
 		model.addAttribute("authorlist",result2);
 		model.addAttribute("translatorlist",result3);
 		model.addAttribute("booklist",result4);
+		model.addAttribute("cartlist", cartlist);
 		
 		return "main/book/authorView";
 	}

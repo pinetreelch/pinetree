@@ -14,15 +14,30 @@
 	  <link rel="stylesheet" href="/resources/css/bookListcss.css" />	 
 </head>
 <body>
+<form method="post" name="form">
+	<input type="hidden" id="tdbkSeq" name="tdbkSeq" value="${authorname.tdbkSeq }"/>
+	<input type="hidden" id="ifmmSeq" name="ifmmSeq" value="${sessSeq}"/>
 	<div class="container-fluid">
 		 <div style="border-bottom: solid; height: 35px; border-width: 3px; border-color:#F5F5F5;">
 		 	<div class="container bodyd">
 				<div class="row align-items-center">
 					<div class="col" style="padding-top:6px;">
 						<a class="heading" href="" >도서</a >
-						<a class="heading float-end" href="../member/loginForm.html">&nbsp;<b>로그인</b> </a>
-						<span class="heading float-end" href=""> ⦁&nbsp;</span>
-						<a class="heading float-end" href="../member/1_signupForm.html"> <b>회원가입</b>&nbsp;&nbsp;</a>
+						<c:choose>
+							<c:when test ="${sessSeq eq null}">
+								<a class="heading float-end" href="/login/">&nbsp;<b>로그인</b> </a>
+									<span class="heading float-end"> ⦁&nbsp;</span>
+								<a class="heading float-end" href="/login/signup1/"> <b>회원가입</b>&nbsp;&nbsp;</a>
+								<!-- 	<span class="heading float-end"> ⦁&nbsp;</span>
+								<a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a> -->
+							</c:when>
+							
+							<c:otherwise>
+								 <span class="heading float-end" style = "cursor: pointer;" id = "logoutBtn"><b>로그아웃</b></span> 
+								 	<!-- <span class="heading float-end"> ⦁ &nbsp;</span>
+								 <a class="heading float-end" href="/codeGroup/codeGroupList/"> <b>관리자 페이지 </b>&nbsp;&nbsp;</a> -->
+							</c:otherwise>
+						</c:choose>
 					</div>		 	 
 			 	</div>
 		 	</div>
@@ -44,22 +59,33 @@
 				 		<nav  style="display: inline-block;">
 				 			<ul >
 				 				<li style="display: inline-block; padding-right: 40px;">
-				 					<form action="">
+				 					
 				 						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
-				 					</form>
+				 					
 				 				</li>
 				 				<li style="display: inline-block;">
 				 					<a href="">
 				 						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
 				 					</a>
 				 				</li>
+				 				
 				 				<li style="display: inline-block;">
-				 					<a href="../myPage/myPageList.html">
+				 					<i class="fa-solid fa-cart-shopping fa-xl" id="cart" name= "cart" style="padding-top:30px; width: 50px; cursor: pointer;" onclick="clickcart(${sessSeq})"></i>				 				
+				 				</li>	
+				 				
+				 				<li style="display: inline-block;">
+				 					
 				 						<i class="fa-regular fa-user fa-xl" style="padding-top:30px;" "></i>
-				 					</a>
+				 				
 				 				</li>
 						 	</ul>
 					 	</nav>
+					 	
+					 	<c:if test="${fn:length(cartlist) > 0}">
+							<div id="circlediv">
+								${fn:length(cartlist)}
+							</div>	
+						</c:if>
 				</div>
 		</div>
 	</div>
@@ -92,8 +118,13 @@
 					<div style="padding: 20px 0;">
 						 <p class="authorcontent">
 							<c:forEach items="${authorlist }" var = "authorlist" varStatus="status">
-								<c:if test="${authorlist.tdauName eq    }">
-									${authorlist.tdauName } <br/>
+								<c:if test="${authorlist.tdbkSeq eq authorname.tdbkSeq }">
+									${authorlist.tdauIntro }
+									
+									<c:if test="${authorlist.tdauIntro2 ne null}">
+										${authorlist.tdauIntro2 }
+									</c:if>
+									
 								</c:if>
 								<%-- <c:if test="${authorlist.tdauIntro2 ne null}">
 									${authorlist.tdauIntro2 }
@@ -106,6 +137,8 @@
 							<c:if test= "${fn:length(translatorlist)>0}">
 								<c:forEach items="${translatorlist }" var="translatorlist" varStatus= "status">
 									${translatorlist.tdauIntro }
+									
+									
 								</c:forEach>
 							</c:if>
 							
@@ -128,7 +161,7 @@
 			<div class="col-12">
 				<div style="display: table; width: 100%;">
 					<h4 class="authorbooktot" style="padding-left: 16px">총 <span>1</span>종</h4>
-					<ul class="authortablealign">
+					<!-- <ul class="authortablealign">
 						<li>
 							<a href=""><span>인기순</span></a>
 						</li>
@@ -138,24 +171,21 @@
 						<li>
 							<a href="" ><span id = "rrreec" >평점순</span></a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 				
 				<div class="border-bottom">
 					<div style="display: table; width: 100%;">
 					
 					<c:forEach items="${booklist}" var="booklist" varStatus="status">
-						<div style="display: table-cell; padding: 20px 15px; padding-right:0; vertical-align: top; width:125px;">
-							<a href="./bookView.html">
-								<img class="border" src="${booklist.urllarge }" alt="" style="width:110px; height: 167px;"/>
-							</a>
-							
+						<div class = "gotobook" style="display: table-cell; padding: 20px 15px; padding-right:0; vertical-align: top; width:125px; cursor: pointer;">
+							<img class="border" src="${booklist.urllarge }" alt="" style="width:110px; height: 167px;"/>
 						</div>
 						
 						<div style="display: table-cell; padding: 20px 15px; vertical-align: top;">
 						
 						
-							<p class="authordetailbook"><a href="./bookView.html"> ${booklist.tdbkBookTitle }</a></p>
+							<p class="authordetailbook"> <span class="gotobook" style="cursor:pointer;">${booklist.tdbkBookTitle }</span> </p>
 							
 							<div style="display:table;">
 								<ul class="authorviewul"style="padding:0; ">
@@ -177,18 +207,19 @@
 										
 									<li style="margin-right: -5px;">
 										<c:forEach items="${authorlist }" var = "authorlist" varStatus = "status">
-											<c:set var = "count" value= "${count + 1}"></c:set>
-											<span class= "authorviewul2" <c:if test="${!status.last }"> style="margin-right: -10px;" </c:if> <c:if test="${status.last }"> style="margin-right: -5px;" </c:if>       >
-												<c:if test="${count <= 2 }">
-													<c:if test="${count eq 2 }">,</c:if>
-													${authorlist.tdauName }
+											
+											<span class= "authorviewul2" <c:if test="${!status.last }"> style="margin-right: -10px;" </c:if> <c:if test="${status.last }"> style="margin-right: -5px;" </c:if>>
+												
+												<c:if test="${authorname.tdbkSeq eq authorlist.tdbkSeq }">
+													<c:set var = "count" value= "${count + 1}"></c:set>
+														&nbsp; ${authorlist.tdauName } &nbsp; 
 												</c:if>
 											</span>									
 										</c:forEach>
 										
-										<c:if test="${fn:length(authorlist) > 2}">
+										<c:if test="${count > 2}">
 											<span class= "authorviewul2">
-												외 ${fn:length(authorlist) - 2 }명 												
+												외 ${count - 2}명 												
 											</span>
 										</c:if>
 									</li>
@@ -218,7 +249,7 @@
 								</ul>
 							</div>
 							
-							<p class="authorviewbookcontent">
+							<p class="authorviewbookcontent gotobook underline1" style="cursor: pointer;">
 								${booklist.tdbkIntro3 }
 							</p>
 							
@@ -324,5 +355,14 @@
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ <script>
+ 	var form = $("form[name=form]");
+ 	
+ 	$(".gotobook").click(function(){
+ 		form.attr("action", "/main/bookView").submit();
+ 	})
+ </script>
+ </form>
 </body>
 </html>

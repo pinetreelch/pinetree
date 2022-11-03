@@ -373,7 +373,7 @@
 								</div>
 								
 								<div style="display:table-cell; text-align: right;">
-									<button style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+									<button id="excelbtn" style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-file-excel"></i>
 									</button>	
 									
@@ -394,7 +394,7 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
- 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  <script>
  	var goUrlList = "/codeGroup/codeGroupList";
 	var goUrlInst = "/codeGroup/codeGroupInst";
@@ -440,11 +440,12 @@
     	seq.val(keyValue);
     	formList.attr("action", goUrlForm).submit();
 	}
-	
-
- 	
-	
-	
+ </script>
+ 
+ <script>
+ 	$("#excelbtn").click(function(){
+ 		formList.attr("action", "/codeGroup/excelDownload").submit();
+ 	});
  </script>
 </body>
 </html>

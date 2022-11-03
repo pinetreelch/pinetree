@@ -442,7 +442,7 @@
 					</div>
 					<div class="col-12">
 						<div class="col-12 title_content" style="width: 780px;  margin-left: 20px; margin-right:200px; margin-top: 10px; padding-bottom: 17px;">
-							abcde
+							=============
 						</div>
 					</div>
 					<div class="col-12">
@@ -482,7 +482,7 @@
 									<span>
 										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
 									</span>
-								</button>	
+								</button> 
 							</c:if>	
 						</div>
 						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
@@ -517,8 +517,8 @@
 					<div class="col-12">
 						<h2 class="nowbest border-bottom" style="display:inline-block; width: 171px;">지금 베스트셀러</h2>
 						<c:forEach items="${selectbooklist }" var="selectlist" varStatus="status" begin="0" end="9" step="1">
-							<div class="border-bottom hideeffect" style="display:inline-block; width: 171px; cursor: pointer;">
-								<span class="rank">${status.count}위</span>
+							<div onclick= "gotobook(${selectlist.tdbkSeq})"class="border-bottom hideeffect clickbookrank underline1" style="display:inline-block; width: 171px; cursor: pointer;">
+								<span class="rank">${status.count}위 </span>
 								<span class="title">&nbsp;${selectlist.tdbkBookTitle}</span>
 							</div>
 						</c:forEach>
@@ -870,6 +870,12 @@
   	$("#home").click(function(){
   	  form.attr("action", "/main/").submit(); 
      });
+  	
+  	gotobook = function(x){
+  		$("#tdbkSeq").val(x);
+  		form.attr("action", "/main/bookView").submit(); 
+  	}
+  	
   </script>
 </body>
 </html>
