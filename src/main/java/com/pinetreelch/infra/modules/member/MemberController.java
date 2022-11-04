@@ -58,7 +58,7 @@ public class MemberController {
 		
 		service.insert(dto);
 		
-		return "main/login/login";
+		return "redirect:/login/";
 	}
 	
 	@RequestMapping(value = "/memberInst1")
@@ -336,6 +336,53 @@ public class MemberController {
 			returnMap.put("rt", "success");
 			returnMap.put("ifmmSeq", result.getIfmmSeq());
 		}
+		return returnMap;
+	}
+	
+
+	
+	@SuppressWarnings("unused")
+	@ResponseBody
+	@RequestMapping(value = "kakaocheck")
+	public Map<String, Object> kakaocheck(Member dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		
+		System.out.println("kakaocheck실행 ");
+		
+		Member result = service.kakaocheck(dto);
+		
+		
+		
+		if(result == null) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+			
+		return returnMap;
+	}
+	
+	@SuppressWarnings("unused")
+	@ResponseBody
+	@RequestMapping(value = "kakaologin")
+	public Map<String, Object> kakologin(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		
+		System.out.println("로그인 시키자 카카오 실행 ");
+		
+		Member result = service.kakaoSelect(dto);
+		
+		httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+		httpSession.setAttribute("sessSeq", result.getIfmmSeq());
+		httpSession.setAttribute("sessId", result.getIfmmId());
+		httpSession.setAttribute("sessName", result.getIfmmName());
+
+		returnMap.put("rt", "fail");
+
+
+			
 		return returnMap;
 	}
 	

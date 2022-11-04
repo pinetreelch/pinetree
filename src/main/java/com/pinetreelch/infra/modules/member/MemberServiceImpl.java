@@ -107,6 +107,21 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public Member kakaocheck(Member dto) throws Exception{
+				
+		Member result = dao.kakaocheck(dto);
+		
+		return result;
+	}
+	
+	@Override
+	public Member kakaoSelect(Member dto) throws Exception{
+				
+		Member result = dao.kakaoSelect(dto);
+		
+		return result;
+	}
+	@Override
 	public void insert(Member dto) throws Exception{
 		
 		dto.setIfmmPwd(UtilSecurity.encryptSha256(dto.getIfmmPwd()));		

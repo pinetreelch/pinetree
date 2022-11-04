@@ -61,6 +61,16 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo); 
 	}
 	
+	public Member kakaocheck(Member dto) {
+		
+		return sqlSession.selectOne(namespace + ".kakaocheck", dto); 
+	}
+	
+	public Member kakaoSelect(Member dto) {
+		
+		return sqlSession.selectOne(namespace + ".kakaoSelect", dto); 
+	}
+	
 	public int selectOne1(Member dto) {
 		
 		System.out.println("one1");

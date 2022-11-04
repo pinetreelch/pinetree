@@ -29,11 +29,11 @@
  	<div class="container">
  		<div class="row bodylogin" style="margin-top: 60px; margin-bottom: 70px; text-align: center;" >
  			<div class="col-12">
-				<form name = "form" method ="post" >
+				<form name = "form" method ="post" >  
 					<div>
 							<div class="form-floating">
-								  <input type="text" class="form-control" id="ifmmId" name = "ifmmId" placeholder= "아이디"  style="height: 48px;" autocomplete = "off">
-								  <label for="floatingInput" id="idlabel" class="signupform" > 아이디 </label>
+								  <input type="text" class="form-control" id="ifmmId" name = "ifmmId" placeholder= "아이디"  style="height: 48px;" autocomplete = "off" <c:if test="${kakaoset.ifmmId ne null }"> value="${kakaoset.ifmmId }"</c:if> <c:if test="${kakaoset.ifmmId ne null }"> readonly</c:if> >
+								  <label for="floatingInput" id="idlabel" class="signupform" > 아이디  </label>
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
@@ -47,13 +47,13 @@
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="ifmmEmail" name = "ifmmEmail" placeholder="이메일 주소"  style="height: 48px;" autocomplete = "off">
+								  <input type="text" class="form-control" id="ifmmEmail" name = "ifmmEmail" placeholder="이메일 주소"  style="height: 48px;" autocomplete = "off" <c:if test="${kakaoset.ifmmEmail ne null }"> readonly</c:if>  <c:if test="${kakaoset.ifmmId ne null }"> value="${kakaoset.ifmmEmail }"</c:if> >
 								  <label for="floatingInput3" id="labelemail" class="signupform" >이메일 주소</label>
 								  <input type = "hidden" id = "ifmmEmaildom" name = "ifmmEmaildom" />
 							</div>
 							
 							<div class="form-floating" style="margin-top: 10px;">
-								  <input type="text" class="form-control" id="ifmmName" name = "ifmmName" placeholder="이름"  style="height: 48px;" autocomplete = "off">
+								  <input type="text" class="form-control" id="ifmmName" name = "ifmmName" placeholder="이름"  style="height: 48px;" autocomplete = "off" <c:if test="${kakaoset.ifmmName ne null }"> readonly</c:if>  <c:if test="${kakaoset.ifmmName ne null }"> value="${kakaoset.ifmmName }"</c:if>>
 								  <label for="floatingInput4" id="labelname" class="signupform">이름</label>
 								  <br />
 							</div>

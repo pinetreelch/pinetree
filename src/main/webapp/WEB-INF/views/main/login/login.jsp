@@ -64,7 +64,14 @@
    								
    								
    									<form name = "form" id = "form" class="account-form" method = "post">
-   										
+   										 <input type="hidden" id="email" name="email"/>
+   										 <input type="hidden" id="nickname" name="nickname"/>
+   										 <input type="hidden" id="snsId" name="snsId"/>
+   											
+   										 <input type="hidden" id="ifmmName" name="ifmmName"/>
+   										 <input type="hidden" id="ifmmEmail" name="ifmmEmail"/>
+   										 <input type="hidden" id="ifmmSeq" name="ifmmSeq" value="${sessSeq }"/>
+   										 
    										<legend class="invisible">
       															로그인
 										</legend>
@@ -96,10 +103,14 @@
 													</div>
 											</div>
 											<button id="btnLogin" name= "btnLogin"type="button" class="full-button login-button main rui_button_blue_50" >로그인</button>
+											<button id="kakaologin" name= "kakaologin" type="button" class="full-button login-button main rui_button_blue_50" style="background-color: #f4f44d; border-color: #f4f44d; color: #463336; height: 52px;" >
+												<img src="../../../../resources/images/kakaoicon.png" style="width: 25px;" /> &nbsp;카카오톡 로그인 
+											</button>
 											<input id="ifmmSeq" name = "ifmmSeq" type = "hidden" />
-							<a class="full-button login-button signup-button sub rui_button_white_50" type="button" href="/login/signup1">
-     						 회원가입
-    						</a>
+											<a class="full-button login-button signup-button sub rui_button_white_50" type="button" href="/login/signup1">
+				     						 회원가입
+				    						</a>
+    						
     						</form>
    						</section>
 					</section>
@@ -174,7 +185,7 @@
 			 		var ifm = data.ifmmSeq;
 					document.getElementById('ifmmSeq').value = ifm;
  					
-					form.attr("action", goHome).submit();
+					form.attr("action", "/").submit();
 				 } else if(data.rt == "fail") {
 					 alert('회원정보가 없음 - > 다시 입력하세요 ');
 				 }
@@ -188,13 +199,97 @@
 			        console.log("error: " + error);
 				 }	     
 		});	
- 	}
- 	
-  </script>
-  
-  <script>
-  
-  
-  </script>
+ 	} 	
+</script> 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+
+Kakao.init('69e4faebb36ff5a8c6779b3c2d9ddaa2');
+console.log(Kakao.isInitialized());
+
+ $("#kakaologin").click(function(){
+	 Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  
+		        	  var accessToken = Kakao.Auth.getAccessToken();
+		        	  Kakao.Auth.setAccessToken(accessToken);
+
+		        	  var account = response.kakao_account;
+		        	  
+		        	  console.log(response)
+		        	  console.log("email : " + account.email);
+		        	  console.log("name : " + account.name);
+		        	  console.log("nickname : " + account.profile.nickname);
+		        	  console.log("snsId : " + response.id);
+		        	  
+		        	  
+		        	  $("#email").val(account.email);
+		        	  $("#nickname").val(account.profile.nickname);
+		        	  $("#snsId").val(response.id);
+		        	  		        	 		        	  
+		        	  $("#ifmmId").val(response.id);
+		        	  $("#ifmmName").val(account.profile.nickname);
+		        	  $("#ifmmEmail").val(account.email);
+		        	  
+		        	  
+		        	  
+		        	  $.ajax({
+							async: true
+							,cache: false
+							,type:"POST"
+							,url: "/member/kakaocheck"
+							,data: {
+									ifmmId : $("#snsId").val() 
+									} 
+							,success : function(response) {
+								if (response.rt == "fail") {
+									form.attr("action", "/login/signup2").submit();
+									return false;
+								} else {
+									
+									$.ajax({
+										async: true
+										,cache: false
+										,type:"POST"
+										,url: "/member/kakaologin"
+										,data: {
+												ifmmId : $("#snsId").val() 
+												} 
+										,success : function(response) {
+											if (response.rt == "fail") {
+												form.attr("action", "/").submit();
+												return false;
+											} else {
+												alert('로그인 성공!!');	
+											}
+										},
+										error : function(jqXHR, status, error) {
+											alert("알 수 없는 에러 ~~[ " + error + " ]");
+										}
+									});
+								}
+							},
+							error : function(jqXHR, status, error) {
+								alert("알 수 없는 에러 [ " + error + " ]");
+							}
+						});
+		        	  
+		        	         	    	        	  
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })  
+ });
+</script>
+
 </body>
 </html>

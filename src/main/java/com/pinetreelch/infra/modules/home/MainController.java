@@ -66,12 +66,14 @@ public class MainController {
 		List<Main> result3 = service.selectListTranslator(dto);
 		List<Member> cartlist = service2.selectcart(dto2);
 		List<Main> result4 = service.selectBook();
+		List<Member> wishlist = service2.selectwishlist(dto2);
 		
 		model.addAttribute("booklist",result);
 		model.addAttribute("authorlist",result2);
 		model.addAttribute("translatorlist",result3);
 		model.addAttribute("cartlist", cartlist);
 		model.addAttribute("selectbooklist",result4);
+		model.addAttribute("wishlist", wishlist);
 		
 		return "main/book/bookView";
 	}

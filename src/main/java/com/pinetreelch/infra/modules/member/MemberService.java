@@ -18,6 +18,8 @@ public interface MemberService {
 	public List<Member> wishlistcheck(Member dto) throws Exception;
 	public Member selectOneForLogin(Member dto) throws Exception;
 	public Member selectOneMember(Member dto) throws Exception;
+	public Member kakaocheck(Member dto) throws Exception;
+	public Member kakaoSelect(Member dto) throws Exception;
 	public  void insert(Member dto) throws Exception;
 	public  void insertwishlist(Member dto) throws Exception;
 	public  void update(Member dto) throws Exception;

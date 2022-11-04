@@ -36,6 +36,8 @@
 			<exclude-mapping path="/member/logincheck" />
 			<exclude-mapping path="/member/testaction" />
 			<exclude-mapping path="/member/memberInst" />
+			<exclude-mapping path="/member/kakaocheck" />
+			<exclude-mapping path="/member/kakaologin" />
 			
 			
 			<beans:bean id="checkLoginSessionInterception" class="com.pinetreelch.infra.common.interceptor.CheckLoginSessionInterception"/>
