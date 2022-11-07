@@ -283,6 +283,65 @@ public class MemberController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/buyInsert")
+	public Map<String, Object> buyInsert(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("buyInsert실행");
+		System.out.println(dto.getTotalprice());
+		System.out.println(dto.getMeans());
+		System.out.println(dto.getIfmmSeq());
+		
+		int result = service.buyInsert(dto);
+		
+		System.out.println(dto.getBuyinfoSeq());
+		returnMap.put("rt", "success");
+		returnMap.put("orderSeq", dto.getBuyinfoSeq());
+				
+		return returnMap;		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/buydetailInsert")
+	public Map<String, Object> buydetailInsert(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		for(int x: dto.getCheckboxSeqArray()) {
+			System.out.print(x + " ");
+		}
+		System.out.println(dto.getBuy_buyinfoSeq());
+		
+		for(int x: dto.getCheckboxSeqArray()) {
+			dto.setTdbkSeq(x);
+			int result = service.buydetailInsert(dto);
+		}
+		
+		
+		returnMap.put("rt", "success");
+		
+				
+		return returnMap;		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cartdelteAll")
+	public Map<String, Object> cartdelte(Member dto) throws Exception{
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("cartdelete 실행");
+		
+		int result = service.cartdeleteAll(dto);
+		
+		returnMap.put("rt", "success");
+		
+				
+		return returnMap;		
+	}
+	
 	@SuppressWarnings("unused")
 	@ResponseBody
 	@RequestMapping(value = "/passwordcheck")
@@ -348,7 +407,6 @@ public class MemberController {
 		return returnMap;
 	}
 	
-
 	
 	@SuppressWarnings("unused")
 	@ResponseBody

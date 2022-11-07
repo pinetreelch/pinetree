@@ -6,14 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pinetreelch.infra.common.util.UtilDateTime;
 import com.pinetreelch.infra.common.util.UtilSecurity;
 import com.pinetreelch.infra.common.util.UtilUpload;
+import com.pinetreelch.infra.common.util.Utiluuid;
+
 
 @Service
 public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	MemberDao dao;
+	
+	@Override
+	public void setRegMod(Member dto) throws Exception {				
+		dto.setModDateTime(UtilDateTime.nowDate());
+		dto.setOrderuuid(Utiluuid.uuidmake());
+	}
+	
+	@Override
+	public int buyInsert(Member dto) throws Exception{
+		
+		setRegMod(dto);
+	
+		return dao.buyInsert(dto);
+	}
+	
+	@Override
+	public int buydetailInsert(Member dto) throws Exception{
+
+		return dao.buydetailInsert(dto);
+	}
+	
+	@Override
+	public int cartdeleteAll(Member dto) throws Exception{
+		
+		return dao.cartdeleteAll(dto);
+	}
 	
 	@Override
 	public List<Member> selectList(MemberVo vo) throws Exception{

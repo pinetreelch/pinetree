@@ -147,6 +147,56 @@
         
 	</insert>
 	
+	<insert id = "buyInsert" > 
+		
+		INSERT INTO buy(
+		
+		date
+		,totalprice
+		,orderuuid
+		,means
+		,infraMember_ifmmSeq
+		)
+		
+		VALUES(
+		
+		#{modDateTime}
+		, #{totalprice}
+		, #{orderuuid}
+		, #{means}
+		, #{ifmmSeq}
+		
+		
+		)	
+			
+		<selectKey resultType ="String" keyProperty = "buyinfoSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        </selectKey>
+        
+	</insert>
+	
+	
+	<insert id = "buydetailInsert" > 
+		
+		INSERT INTO buydetail(
+		
+		bookseq
+		,buy_buyinfoSeq
+		
+		)
+		
+		VALUES(
+		
+		#{tdbkSeq}
+		, #{buy_buyinfoSeq}
+				
+		)	
+			
+		<selectKey resultType ="String" keyProperty = "buydetailSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        </selectKey>
+        
+	</insert>
 	
 	<insert id="insertUploaded">
 		INSERT INTO memberUploaded (
@@ -300,5 +350,14 @@
 		    AND infraMember_ifmmSeq = #{ifmmSeq}
 		    AND tradBook_tdbkSeq = #{tdbkSeq}
 				
+	</delete>
+	
+	<delete id="cartdeleteAll">
+		delete
+		from
+			cart
+		where
+			1=1
+		    AND infraMember_ifmmSeq = #{ifmmSeq}				
 	</delete>
 </mapper>

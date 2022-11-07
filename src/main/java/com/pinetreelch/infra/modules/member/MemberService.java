@@ -3,7 +3,11 @@ package com.pinetreelch.infra.modules.member;
 import java.util.List;
 
 
+
+
 public interface MemberService {
+	
+	public void setRegMod(Member dto) throws Exception;
 	
 	public List<Member> selectList(MemberVo vo) throws Exception;
 	public List<Member> selectwishlist(Member dto) throws Exception;
@@ -24,4 +28,7 @@ public interface MemberService {
 	public  void insertwishlist(Member dto) throws Exception;
 	public  void update(Member dto) throws Exception;
 	public  void insert123(Member dto) throws Exception;
+	public int buyInsert(Member dto) throws Exception;
+	public int buydetailInsert(Member dto) throws Exception;
+	public int cartdeleteAll(Member dto) throws Exception;
 }

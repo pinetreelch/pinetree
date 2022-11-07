@@ -46,9 +46,81 @@ public class Member extends Base{
 	private Integer tdbkSeq;
 	
 	private Integer cartSeq;
-	private Integer infraMember_ifmmSeq;
 	
 	
+	// buy 
+	
+	private String buyinfoSeq;
+	private String date;
+	private String orderuuid;
+	private String means;
+	private String totalprice;
+	
+	// buydetail
+	
+	private String buydetailSeq;
+	private String bookseq;
+	private String buy_buyinfoSeq;
+	
+	
+	private Integer[] checkboxSeqArray;
+	
+	
+	
+	public Integer[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+	public void setCheckboxSeqArray(Integer[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
+	public String getBuydetailSeq() {
+		return buydetailSeq;
+	}
+	public void setBuydetailSeq(String buydetailSeq) {
+		this.buydetailSeq = buydetailSeq;
+	}
+	public String getBookseq() {
+		return bookseq;
+	}
+	public void setBookseq(String bookseq) {
+		this.bookseq = bookseq;
+	}
+	public String getBuy_buyinfoSeq() {
+		return buy_buyinfoSeq;
+	}
+	public void setBuy_buyinfoSeq(String buy_buyinfoSeq) {
+		this.buy_buyinfoSeq = buy_buyinfoSeq;
+	}
+	public String getBuyinfoSeq() {
+		return buyinfoSeq;
+	}
+	public void setBuyinfoSeq(String buyinfoSeq) {
+		this.buyinfoSeq = buyinfoSeq;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getOrderuuid() {
+		return orderuuid;
+	}
+	public void setOrderuuid(String orderuuid) {
+		this.orderuuid = orderuuid;
+	}
+	public String getMeans() {
+		return means;
+	}
+	public void setMeans(String means) {
+		this.means = means;
+	}
+	public String getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(String totalprice) {
+		this.totalprice = totalprice;
+	}
 	
 	public Integer getCartSeq() {
 		return cartSeq;
@@ -56,12 +128,7 @@ public class Member extends Base{
 	public void setCartSeq(Integer cartSeq) {
 		this.cartSeq = cartSeq;
 	}
-	public Integer getInfraMember_ifmmSeq() {
-		return infraMember_ifmmSeq;
-	}
-	public void setInfraMember_ifmmSeq(Integer infraMember_ifmmSeq) {
-		this.infraMember_ifmmSeq = infraMember_ifmmSeq;
-	}
+	
 	public Integer getTdbkSeq() {
 		return tdbkSeq;
 	}
@@ -219,6 +286,7 @@ public class Member extends Base{
 	public void setIfmmMktapppushnight(Integer ifmmMktapppushnight) {
 		this.ifmmMktapppushnight = ifmmMktapppushnight;
 	}
+	
 	
 	
 	

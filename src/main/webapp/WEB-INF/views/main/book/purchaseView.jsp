@@ -16,8 +16,9 @@
 <body>
 	<form name ="form" id = "form" method ="post">
 	<input type="hidden" name = "ifmmSeq" id= "ifmmSeq" value="${sessSeq}"/>
-	<input type="hidden" name="checkboxSeqArray">
+	<input type="hidden" name="checkboxSeqArray" id="checkboxSeqArray">
 	<input type="hidden" name="tdbkSeq" id="tdbkSeq"/>
+	<input type="hidden" name="buyinfoSeq" id="buyinfoSeq" />
 	
 	
 	<!-- 최상단 헤더 -->
@@ -248,7 +249,7 @@
 	var goUrlCart = "/member/cart";
 	var goUrlSuccess = "/main/purchasesuccess";
 	var checkboxSeqArray = [];
-	
+	var orderSeq;
 
 	
 	$("#buybtn").on("click", function(){
@@ -262,8 +263,7 @@
 		});
 		
 		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
-		alert(checkboxSeqArray);
-		alert(meanval);
+		
 		
 		if (!buych){
 			alert("구매 동의 체크해주세요.");
@@ -275,7 +275,92 @@
 			return false;
 		}
 		
-		form.attr("action", goUrlSuccess).submit();	
+		
+		$.ajax({
+			
+			url: "/member/buyInsert",
+			
+			type: 'post',
+			
+			async: false,
+			
+			data : {
+				ifmmSeq : $("#ifmmSeq").val(),
+				means: $("input[id=means]:checked").val(),
+				totalprice: $("#totalprice").val()
+			},
+			
+			success : function(data){
+				
+				alert("성공" + data.orderSeq);
+				alert("주문 상세 추가하는 AJAX 실행");
+				orderSeq = data.orderSeq;
+				
+				$.ajax({
+					
+					url: "/member/buydetailInsert",
+					
+					type: 'post',
+					
+					async: false,
+					
+					data : {
+						checkboxSeqArray: $("#checkboxSeqArray").val(),
+						buy_buyinfoSeq: data.orderSeq
+					},
+					
+					success : function(response){
+						alert("주문 상세 추가 성공");
+						
+						$.ajax({
+							
+							url: "/member/cartdelteAll",
+							
+							type: 'post',
+							
+							async: false,
+							
+							data : {
+								ifmmSeq: $("#ifmmSeq").val()
+							},
+							
+							success : function(response){
+								alert("카트도 삭제 성공");
+								alert("주문 시퀀스 = " + orderSeq);
+								$("#buyinfoSeq").val(orderSeq);
+								alert($("#buyinfoSeq").val());
+								return false;
+							},
+							
+							error : function(request, status, error){
+								console.log("code: " + request.status)	
+						        console.log("message: " + request.responseText)
+						        console.log("error: " + error);
+							}
+						});	
+						
+
+						return false;
+					},
+					
+					error : function(request, status, error){
+						console.log("code: " + request.status)	
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+					}
+				});	
+			
+				return false;
+			},
+			
+			error : function(request, status, error){
+				console.log("code: " + request.status)	
+		        console.log("message: " + request.responseText)
+		        console.log("error: " + error);
+			}
+		});	
+		
+		return false;
 	});	
 </script>
 <script>

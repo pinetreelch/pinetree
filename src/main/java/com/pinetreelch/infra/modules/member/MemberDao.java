@@ -19,6 +19,17 @@ public class MemberDao {
 	
 	private static String namespace = "com.pinetreelch.infra.modules.member.MemberMapper";
 	
+	public int buyInsert(Member dto) {
+		return sqlSession.insert(namespace +".buyInsert", dto);
+	}
+	
+	public int buydetailInsert(Member dto) {
+		return sqlSession.insert(namespace +".buydetailInsert", dto);
+	}
+	
+	public int cartdeleteAll(Member dto) {
+		return sqlSession.delete(namespace +".cartdeleteAll", dto);
+	}
 	
 	public List<Member> selectList(MemberVo vo){				 
 	
