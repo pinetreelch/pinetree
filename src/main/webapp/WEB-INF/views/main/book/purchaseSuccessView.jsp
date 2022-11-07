@@ -62,7 +62,7 @@
 					
 						<p style="text-align: center;">
 							<button type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" > 결제상세   </button>
-							<button type="button" class="btn signupbutton border" style="margin-top:15px;height: 50px; border-radius: 4px; background: white; color: rgba(0, 0, 0, 0.49);" > 메인으로  </button>
+							<button id="goHome" type="button" class="btn signupbutton border" style="margin-top:15px;height: 50px; border-radius: 4px; background: white; color: rgba(0, 0, 0, 0.49);" > 메인으로  </button>
 						</p>		
 					</div>  <!-- col-12 끝  -->			
 				</div>
@@ -70,7 +70,7 @@
 			<div class="col-2" ></div>
 		</div>
 	</div>
-		
+</form>
 		
 	
 <!-- footer -->
@@ -80,10 +80,9 @@
 	var form = $("form[name=form]");
 	var goUrlCart = "/member/cart";
 	
-	$("#cart").on("click", function(){
-		form.attr("action", goUrlCart).submit();			
-	}); 
-	
+	$("#goHome").click(function(){
+		form.attr("action", "/main/").submit();
+	});
 	
 </script>
 </body>

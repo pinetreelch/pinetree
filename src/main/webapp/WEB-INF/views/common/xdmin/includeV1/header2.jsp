@@ -28,7 +28,7 @@
  				</li>
  								 				
  				<li style="display: inline-block;">
- 					<i class="fa-solid fa-cart-shopping fa-xl" id="cart" name= "cart" style="padding-top:30px; width: 50px; cursor: pointer;" onclick="clickcart(${sessSeq})"></i>				 				
+ 					<i class="fa-solid fa-cart-shopping fa-xl" id="cart" style="padding-top:30px; width: 50px; cursor: pointer;" onclick="clickcart(${sessSeq})"></i>				 				
  				</li>	
  					 					
  				<li style="display: inline-block;">			 					

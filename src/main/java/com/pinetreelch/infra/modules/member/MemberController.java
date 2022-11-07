@@ -119,9 +119,11 @@ public class MemberController {
 		
 		List<Member> result = service.selectwishlist(dto);
 		List<Member> result2 = service.selectAuthor(dto);
+		List<Member> cartlist = service.selectcart(dto); 
 		
 		model.addAttribute("wishlist",result);
 		model.addAttribute("authorlist",result2);
+		model.addAttribute("cartlist", cartlist);
 		return "/mypage/wishlist";
 	}
 	
@@ -239,8 +241,12 @@ public class MemberController {
 		
 		dto.setIfmmSeq(getSessionSeqCore(hrequest));
 		
+		
 		Member result = service.selectOneMember(dto);
+		List<Member> cartlist = service.selectcart(dto); 
+		
 		model.addAttribute("memberinfo",result);
+		model.addAttribute("cartlist", cartlist);
 		
 		return "/mypage/infochangecheck";
 	}
@@ -251,7 +257,10 @@ public class MemberController {
 		dto.setIfmmSeq(getSessionSeqCore(hrequest));
 		
 		Member result = service.selectOneMember(dto);
+		List<Member> cartlist = service.selectcart(dto);
+		
 		model.addAttribute("memberinfo",result);
+		model.addAttribute("cartlist", cartlist);
 		
 		return "/mypage/myinfoview";
 	}

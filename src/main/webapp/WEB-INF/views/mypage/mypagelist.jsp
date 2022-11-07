@@ -145,20 +145,19 @@
 										
 									</li>
 									<li id="wishl" style="float:left;  width: 160px;">
-										<a href="./wishlistView.html">
 											<div style=" display:inline-block; text-align: center; height: 30px;">
 												<i class="fa-regular fa-heart fa-xl" style="margin-top: 15px; margin-left: 2px;"></i>
 											</div>
 										
 											<h3 class="litem" style="padding-top:10px;">
-												 위시리스트
+												 위시리스트 
 											</h3>
 										
 											<h3 class="cashleft" style="padding-top:3px;">
 												 <span>0</span>
 												 <span>개</span>
 											</h3>
-										</a>
+										
 									</li>
 								</ul>
 							</div>

@@ -111,18 +111,22 @@ public class MainController {
 			System.out.println(dto.getTdbkSeq());
 			List<Main> result = service.selectOneBook(dto);
 			List<Main> result2 = service.selectListAuthor(dto);
+			List<Member> cartlist = service2.selectcart(dto2);
 			
 			model.addAttribute("bookinfo",result);
 			model.addAttribute("authorlist",result2);
+			model.addAttribute("cartlist", cartlist);
 		}
 		
 		if(dto.getPagetype() == 2) {
 			System.out.println("dvdv");
 			List<Main> result2 = service.selectListAuthor(dto);
 			List<Member> result = service2.selectcart(dto2);
-
+			List<Member> cartlist = service2.selectcart(dto2);
+			
 			model.addAttribute("bookinfo",result);
 			model.addAttribute("authorlist",result2);
+			model.addAttribute("cartlist", cartlist);
 		}
 		
 		return "main/book/purchaseView";

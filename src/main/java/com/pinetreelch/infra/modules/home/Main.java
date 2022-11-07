@@ -65,8 +65,16 @@ public class Main {
 	
 	private String ctime;
 	
+	private String means;
 	
 	
+	
+	public String getMeans() {
+		return means;
+	}
+	public void setMeans(String means) {
+		this.means = means;
+	}
 	public String getCtime() {
 		return ctime;
 	}

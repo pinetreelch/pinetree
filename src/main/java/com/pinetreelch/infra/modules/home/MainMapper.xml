@@ -223,6 +223,7 @@
 			,infraMember_ifmmSeq
 			,orderuuid
 			,totalprice
+			,means
 		)
 		
 		VALUES(
@@ -230,6 +231,7 @@
 			,#{ifmmSeq}
 			,#{orderuuid}
 			,#{totalprice}
+			,#{means}
 		)	
 	
 	</insert>

@@ -70,12 +70,12 @@
 																
 										<div style="display: table-cell; width: 20%; vertical-align: middle; ">
 											<input  value = "${cartlist.tdbkSeq }" class="form-check-input" type="checkbox"  name="checkboxitem" id="checkbox${status.count }" style="vertical-align: middle" >
-											<img class="border" src="${cartlist.urllarge }" alt="" style="width: 60px; height: 87px; margin-left: 5px;"/>
+											<img onclick="goBook(${cartlist.tdbkSeq})" class="border" src="${cartlist.urllarge }" alt="" style="width: 60px; height: 87px; margin-left: 5px; cursor: pointer;"/>
 										</div>
 										
 										<div style="display: table-cell; width: 60%; padding-top: 20px; padding-bottom: 20px;">
-											<p class="ctbooktitle">${cartlist.tdbkBookTitle }</p>
-											<p class="ctbookauthor">에드워드 에슈턴 </p>
+											<p onclick="goBook(${cartlist.tdbkSeq})" class="ctbooktitle" style="cursor: pointer;">${cartlist.tdbkBookTitle }</p>
+											<p class="ctbookauthor">에드워드 에슈턴 v</p>
 											<div style= "vertical-align:bottom"> 
 												<button class="btnStyle"> 위시리스트로 이동 </button> 
 												<button class="btnStyle" onclick="deleteOne(${cartlist.tdbkSeq}, ${cartlist.tdbkSales }); return false;"> 삭제 </button> 					
@@ -162,12 +162,19 @@
 			</div>
 		</div>
 	</div>
-		
+	</form>	
 		
 	
 <!-- footer -->
 <%@include file = ".././common/xdmin/includeV1/footer.jsp" %>
 <!-- footer -->
+
+<script>
+	goBook = function(seqbook){
+		$("#tdbkSeq").val(seqbook);
+		form.attr("action", "/main/bookView").submit();
+	}
+</script>
 <script>	
 	var form = $("form[name=form]");
 	var goUrlPurchase = "/main/purchaseView";
@@ -289,10 +296,5 @@
 	});
 </script>
 
-<script>
-$("#home").click(function(){
-	  form.attr("action", "/main/").submit(); 
-   });
-</script>
 </body>
 </html>
