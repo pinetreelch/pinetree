@@ -2,6 +2,8 @@ package com.pinetreelch.infra.modules.home;
 
 import java.util.List;
 
+import com.pinetreelch.infra.modules.member.Member;
+
 
 public interface MainService {
 	
@@ -14,6 +16,7 @@ public interface MainService {
 	public List<Main> selectRandomTwo() throws Exception;
 	public Main selectOne(Main dto) throws Exception;
 	public Main selectOneAuthor(Main dto) throws Exception;
+	public List<Member> selectPurchased(Member dto) throws Exception; 
 	public List<Main> selectOneBook(Main dto) throws Exception;
 	public List<Main> selectListAuthor(Main dto) throws Exception;
 	public List<Main> selectListTranslator(Main dto) throws Exception;

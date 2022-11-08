@@ -11,6 +11,13 @@
 	
 }
 
+.tablestyle{
+	font-style: normal;
+font-weight: 200;
+font-size: 14px;
+color: inherit;
+line-height: 15px;
+}
 a:link {
 	text-decoration: none
 	}

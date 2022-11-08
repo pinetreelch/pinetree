@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pinetreelch.infra.common.util.UtilDateTime;
 import com.pinetreelch.infra.common.util.Utiluuid;
+import com.pinetreelch.infra.modules.member.Member;
 import com.pinetreelch.infra.modules.member.MemberDao;
 
 
@@ -121,6 +122,14 @@ public class MainServiceImpl implements MainService {
 		setRegMod(dto);
 		System.out.println(dto.getModDateTime());
 		int result = dao.insertbuy(dto); 
+		
+		return result;
+	}
+	
+	@Override
+	public List<Member> selectPurchased (Member dto) throws Exception{
+		
+		List<Member> result = dao.selectPurchased(dto); 
 		
 		return result;
 	}

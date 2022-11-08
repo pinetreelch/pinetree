@@ -57,6 +57,16 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".cartcheck", dto); 
 	}
 	
+	public List<Member> buyResult(Member dto) {
+		
+		return sqlSession.selectList(namespace + ".buyResult", dto); 
+	}
+	
+	public List<Member> buydetailList(Member dto) {
+		
+		return sqlSession.selectList(namespace + ".buydetailList", dto); 
+	}
+	
 	public int cartinsert(Member dto) {
 		
 		return sqlSession.insert(namespace + ".cartinsert", dto); 

@@ -56,6 +56,11 @@ public class Main {
 	
 	private Integer pagetype;
 	
+	private String bookseq;
+	private String infraMember_ifmmSeq;
+	private String date;
+	private String buyinfoSeq;
+	
 	private String orderuuid;
 	private Integer ifmmSeq;
 	private Date modDateTime;
@@ -69,6 +74,30 @@ public class Main {
 	
 	
 	
+	public String getBookseq() {
+		return bookseq;
+	}
+	public void setBookseq(String bookseq) {
+		this.bookseq = bookseq;
+	}
+	public String getInfraMember_ifmmSeq() {
+		return infraMember_ifmmSeq;
+	}
+	public void setInfraMember_ifmmSeq(String infraMember_ifmmSeq) {
+		this.infraMember_ifmmSeq = infraMember_ifmmSeq;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getBuyinfoSeq() {
+		return buyinfoSeq;
+	}
+	public void setBuyinfoSeq(String buyinfoSeq) {
+		this.buyinfoSeq = buyinfoSeq;
+	}
 	public String getMeans() {
 		return means;
 	}

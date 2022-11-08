@@ -24,6 +24,8 @@ public interface MemberService {
 	public Member selectOneMember(Member dto) throws Exception;
 	public Member kakaocheck(Member dto) throws Exception;
 	public Member kakaoSelect(Member dto) throws Exception;
+	public List<Member> buyResult(Member dto) throws Exception;
+	public List<Member> buydetailList(Member dto) throws Exception;
 	public  void insert(Member dto) throws Exception;
 	public  void insertwishlist(Member dto) throws Exception;
 	public  void update(Member dto) throws Exception;

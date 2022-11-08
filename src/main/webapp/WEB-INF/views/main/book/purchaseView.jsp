@@ -329,6 +329,10 @@
 								alert("주문 시퀀스 = " + orderSeq);
 								$("#buyinfoSeq").val(orderSeq);
 								alert($("#buyinfoSeq").val());
+								
+								
+								form.attr("action", "/main/purchasesuccess").submit();
+								
 								return false;
 							},
 							

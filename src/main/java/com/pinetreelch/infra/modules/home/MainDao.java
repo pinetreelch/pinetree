@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.pinetreelch.infra.modules.member.Member;
+
 
 @Repository
 public class MainDao {
@@ -65,5 +67,9 @@ public class MainDao {
 	
 	public int insertbuy(Main dto){				 
 		return sqlSession.insert(namespace + ".insertbuy", dto); 
+	}
+	
+	public List<Member> selectPurchased(Member dto){				 
+		return sqlSession.selectList(namespace + ".selectPurchased", dto); 
 	}
 }

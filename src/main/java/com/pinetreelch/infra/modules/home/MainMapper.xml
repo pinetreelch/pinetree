@@ -140,6 +140,26 @@
 		AND a.tdbkSeq = #{tdbkSeq}	
 	</select>
 	
+	<select id = "selectPurchased" resultMap = "resultMapObj">
+	select
+		a.buyinfoSeq
+	    , a.date
+	    , a.totalprice
+	    , a.orderuuid
+	    , a.means
+	    , a.infraMember_ifmmSeq
+	    , b.bookseq
+	    , c.tdbkBookTitle
+	    , c.tdbkSales
+	from
+		buy a
+	left join buydetail b on a.buyinfoSeq = b.buy_buyinfoSeq
+	left join tradBook c on b.bookseq = c.tdbkSeq
+	where
+		1=1
+	    AND buyinfoSeq = #{buyinfoSeq}
+	</select>
+	
 	<select id = "selectOneAuthor" resultMap = "resultMapObj">
 	select 
 		a.tdbkathSeq

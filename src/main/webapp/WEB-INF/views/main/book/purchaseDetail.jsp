@@ -41,55 +41,35 @@
 							<tr>
 								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">주문번호 </td>
 								<td style="padding-left: 10px;">
-									<c:forEach var="orderlist" items="${orderlist }" end= "0">
-										${orderlist.orderuuid }
-									</c:forEach>
+									ㄴㅇ
 								</td>
 							</tr>
 							
 							<tr>
-								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">결제일시 </td>
+								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">구분  </td>
 								<td style="padding-left: 10px;"> 
-									<c:forEach var="orderlist" items="${orderlist }" end= "0">
-										${orderlist.date }
-									</c:forEach>
+									ㄴㅇㅍㄴㅇ
 								</td>
 							</tr>
 							
 							<tr>
-								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">결제수단  </td>
+								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">주문 금액 </td>
 								<td style="padding-left: 10px;"> 
-									<c:forEach var="orderlist" items="${orderlist }" end= "0">
-										<c:if test="${orderlist.means eq 35}"> 신용카드 </c:if>
-										<c:if test="${orderlist.means eq 34}"> 카카오페이  </c:if>										
-									</c:forEach>
+									21234
 								</td>
 							</tr>
 							
 							<tr>
-								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">총 결제 비용  </td>
+								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;">결제 수단   </td>
 								<td style="padding-left: 10px;">
-									<c:forEach var="orderlist" items="${orderlist }" end= "0">
-									 <fmt:formatNumber value="${orderlist.totalprice }" pattern="#,###"/>
-									</c:forEach>
-								</td>
-							</tr>
-							
-							<tr id="hidethis" style="display:none;">
-								<td style="width: 25%; background-color: #f2f4f5; padding-left: 10px;"> 구매 상세  </td>
-								<td style="padding-left: 10px;">
-									<strong>
-										<c:forEach var="orderlist" items="${orderlist }">
-											${orderlist.tdbkBookTitle} &nbsp;(<fmt:formatNumber value="${orderlist.tdbkSales}" pattern="#,###"/>원 ) <br>  
-										</c:forEach>
-									</strong>
+									ㅇㄴㅇ
 								</td>
 							</tr>
 						</table>
 					
 					
 						<p style="text-align: center;">
-							<button id="detailbtn"type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" > 결제상세   </button>
+							<button type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" > 결제상세   </button>
 							<button id="goHome" type="button" class="btn signupbutton border" style="margin-top:15px;height: 50px; border-radius: 4px; background: white; color: rgba(0, 0, 0, 0.49);" > 메인으로  </button>
 						</p>		
 					</div>  <!-- col-12 끝  -->			
@@ -112,9 +92,6 @@
 		form.attr("action", "/main/").submit();
 	});
 	
-	$("#detailbtn").click(function(){
-		$("#hidethis").css("display", "");
-	});
 </script>
 </body>
 </html>

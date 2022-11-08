@@ -133,14 +133,15 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/purchasesuccess")
-	public String purchasesuccess(Main dto) throws Exception {
+	public String purchasesuccess(Main dto, Member dto2, Model model) throws Exception {
 		
-		dto.getIfmmSeq();
-		int result = service.insertbuy(dto);
+		System.out.println("purchasesuccess 실행 ");
+		System.out.println(dto2.getBuy_buyinfoSeq());
+		System.out.println(dto2.getIfmmSeq());
 		
-		for(int i : dto.getCheckboxSeqArray()) {
-			System.out.println(i);
-		}
+		List<Member> result = service.selectPurchased(dto2);
+		
+		model.addAttribute("orderlist" ,result);
 		
 		return "main/book/purchaseSuccessView";
 	}

@@ -30,4 +30,8 @@
 	$("#wishlist").click("action", function(){
 		form.attr("action", goWishList).submit();
 	});
+	
+	$("#purchaseHistory").click(function(){
+		form.attr("action", "/member/purchaseHistory").submit();
+	});
 </script>

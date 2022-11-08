@@ -34,7 +34,7 @@
 					<span style="margin-left: 5px;">구매헤택</span>
 				</div>
 				
-				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 결제 내역</div>
+				<div id="purchaseHistory" class="menutitle3" style="padding-top:14px; padding-left: 22px; cursor: pointer;"> 결제 내역</div>
 				<!-- <div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 리디 캐시</div>
 				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 리디포인트</div>
 				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 쿠폰</div> -->

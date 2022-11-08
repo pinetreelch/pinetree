@@ -31,6 +31,20 @@ public class MemberController {
 		return rtSeq;
 	}
 	
+	@RequestMapping(value = "/purchaseHistory")
+	public String purchaseHistory(Member dto, Model model) throws Exception {
+		
+		System.out.println(dto.getIfmmSeq());
+		
+		List<Member> buyResult = service.buyResult(dto);
+		List<Member> buydetailList = service.buydetailList(dto);
+
+		model.addAttribute("buyResult",buyResult);
+		model.addAttribute("buydetailList",buydetailList);
+		
+		return "mypage/purchaseHistory";
+	}
+	
 	@RequestMapping(value = "/memberList")
 	public String memberList(MemberVo vo, Model model) throws Exception {
 		
@@ -202,7 +216,7 @@ public class MemberController {
 			returnMap.put("rt", "success");
 		}	
 		return returnMap;
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping(value = "/wishlistinsert")
