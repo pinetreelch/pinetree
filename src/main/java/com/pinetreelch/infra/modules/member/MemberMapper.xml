@@ -24,6 +24,44 @@
 	
 	</select>
 	
+	<select id="buyResultBook" resultMap="resultMapObj">
+		select
+			a.buyinfoSeq
+		    , a.date
+		    , a.totalprice
+		    , a.orderuuid
+		    , a.means
+		    , a.infraMember_ifmmSeq
+		    , b.bookseq
+		    , c.tdbkBookTitle
+		    , c.tdbkSales
+		from
+			buy a                              
+		left join buydetail b on a.buyinfoSeq = b.buy_buyinfoSeq
+		left join tradBook c on b.bookseq = c.tdbkSeq
+		where
+			1=1
+			AND infraMember_ifmmSeq = #{ifmmSeq}
+            AND buyinfoSeq = #{buyinfoSeq}
+	
+	</select>
+	
+	<select id="buyResultOne" resultMap="resultMapObj">
+		  select
+			buyinfoSeq
+		    ,date
+		    ,totalprice
+		    ,means
+		    ,infraMember_ifmmSeq
+		    ,orderuuid
+		from
+			buy
+		where
+			1=1
+		    AND infraMember_ifmmSeq = #{ifmmSeq}
+            AND buyinfoSeq = #{buyinfoSeq}
+	</select>
+	
 	<select id="buyResult" resultMap="resultMapObj">
 		select
 			buyinfoSeq
@@ -36,6 +74,7 @@
 		where
 			1=1
 		    AND infraMember_ifmmSeq = #{ifmmSeq}
+		order by date desc
 	</select>
 	
 	<select id="buydetailList" resultMap="resultMapObj">

@@ -33,6 +33,20 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public Member buyResultOne(Member dto) throws Exception{
+		
+
+		return dao.buyResultOne(dto);
+	}
+	
+	@Override
+	public List<Member> buyResultBook(Member dto) throws Exception{
+		
+		
+		return dao.buyResultBook(dto);
+	}
+	
+	@Override
 	public List<Member> buyResult(Member dto) throws Exception{
 		
 		

@@ -72,7 +72,7 @@
 										</h3>
 										
 										<h3 class="cashhistory" style="padding-top:10px;">
-											 충전 내역 >>
+											
 										</h3>
 									</li>
 									<li style="float:left;  width: 160px;">
@@ -90,7 +90,7 @@
 										</h3>
 										
 										<h3 class="cashhistory" style="padding-top:10px;">
-											 충전 내역 >>
+											
 										</h3>
 									</li>
 									<li style="float:left;  width: 160px;">
@@ -108,7 +108,7 @@
 										</h3>
 										
 										<h3 class="cashhistory" style="padding-top:10px;">
-											 쿠폰 등록 >>
+											
 										</h3>
 									</li>
 								</ul>
@@ -168,7 +168,7 @@
 				<div class="row" style="padding-top: 50px">
 					<div class="col-12">
 							<ul style="float:left; padding:0;">
-								<li class="recentbook" style="float:left; padding-right: 14px;">최근 조회한 작품</li>
+								<li class="recentbook" style="float:left; padding-right: 14px;"> 내 서재 </li> 
 								<li style="float:left; width:450px;"><hr class="border border-dark border-2 border-opacity-75"/></li>
 								
 							</ul>											

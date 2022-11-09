@@ -13,6 +13,7 @@ public interface MemberService {
 	public List<Member> selectwishlist(Member dto) throws Exception;
 	public List<Member> selectAuthor(Member dto) throws Exception;
 	public List<Member> selectcart(Member dto) throws Exception;
+	public List<Member> buyResultBook(Member dto) throws Exception;
 	public Member cartcheck(Member dto) throws Exception;
 	public Member selectOne(MemberVo vo) throws Exception;
 	public int selectOne1(Member dto) throws Exception;
@@ -24,6 +25,7 @@ public interface MemberService {
 	public Member selectOneMember(Member dto) throws Exception;
 	public Member kakaocheck(Member dto) throws Exception;
 	public Member kakaoSelect(Member dto) throws Exception;
+	public Member buyResultOne(Member dto) throws Exception;
 	public List<Member> buyResult(Member dto) throws Exception;
 	public List<Member> buydetailList(Member dto) throws Exception;
 	public  void insert(Member dto) throws Exception;

@@ -9,7 +9,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title> 결제 내역  </title>
+	<title> 결제 내역 상세   </title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/mypage.css" />	 
 </head>
@@ -42,69 +42,49 @@
 				<div class="row">
 					<div class="col-12">
 						<h3 class="wishlisttitle">
-							결제 내역  
+							결제 내역 상세 
 						</h3>
 						
 						
 						
-						<table class="table border-top tablestyle" style="margin-top: 30px;">
-							<tr style="text-align: center; background-color: #f2f4f5; color: #808991;">
-								<td> <strong> 구매일 </strong> </td>
-								<td> <strong> 결제 내역 </strong> </td>
-								<td> <strong> 주문금액 </strong> </td>
-								<td> <strong> 결제 수단 </strong> </td>
-								<td> </td>
-							</tr>
+						<table class="table table-bordered tablestyle" style="margin-top: 30px;">
+							<tr style="  color: #808991; line-height: 20px;">
+								<td style="width:30%; text-align: center;background-color: #f2f4f5;"> <strong> 주문번호  </strong> </td>
+								<td style="padding-left: 20px;"> <strong> ${buyOneResult.orderuuid } </strong> </td>
+							</tr>	
 							
-							<c:choose>
-								<c:when test="${fn:length(buyResult) eq 0}">
-									<tr>
-										<td colspan="5" style="text-align: center;">
-											결제 내역이 없습니다.
-										</td>
-									</tr>
-								</c:when>
-								
-								<c:otherwise>
-									<c:forEach var="buyResult" items="${buyResult }" varStatus="status">
-									<c:set var="count" value="0"></c:set>
-									<tr style="color: #808991; text-align: center;" class="trhover" onclick="goDetail(${buyResult.buyinfoSeq})">
-										<td >
-											${buyResult.date}
-										</td>
-										
-										<td>
-											<c:forEach var="detailList" items="${buydetailList}" varStatus="status">
-												<c:if test="${buyResult.buyinfoSeq eq detailList.buyinfoSeq }">
-													<c:set var="count" value="${count+1}"></c:set>
-														<c:if test="${count eq 1 }">
-															${detailList.tdbkBookTitle}
-														</c:if>
-												</c:if>
-											</c:forEach>
-											
-											<c:if test="${count > 1 }">
-												외 ${count -1}권 
-											</c:if>
-										</td>
-										
-										<td>
-											${buyResult.totalprice }
-										</td>
-										
-										<td>
-											<c:if test="${buyResult.means eq 34 }">카카오페이 </c:if>
-											<c:if test="${buyResult.means eq 35 }">신용카드  </c:if>
-										</td>
-										<td> > </td>
-									</tr>	
-									</c:forEach>		
-								</c:otherwise>
-							</c:choose>
+							<tr style="  color: #808991; line-height: 20px;">
+								<td style="width:30%; text-align: center;background-color: #f2f4f5;"> <strong> 결제일시  </strong> </td>
+								<td style="padding-left: 20px;"> <strong> ${buyOneResult.date } </strong> </td>
+							</tr>	
 							
+							<tr style=" color: #808991; line-height: 20px;">
+								<td style="width:30%; text-align: center;background-color: #f2f4f5;"> <strong> 결제수단   </strong> </td>
+								<td style="padding-left: 20px;"> 
+									<strong>
+										<c:if test="${buyOneResult.means eq 34}"> 신용카드 </c:if>
+										<c:if test="${buyOneResult.means eq 35}"> 카카오페이  </c:if>
+									 </strong> 
+								</td>
+							</tr>	
 							
+							<tr style=" color: #808991; line-height: 20px;">
+								<td style="width:30%;text-align: center; background-color: #f2f4f5;"> <strong> 총 결제 비용   </strong> </td>
+								<td style="padding-left: 20px;"> <strong> <fmt:formatNumber value="${buyOneResult.totalprice}" pattern="#,###"></fmt:formatNumber> </strong> </td>
+							</tr>		
+							 
+							<tr style="  color: #666; line-height: 20px; font-weight: 500;">
+								<td style="vertical-align: middle; text-align: center;width:30%; background-color: #f2f4f5;"> <strong> 구매상세  </strong> </td>
+								<td style="padding-left: 20px;">
+									 <strong>  
+									 	<c:forEach items="${buyResultBook}" var="books" varStatus="status">
+									 		${books.tdbkBookTitle } &nbsp; (<fmt:formatNumber value="${books.tdbkSales }" pattern="#,###"></fmt:formatNumber>원) <br>
+									 	</c:forEach>
+									 </strong> 
+								</td>
+							</tr>	
 						</table>
-	
+							
 					</div>
 				</div>
 			</div>
@@ -179,7 +159,6 @@
 <script>
 	goDetail = function(seq){
 		$("#buyinfoSeq").val(seq);
-		form.attr("action", "/member/purchaseDetail").submit();
 	}
 </script>
 

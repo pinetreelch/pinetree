@@ -11,6 +11,14 @@
 	
 }
 
+.trhover{
+	cursor: pointer;
+}
+.trhover:hover{
+	background-color: #ebebeb;
+	font-weight: 500;
+}
+
 .tablestyle{
 	font-style: normal;
 font-weight: 200;

@@ -28,10 +28,10 @@
 		<div class="row" style="padding-top: 30px;">
 			<div class="col">
 					<span class="bookhead">도서</span>
-					<a class="heading float-end" href="" style="padding-top: 15px; color: black;">
+					<!-- <a class="heading float-end" href="" style="padding-top: 15px; color: black;">
 						<i class="fa-solid fa-list"></i> 
 						<span class="category">&nbsp;카테고리&nbsp;</span>
-					</a>
+					</a> -->
 				<hr  style="background-color: #F5F5F5;">
 			</div>
 		</div>
@@ -42,9 +42,9 @@
 					<li style="display: inline-block;">
 						<button class="recommend"><b>추천</b></button>
 					</li>
-					<li style="display: inline-block;">
+					<!-- <li style="display: inline-block;">
 						<button class="best"><b>베스트</b></button>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -301,7 +301,7 @@
 				</div>
 				
 				
-		<section style="padding-top: 30px; padding-bottom: 16px;">MD's PICK ></section>
+		<section style="padding-top: 30px; padding-bottom: 16px;">지금 가장 인기있는 ></section>
 		
 		
 			<div class="row">

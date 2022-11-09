@@ -34,4 +34,8 @@
 	$("#purchaseHistory").click(function(){
 		form.attr("action", "/member/purchaseHistory").submit();
 	});
+	
+	$("#dashboard").click(function(){
+		form.attr("action", "/member/mypage").submit();
+	});
 </script>

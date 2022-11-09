@@ -7,13 +7,13 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="menutitle">마이리디</div>
-			<div class="border-bottom" style="padding-top:17px; padding-bottom:17px; color: #1F8CE6; width: 130px;">
+			<div id="dashboard" class="border-bottom" style="padding-top:17px; padding-bottom:17px; width: 130px; cursor: pointer">
 				<a href="" class="menutitle1" style="color: #1F8CE6">
 				<div style="display:inline-block; padding-right: 5px;"><i class="fa-solid fa-house"></i></div>
 				마이리디 홈
 				</a>
 			</div>
-
+				<!-- color: #1F8CE6; -->
 			<div class="border-bottom" style="width: 135px; padding-top: 17px; padding-bottom: 19px;">
 				<div class="menutitle2">
 					<i class="fa-solid fa-book-open"></i>
@@ -21,7 +21,7 @@
 				</div>
 				
 				<!-- <div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 선호작품</div> -->
-				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 최근 조회한 작품</div>
+				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;">  내 서재  </div>
 				<div class="menutitle3" id="wishlist" style="padding-top:14px; padding-left: 22px; cursor: pointer; "> 위시 리스트 </div>  
 				<!-- <div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 독서노트</div>
 				<div class="menutitle3" style="padding-top:14px; padding-left: 22px;"> 신간알림</div>

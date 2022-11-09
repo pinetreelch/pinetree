@@ -31,6 +31,18 @@ public class MemberController {
 		return rtSeq;
 	}
 	
+	@RequestMapping(value = "/purchaseDetail")
+	public String purchaseDetail(Member dto, Model model) throws Exception {
+		
+		Member buyResultOne = service.buyResultOne(dto);
+		List<Member> buyResultBook = service.buyResultBook(dto);
+		
+		model.addAttribute("buyOneResult",buyResultOne);
+		model.addAttribute("buyResultBook",buyResultBook);
+		
+		return "mypage/purchaseDetail";
+	}
+	
 	@RequestMapping(value = "/purchaseHistory")
 	public String purchaseHistory(Member dto, Model model) throws Exception {
 		
