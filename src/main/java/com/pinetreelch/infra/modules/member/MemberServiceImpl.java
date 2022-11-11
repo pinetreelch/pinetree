@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member buyResultOne(Member dto) throws Exception{
 		
-
+		
 		return dao.buyResultOne(dto);
 	}
 	
