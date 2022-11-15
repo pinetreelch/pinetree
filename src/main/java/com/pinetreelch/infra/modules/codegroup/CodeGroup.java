@@ -14,7 +14,7 @@ public class CodeGroup {
 	private Integer useNY;
 	private Integer delNY;
 	private String startDate;
-	
+	private String updateDate;
 	// 코드변수
 	
 
@@ -30,6 +30,18 @@ public class CodeGroup {
 	
 	
 	
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	public static List<CodeGroup> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<CodeGroup> cachedCodeArrayList) {
+		CodeGroup.cachedCodeArrayList = cachedCodeArrayList;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

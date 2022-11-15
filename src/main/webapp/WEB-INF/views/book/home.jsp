@@ -76,7 +76,7 @@
 		</script>
 		<script>
 			$("#clickthis2").click(function(){
-				form.attr("action", "/member/memberList").submit(); 
+				form.attr("action", "/codeGroup/codeGroupList").submit(); 
 			});
 		</script>
 		</form>

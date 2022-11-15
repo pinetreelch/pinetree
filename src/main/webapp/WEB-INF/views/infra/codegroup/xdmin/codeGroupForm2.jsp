@@ -226,12 +226,7 @@
 							    
 							    <br />
 							    
-							    <c:out value="( this page =${vo.thisPage })"></c:out> 		
-								<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
-								<c:out value="( shUse =${vo.shUse }) "></c:out>
-								<c:out value="( shValue =${vo.shValue } )"></c:out>
-								<c:out value="( shOption =${vo.shOption })"></c:out>	
-								<c:out value="( cgSeq =${vo.cgSeq } )"></c:out>
+							   
 							  </div>
 							  	
 							  <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">

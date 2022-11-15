@@ -16,13 +16,13 @@
 	
 	  
 	  <!-- Datepicker -->  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   	
-  	
-  	<script>
+  <script>
 	  $( function() {
 	    $("#shDateStart").datepicker({
 	    	dateFormat: 'yy-mm-dd'
@@ -32,7 +32,7 @@
 	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
        		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
        		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
+        	,maxDate: '0'
 	    });
 	    
 	    $("#shDateEnd").datepicker({
@@ -43,59 +43,23 @@
 	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
        		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
        		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
+        	,maxDate: '0'
+	
 	    });
 	    
-	   	$('#shDateStart').datepicker('setDate', '-1M');
+	    $('#shDateStart').datepicker('setDate', '2010-01-01');
 	    $('#shDateEnd').datepicker('setDate', 'today');
+	   	
 	  } );
 	  
-  	</script>
+  	</script>	
+  	
   	
   	
 </head>
 <body style="background-image: url('/resources/images/wallpaperbetter.jpg'); background-size: 12% 12%;">
-	<div class="border-bottom border-2 container-fluid"  style="position: fixed; height: 50px;  background:#F7FAFC;">
-		<div class="row">
-			<div class="col-12">
-				<div style="display:table; width: 100%;  height: 50px;">
-					<div style="display:table-cell; vertical-align: middle; padding-left: 50px; width: 80%;">
-						<div>
-							<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px;">
-				 			<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
-				 			
-				 			<div class="admintitle" style="display: inline-block; vertical-align: bottom; padding-bottom: 4px;">Admin</div>
-						</div>
-					</div>
-					
-					<div  style="display:table-cell;vertical-align: middle; padding-left: -20px; padding-right: 0px; width: 3%;">
-						<div class="border-start" style="">
-							<div  style="margin-left: 10px; background-color: #9EA7AD;  width: 40px; height: 40px; border-radius: 50%; text-align: center; padding-top: 0.7em;">
-								<i class="fa-regular fa-user"></i>
-							</div>
-						</div>
-					</div>
-					
-					<div  style="display:table-cell; padding-left: -20px; padding-right: 0px; line-height: 1.1em; vertical-align: middle; width: 4%;">
-						<div class="border-end" style="height: 40px;">
-							<span class="adminname">이찬호</span> <br /> <span class="adminname2">Administrator</span>
-						</div>
-					</div>
-					
-					<div  style="display:table-cell; padding-left: -20px; padding-right: 0px; line-height: 1.1em; vertical-align: middle; width: 3%; text-align: center;">
-						<div class="border-end" style="height: 40px; vertical-align:center;">
-							<div style="padding-top: 2px;">
-								<a href="">
-								<i class="fa-solid fa-right-from-bracket fa-ml"></i><br />
-								<span class="adminname2">logout</span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
- 	</div>					<!-- 해드부분 continer end -->
+	
+	<%@include file="../../.././common/xdmin/includeV1/adminheader.jsp"%>
  	
  	<div style=" background: #EBF6FF; width: 27vh; height: 100vh; position: fixed; top:50px; color: #40474D; padding:0; display:inline-block; min-width: 27vh;">
 		<div class="row " style="width: 28.3vh;;">
@@ -180,28 +144,27 @@
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
 									<select id="shUse" name = "shUse" class="form-select" aria-label="Default select example"style="width: 200px; margin-right:10px; display:inline-block;">
-									 <option value="" <c:if test ="${empty vo.shUse}"> selected</c:if> >사용여부</option>   <!--  -->
-									 <option value="0" <c:if test ="${vo.shUse eq 0}"> selected</c:if>>N</option>
-									 <option value="1"<c:if test ="${vo.shUse eq 1}"> selected</c:if>>Y</option>
+										 <option value="3" <c:if test ="${empty vo.shUse}"> selected</c:if> >사용여부</option>   <!--  -->
+										 <option value="0" <c:if test ="${vo.shUse eq 0}"> selected</c:if>>N</option>
+										 <option value="1"<c:if test ="${vo.shUse eq 1}"> selected</c:if>>Y</option>
 									</select>
 
 									<select id="shOptionDate" name = "shOptionDate" class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block;">
-										<option value ="" <c:if test = "${empty vo.shOptionDate}"> selected </c:if> >날짜</option>
+										<option value="0" <c:if test = "${empty vo.shOptionDate }">  selected </c:if> > 날짜 구분 </option>
 										<option value="1" <c:if test = "${vo.shOptionDate eq 1 }">  selected </c:if> >등록일</option>
 										<option value="2" <c:if test = "${vo.shOptionDate eq 2 }">  selected </c:if> >수정일</option>
-										<option value="3" <c:if test = "${vo.shOptionDate eq 3 }">  selected </c:if> >생일</option>
 									</select>
 									
-									<%-- <fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
-									<input type="text" id="shDateStart" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
+									<input type="text" id="shDateStart" name="shDateStart" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;" autocomplete="off">
 									
 									<%-- <fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>		
-						 			<input type="text" id="shDateEnd" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
+						 			<input type="text" id="shDateEnd" name="shDateEnd" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;" autocomplete="off">
+									
 
 									<br />
 								
 								<select id="shOption" name ="shOption"class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;">
-									<option value="" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>
+									<option value="0" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>
 						  			<option value="1" <c:if test ="${vo.shOption eq 1}"> selected</c:if>>코드그룹 코드</option>
 						  			<option value="2" <c:if test ="${vo.shOption eq 2}"> selected</c:if>>코드그룹 이름 (한글)</option>
 						 			 <option value="3" <c:if test ="${vo.shOption eq 3}"> selected</c:if>>코드그룹 이름 (영문)</option>
@@ -237,16 +200,7 @@
 									Total:
 									 <c:out value="${vo.totalRows}" > </c:out>	
 									</span>
-									
-									<span style="float:right;">
-										
-											<select class="form-select" aria-label="Default select example" style="width: 80px; margin:0; display:inline-block;">
-												<option selected >10</option>
-												<option value="1">One</option>
-												<option value="2">Two</option>
-												<option value="3">Three</option>
-											</select>
-									</span>	
+								
 							</h4>
 							
 							<table class="table table-bordered" style="text-align: center;">
@@ -339,19 +293,14 @@
 												</td>
 												
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
+													<c:out value="${list.updateDate }"/>
 												</td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
 							</table>
-							
-							<c:out value="( this page =${vo.thisPage })"></c:out> 		
-							<c:out value="( rowNumToShow =${vo.rowNumToShow })"></c:out>
-							<c:out value="( shUse =${vo.shUse }) "></c:out>
-							<c:out value="( shValue =${vo.shValue } )"></c:out>
-							<c:out value="( shOption =${vo.shOption })"></c:out>	
-							<c:out value="( cgSeq =${vo.cgSeq } )"></c:out>
+						
 							
 							
 							<div>
@@ -394,7 +343,7 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  
  <script>
  	var goUrlList = "/codeGroup/codeGroupList";
 	var goUrlInst = "/codeGroup/codeGroupInst";
@@ -412,6 +361,8 @@
 	var formList = $("form[name=formList]");
 	
 	$("#btnSearch").on("click", function(){
+		
+
 		formList.attr("action", goUrlList).submit();
 	});
 	

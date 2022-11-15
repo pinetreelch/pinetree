@@ -23,14 +23,33 @@
 					
 				WHERE 1=1
 						
-						<if test ="shUse != null and !shUse.equals('')"> AND  a.useNY = #{shUse} </if>
 						
-						<choose>			
+						
+						<choose>
+							<when test="shUse == 0"> AND a.useNy = #{shUse}</when>
+							<when test="shUse == 1"> AND a.useNy = #{shUse}</when>
+							<otherwise></otherwise>
+						</choose>
+						
+						<choose>
+							<when test="shOption == 0">
+							AND (
+								    a.cgName LIKE CONCAT('%', #{shValue},'%')
+								    or a.cgKor like concat('%',#{shValue}, '%')
+								    or a.cgSeq like concat('%', #{shValue}, '%')
+								    )
+							</when>			
 							<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
 							<when test="shOption == 2">AND a.cgName LIKE CONCAT('%',#{shValue},'%')</when>
 							<when test="shOption == 3">AND a.cgKor LIKE CONCAT('%',#{shValue},'%')</when>
 							<otherwise></otherwise>
-						</choose>	
+						</choose>
+							
+						<choose>
+							<when test="shOptionDate == 1"> AND a.startDate between #{shDateStart} AND #{shDateEnd} </when>
+							<when test="shOptionDate == 2"> AND a.updateDate between #{shDateStart} AND #{shDateEnd} </when>
+							<otherwise></otherwise>
+						</choose>
 						
 					ORDER BY a.cgSeq DESC limit 99999999999
 					

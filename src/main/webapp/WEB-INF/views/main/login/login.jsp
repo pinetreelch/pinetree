@@ -103,9 +103,21 @@
 													</div>
 											</div>
 											<button id="btnLogin" name= "btnLogin"type="button" class="full-button login-button main rui_button_blue_50" >로그인</button>
+											
 											<button id="kakaologin" name= "kakaologin" type="button" class="full-button login-button main rui_button_blue_50" style="background-color: #f4f44d; border-color: #f4f44d; color: #463336; height: 52px;" >
 												<img src="../../../../resources/images/kakaoicon.png" style="width: 25px;" /> &nbsp;카카오톡 로그인 
 											</button>
+											
+											<button id="naverlogin" name= "kakaologin" type="button" class="full-button login-button main rui_button_blue_50" style="background-color: #19ce60; border-color: #19ce60; color: white; height: 52px;" >
+												<img src="../../../../resources/images/naverlogo.png" style="width: 25px;" /> &nbsp;네이버 로그인 
+											</button>
+											
+											
+											
+											<div class="btn_login_wrap" style="text-align: center; padding-top: 10px ">
+												<div id="naverIdLogin"></div>
+	                                        </div>
+											
 											<input id="ifmmSeq" name = "ifmmSeq" type = "hidden" />
 											<a class="full-button login-button signup-button sub rui_button_white_50" type="button" href="/login/signup1">
 				     						 회원가입
@@ -147,7 +159,7 @@
 			 	if(data.rt == "success"){
 			 		var ifm = data.ifmmSeq;
 					document.getElementById('ifmmSeq').value = ifm;	
-					form.attr("action", goHome).submit();
+					form.attr("action", "/").submit();
 					
 				 } else if(data.rt == "fail") {
 					 alert('회원정보가 없음 - > 다시 입력하세요 ');
@@ -202,11 +214,15 @@
  	} 	
 </script> 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
 
 Kakao.init('69e4faebb36ff5a8c6779b3c2d9ddaa2');
 console.log(Kakao.isInitialized());
 
+
+	
+	
  $("#kakaologin").click(function(){
 	 Kakao.Auth.login({
 		      success: function (response) {
@@ -289,6 +305,88 @@ console.log(Kakao.isInitialized());
 		      },
 		    })  
  });
+</script>
+
+<script>
+var form = $("form[name=form]");
+
+	var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "VFAVTHRVgSeiYFfBFeDx",
+				callbackUrl: "http://localhost:8080/login/",
+				isPopup: false,
+			}
+		);
+	
+	naverLogin.init();
+
+$("#naverlogin").click(function(){
+	naverLogin.getLoginStatus(function (status) {
+		
+		if(!status)
+			naverLogin.authorize();
+		else
+            setLoginStatus();  //하늘님 메소드 실행 -> Ajax
+	});
+	
+});
+	
+	function setLoginStatus() {
+		
+		console.log(naverLogin);
+		
+		alert(naverLogin.user.id + "  " + naverLogin.user.name + " " + naverLogin.user.birthyear + " "+ naverLogin.user.birthday + " "+ naverLogin.user.email);
+		
+		
+		$("#ifmmEmail").val(naverLogin.user.email);
+		$("#ifmmName").val(naverLogin.user.name);
+		$("#ifmmId").val(naverLogin.user.id);
+		
+		
+		$.ajax({
+			async: true
+			,cache: false
+			,type:"POST"
+			,url: "/member/kakaocheck"
+			,data: {
+					ifmmId: naverLogin.user.id					
+					}
+			,success : function(response) {
+				if (response.rt == "fail") {
+					alert("존재하지 않는 아이디입니다. ");
+					form.attr("action", "/login/signup2").submit();
+					return false;
+				} else {
+					alert("존재하는 아이디입니다.");
+					$.ajax({
+						async: true
+						,cache: false
+						,type:"POST"
+						,url: "/member/kakaologin"
+						,data: {
+								ifmmId: naverLogin.user.id					
+								}
+						,success : function(response) {
+							if (response.rt == "fail") {
+								form.attr("action", "/").submit();
+							} else {
+								//
+							}
+						},
+						error : function(jqXHR, status, error) {
+							alert("알 수 없는 에러 [ " + error + " ]");
+						}
+					});
+				}
+			},
+			error : function(jqXHR, status, error) {
+				alert("알 수 없는 에러 [ " + error + " ]");
+			}
+		});
+		
+		
+		return false;
+	}
 </script>
 
 </body>

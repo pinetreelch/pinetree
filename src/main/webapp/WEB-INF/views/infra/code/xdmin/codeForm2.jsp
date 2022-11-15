@@ -140,7 +140,12 @@
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">코드그룹 코드</label>
-							    <input name = "cgKor" type="text" class="form-control" id="2">
+							    <select class="form-select" aria-label="Default select example">
+								  <option value="0">Open this select menu</option>
+								  <option value="1">One</option>
+								  <option value="2">Two</option>
+								  <option value="3">Three</option>
+								</select>
 							  </div>
 							  
 							  

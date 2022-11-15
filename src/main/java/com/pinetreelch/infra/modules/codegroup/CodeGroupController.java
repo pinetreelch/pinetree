@@ -35,7 +35,7 @@ public class CodeGroupController {
 	
 	public void setSearchAndPagin(CodeGroupVo vo) throws Exception{
 		
-		vo.setShOptionDate( vo.getShOptionDate() == null ? 2 : vo.getShOptionDate() );
+		vo.setShOptionDate( vo.getShOptionDate() == null ? 0 : vo.getShOptionDate() );
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 
@@ -51,6 +51,7 @@ public class CodeGroupController {
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getshOption(): " + vo.getShOption());
 		System.out.println("vo.getshUse(): " + vo.getShUse());
+		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
 				
 		
 		List<CodeGroup> list = service.selectList(vo);  //서비스를 호출하는건데 autowired되어있음; 
