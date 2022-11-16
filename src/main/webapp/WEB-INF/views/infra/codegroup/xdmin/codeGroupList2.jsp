@@ -99,8 +99,6 @@
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li><a href="/member/memberList">회원 관리</a></li>
-				         	<li><a href="/member/memberForm">회원 추가(수정)</a></li>
-				         	<li><a href="">결제 관리</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -163,7 +161,7 @@
 
 									<br />
 								
-								<select id="shOption" name ="shOption"class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;">
+								<select id="shOption" name ="shOption" class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;">
 									<option value="0" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>
 						  			<option value="1" <c:if test ="${vo.shOption eq 1}"> selected</c:if>>코드그룹 코드</option>
 						  			<option value="2" <c:if test ="${vo.shOption eq 2}"> selected</c:if>>코드그룹 이름 (한글)</option>

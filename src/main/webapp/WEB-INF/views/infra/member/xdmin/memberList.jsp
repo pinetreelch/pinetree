@@ -96,9 +96,7 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse show " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li style="text-shadow: 2px 2px 2px #b4b4b4,3px 3px 3px #6a79a3; font-weight: 500;  "><a href="/member/memberList">회원 관리</a></li>
-				         	<li><a href="/member/memberForm">회원 추가(수정)</a></li>
-				         	<li><a href="">결제 관리</a></li>
+				         	<li><a href="/member/memberList">회원 관리</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -194,41 +192,32 @@
 							<h4 style="padding-bottom: 10px;">
 								 
 									<span>
-									Total:
-									 <c:out value="${vo.totalRows}" > </c:out>	
+									Total: ${fn:length(list)} 
+										
 									</span>
 									
-									<span style="float:right;">
-										
-											<select class="form-select" aria-label="Default select example" style="width: 80px; margin:0; display:inline-block;">
-												<option selected >10</option>
-												<option value="1">One</option>
-												<option value="2">Two</option>
-												<option value="3">Three</option>
-											</select>
-									</span>	
+									
 							</h4>
 							
-							<div style = "width: 100%; overflow: auto;">
+						
+							<div style=" overflow:auto; ">
 							<table class="table table-bordered " style="text-align: center;">
-								<tr style="background: #B8BFC4;">
-									<th style="text-align: center;"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-									<th style="text-align: center;">#</th>
-									<th>회원 시퀀스</th>
-									<th>회원 이름</th>
-									<th>회원 성별</th>
-									<th>회원 아이디</th>
-									<th>회원 이메일</th>
-									<th>이메일 도메인</th>
-									<th>비밀번호</th>
-									<th>회원 전화번호</th>
-									<th>통신사</th>
-									<th>이메일수신동의</th>
-									<th>마케팅앱동의</th>
-									<th>밤 알림 동의</th>
-								</tr>
-								<!-- ${orderListLength - status.index  } ${vo.totalRows} -->
+								<thead>
 								
+								<tr style="background: #B8BFC4;">
+									<th style="text-align: center;"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> </th>
+									<th >#</th>
+									<th >회원 시퀀스</th>
+									<th >회원 이름</th>
+									<th >회원 성별</th>
+									<th >회원 아이디</th>
+									<th>회원 이메일</th>						
+									<th>회원 전화번호</th>
+									
+								</tr>
+								</thead>
+								<!-- ${orderListLength - status.index  } ${vo.totalRows} -->
+								<tbody>
 								<c:set var="cachedList" value="${CodeServiceImpl.selectListCachedCode()}"/>
 								<c:set var="orderListLength" value="${fn:length(list)}"/>
 								<c:choose>
@@ -240,17 +229,17 @@
 									
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr class="lltem" style="cursor: pointer;" >
+											<tr class="lltem" style="cursor: pointer; " >
 											
 												<td style="text-align: center;" > 
 													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 												</td>
 												
 												<td>
-													
+													${status.count }
 												</td>
 												
-												<td onclick="location.href='javascript:goFormk( <c:out value="${list.ifmmSeq }"/> )'">
+												<td >
 													<c:out value="${list.ifmmSeq }"></c:out>
 												</td>
 												
@@ -259,11 +248,7 @@
 												</td>
 												
 												<td>
-													<c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.gender }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
+													${list.gender }
 													
 												</td>
 												
@@ -275,60 +260,21 @@
 													<c:out value="${list.ifmmEmail }"></c:out>
 												</td>
 												
-												<td>
-													<c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.ifmmEmaildom }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
-												</td>
-												
-												<td>
-													<c:out value="${list.ifmmPwd }"></c:out>
-												</td>
-												
+														
 												<td>
 													<c:out value="${list.ifmmTel }"></c:out>
 												</td>
 												
-												<td>
-													<c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.ifmmtelCo }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
-												</td>
 												
-												<td>
-													<c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.ifmmMktemailNY }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
-												</td>
-												
-												<td>
-													 <c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.ifmmMktappAlertNY }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
-												</td>
-												
-												<td>
-													<c:forEach items="${cachedList}" var="clist" varStatus="status">
-														<c:if test="${clist.cSeq eq list.ifmmMktapppushnight }">
-															<c:out value="${clist.cdName }"></c:out>
-														</c:if>
-													</c:forEach>
-												</td>
 												
 											</tr>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
+								</tbody>
 							</table>
 							</div>
+							
 							
 							
 							

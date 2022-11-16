@@ -113,7 +113,7 @@ public class CodeGroupController {
 		int result = service.delete(vo);
 		System.out.println(result);
 			
-		return "redirect: /codeGroup/codeGroupList";
+		return "redirect:/codeGroup/codeGroupList";
 	}
 	
 	@RequestMapping("excelDownload")

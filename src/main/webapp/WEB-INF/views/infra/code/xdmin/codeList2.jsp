@@ -13,46 +13,8 @@
 	<title>코드 관리</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
-	  
-	  <!-- Datepicker -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  	
-  	
-  	<script>
-	  $( function() {
-	    $("shStartDate").datepicker({
-	    	dateFormat: 'yy-mm-dd'
-	    	,changeYear: true
-	    	,changeMonth: true
-	    	,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
-	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
-       		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
-       		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
-	    });
-	    
-	    $("#shEndDate").datepicker({
-	    	dateFormat: 'yy-mm-dd'
-	    	,changeYear: true
-	    	,changeMonth: true
-	    	,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
-	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
-       		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
-       		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
-	    });
-	    $('#shStartDate').datepicker('setDate', '-1M');
-	    $('#shEndDate').datepicker('setDate', 'today');
-	  } );
-	  
-	  
-
 	 
-  	</script>
-  	
+  
   	
 </head>
 <body style="background-image: url('/resources/images/wallpaperbetter.jpg'); background-size: 12% 12%;">
@@ -95,8 +57,7 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">회원 관리</a></li>
-				         	<li><a href="">결제 관리</a></li>
+				         	<li><a href="/member/memberList">회원 관리</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -140,45 +101,17 @@
 					
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
-									  <option selected >N</option>
-									  <option value="1">One</option>
-									  <option value="2">Two</option>
-									  <option value="3">Three</option>
-									</select>
-												
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
-									  <option selected >수정일</option>
-									  <option value="1">One</option>
-									  <option value="2">Two</option>
-									  <option value="3">Three</option>
-									</select>
-												
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
-									  <option selected >Open this select menu</option>
-									  <option value="1">One</option>
-									  <option value="2">Two</option>
-									  <option value="3">Three</option>
-									</select>			
-			
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block;">
-									  <option selected >Open this select menu</option>
-									  <option value="1">One</option>
-									  <option value="2">Two</option>
-									  <option value="3">Three</option>
-									</select>
-									<br />
 									
-									<select class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block; margin-top: 20px;">
-									  <option selected >검색구분</option>
-									  <option value="1">One</option>
-									  <option value="2">Two</option>
-									  <option value="3">Three</option>
+									
+									<select id="shOption" name ="shOption" class="form-select" aria-label="Default select example" style="width: 200px; margin:0; display:inline-block; margin-top: 20px;">
+										<option value="0" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>								  		
+								  		<option value="1" <c:if test ="${vo.shOption eq 1}"> selected</c:if>>코드그룹 이름 (한글)</option>
+								 		<option value="2" <c:if test ="${vo.shOption eq 2}"> selected</c:if>>코드그룹 이름 (영문)</option>
 									</select>
 
-									<input value="" type="text" class="form-control" name="shValue" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
+									<input  type="text" class="form-control" name="shValue" style="width: 500px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
 	
-									<button style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
+									<button id="SearchBtn" style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-magnifying-glass"></i>
 									</button>
 									
@@ -238,12 +171,12 @@
 									
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr class="lltem" style="cursor: pointer;">
+											<tr class="lltem" style="cursor: pointer;" onclick ="goFormk(${list.cSeq})">
 												<td>
 													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 												</td>
 												
-												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cSeq }"/> )'">
+												<td >
 													${orderListLength - status.index }
 												</td>
 												
@@ -267,7 +200,7 @@
 												</td>
 												
 												<td>
-													<c:out value="${list.cdName }"/>
+													<c:out value="${list.cgName }"/>
 												</td>
 												
 												<td>
@@ -277,10 +210,12 @@
 												<td></td>
 												
 												<td>
-													<c:out value="${list.cgName }"/>
+													<c:out value="${list.cdName }"/>
 												</td>
 												
-												<td></td>
+												<td>
+													${list.cdEng }
+												</td>
 												
 												<td>
 													<c:set var="ny1" value="${list.useNY }"/>
@@ -350,6 +285,7 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  <script>
  	var goUrlList = "/code/codeList";
 	var goUrlInst = "/code/codeGroupInst";
@@ -369,9 +305,14 @@
  	
 	goFormk = function(keyValue) {
     	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	
     	seq.val(keyValue);
     	form.attr("action", goUrlForm).submit();
 	}
+	
+	$("#SearchBtn").click(function(){
+		form.attr("action", "/code/codeList").submit();
+	});
 
  </script>
 </body>

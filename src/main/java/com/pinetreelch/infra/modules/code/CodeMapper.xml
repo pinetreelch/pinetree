@@ -15,6 +15,17 @@
 		from codeCd a
 		join codeGroup b on a.codeGroup_cgSeq = b.cgSeq
         WHERE 1=1
+        	
+        	<choose>
+        		<when test="shOption == 0">
+        			 AND (
+					     cdName like concat('%',#{shValue}, '%')
+					     or cdEng like concat('%',#{shValue}, '%')
+					     )
+        		</when>
+        		<when test="shOption == 1"> AND cdName like concat('%',#{shValue}, '%') </when>
+        		<when test="shOption == 2"> AND cdEng like concat('%',#{shValue}, '%')</when>        		
+        	</choose>
         
         ORDER BY a.cSeq DESC 
 			
@@ -57,7 +68,7 @@
             #{cdName}
            ,#{useNY}
            ,#{delNY}
-           ,(select cgSeq from codeGroup where cgName = #{codeGroup_cgSeq})
+           ,#{cgSeq}
         )
         	<selectKey resultType ="String" keyProperty = "cSeq" order ="AFTER">
         		SELECT last_insert_id()
@@ -76,5 +87,25 @@
 	            AND a. delNY = 0
 	        ;
     </select>
+    
+    <!-- delete -->
+	<delete id="delete">
+		Delete FROM codeCd
+		
+		WHERE cSeq = #{cSeq}
+	</delete>
+	
+	<!-- update -->
+	<update id = "update"> 
+		update 
+			codeCd
+		set
+			cdName = #{cdName}
+	        ,useNY = #{useNY}
+	        ,delNY = #{delNY}
+	        ,codeGroup_cgSeq = #{cgSeq}
+		where 
+			cSeq = 16	        
+	</update>
 
 </mapper>

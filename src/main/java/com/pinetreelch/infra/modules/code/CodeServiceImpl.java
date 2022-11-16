@@ -14,8 +14,8 @@ public class CodeServiceImpl implements CodeService {
 	CodeDao dao;
 	
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList();
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo);
 	}
 	
 	@Override
@@ -24,9 +24,22 @@ public class CodeServiceImpl implements CodeService {
 	}
 	
 	@Override
+	public int delete(Code dto) throws Exception {
+		return dao.delete(dto);
+	}
+	
+	
+	@Override
 	public int insert(Code dto) throws Exception{
 		int result = dao.insert(dto);
 		System.out.println("service result: " + result);
+		return result;
+	}
+	
+	@Override
+	public int update(Code dto) throws Exception{
+		int result = dao.update(dto);
+		
 		return result;
 	}
 	

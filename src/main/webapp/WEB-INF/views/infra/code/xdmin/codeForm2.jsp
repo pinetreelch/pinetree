@@ -130,21 +130,24 @@
 
  	<div class="container-fluid bodyd3" style="padding-top: 50px;">																														<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
- 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">코드 추가</span></i>
+ 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">코드 <c:if test="${not empty item.cSeq}">수정 </c:if> <c:if test="${ empty item.cSeq}">추가  </c:if> </span></i>
  		</div>
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
-					<form method ="post" action = "/codeGroup/codeGroupInst">
+					<form method ="post" name="form">
+						<input type="hidden" name="cSeq" id="cSeq" value="${item.cSeq}"/>
 						<div class="row" style="padding-top: 30px;" >
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">코드그룹 코드</label>
-							    <select class="form-select" aria-label="Default select example">
-								  <option value="0">Open this select menu</option>
-								  <option value="1">One</option>
-								  <option value="2">Two</option>
-								  <option value="3">Three</option>
+							    <select id="cgSeq" name="cgSeq" class="form-select" aria-label="Default select example">
+							    	<option <c:if test="${empty item.codeGroup_cgSeq }"> selected </c:if>>-- 선택 -- </option> 
+							    	<c:forEach var="codeGroupList" items="${codeGroupList }" varStatus="status">
+							    	  <option value="${codeGroupList.cgSeq}" <c:if test="${item.codeGroup_cgSeq eq codeGroupList.cgSeq}"> selected </c:if>>  
+							    	  	${codeGroupList.cgSeq} - ${codeGroupList.cgName} 
+							    	  </option>
+							    	</c:forEach>								
 								</select>
 							  </div>
 							  
@@ -157,10 +160,10 @@
 						</div>
 						
 						<div class="row" style="padding-top: 30px;" >
-						
+							
 							<div class="col" style="display: inline-block;  width: 500px;">
-							   <label for="1" class="form-label">코드 (한글)</label>
-							    <input name = "cgName" id = "cgName" value="<c:out  value="${item.cdName}"/>" type="text" class="form-control">
+							   <label for="1" class="form-label">코드 (한글) </label>
+							    <input name = "cdName" id = "cdName" <c:if test="${not empty item.cdName}"> value="${item.cdName}" </c:if> type="text" class="form-control">
 							  </div>
 							  
 							  
@@ -174,19 +177,19 @@
 						<div  class="row" style="padding-top: 20px;">
 							  <div class="col" style="display: inline-block; width: 500px;">
 							    <label for="5" class="form-label">사용여부</label>
-							    <select class="form-select" name="useornot" >
-								  <option value="" >--선택---</option>
-								  <option value="1">Y</option>
-								  <option value="0">N</option>
+							    <select class="form-select" name="useNY" >
+								  <option value="" <c:if test="${empty item.useNY }"> selected</c:if>>--선택---</option>  
+								  <option value="1" <c:if test="${item.useNY ==1 }"> selected</c:if>>Y</option>  
+								  <option value="0" <c:if test="${item.useNY == 0 }"> selected</c:if>>N</option>
 								</select>
 							  </div >
 							  
 							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="8" class="form-label">삭제여부</label>
-							    <select class="form-select" name="delornot" >
-							    	<option value="">--선택---</option>
-									<option value="1">Y</option>
-									<option value="0">N</option>
+							    <select class="form-select" name="delNY" >
+							    	<option value="" <c:if test="${empty item.delNY}"> selected</c:if>>--선택---</option> 
+									<option value="1" <c:if test="${item.delNY == 1 }"> selected</c:if>>Y</option>
+									<option value="0" <c:if test="${item.delNY == 0 }"> selected</c:if>>N</option>
 								</select>
 								
 							
@@ -200,7 +203,7 @@
 					<div style="padding-top: 30px;">
 						<div style="display:table; width: 100%; padding-bottom:150px;">
 							<div style="display:table-cell;">
-								<button type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
+								<button id="goList" type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='./codeGroupList'">
 									<i class="fa-solid fa-list"></i>
 								</button>
 								
@@ -208,17 +211,25 @@
 							</div>
 							
 							<div style="display:table-cell; text-align: right;">
-								<button style="background:rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
-									<i class="fa-solid fa-x"></i>
-								</button>
 								
-								<button style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
-									<i class="fa-solid fa-trash"></i>
-								</button>	
+								<c:if test="${ not empty item.cSeq }">
+									<button id="deleteBtn" style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+										<i class="fa-solid fa-trash"></i>
+									</button>	
+								</c:if>
 								
-								<button type="button" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
-									<i class="fa-solid fa-bookmark"></i>
-								</button>				
+								<c:if test="${ not empty item.cSeq }">
+									<button type="button" id="updateBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+										<i class="fa-solid fa-bookmark"></i>
+									</button>
+								</c:if>	
+								
+								<c:if test="${ empty item.cSeq }">
+									<button type="button" id="insertBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+										<i class="fa-solid fa-plus"></i>
+									</button>
+								</c:if>
+											
 							</div>
 						</div>
 					</div>
@@ -231,5 +242,26 @@
  	<!-- row 끝-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ <script>
+ 
+ 	form = $("form[name=form]");
+ 	
+ 	$("#insertBtn").click(function(){
+ 		form.attr("action", "/code/codeInst").submit();
+ 	});
+ 	
+ 	$("#deleteBtn").click(function(){
+ 		form.attr("action", "/code/delete").submit();
+ 	});
+ 	
+ 	$("#goList").click(function(){
+ 		form.attr("action", "/code/codeList").submit();
+ 	});
+ 	
+ 	$("#updateBtn").click(function(){
+ 		form.attr("action", "/code/update").submit();
+ 	});
+ </script>
 </body>
 </html>

@@ -14,13 +14,28 @@ public class Code {
 	private String useNY;
 	private String delNY;
 	private String codeGroup_cgSeq; 
-
+	private String cdEng;
 	
 	
 	//코드그룹 테이블 변수
 	private String cgName;
 	private String cgSeq;
 	
+	
+	
+	
+	public static List<Code> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<Code> cachedCodeArrayList) {
+		Code.cachedCodeArrayList = cachedCodeArrayList;
+	}
+	public String getCdEng() {
+		return cdEng;
+	}
+	public void setCdEng(String cdEng) {
+		this.cdEng = cdEng;
+	}
 	public String getCgSeq() {
 		return cgSeq;
 	}

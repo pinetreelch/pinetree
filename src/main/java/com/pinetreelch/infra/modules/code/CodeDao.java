@@ -18,8 +18,8 @@ public class CodeDao {
 	
 	private static String namespace = "com.pinetreelch.infra.modules.code.CodeMapper";
 	
-	public List<Code> selectList(){ 
-		return sqlSession.selectList(namespace + ".selectList", ""); 		//mybatis의 sqlsession이라는 객체의 함수를 이용할건데 그 함수는 우리가 Maaper사용한 쿼리문이다.
+	public List<Code> selectList(CodeVo vo){ 
+		return sqlSession.selectList(namespace + ".selectList", vo); 		//mybatis의 sqlsession이라는 객체의 함수를 이용할건데 그 함수는 우리가 Maaper사용한 쿼리문이다.
 		}
 	
 	public List<Code> selectcode(){ 
@@ -29,6 +29,17 @@ public class CodeDao {
 	public int insert(Code dto) {
 		int result = sqlSession.insert(namespace+".insert", dto );
 		System.out.println("dao result: "+ result);
+		return result;
+	}
+	
+	public int update(Code dto) {
+		int result = sqlSession.update(namespace+".update", dto );
+		
+		return result;
+	}
+	
+	public int delete(Code dto) {
+		int result = sqlSession.delete(namespace+".delete", dto );		
 		return result;
 	}
 	
