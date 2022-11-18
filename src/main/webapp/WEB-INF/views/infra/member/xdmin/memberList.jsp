@@ -10,7 +10,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>memberList</title>
+	<title> 멤버 리스트 </title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
 	  
@@ -21,38 +21,6 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  	
-  	
-  	<script>
-	  $( function() {
-	    $("#shDateStart").datepicker({
-	    	dateFormat: 'yy-mm-dd'
-	    	,changeYear: true
-	    	,changeMonth: true
-	    	,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
-	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
-       		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
-       		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
-	    });
-	    
-	    $("#shDateEnd").datepicker({
-	    	dateFormat: 'yy-mm-dd'
-	    	,changeYear: true
-	    	,changeMonth: true
-	    	,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
-	   		,monthNames: ['1월  ','2월  ','3월  ','4월  ','5월  ','6월  ','7월  ','8월  ','9월  ','10월  ','11월  ','12월  '] 
-       		,dayNamesMin: ['월  ','화  ','수  ','목  ','금  ','토  ','일  ']  
-       		,dayNames: ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'] 
-        	 
-	    });
-	    
-	   	$('#shDateStart').datepicker('setDate', '-1M');
-	    $('#shDateEnd').datepicker('setDate', 'today');
-	  } );
-	  
-  	</script>
-  	
   	
 </head>
 <body style="background-image: url('/resources/images/wallpaperbetter.jpg'); background-size: 12% 12%;">
@@ -96,7 +64,8 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse show " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="/member/memberList">회원 관리</a></li>
+				         	<li style=" font-weight: 700;"><a href="/member/memberList">회원 관리</a></li>
+				         	<li><a href="/member/memberForm">회원 추가 </a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -112,7 +81,7 @@
 				    <div id="collapseThree" class="accordion-collapse collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">도서 리스트</a></li>
+				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -120,16 +89,16 @@
 				
 				</div> <!-- 아코디언 끝 -->
 				
-				<div style="background: white; position: fixed; bottom: 50px; left: 30px;">
-					안녕하세요!
-				</div>
+				
 				
 			</div>
 		</div>
 		
 	</div>
 
-<form name = "formList" id = "formList" method ="post">
+<form name = "form" id = "form" method ="post">
+	<input type="hidden" name="ifmmSeq" id="ifmmSeq"/>
+	<input type="hidden" name="checkboxSeqArray" id="checkboxSeqArray">
  	<div class="container-fluid bodyd3" style="padding-top: 50px;">																														<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
  			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">회원 관리</span></i>
@@ -140,41 +109,22 @@
 					
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
-									<select id="shUse" name = "shUse" class="form-select" aria-label="Default select example"style="width: 200px; margin-right:10px; display:inline-block;">
-									 <option value=""  <c:if test ="${empty vo.shUse}"> selected</c:if> >사용여부</option>   <!--  -->
-									 <option value="0" <c:if test ="${vo.shUse eq 0}"> selected</c:if>>N</option>
-									 <option value="1" <c:if test ="${vo.shUse eq 1}"> selected</c:if>>Y</option>
-									</select>
-
-									<select id="shOptionDate" name = "shOptionDate" class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block;">
-										<option value ="" <c:if test = "${empty vo.shOptionDate}"> selected </c:if> >날짜</option>
-										<option value="1" <c:if test = "${vo.shOptionDate eq 1 }">  selected </c:if> >등록일</option>
-										<option value="2" <c:if test = "${vo.shOptionDate eq 2 }">  selected </c:if> >수정일</option>
-										<option value="3" <c:if test = "${vo.shOptionDate eq 3 }">  selected </c:if> >생일</option>
-									</select>
 									
-									<%-- <fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
-									<input type="text" id="shDateStart" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
-									
-									<%-- <fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/> --%>		
-						 			<input type="text" id="shDateEnd" style = "width: 200px; height: 36px; border: 1px solid #CED4DA; border-radius: 5px; padding-bottom: 2px;">
-
-									<br />
 								
-								<select id="shOption" name ="shOption"class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;">
-									<option value="" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>
-						  			<option value="1" <c:if test ="${vo.shOption eq 1}"> selected</c:if>>코드그룹 코드</option>
-						  			<option value="2" <c:if test ="${vo.shOption eq 2}"> selected</c:if>>코드그룹 이름 (한글)</option>
-						 			 <option value="3" <c:if test ="${vo.shOption eq 3}"> selected</c:if>>코드그룹 이름 (영문)</option>
+								<select id="shOption" name ="shOption" class="form-select" aria-label="Default select example" style="width: 200px; margin-right:10px; display:inline-block;">
+									<option value="0" <c:if test ="${empty vo.shOption}"> selected</c:if>> 검색구분</option>
+						  			<option value="1" <c:if test ="${vo.shOption eq 1}"> selected</c:if>> 회원이름 </option>
+						  			<option value="2" <c:if test ="${vo.shOption eq 2}"> selected</c:if>> 회원아이디 </option>
+						 			 <option value="3" <c:if test ="${vo.shOption eq 3}"> selected</c:if>>  회원 이메일  </option>
 								</select>
 
-								<input value="<c:out  value="${vo.shValue}"/>" type="text" class="form-control" name="shValue" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
+								<input  value="<c:out  value="${vo.shValue}"/>" type="text" class="form-control" name="shValue" id="shValue" style="width: 500px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
 
 								<button name="btnSearch" id="btnSearch" style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button> 
 								
-								<button style="background: rgb(227, 227, 227); border:1px solid rgb(227, 227, 227); border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
+								<button id="resetBtn" style="background: rgb(227, 227, 227); border:1px solid rgb(227, 227, 227); border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-arrow-rotate-right"></i>
 								</button>
 								
@@ -186,7 +136,7 @@
 
 						
 							
-							<input type="hidden" name="ifmmSeq" value = " ${vo.ifmmSeq }"/>
+							
 			
 							
 							<h4 style="padding-bottom: 10px;">
@@ -205,7 +155,7 @@
 								<thead>
 								
 								<tr style="background: #B8BFC4;">
-									<th style="text-align: center;"> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> </th>
+									<th style="text-align: center;"> <input class="form-check-input" type="checkbox" value="" id="checkall"> </th>
 									<th >#</th>
 									<th >회원 시퀀스</th>
 									<th >회원 이름</th>
@@ -216,7 +166,7 @@
 									
 								</tr>
 								</thead>
-								<!-- ${orderListLength - status.index  } ${vo.totalRows} -->
+								
 								<tbody>
 								<c:set var="cachedList" value="${CodeServiceImpl.selectListCachedCode()}"/>
 								<c:set var="orderListLength" value="${fn:length(list)}"/>
@@ -229,39 +179,39 @@
 									
 									<c:otherwise>
 										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr class="lltem" style="cursor: pointer; " >
+											<tr class="lltem" style="cursor: pointer;"  >
 											
 												<td style="text-align: center;" > 
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-												</td>
-												
-												<td>
-													${status.count }
+													<input class="form-check-input" type="checkbox" value="${list.ifmmSeq }" id="flexCheckDefault" name="checkboxitem">
 												</td>
 												
 												<td >
+													${status.count }
+												</td>
+												
+												<td onclick="goForm(${list.ifmmSeq})">
 													<c:out value="${list.ifmmSeq }"></c:out>
 												</td>
 												
-												<td>
+												<td onclick="goForm(${list.ifmmSeq})">
 													<c:out value="${list.ifmmName }"></c:out>
 												</td>
 												
-												<td>
+												<td onclick="goForm(${list.ifmmSeq})">
 													${list.gender }
 													
 												</td>
 												
-												<td>
+												<td onclick="goForm(${list.ifmmSeq})">
 													<c:out value="${list.ifmmId }"></c:out>
 												</td>
 												
-												<td>
+												<td onclick="goForm(${list.ifmmSeq})">
 													<c:out value="${list.ifmmEmail }"></c:out>
 												</td>
 												
 														
-												<td>
+												<td onclick="goForm(${list.ifmmSeq})">
 													<c:out value="${list.ifmmTel }"></c:out>
 												</td>
 												
@@ -281,13 +231,50 @@
 
 							<div style="display:table; width: 100%; padding-bottom:10px;">
 								<div style="display:table-cell;">
-									<button style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+								
+									<button type="button" style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
 										<i class="fa-solid fa-trash"></i>
 									</button>
+										<!-- Modal -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h1 class="modal-title fs-5" id="exampleModalLabel"> 확인 </h1>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body" style="text-align: left;">
+											        삭제하시겠습니까? 
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 닫기 </button>
+											        <button type="button" class="btn btn-primary" id="deleteBtn"> 확인 </button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 									
-									<button style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+									<button type="button" style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal12"> 
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
+										<!-- Modal -->
+											<div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h1 class="modal-title fs-5" id="exampleModalLabel"> 확인 </h1>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body" style="text-align: left;">
+											        이 항목을 더 이상 사용하지 않습니다 (Ulete) 
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 닫기 </button>
+											        <button type="button" class="btn btn-primary" id="uleteBtn"> 확인 </button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 								</div>
 								
 								<div style="display:table-cell; text-align: right;">
@@ -311,55 +298,84 @@
 				d
 		</div>	
 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
- <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  
- <script>
- 	var goUrlList = "/codeGroup/codeGroupList";
-	var goUrlInst = "/codeGroup/codeGroupInst";
-	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
-	var goUrlUele = "/codeGroup/codeGroupUele";
-	var goUrlDele = "/codeGroup/codeGroupDele";
-	var goUrlForm = "/member/memberForm";
-	
-	// var seq = $("input:text[name=cgSeq]");				/* #-> */
-	var seq = $("input:hidden[name=ifmmSeq]");
-	
-	
+<script>	
 	var form = $("form[name=form]");
-	var formVo = $("form[name=formVo]");
-	var formList = $("form[name=formList]");
 	
 	$("#btnSearch").on("click", function(){
-		formList.attr("action", goUrlList).submit();
+		form.attr("action", "/member/memberList").submit();
 	});
 	
-	$("#btnupdt").on("click", function(){
-		formList.attr("action", goUrlUpdt).submit();
+	$("#btnForm").click(function(){
+		form.attr("action", "/member/memberForm").submit();
 	});
 	
- 	goList = function(thisPage){
- 		$("input:hidden[name=thisPage]").val(thisPage);
- 		formList.attr("action", goUrlList).submit();
- 	}
- 	
- 	$('#btnForm').on("click", function() {
- 		
-		goForm(0);                
+	goForm = function(seq){
+		
+		$("#ifmmSeq").val(seq);
+		
+		form.attr("action", "/member/memberForm").submit();
+	}
+	
+	$("#resetBtn").click(function(){
+		$("#shOption").val("0").prop("selected", true);
+		$("#shValue").val(null);
+		return false;
 	});
- 	
- 	goForm = function(keyValue) {
-    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */						//form으로 넘어갈때 seq를 0으로 만듬; -> 애러 요인
-    	seq.val(keyValue);
-    	formList.attr("action", goUrlForm).submit();
-	}
- 	
-	goFormk = function(keyValue) {
-    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-    	seq.val(keyValue);
-    	formList.attr("action", goUrlForm).submit();
-	}
+</script>
 
- </script>
+<script>
+	$(document).ready(function(){
+		$("#checkall").click(function(){
+			if( $('#checkall').is(':checked')) {
+				$("input[name=checkboxitem]").prop("checked", true);
+			} else{
+				$("input[name=checkboxitem]").prop("checked", false);
+			}	
+		});
+		
+		$("input[name=checkboxitem]").click(function() {
+			var total = $("input[name=checkboxitem]").length;
+			var checked = $("input[name=checkboxitem]:checked").length;
+			
+			if(total != checked){
+				$("#checkall").prop("checked", false);
+			} else {
+				$("#checkall").prop("checked", true);
+			}			
+		})
+	});
+</script>
+
+<script>
+$("#deleteBtn").click(function(){
+		
+		checkboxSeqArray = [];
+		
+		$("input[name=checkboxitem]:checked").each(function(){
+		checkboxSeqArray.push($(this).val());
+	});	
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+		
+		form.attr("action", "/member/deleteArray").submit();
+
+		return false;
+	});
+	
+	$("#uleteBtn").click(function(){
+		checkboxSeqArray = [];
+		
+		$("input[name=checkboxitem]:checked").each(function(){
+		checkboxSeqArray.push($(this).val());
+		});	
+		
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+		
+		
+		alert(checkboxSeqArray);
+	});
+</script>
 </body>
 </html>

@@ -43,6 +43,11 @@ public class CodeDao {
 		return result;
 	}
 	
+	public int updateUse(Code dto) {
+		int result = sqlSession.update(namespace+".updateUse", dto );		
+		return result;
+	}
+	
 	public Code selectOne(CodeVo vo) {
 		Code result = sqlSession.selectOne(namespace+".selectOne", vo );
 		System.out.println("dao result: "+ result);

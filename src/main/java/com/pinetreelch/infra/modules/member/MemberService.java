@@ -29,7 +29,10 @@ public interface MemberService {
 	public List<Member> buyResult(Member dto) throws Exception;
 	public List<Member> buydetailList(Member dto) throws Exception;
 	public  void insert(Member dto) throws Exception;
+	public  int memberUpdate(Member dto) throws Exception;
+	public  int goDelete(Member dto) throws Exception;
 	public  void insertwishlist(Member dto) throws Exception;
+	public  void memberInsertForm(Member dto) throws Exception;
 	public  void update(Member dto) throws Exception;
 	public  void insert123(Member dto) throws Exception;
 	public int buyInsert(Member dto) throws Exception;

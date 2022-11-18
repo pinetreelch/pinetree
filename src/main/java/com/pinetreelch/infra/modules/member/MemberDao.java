@@ -23,6 +23,18 @@ public class MemberDao {
 		return sqlSession.insert(namespace +".buyInsert", dto);
 	}
 	
+	public int memberInsertForm(Member dto) {
+		return sqlSession.insert(namespace +".memberInsertForm", dto);
+	}
+	
+	public int goDelete(Member dto) {
+		return sqlSession.update(namespace +".goDelete", dto);
+	}
+	
+	public int memberUpdate(Member dto) {
+		return sqlSession.insert(namespace +".memberUpdate", dto);
+	}
+	
 	public int buydetailInsert(Member dto) {
 		return sqlSession.insert(namespace +".buydetailInsert", dto);
 	}

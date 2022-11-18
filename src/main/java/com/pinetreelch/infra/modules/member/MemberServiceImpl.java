@@ -178,11 +178,33 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+	
 	@Override
 	public void insert(Member dto) throws Exception{
 		
 		dto.setIfmmPwd(UtilSecurity.encryptSha256(dto.getIfmmPwd()));		
 		dao.insert(dto);		
+	}
+	
+	@Override
+	public void memberInsertForm(Member dto) throws Exception{
+		
+				
+		dao.memberInsertForm(dto);		
+	}
+	
+	@Override
+	public int memberUpdate(Member dto) throws Exception{
+		
+				
+		return dao.memberUpdate(dto);		
+	}
+	
+	@Override
+	public int goDelete(Member dto) throws Exception{
+		
+		
+		return dao.goDelete(dto);		
 	}
 	
 	@Override

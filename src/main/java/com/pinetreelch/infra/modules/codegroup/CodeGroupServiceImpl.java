@@ -108,6 +108,14 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
+	public int updateUse(CodeGroupVo vo) throws Exception {
+		System.out.println("리턴완료 impl");
+		
+		int result = dao.updateUse(vo);
+		return result;
+	}
+	
+	@Override
 	public int selectOneCount(CodeGroupVo vo) throws Exception {
 		System.out.println("리턴완료 impl");
 		

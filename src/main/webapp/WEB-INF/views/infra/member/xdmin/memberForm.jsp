@@ -96,8 +96,8 @@
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li><a href="/member/memberList">회원 관리</a></li>
-				         	<li style="text-shadow: 2px 2px 2px #b4b4b4,3px 3px 3px #6a79a3; font-weight: 500;"><a href="">회원 추가(수정)</a></li>
-				         	<li ><a href="">결제 관리</a></li>
+				         	<li style=" font-weight: 700;"><a href="">회원 추가 </a></li>
+				         	
 				         </ul>
 				      </div>
 				    </div>
@@ -113,7 +113,7 @@
 				    <div id="collapseThree" class="accordion-collapse collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">도서 리스트</a></li>
+				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -134,14 +134,14 @@
 <form name= "form" method= "post" enctype="multipart/form-data">
 <div class="container-fluid bodyd3" style="padding-top: 50px;">																															<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
- 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">회원 추가</span></i>
+ 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">회원  <c:if test="${ empty list.ifmmSeq }">추가   </c:if> <c:if test="${not empty list.ifmmSeq }">수정 </c:if> </span></i>
  		</div>
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
 				
-						<div class="row" style="padding-top: 30px;" >						
-							<div class="col" style="display: inline-block;  width: 250px;">
+						<!-- <div class="row" style="padding-top: 30px;" >	 -->					
+							<!-- <div class="col" style="display: inline-block;  width: 250px;">
 							 	<label for="2" class="form-label">파일 첨부  </label> <br>
 								<input type= "file" name="ifmmUploadedFile" id = "ifmmUploadedFile" multiple>
 								<div class= "border" style = " height: 150px; padding:5px; background-color: #cedaed;">
@@ -149,9 +149,9 @@
 									<li style= "background-color: white;">dfsdvsdvsdvsdvsdvsdv.pdf   <span style="float:right; padding-right: 5px;"> <button type="button" style="width: 25px; height: 25px;">X</button>  </span>	</li>
 								</ul>
 								</div>
-							</div>
+							</div> -->
 							
-							<div class="col" style="display: inline-block;  width: 250px;">
+							<!-- <div class="col" style="display: inline-block;  width: 250px;">
 							 	<label for="2" class="form-label">이미지 첨부  </label> <br>
 								<input type= "file" name="uploadImage" id = "uploadImage" multiple>
 								<div class= "border" style = " height: 150px; padding: 5px; background-color: #cedaed;" >
@@ -172,24 +172,24 @@
 										</div>
 									</div>		
 								</div>
-							</div>
+							</div> -->
 							
-							<button type ="button" onclick = "submit213('ifmmUploadedFile', 0, 0, 1, 800000, 10000000, 2 )" >제출 </button>
+							<!-- <button type ="button" onclick = "submit213('ifmmUploadedFile', 0, 0, 1, 800000, 10000000, 2 )" >제출 </button>
 							<button type ="button"  id= "submitbtn1" >누르지마세요  </button>
-						</div>
+						</div> -->
 						
-					
-						<div class="row" style="padding-top: 30px;" >
-						
-							<div class="col" style="display: inline-block;  width: 500px;">
-							    <label for="2" class="form-label">회원 시퀀스</label>
-							    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmSeq }">
-							  </div>
-							  
-							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
-							   
-							  </div>
-						</div>
+						<c:if test="${not empty list.ifmmSeq}">
+							<div class="row" style="padding-top: 30px;" >						
+								<div class="col" style="display: inline-block;  width: 500px;">
+								    <label for="2" class="form-label">회원 시퀀스</label>
+								    <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmSeq }" <c:if test="${not empty list.ifmmSeq }"> readonly</c:if>> 
+								  </div>
+								  
+								  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
+								   
+								  </div>
+							</div>
+						</c:if>
 						
 						<div class="row" style="padding-top: 30px;" >
 						
@@ -248,78 +248,17 @@
 							    
 							  </div>
 							  
-							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
-								  
-							  </div>
-						</div>
-						
-						<div class="row" style="padding-top: 30px;" >
-						
-							<div class="col" style="display: inline-block;  width: 500px;">
+							  <div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">이메일 </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmEmail }">
-							  </div>
-							  
-							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
-								   <label for="2" class="form-label"> 도메인 </label>
-								   
-								 	<select class="form-select" name="ifmmEmaildom" >
-								 		<option value="" >-----선택-----</option>
-								 		
-								 		<option value="6"  <c:if test="${list.ifmmEmaildom eq 6 }"> selected </c:if>> 
-												naver.com 
-										</option>	
-										
-										<option value="7"  <c:if test="${list.ifmmEmaildom eq 7}"> selected </c:if>> 
-												gmail.com 
-										</option>
-										
-										<option value="8"  <c:if test="${list.ifmmEmaildom eq 8}"> selected </c:if>> 
-												daum.net 
-										</option>
-										
-										<option value="9"  <c:if test="${list.ifmmEmaildom eq 9}"> selected </c:if>> 
-												yahoo.com
-										</option>	
-								 	</select>
-								   
-								   
-								   <%-- <c:choose>
-											<c:when test="${list.ifmmSeq > 0 }">
-										    	<c:forEach items="${cachedList}" var = "clist" varStatus="status">
-											    	<c:if test="${clist.cSeq eq list.ifmmEmaildom }">
-											    		 <input name = "ifmmEmaildom" type="text" class="form-control" value = "${clist.cdName }">
-											    	</c:if>
-											   </c:forEach>
-											</c:when>
-											
-											<c:otherwise>
-														<input name = "ifmmEmaildom" type="text" class="form-control" value = "${clist.cdName }">
-											</c:otherwise>
-									</c:choose> --%>
-								   
-							  </div>
-						</div>
-						
-						<div class="row" style="padding-top: 30px;" >
-						
-							<div class="col" style="display: inline-block;  width: 500px;">
-							    <label for="2" class="form-label">비밀번호 </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmPwd }">
-							  </div>
-							  
-							  
-							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
-								   
-							  </div>
-							  
+							 	   <input name = "ifmmEmail" type="text" class="form-control" value = "${list.ifmmEmail }">
+							 </div>
 						</div>
 						
 						<div class="row" style="padding-top: 30px;" >
 						
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">핸드폰  </label>
-							 	   <input name = "ifmmSeq" type="text" class="form-control" value = "${list.ifmmTel  }">
+							 	   <input name = "ifmmTel" type="text" class="form-control" value = "${list.ifmmTel  }">
 							  </div>
 							  
 							  <div class="col"  style="display: inline-block; width: 500px;  margin-left:20px;">
@@ -526,7 +465,7 @@
 							
 						<div id="map" style="height:400px;"></div>	
 							
-							`
+							
 							
 							
 							
@@ -534,7 +473,7 @@
 						<div style="padding-top: 30px;">
 							<div style="display:table; width: 100%; padding-bottom:150px;">
 								<div style="display:table-cell;">
-									<button type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" >
+									<button  id="goList"type="button" style="background: rgb(168, 209, 248); border:1px solid rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" >
 										<i class="fa-solid fa-list"></i>
 									</button>
 									
@@ -542,17 +481,42 @@
 								</div>
 								
 								<div style="display:table-cell; text-align: right;">
-									<button style="background:rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
-										<i class="fa-solid fa-x"></i>
-									</button>
 									
-									<button style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+									<c:if test="${not empty list.ifmmSeq }">
+									<button type="button" class="btn" style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"  data-bs-toggle="modal" data-bs-target="#exampleModal"> 
 										<i class="fa-solid fa-trash"></i>
-									</button>	
+									</button>
+									</c:if>	
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h1 class="modal-title fs-5" id="exampleModalLabel"> 확인 </h1>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      <div class="modal-body" style="text-align: left">
+										        삭제하시겠습니까?
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소 </button>
+										        <button type="button" class="btn btn-primary" id="goDelete">확인 </button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
 									
-									<button type="button" id="insertbtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
-										<i class="fa-solid fa-bookmark"></i>
-									</button>				
+									<c:if test="${not empty list.ifmmSeq }">
+										<button type="button" id="updateBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+											<i class="fa-solid fa-bookmark"></i>
+										</button>
+									</c:if>		
+									
+									<c:if test="${ empty list.ifmmSeq }">
+									<button type="button" id="insertBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+										<i class="fa-solid fa-plus"></i>
+									</button>
+								</c:if>		
 								</div>
 							</div>
 						</div>
@@ -575,13 +539,9 @@
  
 
 <script>
-var goUrlInst = "/member/memberInst1";
+
 var form = $("form[name=form]");
 
-
-$("#insertbtn").on("click", function(){
-	form.attr("action", goUrlInst).submit();
-});
 
 </script>
  
@@ -833,6 +793,23 @@ $("#idinput").on("focusout", function(){
 	}
 });	
 	
+</script>
+<script>
+	$("#goList").click(function(){
+		form.attr("action", "/member/memberList").submit();
+	});
+	
+	$("#updateBtn").click(function(){
+		form.attr("action", "/member/memberUpdate").submit();
+	});
+	
+	$("#insertBtn").click(function(){
+		form.attr("action", "/member/memberInsertForm").submit();
+	});
+	
+	$("#goDelete").click(function(){
+		form.attr("action", "/member/goDelete").submit();
+	});
 </script>
 </body>
 </html>

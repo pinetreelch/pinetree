@@ -21,6 +21,18 @@ public class CodeGroupVo extends BaseVo{
 	private String cgName;
 	private String cgKor;
 	
+	private Integer[] checkboxSeqArray;
+	
+	
+	
+	public Integer[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+
+	public void setCheckboxSeqArray(Integer[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
+
 	public String getShDateStart() {
 		return shDateStart;
 	}

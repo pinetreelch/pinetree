@@ -28,6 +28,14 @@ public class MainServiceImpl implements MainService {
 	
 	
 	@Override
+	public List<Main> selectAllBook() throws Exception{
+		
+		List<Main> result = dao.selectAllBook();
+		
+		return result;
+	}
+	
+	@Override
 	public List<Main> selectList() throws Exception{
 		
 		List<Main> result = dao.selectList();
@@ -109,6 +117,30 @@ public class MainServiceImpl implements MainService {
 	}
 	
 	@Override
+	public Main bookOne (Main dto) throws Exception{
+		
+		Main result = dao.bookOne(dto);
+		
+		return result;
+	}
+	
+	@Override
+	public int bookUpdate (Main dto) throws Exception{
+		
+		int result = dao.bookUpdate(dto);
+		
+		return result;
+	}
+	
+	@Override
+	public int bookInsert (Main dto) throws Exception{
+		
+		int result = dao.bookInsert(dto);
+		
+		return result;
+	}
+	
+	@Override
 	public List<Main> selectOneBook (Main dto) throws Exception{
 		
 		List<Main> result = dao.selectOneBook(dto); 
@@ -133,4 +165,7 @@ public class MainServiceImpl implements MainService {
 		
 		return result;
 	}
+
+
+	
 }

@@ -9,7 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.method.annotation.RedirectAttributesMethodArgumentResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pinetreelch.infra.modules.member.Member;
 import com.pinetreelch.infra.modules.member.MemberServiceImpl;
@@ -34,10 +37,54 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping(value = "/bookUpdate")
+	public String bookUpdate(Main dto, Member dto2, Model model, RedirectAttributes redirectAttributes) throws Exception {
+		
+		int result = service.bookUpdate(dto);
+		
+		redirectAttributes.addFlashAttribute("dto",dto);
+		
+		return "redirect:/main/bookForm";
+	}
+	
+	@RequestMapping(value = "/bookInsert")
+	public String bookInsert(Main dto, Member dto2, Model model, RedirectAttributes redirectAttributes, MainVo vo) throws Exception {
+		
+		int result = service.bookInsert(dto);
+				
+
+//		System.out.println("tdbkSeq =====" + dto.getTdbkSeq());
+		redirectAttributes.addFlashAttribute("dto",dto);
+		
+		return "redirect:/main/bookForm";
+	}
+	
+	@RequestMapping(value = "/bookAdmin")
+	public String bookAdmin(Main dto, Member dto2, Model model) throws Exception {
+		
+		List<Main> result = service.selectAllBook();		
+		model.addAttribute("list", result);
+		
+		return "infra/book/xdmin/bookList";
+	}
+	
+	@RequestMapping(value = "/bookForm")
+	public String bookForm(@ModelAttribute("dto") Main dto, Member dto2, Model model) throws Exception {
+
+		Main result = service.bookOne(dto);
+		model.addAttribute("list",result);
+		
+		return "infra/book/xdmin/bookForm";
+	}
+	
 	 
 	@RequestMapping(value = "/")
 	public String home(Main dto, Member dto2, Model model, HttpServletRequest hrequest) throws Exception {
-
+		
+		String str = getSessionSeqCore(hrequest);
+		dto2.setIfmmSeq(str);
+		
+		
 		List<Main> result = service.selectList();
 		List<Main> result2 = service.selectBook();
 		List<Main> result3 = service.selectList1();
@@ -145,6 +192,8 @@ public class MainController {
 		
 		return "main/book/purchaseSuccessView";
 	}
+	
+	
 	
 
 }

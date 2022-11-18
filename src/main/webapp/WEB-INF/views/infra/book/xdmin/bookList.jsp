@@ -10,7 +10,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>코드 관리</title>
+	<title> 도서 관리</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
 	 
@@ -36,11 +36,11 @@
 				        <span id="accordtitle">코드그룹 & 코드관리</span>
 				      </button>
 				    </h2>
-				    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				    <div id="collapseOne" class="accordion-collapse collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li ><a href="/codeGroup/codeGroupList/">코드그룹 관리</a></li>
-				         	<li style="text-shadow: 2px 2px 2px #b4b4b4,3px 3px 3px #6a79a3; font-weight: 500;  "><a href="/code/codeList">코드 관리</a></li>
+				         	<li ><a href="/code/codeList">코드 관리</a></li>
 				         	<li><a href="/codeGroup/codeGroupForm">코드그룹 추가</a></li>
 				         	<li><a href="/code/codeForm/">코드 추가</a></li>
 				         </ul>
@@ -71,21 +71,17 @@
 				        <span id="accordtitle"> 도서 관리</span>
 				      </button>
 				    </h2>
-				    <div id="collapseThree" class="accordion-collapse collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+				    <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
+				         	<li style=" font-weight: 500;  "><a href="/main/bookAdmin">도서 리스트</a></li>
+				         	<li ><a href="/main/bookForm">도서 추가 </a></li>
 				         </ul>
 				      </div>
 				    </div>
 				  </div>							<!-- 아코디언 아이템 3번 끝 -->
 				
-				</div> <!-- 아코디언 끝 -->
-				
-				<div style="background: white; position: fixed; bottom: 50px; left: 30px;">
-					안녕하세요!
-				</div>
-				
+				</div> <!-- 아코디언 끝 -->				
 			</div>
 		</div>
 		
@@ -93,9 +89,11 @@
 	
 	<form method="post" name = "form">
 	<input type="hidden" name="checkboxSeqArray" id="checkboxSeqArray">
+	<input type="hidden" name="tdbkSeq" id="tdbkSeq">
+	
  	<div class="container-fluid bodyd3" style="padding-top: 50px;">																														<!-- 본문내용 시작-->
  		<div class="row codeGroupadmintitle" style=" margin-top: 60px;">
- 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">코드 관리</span></i>
+ 			<i class="fa-solid fa-square" style="padding-left: 0px;"><span style="padding-left: 10px;">도서 관리</span></i>
  		</div>
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
@@ -149,23 +147,19 @@
 								<tr style="background: #B8BFC4;">
 									<th style="text-align: center;"><input class="form-check-input" type="checkbox" value="" id="checkall"></th>
 									<th style="text-align: center;">#</th>
-									<th>코드그룹 코드</th>
-									<th>코드그룹 이름(한글)</th>
-									<th>코드</th>
-									<th>대체 코드</th>
-									<th>코드 이름(한글)</th>	
-									<th>코드 이름 (영문)</th>
-									<th>사용</th>
-									<th>순서</th>
-									<th>등록일</th>
-									<th>수정일</th>	
+									<th> 책 시퀀스 </th>
+									<th> 책이름 </th>
+									<th> 출판사 </th>
+									<th> 책 가격 </th>
+									<th> ISBN</th>
+									<th> 등록일 </th>								
 								</tr>
 								
 								
 								<c:set var="ny" value="${fn:length(list)}"/>
 								<c:set var="orderListLength" value="${fn:length(list)}"/>
 								<c:choose>
-									<c:when test = "${fn:length(list) eq 18 }">
+									<c:when test = "${fn:length(list) < 1 }">
 										<tr>
 											<td colspan="19">There is no data!!!</td>
 										<tr>
@@ -175,71 +169,36 @@
 										<c:forEach items="${list}" var="list" varStatus="status">
 											<tr class="lltem" style="cursor: pointer;" >
 												<td>
-													<input class="form-check-input" type="checkbox" value="${list.cSeq }" name="checkboxitem">
+													<input class="form-check-input" type="checkbox" value="${list.tdbkSeq }" name="checkboxitem">
 												</td>
 												
-												<td onclick ="goFormk(${list.cSeq})">
+												<td onclick ="goFormk(${list.tdbkSeq})">
 													${orderListLength - status.index }
+												</td>																	
+												
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													${list.tdbkSeq}
 												</td>
 												
-												<td onclick ="goFormk(${list.cSeq})"> 
-												
-													<c:out value="${list.codeGroup_cgSeq }"/>
-													
-													
-													<div>
-														<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
-														
-															<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-															
-																
-																
-															</c:forEach>
-													</div>
-													
-													
-													
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													${list.tdbkBookTitle }
 												</td>
 												
-												<td onclick ="goFormk(${list.cSeq})">
-													<c:out value="${list.cgName }"/>
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													<c:out value="${list.tdbkPublisher }"/>
 												</td>
 												
-												<td onclick ="goFormk(${list.cSeq})">
-													<c:out value="${list.cSeq }"/>
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													 <fmt:formatNumber value="${list.tdbkSales }" pattern="#,###"></fmt:formatNumber>
+												</td>																								
+																								
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													${list.tdbkIsbn }
 												</td>
-												
-												<td onclick ="goFormk(${list.cSeq})" ></td>
-												
-												<td onclick ="goFormk(${list.cSeq})">
-													<c:out value="${list.cdName }"/>
+																								
+												<td onclick ="goFormk(${list.tdbkSeq})">
+													${list.registeredDate }
 												</td>
-												
-												<td onclick ="goFormk(${list.cSeq})">
-													${list.cdEng }
-												</td>
-												
-												<td onclick ="goFormk(${list.cSeq})">
-													<c:set var="ny1" value="${list.useNY }"/>
-														<c:choose>
-														
-															<c:when test ="${ny1 eq 1 }">
-																Y
-															</c:when>
-															
-															<c:when test ="${ny1 eq 0 }">
-																N
-															</c:when>
-																
-															<c:otherwise>
-																(Null)
-															</c:otherwise>
-														</c:choose>
-												</td >
-												
-												<td onclick ="goFormk(${list.cSeq})"></td>
-												<td onclick ="goFormk(${list.cSeq})"></td>
-												<td onclick ="goFormk(${list.cSeq})"></td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
@@ -260,9 +219,9 @@
 
 							<div style="display:table; width: 100%; padding-bottom:10px;">
 								<div style="display:table-cell;">
-									<button type="button" style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+									<!-- <button type="button" style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
 										<i class="fa-solid fa-trash"></i>
-									</button>
+									</button> -->
 											<!-- Modal -->
 											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
@@ -282,9 +241,9 @@
 											  </div>
 											</div>
 									
-									<button type="button" style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal12"> 
+									<!-- <button type="button" style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal12"> 
 										<i class="fa-solid fa-arrow-rotate-right"></i>
-									</button>
+									</button> -->
 									
 										<!-- Modal -->
 											<div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -307,11 +266,11 @@
 								</div>
 								
 								<div style="display:table-cell; text-align: right;">
-									<button style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+									<!-- <button style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-file-excel"></i>
-									</button>	
+									</button>	 -->
 									
-									<button type="button" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='/code/codeForm/'"> 
+									<button type="button" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href='/main/bookForm'"> 
 										<i class="fa-solid fa-plus"></i>
 									</button>				
 								</div>
@@ -330,27 +289,14 @@
  <script src="https://kit.fontawesome.com/06cf56417a.js" crossorigin="anonymous"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  <script>
- 	var goUrlList = "/code/codeList";
-	var goUrlInst = "/code/codeGroupInst";
-	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
-	var goUrlUele = "/codeGroup/codeGroupUele";
-	var goUrlDele = "/codeGroup/codeGroupDele";
-	var goUrlForm = "/code/codeForm";
-	
-	// var seq = $("input:text[name=cgSeq]");				/* #-> */
-	var seq = $("input:hidden[name=cSeq]");
-	
-	
+
 	var form = $("form[name=form]");
-	var formVo = $("form[name=formVo]");
-	var formList = $("form[name=formList]");
  	
  	
 	goFormk = function(keyValue) {
     	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-    	
-    	seq.val(keyValue);
-    	form.attr("action", goUrlForm).submit();
+    	$("#tdbkSeq").val(keyValue);
+    	form.attr("action", "/main/bookForm").submit();
 	}
 	
 	$("#SearchBtn").click(function(){
@@ -400,6 +346,7 @@ $("#deleteBtn").click(function(){
 		});	
  		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
  		
+ 		return false;
  		form.attr("action", "/code/deleteArray").submit();
 
  		return false;
@@ -415,6 +362,7 @@ $("#deleteBtn").click(function(){
 		});	
  		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
  		
+ 		return false;
  		form.attr("action", "/code/updateUse").submit();
  	});
  </script>

@@ -105,7 +105,13 @@
 	        ,delNY = #{delNY}
 	        ,codeGroup_cgSeq = #{cgSeq}
 		where 
-			cSeq = 16	        
+			cSeq = #{cSeq}	        
 	</update>
+	
+	<update id = "updateUse"> 
+		update codeCd
+		set useNY = 0
+		where cSeq = #{cSeq}        
+	</update> 
 
 </mapper>

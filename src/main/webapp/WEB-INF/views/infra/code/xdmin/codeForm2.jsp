@@ -94,8 +94,8 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">회원 관리</a></li>
-				         	<li><a href="">결제 관리</a></li>
+				         	<li><a href="/member/memberList">회원 관리</a></li>
+				         	<li><a href="/member/memberForm">회원 추가 </a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -111,7 +111,7 @@
 				    <div id="collapseThree" class="accordion-collapse collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">도서 리스트</a></li>
+				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -119,9 +119,7 @@
 				
 				</div> <!-- 아코디언 끝 -->
 				
-				<div style="background: white; position: fixed; bottom: 50px; left: 30px;">
-					안녕하세요!
-				</div>
+				
 				
 			</div>
 		</div>
@@ -142,7 +140,7 @@
 							<div class="col" style="display: inline-block;  width: 500px;">
 							    <label for="2" class="form-label">코드그룹 코드</label>
 							    <select id="cgSeq" name="cgSeq" class="form-select" aria-label="Default select example">
-							    	<option <c:if test="${empty item.codeGroup_cgSeq }"> selected </c:if>>-- 선택 -- </option> 
+							    	<option value="0" <c:if test="${empty item.codeGroup_cgSeq }"> selected </c:if>>-- 선택 -- </option> 
 							    	<c:forEach var="codeGroupList" items="${codeGroupList }" varStatus="status">
 							    	  <option value="${codeGroupList.cgSeq}" <c:if test="${item.codeGroup_cgSeq eq codeGroupList.cgSeq}"> selected </c:if>>  
 							    	  	${codeGroupList.cgSeq} - ${codeGroupList.cgName} 
@@ -177,8 +175,8 @@
 						<div  class="row" style="padding-top: 20px;">
 							  <div class="col" style="display: inline-block; width: 500px;">
 							    <label for="5" class="form-label">사용여부</label>
-							    <select class="form-select" name="useNY" >
-								  <option value="" <c:if test="${empty item.useNY }"> selected</c:if>>--선택---</option>  
+							    <select class="form-select" name="useNY" id="useNY">
+								  <option value="2" <c:if test="${empty item.useNY }"> selected</c:if>>--선택---</option>  
 								  <option value="1" <c:if test="${item.useNY ==1 }"> selected</c:if>>Y</option>  
 								  <option value="0" <c:if test="${item.useNY == 0 }"> selected</c:if>>N</option>
 								</select>
@@ -186,8 +184,8 @@
 							  
 							 <div class="col" style="display: inline-block;  width: 500px; margin-left:20px;">
 							    <label for="8" class="form-label">삭제여부</label>
-							    <select class="form-select" name="delNY" >
-							    	<option value="" <c:if test="${empty item.delNY}"> selected</c:if>>--선택---</option> 
+							    <select class="form-select" name="delNY" id="delNY" >
+							    	<option value="2" <c:if test="${empty item.delNY}"> selected</c:if>>--선택---</option> 
 									<option value="1" <c:if test="${item.delNY == 1 }"> selected</c:if>>Y</option>
 									<option value="0" <c:if test="${item.delNY == 0 }"> selected</c:if>>N</option>
 								</select>
@@ -213,19 +211,19 @@
 							<div style="display:table-cell; text-align: right;">
 								
 								<c:if test="${ not empty item.cSeq }">
-									<button id="deleteBtn" style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
+									<button type="button" id="deleteBtn" style="background: rgba(8, 116, 8, 0.699); border:1px solid rgba(8, 116, 8, 0.699); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-trash"></i>
 									</button>	
 								</c:if>
 								
 								<c:if test="${ not empty item.cSeq }">
-									<button type="button" id="updateBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+									<button type="button" id="updateBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;"> 
 										<i class="fa-solid fa-bookmark"></i>
 									</button>
 								</c:if>	
 								
 								<c:if test="${ empty item.cSeq }">
-									<button type="button" id="insertBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" onclick="location.href=''"> 
+									<button type="button" id="insertBtn" style="background: rgb(82, 82, 194); border:1px solid rgb(82, 82, 194); border-radius: 4px; color: white; font-size: 13px; width: 35px; height: 35px;" > 
 										<i class="fa-solid fa-plus"></i>
 									</button>
 								</c:if>
@@ -248,7 +246,30 @@
  	form = $("form[name=form]");
  	
  	$("#insertBtn").click(function(){
+ 		
+ 		if( $("#useNY").val() ==2 ){
+ 			alert("사용여부를 체크해주세요.");
+			return false;
+ 		} 
+ 		
+ 		if( $("#delNY").val() ==2 ){
+ 			alert("삭제여부를 체크해주세요.");
+ 			return false; 
+ 		}
+ 		
+ 		if( $("#cgSeq").val() == 0 ){
+ 			alert("코드그룹 코드를 체크해주세요.");
+ 			return false;
+ 		}
+ 		
+ 		if( $("#cdName").val()  == null || $("#cdName").val() == ''){
+ 			alert("코드이름은 입력해주세요. ");
+ 			return false;
+ 		}
+ 		 
+ 		
  		form.attr("action", "/code/codeInst").submit();
+ 		
  	});
  	
  	$("#deleteBtn").click(function(){

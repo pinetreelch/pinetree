@@ -21,7 +21,18 @@ public class Code {
 	private String cgName;
 	private String cgSeq;
 	
+	private Integer[] checkboxSeqArray;
 	
+	
+	
+
+	public Integer[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+
+	public void setCheckboxSeqArray(Integer[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
 	
 	
 	public static List<Code> getCachedCodeArrayList() {

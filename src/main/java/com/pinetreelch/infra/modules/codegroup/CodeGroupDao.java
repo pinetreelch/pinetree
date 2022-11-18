@@ -51,7 +51,13 @@ public class CodeGroupDao {
 	
 	public int delete (CodeGroupVo vo) {
 		System.out.println("실행확인?");
-		int result = sqlSession.delete(namespace + ".delete", vo);
+		int result = sqlSession.update(namespace + ".delete", vo);
+		return result;
+	}
+	
+	public int updateUse (CodeGroupVo vo) {
+		System.out.println("실행확인?");
+		int result = sqlSession.update(namespace + ".updateUse", vo);
 		return result;
 	}
 	

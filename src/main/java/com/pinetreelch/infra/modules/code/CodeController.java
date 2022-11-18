@@ -71,11 +71,37 @@ public class CodeController {
 		return "redirect:/code/codeList";
 	}
 	
+	@RequestMapping(value = "deleteArray")
+	public String deleteArray(Code dto) throws Exception {	// Model == 빈 바구니
+		
+		for(int x: dto.getCheckboxSeqArray()) {
+			dto.setcSeq(Integer.toString(x));
+			int result = service.delete(dto);
+		}
+		
+		return "redirect:/code/codeList";
+	}
+	
+	@RequestMapping(value = "updateUse")
+	public String updateUse(Code dto) throws Exception {	// Model == 빈 바구니
+		
+		for(int x: dto.getCheckboxSeqArray()) {
+			dto.setcSeq(Integer.toString(x));
+			int result = service.updateUse(dto);
+		}
+		
+		return "redirect:/code/codeList";
+	}
+	 
+	
+	
+	
+	
 	@RequestMapping(value = "update")
 	public String update( Code dto, RedirectAttributes redirectAttributes, CodeGroupVo vo2, @ModelAttribute CodeVo vo) throws Exception{   //모델 객체 없음, jsp에 보낼일이 없으니까.  //dto에 담겨있는것은???? 필드들?
 		
 		int result = service.update(dto);
-		
+		 
 		vo.setcSeq(dto.getcSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);

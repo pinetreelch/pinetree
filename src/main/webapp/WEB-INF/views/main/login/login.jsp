@@ -330,6 +330,16 @@ $("#naverlogin").click(function(){
 	});
 	
 });
+
+	window.addEventListener('load', function () {
+		if (naverLogin.accessToken != null){
+			naverLogin.getLoginStatus(function(status) {
+				if(status){
+					setLoginStatus();
+				}
+			});
+		}
+	});
 	
 	function setLoginStatus() {
 		

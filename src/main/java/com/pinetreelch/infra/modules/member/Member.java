@@ -10,6 +10,9 @@ public class Member extends Base{
 	private String ifmmName;
 	private Integer gender;
 	
+	private String useNY;
+	private String delNY;
+	
 	private String ifmmId;
 	private String ifmmEmail;
 	private Integer ifmmEmaildom;
@@ -67,6 +70,18 @@ public class Member extends Base{
 	
 	
 	
+	public String getUseNY() {
+		return useNY;
+	}
+	public void setUseNY(String useNY) {
+		this.useNY = useNY;
+	}
+	public String getDelNY() {
+		return delNY;
+	}
+	public void setDelNY(String delNY) {
+		this.delNY = delNY;
+	}
 	public Integer[] getCheckboxSeqArray() {
 		return checkboxSeqArray;
 	}

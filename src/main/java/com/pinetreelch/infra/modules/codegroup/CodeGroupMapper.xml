@@ -160,11 +160,18 @@
 	
 	
 	<!-- delete -->
-	<delete id="delete">
-		Delete FROM codeGroup
-		
-		WHERE cgSeq = #{cgSeq}
-	</delete>
+	<update id="delete">
+		update codeGroup
+		set delNY = 1
+		where cgSeq = #{cgSeq};
+	</update>
+	
+	<!-- updateUse -->
+	<update id="updateUse">
+		update codeGroup
+		set useNY = 0
+		where cgSeq = #{cgSeq};
+	</update>
 	
 	
 	<!-- selectOne -->

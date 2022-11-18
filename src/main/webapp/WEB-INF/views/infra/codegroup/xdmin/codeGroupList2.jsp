@@ -9,7 +9,7 @@
 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>codeGroupList</title>
+	<title>codeGroupList</title> 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/resources/css/admin.css" />	 
 	  
@@ -99,6 +99,7 @@
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li><a href="/member/memberList">회원 관리</a></li>
+				         	<li><a href="/member/memberForm">회원 추가 </a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -114,7 +115,7 @@
 				    <div id="collapseThree" class="accordion-collapse collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
-				         	<li><a href="">도서 리스트</a></li>
+				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -122,9 +123,7 @@
 				
 				</div> <!-- 아코디언 끝 -->
 				
-				<div style="background: white; position: fixed; bottom: 50px; left: 30px;">
-					안녕하세요!
-				</div>
+				
 				
 			</div>
 		</div>
@@ -138,7 +137,8 @@
  		
  		<div class="row" style="background: white; margin-top: 30px; border: 2px solid #777777; border-radius: 10px;">
 				<div class="col-12">
-					<form name = "formList" id = "formList" method ="post">
+					<form name = "formList" id = "formList" method ="post">	
+						<input type="hidden" name="checkboxSeqArray" id="checkboxSeqArray">
 								<div class="border" style="margin: 15px; border-radius: 5px; padding: 10px;">
 
 									<select id="shUse" name = "shUse" class="form-select" aria-label="Default select example"style="width: 200px; margin-right:10px; display:inline-block;">
@@ -168,13 +168,13 @@
 						 			 <option value="3" <c:if test ="${vo.shOption eq 3}"> selected</c:if>>코드그룹 이름 (영문)</option>
 								</select>
 
-								<input value="<c:out  value="${vo.shValue}"/>" type="text" class="form-control" name="shValue" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
+								<input value="<c:out  value="${vo.shValue}"/>" type="text" class="form-control" id="shValue" name="shValue" style="width: 200px; margin-right:10px; display:inline-block; margin-top: 20px;" placeholder="검색어">
 
 								<button name="btnSearch" id="btnSearch" style="background: rgb(180, 176, 176); border:1px solid rgb(180, 176, 176); margin-right:5px; border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button> 
 								
-								<button style="background: rgb(227, 227, 227); border:1px solid rgb(227, 227, 227); border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
+								<button id="resetBtn" style="background: rgb(227, 227, 227); border:1px solid rgb(227, 227, 227); border-radius: 4px; color: black; font-size: 15px; width: 35px; height: 35px;"> 
 									<i class="fa-solid fa-arrow-rotate-right"></i>
 								</button>
 								
@@ -203,7 +203,7 @@
 							
 							<table class="table table-bordered" style="text-align: center;">
 								<tr style="background: #B8BFC4;">
-									<th style="text-align: center;"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
+									<th style="text-align: center;"><input class="form-check-input" type="checkbox" value="" id="checkall"></th>
 									<th style="text-align: center;">#</th>
 									<th>코드그룹 코드</th>
 									<th>코드그룹 이름(한글)</th>
@@ -228,7 +228,7 @@
 										<c:forEach items="${list}" var="list" varStatus="status">
 											<tr class="lltem" style="cursor: pointer;" >
 												<td style="text-align: center;" > 
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+													<input class="form-check-input" type="checkbox" value="${list.cgSeq }" id="flexCheckDefault" name="checkboxitem">
 												 </td>
 												
 												<td onclick="location.href='javascript:goFormk( <c:out value="${list.cgSeq }"/> )'">
@@ -310,13 +310,50 @@
 
 							<div style="display:table; width: 100%; padding-bottom:10px;">
 								<div style="display:table-cell;">
-									<button style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+									<button type="button" id="deleteBtn1" style="background: rgb(168, 209, 248); border:1px solid  rgb(168, 209, 248); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
 										<i class="fa-solid fa-trash"></i>
 									</button>
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h1 class="modal-title fs-5" id="exampleModalLabel"> 확인 </h1>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body" style="text-align: left;">
+											        삭제하시겠습니까? 
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 닫기 </button>
+											        <button type="button" class="btn btn-primary" id="deleteBtn"> 확인 </button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 									
-									<button style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;"> 
+									<button type="button" style="background: rgb(241, 200, 63); border:1px solid rgb(241, 200, 63); border-radius: 4px; color: black; font-size: 13px; width: 35px; height: 35px;" data-bs-toggle="modal" data-bs-target="#exampleModal12"> 
 										<i class="fa-solid fa-arrow-rotate-right"></i>
 									</button>
+									
+										<!-- Modal -->
+											<div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h1 class="modal-title fs-5" id="exampleModalLabel"> 확인 </h1>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body" style="text-align: left;">
+											        이 항목을 더 이상 사용하지 않습니다 (Ulete) 
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 닫기 </button>
+											        <button type="button" class="btn btn-primary" id="uleteBtn"> 확인 </button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 								</div>
 								
 								<div style="display:table-cell; text-align: right;">
@@ -394,6 +431,73 @@
  <script>
  	$("#excelbtn").click(function(){
  		formList.attr("action", "/codeGroup/excelDownload").submit();
+ 	});
+ 	
+ 	$("#resetBtn").click(function(){
+ 		
+ 		$("#shUse").val("3").prop("selected", true);
+ 		$("#shOptionDate").val("0").prop("selected", true);
+ 		$("#shOption").val("0").prop("selected", true);
+ 		
+ 		$('#shDateStart').datepicker('setDate', '2010-01-01');
+ 		$('#shDateEnd').datepicker('setDate', 'today');
+ 		
+ 		$("#shValue").val(null);
+ 		return false;
+ 	})
+ </script>
+ 
+ <script>
+ $(document).ready(function(){
+		$("#checkall").click(function(){
+			if( $('#checkall').is(':checked')) {
+				$("input[name=checkboxitem]").prop("checked", true);
+			} else{
+				$("input[name=checkboxitem]").prop("checked", false);
+			}	
+		});
+		
+		$("input[name=checkboxitem]").click(function() {
+			var total = $("input[name=checkboxitem]").length;
+			var checked = $("input[name=checkboxitem]:checked").length;
+			
+			if(total != checked){
+				$("#checkall").prop("checked", false);
+			} else {
+				$("#checkall").prop("checked", true);
+			}			
+		})
+	});
+ </script>
+ 
+ <script>
+ 	var checkboxSeqArray = [];
+ 	
+ 	$("#deleteBtn").click(function(){
+ 		
+ 		checkboxSeqArray = [];
+ 		
+ 		$("input[name=checkboxitem]:checked").each(function(){
+			checkboxSeqArray.push($(this).val());
+		});	
+ 		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+ 		
+ 		alert(checkboxSeqArray);
+ 		
+ 		formList.attr("action", "/codeGroup/deleteArray").submit();
+
+ 		return false;
+ 	});
+ 	
+ 	$("#uleteBtn").click(function(){
+ 		checkboxSeqArray = [];
+ 		
+ 		$("input[name=checkboxitem]:checked").each(function(){
+			checkboxSeqArray.push($(this).val());
+		});	
+ 		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+ 		
+ 		formList.attr("action", "/codeGroup/updateUse").submit();
  	});
  </script>
 </body>

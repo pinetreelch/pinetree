@@ -9,7 +9,6 @@ public class CodeVo {
 	private String shOption;
 	
 	
-	
 
 	public String getShOption() {
 		return shOption;

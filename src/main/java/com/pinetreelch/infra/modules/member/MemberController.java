@@ -12,8 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pinetreelch.infra.common.constants.Constants;
 
@@ -31,7 +33,7 @@ public class MemberController {
 		return rtSeq;
 	}
 	
-	@RequestMapping(value = "/purchaseDetail")
+	@RequestMapping(value = "/purchaseDetail") 
 	public String purchaseDetail(Member dto, Model model) throws Exception {
 		
 		Member buyResultOne = service.buyResultOne(dto);
@@ -58,7 +60,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberList")
-	public String memberList(MemberVo vo, Model model) throws Exception {
+	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		List<Member> result = service.selectList(vo);
 		model.addAttribute("list", result);
@@ -67,7 +69,7 @@ public class MemberController {
 	}
 	 
 	@RequestMapping(value = "/memberForm")
-	public String memberForm(MemberVo vo, Model model) throws Exception {
+	public String memberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		System.out.println("!!!!!!!!!!!!=  " + vo.getIfmmSeq());
 		
@@ -77,6 +79,25 @@ public class MemberController {
 		return "infra/member/xdmin/memberForm";
 	}
 	
+	@RequestMapping(value = "/goDelete")
+	public String goDelete(Member dto) throws Exception {
+		
+		int result = service.goDelete(dto);
+		
+		return "redirect:/member/memberList";
+	}
+	
+	@RequestMapping(value = "/deleteArray")
+	public String deleteArray(Member dto) throws Exception {
+		
+		for(int x : dto.getCheckboxSeqArray()) {
+			dto.setIfmmSeq(Integer.toString(x));
+			int result = service.goDelete(dto);
+		}
+		
+		return "redirect:/member/memberList";
+	} 
+	
 	@RequestMapping(value = "/memberInst")
 	public String memberIsnt(Member dto) throws Exception {
 		
@@ -85,6 +106,33 @@ public class MemberController {
 		service.insert(dto);
 		
 		return "redirect:/login/";
+	}
+	
+	@RequestMapping(value = "/memberInsertForm")
+	public String memberInsertForm(Member dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		
+		
+		
+		service.memberInsertForm(dto);
+		
+		vo.setIfmmSeq(dto.getIfmmSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/member/memberForm";
+	}
+	
+	
+	
+	@RequestMapping(value = "/memberUpdate")
+	public String memberUpdate(Member dto, RedirectAttributes redirectAttributes,@ModelAttribute MemberVo vo) throws Exception {
+		
+		service.memberUpdate(dto);
+		vo.setIfmmSeq(dto.getIfmmSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/member/memberForm";
 	}
 	
 	@RequestMapping(value = "/memberInst1")

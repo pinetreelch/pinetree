@@ -20,7 +20,22 @@
 			infraMember a
 		WHERE
 			1=1
-        ;
+			AND delNY = 0
+			
+			<choose>
+				<when test="shOption == 0">
+					AND(
+					    ifmmName like concat('%', #{shValue},'%')
+					    or ifmmId like concat('%', #{shValue},'%')
+					    or ifmmEmail like concat('%', #{shValue},'%')
+					    )
+				</when>
+				
+				<when test="shOption == 1"> AND ifmmName like concat('%', #{shValue},'%')</when>
+				<when test="shOption == 2"> AND ifmmId like concat('%', #{shValue},'%')</when>
+				<when test="shOption == 3"> AND ifmmEmail like concat('%', #{shValue},'%')</when>
+			</choose>
+        
 	
 	</select>
 	
@@ -174,6 +189,7 @@
 		,ifmmMktapppushnight
 		,ifmmTel
 		,ifmmtelCo
+		
 		)
 		
 		VALUES(
@@ -189,6 +205,7 @@
 		,#{ifmmMktapppushnight}
 		,#{ifmmTel}
 		,#{ifmmtelCo}
+	
 		
 		)	
 			
@@ -432,5 +449,66 @@
 		where
 			1=1
 		    AND infraMember_ifmmSeq = #{ifmmSeq}				
+	</delete>
+	
+	<!-- update -->
+	<update id = "memberUpdate"> 
+		UPDATE infraMember
+		
+		SET
+			ifmmName =  #{ifmmName}
+			, gender = #{gender}
+			, ifmmId = #{ifmmId}
+			, ifmmEmail = #{ifmmEmail}
+			, ifmmTel = #{ifmmTel}
+			, ifmmtelCo = #{ifmmtelCo}
+			, ifmmMktemailNY = #{ifmmMktemailNY}
+			, ifmmMktappAlertNY = #{ifmmMktappAlertNY}
+			, ifmmMktapppushnight = #{ifmmMktapppushnight}
+			
+		WHERE ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<!-- insert -->
+	<insert id = "memberInsertForm"> 
+		INSERT INTO infraMember(
+       
+        ifmmName
+        ,gender
+        ,ifmmId
+		,ifmmEmail
+		,ifmmTel
+		,ifmmtelCo
+		,ifmmMktemailNY
+		,ifmmMktappAlertNY
+		,ifmmMktapppushnight
+		,delNY
+		,useNY
+        )
+        
+        VALUES (
+			
+            #{ifmmName}
+            , #{gender}
+           	, #{ifmmId}
+           	, #{ifmmEmail}
+           	, #{ifmmTel}
+           	, #{ifmmtelCo}
+           	, #{ifmmMktemailNY}
+           	, #{ifmmMktappAlertNY}
+           	, #{ifmmMktapppushnight}
+           	, 0
+           	, 1
+        )
+        	<selectKey resultType ="String" keyProperty = "ifmmSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        	</selectKey>
+	</insert>
+	
+	<!-- delete -->
+	<delete id="goDelete">
+		update infraMember
+		set delNY = 1
+		where ifmmSeq = #{ifmmSeq};
 	</delete>
 </mapper>

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller										
 @RequestMapping(value = "/codeGroup/")
 public class CodeGroupController {
-	
+	 
 	@Autowired
 	CodeGroupServiceImpl service;
 	
@@ -113,6 +113,28 @@ public class CodeGroupController {
 		int result = service.delete(vo);
 		System.out.println(result);
 			
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "deleteArray")
+	public String deleteArray(CodeGroupVo vo, CodeGroup dto) throws Exception{
+		
+		for(int x: vo.getCheckboxSeqArray()) {
+			vo.setCgSeq( Integer.toString(x));
+			int result = service.delete(vo);
+		}
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "updateUse")
+	public String updateUse(CodeGroupVo vo, CodeGroup dto) throws Exception{
+		
+		for(int x: vo.getCheckboxSeqArray()) {
+			vo.setCgSeq( Integer.toString(x));
+			int result = service.updateUse(vo);
+		}
+		
 		return "redirect:/codeGroup/codeGroupList";
 	}
 	

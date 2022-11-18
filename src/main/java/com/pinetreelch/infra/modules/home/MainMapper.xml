@@ -12,6 +12,52 @@
 		FROM
 	</sql>
 	
+	<insert id = "bookInsert"> 
+		INSERT INTO tradBook(
+       
+        tdbkBookTitle
+        ,tdbkSales
+        ,tdbkPublisher
+        ,tdbkIsbn
+
+        )
+        VALUES (
+			
+            #{tdbkBookTitle}
+           ,#{tdbkSales}
+           ,#{tdbkPublisher}
+           ,#{tdbkIsbn}
+        )
+        	<selectKey resultType ="Integer" keyProperty = "tdbkSeq" order ="AFTER">
+        		SELECT last_insert_id()
+        	</selectKey>
+	</insert>
+	
+	<update id = "bookUpdate"> 
+		update 
+			tradBook
+		set
+			tdbkBookTitle = #{tdbkBookTitle}
+	        ,tdbkSales = #{tdbkSales}
+	        ,tdbkPublisher = #{tdbkPublisher}
+	        ,tdbkIsbn = #{tdbkIsbn}
+		where 
+			tdbkSeq = #{tdbkSeq}	        
+	</update>
+	
+	<select id ="selectAllBook" resultMap="resultMapObj">
+		select
+			a.tdbkSeq
+			,a.tdbkBookTitle
+		    ,a.tdbkSales
+		    ,a.tdbkPublisher
+		    ,a.tdbkIsbn
+		    ,a.registeredDate
+		from tradBook a
+		where 
+			1=1
+	</select> 
+	
 	
 	<select id="selectList" resultMap="resultMapObj">
 		select
@@ -138,6 +184,20 @@
 	where
 		1=1
 		AND a.tdbkSeq = #{tdbkSeq}	
+	</select>
+	
+	<select id = "bookOne" resultMap = "resultMapObj">
+	select
+		a.tdbkSeq
+		,a.tdbkBookTitle
+	    ,a.tdbkSales
+	    ,a.tdbkPublisher
+	    ,a.tdbkIsbn
+	    ,a.registeredDate
+	from tradBook a
+	where 
+		1=1	
+		AND a.tdbkSeq = #{tdbkSeq}
 	</select>
 	
 	<select id = "selectPurchased" resultMap = "resultMapObj">

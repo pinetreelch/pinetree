@@ -28,6 +28,11 @@ public class CodeServiceImpl implements CodeService {
 		return dao.delete(dto);
 	}
 	
+	@Override
+	public int updateUse(Code dto) throws Exception {
+		return dao.updateUse(dto);
+	}
+	
 	
 	@Override
 	public int insert(Code dto) throws Exception{

@@ -9,5 +9,6 @@ public interface CodeService {
 	public int insert(Code dto) throws Exception;
 	public int update(Code dto) throws Exception;
 	public int delete(Code dto) throws Exception;
+	public int updateUse(Code dto) throws Exception;
 	public Code selectOne(CodeVo vo) throws Exception;
 	}

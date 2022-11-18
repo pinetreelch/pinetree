@@ -21,6 +21,10 @@ public class MainDao {
 	private static String namespace = "com.pinetreelch.infra.modules.home.MainMapper";
 	
 	
+	public List<Main> selectAllBook(){				 
+		return sqlSession.selectList(namespace + ".selectAllBook"); 
+	}
+	
 	public List<Main> selectList(){				 
 		return sqlSession.selectList(namespace + ".selectList"); 
 	}
@@ -49,6 +53,10 @@ public class MainDao {
 		return sqlSession.selectOne(namespace + ".selectOneAuthor", dto); 
 	}
 	
+	public Main bookOne(Main dto){				 
+		return sqlSession.selectOne(namespace + ".bookOne", dto); 
+	}
+	
 	public List<Main> selectOneBook(Main dto){				 
 		return sqlSession.selectList(namespace + ".selectOneBook", dto); 
 	}
@@ -67,6 +75,14 @@ public class MainDao {
 	
 	public int insertbuy(Main dto){				 
 		return sqlSession.insert(namespace + ".insertbuy", dto); 
+	}
+	
+	public int bookUpdate(Main dto){				 
+		return sqlSession.update(namespace + ".bookUpdate", dto); 
+	}
+	
+	public int bookInsert(Main dto){				 
+		return sqlSession.insert(namespace + ".bookInsert", dto); 
 	}
 	
 	public List<Member> selectPurchased(Member dto){				 
