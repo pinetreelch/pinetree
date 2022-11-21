@@ -313,7 +313,7 @@ var form = $("form[name=form]");
 	var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "VFAVTHRVgSeiYFfBFeDx",
-				callbackUrl: "http://localhost:8080/login/",
+				callbackUrl: "http://3.34.123.217/login/",
 				isPopup: false,
 			}
 		);
