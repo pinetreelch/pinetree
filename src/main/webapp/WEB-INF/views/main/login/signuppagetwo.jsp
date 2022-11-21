@@ -281,6 +281,33 @@
  	var form = $("form[name=form]");
  	
  	$("#btnSignin").on("click", function(){
+ 		
+ 		if( $("#ifmmId").val() == '' || $("#ifmmId").val() == null ){
+ 			alert('아이디를 입력하세요');
+ 			return false;
+ 		}
+ 		
+ 		if( $("#ifmmPwd").val() == '' || $("#ifmmPwd").val() == null ){
+ 			alert('비밀번호를 입력하세요');
+ 			return false;
+ 		}
+ 		
+ 		if( $("#ifmmEmail").val() == '' || $("#ifmmEmail").val() == null ){
+ 			alert('이메일 주소를 입력하세요');
+ 			return false;
+ 		}
+ 		
+ 		
+ 		if( $("#ifmmName").val() == '' || $("#ifmmName").val() == null ){
+ 			alert('이름을 입력하세요');
+ 			return false;
+ 		}
+ 		
+ 		if( $("#ifmmDob").val() == '' ||  $("#ifmmDob").val() == null ){
+ 			$("#ifmmDob").val('2000-01-01');
+ 		}
+		
+ 		
 		form.attr("action", goUrlInst).submit();
 	});
  	

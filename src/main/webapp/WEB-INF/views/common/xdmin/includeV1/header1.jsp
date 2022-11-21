@@ -8,7 +8,7 @@
 	 	<div class="container bodyd">
 			<div class="row align-items-center">
 				<div class="col" style="padding-top:6px;">
-					<a class="heading" href="" >도서</a >
+					<a class="heading" href="/" > 메인화면 </a >
 					
 					<c:choose>
 						<c:when test ="${sessSeq eq null}">

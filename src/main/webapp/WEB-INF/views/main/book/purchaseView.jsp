@@ -184,7 +184,7 @@
 						
 						<div class="d-grid">
 							<button id="buybtn" type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" >결제하기</button>
-							<button id="kakaoTest" type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" >카카오페이 테스트 </button>
+							<!-- <button id="kakaoTest" type="button" class="btn signupbutton" style="margin-top:15px;height: 50px; border-radius: 4px; border: 1px solid #0077d9; background: #1F8CE6;" >카카오페이 테스트 </button> -->
 						</div>
 						
 						<ul style="padding:0; margin-top: 15px;">
@@ -268,7 +268,7 @@
 		
 		if (!buych){
 			alert("구매 동의 체크해주세요.");
-			alert( meanval);
+			
 			return false;
 		}
 		
@@ -294,8 +294,7 @@
 			
 			success : function(data){
 				
-				alert("성공" + data.orderSeq);
-				alert("주문 상세 추가하는 AJAX 실행");
+				
 				orderSeq = data.orderSeq;
 				
 				$.ajax({
@@ -312,7 +311,7 @@
 					},
 					
 					success : function(response){
-						alert("주문 상세 추가 성공");
+						
 						
 						$.ajax({
 							
@@ -327,10 +326,9 @@
 							},
 							
 							success : function(response){
-								alert("카트도 삭제 성공");
-								alert("주문 시퀀스 = " + orderSeq);
+								
 								$("#buyinfoSeq").val(orderSeq);
-								alert($("#buyinfoSeq").val());
+								
 								
 								
 								form.attr("action", "/main/purchasesuccess").submit();

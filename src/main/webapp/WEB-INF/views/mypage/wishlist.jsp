@@ -48,9 +48,9 @@
 						<div class="d-grid"style="padding-top: 10px;">
 							<ul class="border-bottom border-2 wishul" style="padding-left:0; ;float:left; display:block; height: 30px; margin-bottom:0;">
 								<li id="wishli" style="float:left; border-bottom: 2px solid black; height:30px;"><a href="">등록순</a></li>
-								<li id="wishli" style="float:left; padding-left: 15px;">인기순</li>
+								<!-- <li id="wishli" style="float:left; padding-left: 15px;">인기순</li>
 								<li id="wishli" style="float:left; padding-left: 15px;">낮은 가격순</li>
-								<li id="wishli" style="float:left; padding-left: 15px;">할인 도서</li>
+								<li id="wishli" style="float:left; padding-left: 15px;">할인 도서</li> -->
 							</ul>
 						</div>
 						

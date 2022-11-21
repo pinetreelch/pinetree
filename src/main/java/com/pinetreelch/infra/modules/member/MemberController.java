@@ -179,9 +179,11 @@ public class MemberController {
 		dto.setIfmmSeq(getSessionSeqCore(hrequest));
 		
 		Member result = service.selectOneMember(dto);
+		List<Member> result2 = service.selectwishlist(dto);
 		
 		model.addAttribute("cartlist", cartlist);
 		model.addAttribute("memberinfo",result);
+		model.addAttribute("wishlist",result2);
 		
 		return "/mypage/mypagelist";
 	}

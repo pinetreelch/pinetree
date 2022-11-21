@@ -35,7 +35,12 @@
 		form.attr("action", "/member/purchaseHistory").submit();
 	});
 	
-	$("#dashboard").click(function(){
+	/* $("#dashboard").click(function(){
 		form.attr("action", "/member/mypage").submit();
-	});
+	}); */
+	
+	dashboard = function(){
+		form.attr("action", "/member/mypage").submit();
+	}
+	
 </script>

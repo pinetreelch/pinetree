@@ -57,8 +57,8 @@
 									</div>
 										
 									<div style="display: table-cell; width: 50%; text-align:right; vertical-align: middle;"> 
-										<button class="btnStyle" id="savewishlist"> 선택 위시리스트로 이동 </button> 
-										<button class="btnStyle"> 선택 삭제 </button> 
+										<!-- <button class="btnStyle" id="savewishlist"> 선택 위시리스트로 이동 </button>  -->
+										<!-- <button class="btnStyle"> 선택 삭제 </button>  -->
 									</div>									
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 											<p onclick="goBook(${cartlist.tdbkSeq})" class="ctbooktitle" style="cursor: pointer;">${cartlist.tdbkBookTitle }</p>
 											<p class="ctbookauthor">에드워드 에슈턴 v</p>
 											<div style= "vertical-align:bottom"> 
-												<button class="btnStyle"> 위시리스트로 이동 </button> 
+												<!-- <button class="btnStyle"> 위시리스트로 이동 </button>  -->
 												<button class="btnStyle" onclick="deleteOne(${cartlist.tdbkSeq}, ${cartlist.tdbkSales }); return false;"> 삭제 </button> 					
 											 </div>
 										</div>	

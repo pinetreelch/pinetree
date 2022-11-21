@@ -189,7 +189,7 @@
 		,ifmmMktapppushnight
 		,ifmmTel
 		,ifmmtelCo
-		
+		,delNY
 		)
 		
 		VALUES(
@@ -205,7 +205,7 @@
 		,#{ifmmMktapppushnight}
 		,#{ifmmTel}
 		,#{ifmmtelCo}
-	
+		,0
 		
 		)	
 			

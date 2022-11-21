@@ -66,8 +66,8 @@
 											 리디 캐쉬
 										</h3>
 										
-										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>0</span>
+										<h3 class="cashleft" style="padding-top:3px; color: black;" >
+											 <span>-</span>
 											 <span>원</span>
 										</h3>
 										
@@ -84,8 +84,8 @@
 											 리디 포인트
 										</h3>
 										
-										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>0</span>
+										<h3 class="cashleft" style="padding-top:3px; color: black;">
+											 <span>-</span>
 											 <span>원</span>
 										</h3>
 										
@@ -102,8 +102,8 @@
 											 쿠폰
 										</h3>
 										
-										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>0</span>
+										<h3 class="cashleft" style="padding-top:3px; color: black">
+											 <span>-</span>
 											 <span>개</span>
 										</h3>
 										
@@ -120,16 +120,16 @@
 										</div>
 										
 										<h3 class="litem" style="padding-top:10px;">
-											 내 서재
+											  서재
 										</h3>
 										
-										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>59</span>
-											 <span>권</span>
+										<h3 class="cashleft" style="padding-top:3px; color: black;">
+											 <span>-</span>
+											 <span>권</span> 
 										</h3>
 										
 									</li>
-									<li style="float:left;  width: 160px;">
+									<li style="float:left;  width: 160px; cursor: pointer" onclick="clickcart(${sessSeq})">
 										<div style=" width: 30px; height: 30px; display:inline-block; text-align: center;">
 											<svg width="2em" height="2em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.25 3A.75.75 0 011 2.25h2.838c.34 0 .639.23.725.56l.751 2.866a.75.75 0 01.227-.035H22a.75.75 0 01.707 1l-3.405 9.61a.75.75 0 01-.707.499H7.243a.75.75 0 01-.725-.56L3.259 3.75H1A.75.75 0 01.25 3zm5.448 4.141l2.124 8.109h10.243l2.873-8.109H5.699zM9 20.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9.5 1.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" fill="currentColor"></path></svg>
 										</div>
@@ -139,12 +139,12 @@
 										</h3>
 										
 										<h3 class="cashleft" style="padding-top:3px;">
-											 <span>2</span>
+											 <span> ${fn:length(cartlist)}</span>
 											 <span>권</span>
 										</h3>
 										
 									</li>
-									<li id="wishl" style="float:left;  width: 160px;">
+									<li id="wishl" style="float:left;  width: 160px; cursor: pointer">
 											<div style=" display:inline-block; text-align: center; height: 30px;">
 												<i class="fa-regular fa-heart fa-xl" style="margin-top: 15px; margin-left: 2px;"></i>
 											</div>
@@ -154,7 +154,7 @@
 											</h3>
 										
 											<h3 class="cashleft" style="padding-top:3px;">
-												 <span>0</span>
+												 <span>  ${fn:length(wishlist) } </span>
 												 <span>개</span>
 											</h3>
 										
@@ -232,5 +232,10 @@
 <!-- footer -->
 	
 <%@include file = ".././common/xdmin/includeV1/myPageBarScript.jsp" %>
+<script>
+ $("#wishl").click(function(){
+	 form.attr("action", goWishList).submit(); 
+ });
+</script>
 </body>
 </html>

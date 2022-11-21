@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		<!-- <div class="row">
 			<div class="d-flex col justify-content-center" style="width:1150px; height: 94px; padding-top:30px;">
 				<a href="">
 					<img src="/resources/images/n1.png" alt="" style="width: 70px; height: 70px; margin-right: 20px; margin-left: 20px;"/><br />
@@ -115,7 +115,7 @@
 					<span class="d-flex justify-content-center menuicon">위클리베스트</span>
 				</a>
 			</div>
-		</div>
+		</div> -->
 		<br />
 		<br />
 		

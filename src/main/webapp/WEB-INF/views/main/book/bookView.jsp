@@ -284,7 +284,7 @@
 								</p>
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc()" class="title_content" style="color: #4076B5;" id="toc-toggle"> 펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc()" class="title_content" style="color: #4076B5;" id="toc-toggle"> 펼쳐보기 </a>
 									</span>
 								</button>												
 					</div>
@@ -306,7 +306,7 @@
 									
 									<button class="float-end" style="border:none; background-color: white;">
 										<span>
-											<a href="javascript:openCloseToc2()" class="title_content" style="color: #4076B5;" id="toc-toggle2"> 펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+											<a href="javascript:openCloseToc2()" class="title_content" style="color: #4076B5;" id="toc-toggle2"> 펼쳐보기 </a>
 										</span>
 									</button>												
 						</div>
@@ -437,7 +437,7 @@
 							
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기 </a>
 									</span>
 								</button> 
 							</c:if>	
@@ -456,14 +456,14 @@
 									</p>
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc3()" class="title_content" style="color: #4076B5;" id="toc-toggle3"> 펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc3()" class="title_content" style="color: #4076B5;" id="toc-toggle3"> 펼쳐보기 </a>
 									</span>
 								</button>
 							</c:if>		
 						</div>
-						<div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
+						<!-- <div class="title_text border-bottom border-2 border-dark border-opacity-50" style="width: 780px; display:inline-block; margin-left: 20px; margin-right:200px; margin-top: 40px; line-height: 40px;">
 							리뷰
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -480,9 +480,9 @@
 							</div>
 						</c:forEach>
 						<br />
-						<div class=" d-grid " style="display:inline-block; width: 171px;">
+						<!-- <div class=" d-grid " style="display:inline-block; width: 171px;">
 							<button class="border-bottom border-end border-start border-top more" style="background-color: #EEEEEE; color:#666666;">더보기▸</button>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -604,38 +604,7 @@
  		form.attr("action", address).submit();
  	}
  </script>
-<script>
-  $("#logoutBtn").on("click", function(){
-		alert('logout');
 
-		$.ajax({ 
-			url : "/member/logoutProc",
-			
-			type : 'post',
-			
-			data : {
-				
-			},
-			
-			success : function(data) {
-	
-			 	if(data.rt == "success"){			 		
-					location.reload();
-				 } else {
-					 // by pass
-				 }
-				
-		     },
-		          
-			error : function(request, status, error){ 
-							
-				  	console.log("code: " + request.status)	
-			        console.log("message: " + request.responseText)
-			        console.log("error: " + error);
-				 }	     
-		});	
-	});
-  </script>
   <script>
   	 $("#cartbtn").on("click", function(){
  		 var tdbkSeq = $("input:hidden[name=tdbkSeq]");

@@ -50,8 +50,7 @@
 	    $('#shDateStart').datepicker('setDate', '2010-01-01');
 	    $('#shDateEnd').datepicker('setDate', 'today');
 	   	
-	  } );
-	  
+	  } );	  
   	</script>	
   	
   	
@@ -116,6 +115,7 @@
 				      <div class="accordion-body">
 				        <ul id="accorditem" style="line-height: 2em;">
 				         	<li><a href="/main/bookAdmin">도서 리스트</a></li>
+				         	<li ><a href="/main/bookForm">도서 추가 </a></li>
 				         </ul>
 				      </div>
 				    </div>
@@ -499,6 +499,41 @@
  		
  		formList.attr("action", "/codeGroup/updateUse").submit();
  	});
+ </script>
+ 
+ <script>
+ $("#logoutBtn").on("click", function(){
+		alert('logout');
+
+		
+		$.ajax({ 
+			url : "/member/logoutProc",
+			
+			type : 'post',
+			
+			data : {
+				
+			},
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					location.href = "/"
+				 } else {
+					 // by pass
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 
+							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});	
+	});
+ </script>
  </script>
 </body>
 </html>

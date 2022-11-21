@@ -17,7 +17,7 @@
  		<nav  style="display: inline-block;">
  			<ul >
  					
- 				<li style="display: inline-block; padding-right: 40px;">
+ 				<!-- <li style="display: inline-block; padding-right: 40px;">
  						<input type="text" class="form-control inputclass" placeholder="" aria-label="First name" style="width:250px;">
  				</li>				 								 				
  				
@@ -25,7 +25,7 @@
  					
  						<i class="fa-solid fa-book-open fa-xl" style="width: 50px;"></i>
  					
- 				</li>
+ 				</li> -->
  								 				
  				<li style="display: inline-block;">
  					<i class="fa-solid fa-cart-shopping fa-xl" id="cart" style="padding-top:30px; width: 50px; cursor: pointer;" onclick="clickcart(${sessSeq})"></i>				 				

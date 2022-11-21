@@ -266,7 +266,7 @@
 								</p>
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc()" class="title_content" style="color: #4076B5;" id="toc-toggle">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc()" class="title_content" style="color: #4076B5;" id="toc-toggle">펼쳐보기</a>
 									</span>
 								</button>												
 					</div>
@@ -319,7 +319,7 @@
 									</p>
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc1()" class="title_content" style="color: #4076B5;" id="toc-toggle1">펼쳐보기</a>
 									</span>
 								</button>	
 						</div>
@@ -363,7 +363,7 @@
 									</p>
 								<button class="float-end" style="border:none; background-color: white;">
 									<span>
-										<a href="javascript:openCloseToc2()" class="title_content" style="color: #4076B5;" id="toc-toggle2">펼쳐보기 <i class="fa-solid fa-circle-chevron-down"></i></a>
+										<a href="javascript:openCloseToc2()" class="title_content" style="color: #4076B5;" id="toc-toggle2">펼쳐보기  </a>
 									</span>
 								</button>	
 						</div>

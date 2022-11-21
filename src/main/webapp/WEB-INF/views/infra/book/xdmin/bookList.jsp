@@ -366,5 +366,39 @@ $("#deleteBtn").click(function(){
  		form.attr("action", "/code/updateUse").submit();
  	});
  </script>
+ 
+ <script>
+ $("#logoutBtn").on("click", function(){
+		alert('logout');
+
+		
+		$.ajax({ 
+			url : "/member/logoutProc",
+			
+			type : 'post',
+			
+			data : {
+				
+			},
+			
+			success : function(data) {
+	
+			 	if(data.rt == "success"){			 		
+					location.href = "/"
+				 } else {
+					 // by pass
+				 }
+				
+		     },
+		          
+			error : function(request, status, error){ 
+							
+				  	console.log("code: " + request.status)	
+			        console.log("message: " + request.responseText)
+			        console.log("error: " + error);
+				 }	     
+		});	
+	});
+ </script>
 </body>
 </html>

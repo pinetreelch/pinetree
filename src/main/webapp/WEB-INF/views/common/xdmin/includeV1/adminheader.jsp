@@ -8,7 +8,7 @@
 			<div class="col-12">
 				<div style="display:table; width: 100%;  height: 50px;">
 					<div style="display:table-cell; vertical-align: middle; padding-left: 50px; width: 80%;">
-						<div>
+						<div onclick="location.href='/'" style="cursor: pointer;">
 							<img src="https://active.ridibooks.com/navbar/icons/web/ridi.f50c563403f615565a7328888ba19f87.svg"  style="width:61px; height:23px; padding: 0px;">
 				 			<img src="https://active.ridibooks.com/navbar/icons/web/genre_books.24933faed881f7e79f1f8d5f0c529370.svg" style="width:122px; height: 40px; padding: 4px;">
 				 			
@@ -32,11 +32,11 @@
 					
 					<div  style="display:table-cell; padding-left: -20px; padding-right: 0px; line-height: 1.1em; vertical-align: middle; width: 3%; text-align: center;">
 						<div class="border-end" style="height: 40px; vertical-align:center;">
-							<div style="padding-top: 2px;">
-								<a href="">
+							<div style="padding-top: 2px; cursor: pointer"  id="logoutBtn">
+								
 								<i class="fa-solid fa-right-from-bracket fa-ml"></i><br />
 								<span class="adminname2">logout</span>
-								</a>
+								
 							</div>
 						</div>
 					</div>
@@ -44,3 +44,4 @@
 			</div>
 		</div>
  	</div>					<!-- 해드부분 continer end -->
+ 	
