@@ -78,11 +78,11 @@
 											<div class="input-group">
 												<label class="account-label">
 													<span class="invisible">아이디 입력</span>
-														<input type="text"  id="ifmmId" name= "ifmmId" title="아이디 입력" placeholder="아이디" autocapitalize="off" autocomplete="off" class="account-input">
+														<input type="text"  id="ifmmId" name= "ifmmId" title="아이디 입력" placeholder="아이디" autocapitalize="off" autocomplete="off" class="account-input" value="chano0215">
 												</label>
 												<label class="account-label">
 													<span class="invisible">비밀번호 입력</span>
-													<input  onkeypress="if(event.keyCode==13){keypress();}" type="password"  id="ifmmPwd" id = "ifmmPwd" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="account-input">
+													<input  onkeypress="if(event.keyCode==13){keypress();}" type="password"  id="ifmmPwd" id = "ifmmPwd" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="account-input" value="Dlcksgh12.">
 												</label>
 												
 													<div class="remember-wrapper">
