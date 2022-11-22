@@ -194,6 +194,13 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping(value = "/chat")
+	public String chat() throws Exception {
+		
+		
+		return "test/chat";
+	}
+	
 	
 
 }
