@@ -47,15 +47,18 @@ public class CodeGroupController {
 			
 		setSearchAndPagin(vo);	
 		
+		System.out.println("codegrouplist 실행@!!!!!!====================");
 		System.out.println("======================================");
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getshOption(): " + vo.getShOption());
 		System.out.println("vo.getshUse(): " + vo.getShUse());
 		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
-				
+		
+		List<CodeGroup> result = service.testOracle(vo); 
 		
 		List<CodeGroup> list = service.selectList(vo);  //서비스를 호출하는건데 autowired되어있음; 
 		model.addAttribute("list", list);				//jsp에서 list란 이름으로 객체를 쓸 수 있게 됨;
+		model.addAttribute("oracle",result);
 		
 		
 		

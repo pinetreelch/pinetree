@@ -72,6 +72,14 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
+	public List<CodeGroup> testOracle(CodeGroupVo vo) throws Exception {
+		
+		List<CodeGroup> list = dao.testOracle(vo); //vo가 붙어있음; 서비스가 dao 함수 호출하는데 파라미터로 vo가 있으니 넣어준것임; 
+		return list;
+		
+	}
+	
+	@Override
 	public int insert(CodeGroup dto) throws Exception{
 		int result = dao.insert(dto);
 		System.out.println("service result123: " + result);

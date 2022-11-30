@@ -10,7 +10,15 @@
 	
 	<!-- 쌤 코드 복사 페이징할떄 복사함 -->	
 	
-	
+		<select id="testOracle" resultMap="resultMapObj">
+			SELECT
+				JOB_ID
+				,JOB_TITLE
+			FROM
+				JOBS
+			WHERE
+				1=1
+		</select>
 
 		
 		<select id="selectList" resultMap="resultMapObj">

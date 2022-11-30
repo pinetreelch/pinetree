@@ -25,6 +25,21 @@ public class CodeGroup {
 	// colum에 없는 필드: 바로위 total 같은 것들을 생성할때 필드명 앞에 x를 붙임;
 	// ex private String xtotal;
 	
+	private String JOB_ID;
+	private String JOB_TITLE;
+	
+	public String getJOB_ID() {
+		return JOB_ID;
+	}
+	public void setJOB_ID(String jOB_ID) {
+		JOB_ID = jOB_ID;
+	}
+	public String getJOB_TITLE() {
+		return JOB_TITLE;
+	}
+	public void setJOB_TITLE(String jOB_TITLE) {
+		JOB_TITLE = jOB_TITLE;
+	}
 	//	 cache
 	public static List<CodeGroup> cachedCodeArrayList = new ArrayList<CodeGroup>();
 	

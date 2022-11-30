@@ -16,10 +16,12 @@ public class CodeGroupDao {
 	@Resource(name = "sqlSession")				//원래는 필요없지만, 나중에 시스템 하나에 DB여러개 붙일때, name= 연결된 DB이름; 만약 oracle같은 db랑 연결할때 그 연결된 db에 대한 명칭
 	private SqlSession sqlSession;				// sql기능들이 있음, sql list, sql insert, sql delete; ->이 객체가 있는게 mabatis;
 	
+	@Inject										
+	@Resource(name = "sqlSessionOracle")				
+	private SqlSession sqlSessionOracle;				
+	
 	private static String namespace = "com.pinetreelch.infra.modules.codegroup.CodeGroupMapper";
-	
-	
-	
+		
 	public List<CodeGroup> selectList(CodeGroupVo vo){					// List<>라는건 향상된 배열인데 CodeGroup이라는 객체를 넣을거라는것; CodeGroup이라는 dto를 넣는데 변수명은 selectList로 하겠다 라는 것. 
 		// public List<CodeGroup> selectList(CodeGroupVo vo) {return sqlsession.selectList("com.pinetreelch.infra.modules.codegroup.CodeGroupMapper.selectList", vo)}
 		return sqlSession.selectList(namespace + ".selectList", vo); 
@@ -35,6 +37,11 @@ public class CodeGroupDao {
 	public List<CodeGroup> selectList(){				 
 		// public List<CodeGroup> selectList(CodeGroupVo vo) {return sqlsession.selectList("com.pinetreelch.infra.modules.codegroup.CodeGroupMapper.selectList", vo)}
 		return sqlSession.selectList(namespace + ".selectList", ""); 
+	}
+	
+	public List<CodeGroup> testOracle(CodeGroupVo vo){				 
+		
+		return sqlSessionOracle.selectList(namespace + ".testOracle", vo); 
 	}
 	
 	public CodeGroup selectOne(CodeGroupVo vo){
